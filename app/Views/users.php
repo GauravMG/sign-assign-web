@@ -65,7 +65,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('headerButtons'); ?>
-<div class="col-md-5 offset-md-7">
+<div class="col-md-5 offset-md-7" id="addUserButtonContainer">
     <a href="/users/add"><button type="button" class="btn btn-dark">Add New User</button></a>
 </div>
 <?= $this->endSection(); ?>
@@ -123,6 +123,10 @@
 
 <script>
     $(document).ready(function() {
+        if (parseInt(userData.roleId) != 3) {
+            document.getElementById("addUserButtonContainer").style.display = "none"
+        }
+
         fetchUsers()
     })
 

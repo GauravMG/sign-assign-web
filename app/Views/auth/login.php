@@ -178,7 +178,7 @@
                     success: function(response) {
                         if (response.success) {
                             localStorage.setItem("jwtToken", response.jwtToken)
-                            localStorage.setItem("userData", response.data)
+                            localStorage.setItem("userData", JSON.stringify(response.data))
 
                             loader.hide()
                             toastr.success(response.message);

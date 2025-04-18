@@ -3,7 +3,6 @@ const userData = localStorage.getItem("userData") ?? null
 
 function getJWTToken() {
     const jwtToken = localStorage.getItem("jwtToken") ?? null
-    console.log(`jwtToken`, jwtToken)
 
     if ((jwtToken ?? "").trim() === "") {
         toastr.error("Session expired! Please login again.");

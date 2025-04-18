@@ -6,3 +6,7 @@ const loader = {
         document.getElementById('global-loader').style.display = 'none';
     }
 };
+
+$(document).ready(function () {
+    console.log(userData)
+})

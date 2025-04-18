@@ -6,8 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/users/(:any)', 'AdminController::userDetails/$1');
 $routes->get('/users/add', 'AdminController::addUser');
+$routes->get('/users/(:any)', 'AdminController::userDetails/$1');
 $routes->get('/users', 'AdminController::users');
 
 $routes->get('/forgot-password', 'AuthController::forgotPassword');

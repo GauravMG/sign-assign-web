@@ -22,11 +22,11 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter first name">
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter first name">
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter last name">
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter last name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email ID</label>
@@ -113,8 +113,6 @@
         }
 
         async function onClickSubmit() {
-            if (!await validateTimeFields()) return;
-
             const firstName = document.getElementById("firstName").value;
             const lastName = document.getElementById("lastName").value;
             const email = document.getElementById("email").value;

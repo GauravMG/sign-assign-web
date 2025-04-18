@@ -41,24 +41,4 @@ class AdminController extends BaseController
 
         return view('user-details', $data);
     }
-
-    public function userWithdrawRequests(): string
-    {
-        $data = [
-            'title' => 'User Withdraw Requests',
-            'page_heading' => 'User Withdraw Requests'
-        ];
-
-        return view('user-withdraw-requests', $data);
-    }
-
-    public function appSettings(): string
-    {
-        $data = [
-            'title' => 'App Settings',
-            'page_heading' => 'App Settings'
-        ];
-
-        return view('app-settings', $data);
-    }
 }

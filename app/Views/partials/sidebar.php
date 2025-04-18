@@ -11,7 +11,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin">
                     <a href="/users" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
@@ -19,6 +19,47 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                    <a href="/products" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-wave"></i>
+                        <p>
+                            Products
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                    <a href="/orders" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Orders
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                    <a href="/invoices" class="nav-link">
+                        <i class="nav-icon fas fa-receipt"></i>
+                        <p>
+                            Invoices
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                    <a href="/payments" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-wave"></i>
+                        <p>
+                            Payments
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                    <a href="/reports" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-wave"></i>
+                        <p>
+                            Reports
+                        </p>
+                    </a>
+                </li>
+            </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>

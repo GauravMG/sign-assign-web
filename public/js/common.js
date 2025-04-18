@@ -8,9 +8,7 @@ const loader = {
 };
 
 $(document).ready(function () {
-    const newUserData = JSON.parse(userData)
-
-    const roleId = parseInt(newUserData.roleId)
+    const roleId = parseInt(userData.roleId)
 
     // First hide all sidebar items
     const allItems = document.querySelectorAll('.sidebar-nav-item');

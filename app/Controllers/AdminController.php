@@ -19,6 +19,16 @@ class AdminController extends BaseController
         return view('users', $data);
     }
 
+    public function addUser(): string
+    {
+        $data = [
+            'title' => 'Add User',
+            'page_heading' => 'Add User'
+        ];
+
+        return view('add-user', $data);
+    }
+
     public function userDetails($userId): string
     {
         $data = [

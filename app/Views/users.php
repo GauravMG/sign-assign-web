@@ -59,6 +59,12 @@
 </style>
 <?= $this->endSection(); ?>
 
+<?= $this->section('headerButtons'); ?>
+<div class="col-md-5 offset-md-7">
+    <a href="/users/add"><button type="button" class="btn btn-primary">Add New User</button></a>
+</div>
+<?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div class="row">
     <div class="col-12">

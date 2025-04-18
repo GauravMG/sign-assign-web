@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?= base_url('css/common.css') . '?t=' . time(); ?>">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
     <div id="global-loader" class="loader-overlay">
         <div class="loader"></div>
     </div>

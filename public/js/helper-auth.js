@@ -1,5 +1,8 @@
 const BASE_API_PATH = "http://3.109.198.252/api/v1"
-const userData = localStorage.getItem("userData") ?? null
+var userData = localStorage.getItem("userData") ?? null
+if (userData) {
+    userData = JSON.parse(userData)
+}
 
 function getJWTToken() {
     const jwtToken = localStorage.getItem("jwtToken") ?? null

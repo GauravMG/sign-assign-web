@@ -42,10 +42,10 @@
                                 <form>
                                     <div class="card-footer">
                                         <button type="button" class="btn btn-primary"><?php if (isset($data["userId"])) {
-                                            echo "Update";
-                                        } else {
-                                            echo "Create";
-                                        } ?></h3> User</button>
+                                                                                            echo "Update";
+                                                                                        } else {
+                                                                                            echo "Create";
+                                                                                        } ?></h3> User</button>
                                     </div>
                                 </form>
                             </div>
@@ -83,7 +83,7 @@
             fetchUser()
         }
 
-        async function fetchGame() {
+        async function fetchUser() {
             await postAPICall({
                 endPoint: "/user/list",
                 payload: JSON.stringify({
@@ -176,7 +176,7 @@
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/games";
+                                window.location.href = "/users";
                             }
                         }
                     })

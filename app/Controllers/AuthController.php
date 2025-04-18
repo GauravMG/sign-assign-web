@@ -17,6 +17,11 @@ class AuthController extends Controller
         return view('auth/register');
     }
 
+    public function forgotPassword()
+    {
+        return view('auth/forgot-password');
+    }
+
     public function logout()
     {
         session()->destroy();

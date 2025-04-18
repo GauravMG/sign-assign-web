@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Forgot Password</title>
+    <link rel="icon" type="image/jpg" href="<?= base_url('images/cropped-sign-assign_icon-32x32.jpg'); ?>">
 
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/adminlte/dist/fonts/fonts.googleapis.com/css24b9.css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback'); ?>">

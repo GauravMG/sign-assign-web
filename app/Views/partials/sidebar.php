@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-        <!-- <img src="" alt="Sign Assign" class="brand-image img-circle elevation-3" style="opacity: .8; background-color: #ffffff;"> -->
+        <img src="<?= base_url('images/cropped-sign-assign_icon-32x32.jpg'); ?>" alt="Sign Assign" class="brand-image img-circle elevation-3" style="opacity: .8; background-color: #ffffff;">
         <span class="brand-text font-weight-light">Sign Assign</span>
     </a>
 
@@ -16,6 +16,14 @@
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Users
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                    <a href="/product-categories" class="nav-link">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>
+                            Product Categories
                         </p>
                     </a>
                 </li>

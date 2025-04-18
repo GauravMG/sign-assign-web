@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?? 'Lucky Adda - Admin Panel' ?></title>
+    <title><?= $title ?? 'Sign Assign - Admin Panel' ?></title>
+    <link rel="icon" type="image/jpg" href="<?= base_url('images/cropped-sign-assign_icon-32x32.jpg'); ?>">
+
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/fontawesome-free/css/all.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/toastr/toastr.min.css'); ?>">

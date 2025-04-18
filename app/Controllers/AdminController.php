@@ -29,6 +29,19 @@ class AdminController extends BaseController
         return view('add-user', $data);
     }
 
+    public function updateUser($userId): string
+    {
+        $data = [
+            'title' => 'Update User',
+            'page_heading' => 'Update User',
+            'data' => [
+                'userId' => $userId
+            ]
+        ];
+
+        return view('add-user', $data);
+    }
+
     public function userDetails($userId): string
     {
         $data = [
@@ -40,5 +53,38 @@ class AdminController extends BaseController
         ];
 
         return view('user-details', $data);
+    }
+
+    public function productCategories(): string
+    {
+        $data = [
+            'title' => 'Product Categories',
+            'page_heading' => 'Product Categories'
+        ];
+
+        return view('product-categories', $data);
+    }
+
+    public function addProductCategory(): string
+    {
+        $data = [
+            'title' => 'Add Product Category',
+            'page_heading' => 'Add Product Category'
+        ];
+
+        return view('add-product-category', $data);
+    }
+
+    public function updateProductCategory($productCategoryId): string
+    {
+        $data = [
+            'title' => 'Update Product Category',
+            'page_heading' => 'Update Product Category',
+            'data' => [
+                'productCategoryId' => $productCategoryId
+            ]
+        ];
+
+        return view('add-product-category', $data);
     }
 }

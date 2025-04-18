@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/summernote/summernote-bs4.min.css'); ?>">
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -11,41 +12,43 @@
     <div class="col-12">
         <div class="card card-dark">
             <div class="card-header">
-                <h3 class="card-title"><?php if (isset($data["userId"])) {
-                                            echo "Edit User";
+                <h3 class="card-title"><?php if (isset($data["productCategoryId"])) {
+                                            echo "Edit Product Category";
                                         } else {
-                                            echo "Add New User";
+                                            echo "Add New Product Category";
                                         } ?></h3>
             </div>
             <!-- /.card-header -->
             <form>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="Enter first name">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter name">
                     </div>
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Enter last name">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control" id="image" accept="image/*">
+                        <div id="imagePreview" class="mt-2"></div>
+                        <button type="button" class="btn btn-danger mt-2 d-none" id="removeImage">Remove Image</button>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email ID</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email id">
+                        <label for="shortDescription">Short Description</label>
+                        <textarea class="form-control" id="shortDescription" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="password">Temporary Password (for new user)</label>
-                        <input type="password" class="form-control" id="password" placeholder="******">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <form>
                                     <div class="card-footer">
-                                        <button type="button" class="btn btn-dark"><?php if (isset($data["userId"])) {
+                                        <button type="button" class="btn btn-dark"><?php if (isset($data["productCategoryId"])) {
                                                                                             echo "Update";
                                                                                         } else {
                                                                                             echo "Create";
-                                                                                        } ?></h3> User</button>
+                                                                                        } ?></h3> Product Category</button>
                                     </div>
                                 </form>
                             </div>
@@ -71,24 +74,49 @@
 <script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/summernote/summernote-bs4.min.js'); ?>"></script>
 <script>
-    let userId = '<?php if (isset($data)) {
-                        echo $data["userId"];
-                    } else {
-                        echo "";
-                    } ?>'
+    let productCategoryId = '<?php if (isset($data)) {
+                                    echo $data["productCategoryId"];
+                                } else {
+                                    echo "";
+                                } ?>'
 
     document.addEventListener("DOMContentLoaded", function() {
-        if (userId !== "") {
-            fetchUser()
+        $('#description').summernote({
+            height: 350
+        })
+
+        if (productCategoryId !== "") {
+            fetchProductCategory()
         }
 
-        async function fetchUser() {
+        document.getElementById("image").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage = e.target.result;
+                    document.getElementById("imagePreview").innerHTML = `<img src="${uploadedImage}" class="img-fluid" width="150" alt="Image">`;
+                    document.getElementById("removeImage").classList.remove("d-none");
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById("removeImage").addEventListener("click", function() {
+            uploadedImage = "";
+            document.getElementById("image").value = "";
+            document.getElementById("imagePreview").innerHTML = "";
+            this.classList.add("d-none");
+        });
+
+        async function fetchProductCategory() {
             await postAPICall({
-                endPoint: "/user/list",
+                endPoint: "/product-category/list",
                 payload: JSON.stringify({
                     "filter": {
-                        userId: Number(userId)
+                        productCategoryId: Number(productCategoryId)
                     },
                     "range": {
                         "all": true
@@ -102,9 +130,10 @@
                 callbackSuccess: (response) => {
                     if (response.success) {
                         const data = response.data[0]
-                        document.getElementById("firstName").value = data.firstName
-                        document.getElementById("lastName").value = data.lastName
-                        document.getElementById("email").value = data.email
+                        document.getElementById("name").value = data.name
+                        document.getElementById("shortDescription").value = data.shortDescription
+                        $('#description').summernote('code', data.description)
+                        uploadedImage = data.image
                     }
 
                     loader.hide()
@@ -113,70 +142,77 @@
         }
 
         async function onClickSubmit() {
-            const firstName = document.getElementById("firstName").value;
-            const lastName = document.getElementById("lastName").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+            const name = document.getElementById("name").value;
+            const shortDescription = document.getElementById("shortDescription").value;
+            const description = document.getElementById("description").value;
 
-            if ((firstName ?? "").trim() === "") {
-                toastr.error("Please enter a valid first name!");
+            let image = uploadedImage
+
+            const fileInput = document.getElementById("image");
+
+            if ((name ?? "").trim() === "") {
+                toastr.error("Please enter a valid name!");
                 return;
             }
 
-            if ((lastName ?? "").trim() === "") {
-                toastr.error("Please enter a valid last name!");
+            if ((shortDescription ?? "").trim() === "") {
+                toastr.error("Please enter a valid short description!");
                 return;
             }
 
-            if ((email ?? "").trim() === "") {
-                toastr.error("Please enter a valid email id!");
+            if ((description ?? "").trim() === "") {
+                toastr.error("Please enter a valid description!");
                 return;
             }
 
-            if (userId === "" && (password ?? "").trim() === "") {
-                toastr.error("Please enter a valid password!");
+            if ((image ?? "").trim() === "") {
+                toastr.error("Please upload an image!");
                 return;
+            }
+
+            if (fileInput.files.length > 0) {
+                image = await uploadImage(fileInput.files[0]);
             }
 
             let payload = {
-                firstName,
-                lastName,
-                email
+                name,
+                shortDescription,
+                description
             }
-            if ((password ?? "").trim() !== "") {
+            if ((image ?? "").trim() !== "") {
                 payload = {
                     ...payload,
-                    password
+                    image
                 }
             }
 
-            if (userId !== "") {
-                if (confirm("Are you sure you want to update this user?")) {
+            if (productCategoryId !== "") {
+                if (confirm("Are you sure you want to update this product category?")) {
                     await postAPICall({
-                        endPoint: "/user/update",
+                        endPoint: "/product-category/update",
                         payload: JSON.stringify({
-                            userId: Number(userId),
+                            productCategoryId: Number(productCategoryId),
                             ...payload
                         }),
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/users";
+                                window.location.href = "/product-categories";
                             }
                         }
                     })
                 }
             } else {
-                if (confirm("Are you sure you want to create this user?")) {
+                if (confirm("Are you sure you want to create this product category?")) {
                     await postAPICall({
-                        endPoint: "/user/create",
+                        endPoint: "/product-category/create",
                         payload: JSON.stringify({
                             ...payload
                         }),
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/users";
+                                window.location.href = "/product-categories";
                             }
                         }
                     })

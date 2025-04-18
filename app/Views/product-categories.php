@@ -61,12 +61,21 @@
         display: flex;
         justify-content: space-around;
     }
+
+    .list-image-container {
+        text-align: center;
+    }
+
+    .list-image {
+        width: 80px;
+        height: 80px;
+    }
 </style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('headerButtons'); ?>
-<div class="col-md-5 offset-md-7">
-    <a href="/users/add"><button type="button" class="btn btn-dark">Add New User</button></a>
+<div class="col-md-6 offset-md-6">
+    <a href="/product-categories/add"><button type="button" class="btn btn-dark">Add New Product Category</button></a>
 </div>
 <?= $this->endSection(); ?>
 
@@ -75,17 +84,16 @@
     <div class="col-12">
         <div class="card card-dark">
             <div class="card-header">
-                <h3 class="card-title">All Users</h3>
+                <h3 class="card-title">All Product Categories</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="dtUsersList" class="table table-bordered table-hover">
+                <table id="dtProductCategoriesList" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Resgistration Date</th>
-                            <th>Account Status</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -93,10 +101,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Resgistration Date</th>
-                            <th>Account Status</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
@@ -127,7 +134,7 @@
     })
 
     function initializeDTUsersList() {
-        $("#dtUsersList").DataTable({
+        $("#dtProductCategoriesList").DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -139,21 +146,19 @@
     }
 
     async function fetchUsers() {
-        if ($.fn.DataTable.isDataTable("#dtUsersList")) {
-            $('#dtUsersList').DataTable().destroy()
+        if ($.fn.DataTable.isDataTable("#dtProductCategoriesList")) {
+            $('#dtProductCategoriesList').DataTable().destroy()
         }
 
         await postAPICall({
-            endPoint: "/user/list",
+            endPoint: "/product-category/list",
             payload: JSON.stringify({
-                "filter": {
-                    // "roleId": 2
-                },
+                "filter": {},
                 "range": {
                     "all": true
                 },
                 "sort": [{
-                    "orderBy": "firstName",
+                    "orderBy": "name",
                     "orderDir": "asc"
                 }]
             }),
@@ -164,18 +169,16 @@
 
                     for (let i = 0; i < response.data?.length; i++) {
                         html += `<tr>
-                            <td>${response.data[i].fullName ?? ""}</td>
-                            <td>${response.data[i].email}</td>
-                            <td>${formatDate(response.data[i].createdAt)}</td>
+                            <td>${response.data[i].name ?? ""}</td>
+                            <td class="list-image-container"><img class="list-image" src="${response.data[i].image}" alt="${response.data[i].name}" /></td>
                             <td>
                                 <label class="switch">
-                                    <input type="checkbox" class="toggle-status" data-user-id="${response.data[i].userId}" ${response.data[i].status ? "checked" : ""}>
+                                    <input type="checkbox" class="toggle-status" data-product-category-id="${response.data[i].productCategoryId}" ${response.data[i].status ? "checked" : ""}>
                                     <span class="slider"></span>
                                 </label>
                             </td>
                             <td class="list-action-container">
-                                <span onclick="onClickUpdateUser(${response.data[i].userId})"><i class="fa fa-edit view-icon"></i></span>
-                                <span onclick="onClickViewUser(${response.data[i].userId})"><i class="fa fa-eye view-icon"></i></span>
+                                <span onclick="onClickUpdateProductCategory(${response.data[i].productCategoryId})"><i class="fa fa-edit view-icon"></i></span>
                             </td>
                         </tr>`;
                     }
@@ -186,13 +189,13 @@
                     // Add event listeners to all toggle switches after rendering
                     document.querySelectorAll(".toggle-status").forEach((toggle) => {
                         toggle.addEventListener("change", function() {
-                            let userId = this.getAttribute("data-user-id");
+                            let productCategoryId = this.getAttribute("data-product-category-id");
                             let newStatus = this.checked ? "active" : "inactive";
 
-                            console.log(`User ID: ${userId}, New Status: ${newStatus}`);
+                            console.log(`Product Category ID: ${productCategoryId}, New Status: ${newStatus}`);
 
-                            // Call API to update user status
-                            updateUserStatus(userId, newStatus);
+                            // Call API to update status
+                            updateProductCategoryStatus(productCategoryId, newStatus);
                         });
                     });
 
@@ -204,11 +207,11 @@
         })
     }
 
-    async function updateUserStatus(userId, status) {
+    async function updateProductCategoryStatus(productCategoryId, status) {
         await postAPICall({
-            endPoint: "/user/update",
+            endPoint: "/product-category/update",
             payload: JSON.stringify({
-                userId: Number(userId),
+                productCategoryId: Number(productCategoryId),
                 status: status === "inactive" ? false : true
             }),
             callbackSuccess: (response) => {
@@ -216,18 +219,14 @@
                     toastr.error(response.message)
                     fetchUsers()
                 } else {
-                    toastr.success(`User ${status === "inactive" ? "blocked" : "unblocked"} successfully`)
+                    toastr.success(`Product category ${status === "inactive" ? "blocked" : "unblocked"} successfully`)
                 }
             }
         })
     }
 
-    function onClickUpdateUser(userId) {
-        window.location.href = `/users/update/${userId}`
-    }
-
-    function onClickViewUser(userId) {
-        window.location.href = `/users/${userId}`
+    function onClickUpdateProductCategory(productCategoryId) {
+        window.location.href = `/product-categories/update/${productCategoryId}`
     }
 </script>
 <?= $this->endSection(); ?>

@@ -10,7 +10,7 @@ function getJWTToken() {
     if ((jwtToken ?? "").trim() === "") {
         toastr.error("Session expired! Please login again.");
 
-        setTimeout(() => window.location.href = "/login", 1500)
+        setTimeout(() => window.location.href = "/admin/login", 1500)
         return
     }
 
@@ -56,7 +56,7 @@ async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComp
                 localStorage.removeItem("jwtToken")
                 localStorage.removeItem("userData")
 
-                setTimeout(() => window.location.href = "/login", 1500)
+                setTimeout(() => window.location.href = "/admin/login", 1500)
                 return
             }
 
@@ -66,7 +66,7 @@ async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComp
                 localStorage.removeItem("jwtToken")
                 localStorage.removeItem("userData")
 
-                setTimeout(() => window.location.href = "/login", 1500)
+                setTimeout(() => window.location.href = "/admin/login", 1500)
                 return
             }
 
@@ -81,7 +81,7 @@ async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComp
                     localStorage.removeItem("jwtToken")
                     localStorage.removeItem("userData")
 
-                    setTimeout(() => window.location.href = "/login", 1500)
+                    setTimeout(() => window.location.href = "/admin/login", 1500)
                     return
                 }
 
@@ -94,7 +94,7 @@ async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComp
                 localStorage.removeItem("jwtToken")
                 localStorage.removeItem("userData")
 
-                setTimeout(() => window.location.href = "/login", 1500)
+                setTimeout(() => window.location.href = "/admin/login", 1500)
                 return
             }
 
@@ -151,7 +151,7 @@ function onClickLogout() {
                 localStorage.removeItem("jwtToken")
                 localStorage.removeItem("userData")
 
-                window.location.href = "/login"
+                window.location.href = "/admin/login"
             }
         }
     })

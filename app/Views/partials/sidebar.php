@@ -12,7 +12,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin">
-                    <a href="/users" class="nav-link">
+                    <a href="/admin/users" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Users
@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
-                    <a href="/product-categories" class="nav-link">
+                    <a href="/admin/product-categories" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>
                             Product Categories
@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
-                    <a href="/products" class="nav-link">
+                    <a href="/admin/products" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
                             Products
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
-                    <a href="/orders" class="nav-link">
+                    <a href="/admin/orders" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Orders
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
-                    <a href="/invoices" class="nav-link">
+                    <a href="/admin/invoices" class="nav-link">
                         <i class="nav-icon fas fa-receipt"></i>
                         <p>
                             Invoices
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
-                    <a href="/payments" class="nav-link">
+                    <a href="/admin/payments" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
                             Payments
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
-                    <a href="/reports" class="nav-link">
+                    <a href="/admin/reports" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
                             Reports

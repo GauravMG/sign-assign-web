@@ -75,7 +75,7 @@
 
 <?= $this->section('headerButtons'); ?>
 <div class="col-md-6 offset-md-6">
-    <a href="/product-categories/add"><button type="button" class="btn btn-dark">Add New Product Category</button></a>
+    <a href="/admin/product-categories/add"><button type="button" class="btn btn-dark">Add New Product Category</button></a>
 </div>
 <?= $this->endSection(); ?>
 
@@ -226,7 +226,7 @@
     }
 
     function onClickUpdateProductCategory(productCategoryId) {
-        window.location.href = `/product-categories/update/${productCategoryId}`
+        window.location.href = `/admin/product-categories/update/${productCategoryId}`
     }
 </script>
 <?= $this->endSection(); ?>

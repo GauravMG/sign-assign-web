@@ -161,7 +161,7 @@
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/users";
+                                window.location.href = "/admin/users";
                             }
                         }
                     })
@@ -176,7 +176,7 @@
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/users";
+                                window.location.href = "/admin/users";
                             }
                         }
                     })

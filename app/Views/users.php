@@ -66,7 +66,7 @@
 
 <?= $this->section('headerButtons'); ?>
 <div class="col-md-5 offset-md-7" id="addUserButtonContainer">
-    <a href="/users/add"><button type="button" class="btn btn-dark">Add New User</button></a>
+    <a href="/admin/users/add"><button type="button" class="btn btn-dark">Add New User</button></a>
 </div>
 <?= $this->endSection(); ?>
 
@@ -227,11 +227,11 @@
     }
 
     function onClickUpdateUser(userId) {
-        window.location.href = `/users/update/${userId}`
+        window.location.href = `/admin/users/update/${userId}`
     }
 
     function onClickViewUser(userId) {
-        window.location.href = `/users/${userId}`
+        window.location.href = `/admin/users/${userId}`
     }
 </script>
 <?= $this->endSection(); ?>

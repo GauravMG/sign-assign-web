@@ -96,9 +96,9 @@
                 <p class="mb-1 mt-3">
                     <a href="/login" class="text-center">Already have an account? Login Now!</a>
                 </p>
-                <p class="mb-0">
+                <!-- <p class="mb-0">
                     <a href="/register" class="text-center">Not yet registered? Register Now!</a>
-                </p>
+                </p> -->
             </div>
 
             <div class="card-body" id="verifyAndSetPasswordContainer">
@@ -160,7 +160,7 @@
     <script>
         const jwtToken = localStorage.getItem("jwtToken")
         if ((jwtToken ?? "").trim() !== "") {
-            window.location.href = "/users"
+            window.location.href = "/admin/users"
         }
 
         const verificationType = "forgot_password"
@@ -273,7 +273,7 @@
                             toastr.success(response.message);
 
                             setTimeout(() => {
-                                window.location.href = "/login"
+                                window.location.href = "/admin/login"
                             }, [1000])
                         }
                     },
@@ -334,10 +334,6 @@
                     toastr.error(errorMessage);
                 }
             })
-        }
-
-        function onClickSignUpWithGoogle() {
-            toastr.error("This feature is not yet available. Please try login with your registered email id and password.");
         }
     </script>
 </body>

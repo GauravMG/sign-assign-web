@@ -197,7 +197,7 @@
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/product-categories";
+                                window.location.href = "/admin/product-categories";
                             }
                         }
                     })
@@ -212,7 +212,7 @@
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/product-categories";
+                                window.location.href = "/admin/product-categories";
                             }
                         }
                     })

@@ -118,9 +118,9 @@
                 <p class="mb-1">
                     <a href="/forgot-password">Forgot your password? Reset Password!</a>
                 </p>
-                <p class="mb-0">
+                <!-- <p class="mb-0">
                     <a href="/register" class="text-center">Not yet registered? Register Now!</a>
-                </p>
+                </p> -->
             </div>
 
         </div>
@@ -136,7 +136,7 @@
     <script>
         const jwtToken = localStorage.getItem("jwtToken")
         if ((jwtToken ?? "").trim() !== "") {
-            window.location.href = "/users"
+            window.location.href = "/admin/users"
         }
 
         const loader = {
@@ -186,11 +186,11 @@
 
                             setTimeout(() => {
                                 if ([1, 3].indexOf(parseInt(response.data.roleId)) >= 0) {
-                                    window.location.href = "/users"
+                                    window.location.href = "/admin/users"
                                 } else if ([4].indexOf(parseInt(response.data.roleId)) >= 0) {
-                                    window.location.href = "/orders"
+                                    window.location.href = "/admin/orders"
                                 } else if ([2].indexOf(parseInt(response.data.roleId)) >= 0) {
-                                    window.location.href = "/orders"
+                                    window.location.href = "/admin/orders"
                                 }
                             }, [1000])
                         }

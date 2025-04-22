@@ -148,7 +148,7 @@
                         Sign up using Google
                     </a>
                 </div>
-                <a href="/login" class="text-center">Already have an account? Login Now!</a>
+                <a href="/admin/login" class="text-center">Already have an account? Login Now!</a>
             </div>
 
             <div class="card-body" id="verifyAndSetPasswordContainer">
@@ -210,7 +210,19 @@
     <script>
         const jwtToken = localStorage.getItem("jwtToken")
         if ((jwtToken ?? "").trim() !== "") {
-            window.location.href = "/users"
+            var userData = localStorage.getItem("userData") ?? null
+            if (userData) {
+                userData = JSON.parse(userData)
+            }
+            setTimeout(() => {
+                if ([1, 3].indexOf(parseInt(userData.roleId)) >= 0) {
+                    window.location.href = "/admin/users"
+                } else if ([4].indexOf(parseInt(userData.roleId)) >= 0) {
+                    window.location.href = "/admin/orders"
+                } else if ([2].indexOf(parseInt(userData.roleId)) >= 0) {
+                    window.location.href = "/admin/orders"
+                }
+            }, [1000])
         }
 
         const verificationType = "registration"
@@ -369,7 +381,7 @@
                             toastr.success(response.message);
 
                             setTimeout(() => {
-                                window.location.href = "/login"
+                                window.location.href = "/admin/login"
                             }, [1000])
                         }
                     },

@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -25,7 +25,7 @@ jobs:
         ssh -i ~/.ssh/id_rsa ubuntu@3.109.198.252 << EOF
           cd /var/www/html/sign-assign/sign-assign-web/
           sudo chown -R ubuntu:ubuntu /var/www/html/sign-assign/sign-assign-web/
-          git pull origin master
+          git pull origin main
           sudo chown -R www-data:www-data /var/www/html/sign-assign/sign-assign-web/
           # Optional: restart your app if needed, like:
           # pm2 restart all

@@ -1,128 +1,141 @@
 $(document).ready(function () {
-    var owl = $(".container-slide-area .owl-carousel").owlCarousel({
-        loop: false,
-        margin: 15,
-        responsiveClass: true,
-        nav: false,
-        dots: false,
-        onInitialized: updateNavButtons,
-        onChanged: updateNavButtons,
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            600: {
-                items: 3,
-                nav: false
-            },
-            1000: {
-                items: 4,
-                nav: false,
-            },
-            1200: {
-                items: 5,
-                nav: false,
+    $('.container-fluid').each(function(){
+        var $container = $(this);
+        var $carousel = $container.find('.owl-carousel');
+    
+        // Initialize Owl Carousel
+        $carousel.owlCarousel({
+            loop: false,
+            margin: 15,
+            responsiveClass: true,
+            nav: false,
+            dots: false,
+            onInitialized: updateNavButtons,
+            onChanged: updateNavButtons,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                600: {
+                    items: 3,
+                    nav: false
+                },
+                1000: {
+                    items: 4,
+                    nav: false
+                },
+                1200: {
+                    items: 5,
+                    nav: false
+                }
             }
-        }
+        });
+    
+        // Bind custom navigation buttons
+        $container.find('.owl-prev').click(function() {
+            $carousel.trigger('prev.owl.carousel');
+        });
+    
+        $container.find('.owl-next').click(function() {
+            $carousel.trigger('next.owl.carousel');
+        });
     });
-
-    $(".owl-prev").click(function () {
-        owl.trigger("prev.owl.carousel");
-    });
-
-    $(".owl-next").click(function () {
-        owl.trigger("next.owl.carousel");
-    });
-
+    
     function updateNavButtons(event) {
+        var $carousel = $(event.target);
+        var $container = $carousel.closest('.container-fluid');
+        var $prevButton = $container.find('.owl-prev');
+        var $nextButton = $container.find('.owl-next');
+    
         var current = event.item.index;
         var total = event.item.count;
-
+    
         // First slide
         if (current === 0) {
-            $(".owl-prev").attr("disabled", true);
+            $prevButton.attr("disabled", true);
         } else {
-            $(".owl-prev").removeAttr("disabled");
+            $prevButton.removeAttr("disabled");
         }
-
+    
         // Last slide
         if (current === total - 1) {
-            $(".owl-next").attr("disabled", true);
+            $nextButton.attr("disabled", true);
         } else {
-            $(".owl-next").removeAttr("disabled");
+            $nextButton.removeAttr("disabled");
         }
     }
+});
 
-    var owl = $('.off-slider-area .owl-carousel').owlCarousel({
-        loop: false,
-        margin: 15,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        responsiveClass: true,
-        dots: false,
-        stagePadding: 100,
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            600: {
-                items: 3,
-                nav: false
-            },
-            1000: {
-                items: 3.5,
-                nav: false,
-            },
-            1200: {
-                items: 4.5,
-                nav: false,
-            }
+
+$('.off-slider-area .owl-carousel').owlCarousel({
+    loop: false,
+    margin: 15,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    responsiveClass: true,
+    dots: false,
+    stagePadding: 100,
+    responsive: {
+        0: {
+            items: 1,
+            nav: false
+        },
+        600: {
+            items: 3,
+            nav: false
+        },
+        1000: {
+            items: 3.5,
+            nav: false,
+        },
+        1200: {
+            items: 4.5,
+            nav: false,
         }
-    })
+    }
+})
 
-    var owl = $(".testimonial-area .owl-carousel").owlCarousel({
-        loop: false,
-        margin: 15,
-        responsiveClass: true,
-        nav: true,
-        navText: ["<img src='./assets/images/arrow-left-long-solid (1).svg' />", "<img src='./assets/images/arrow-right-long-solid (1).svg' />"],
-        dots: false,
-        items: 1,
-    });
+$(".testimonial-area .owl-carousel").owlCarousel({
+    loop: false,
+    margin: 15,
+    responsiveClass: true,
+    nav: true,
+    navText: ["<img src='../images/arrow-left-long-solid (1).svg' />", "<img src='../images/arrow-right-long-solid (1).svg' />"],
+    dots: false,
+    items: 1,
+});
 
-    var owl = $(".blog-area .owl-carousel").owlCarousel({
-        loop: false,
-        margin: 15,
-        responsiveClass: true,
-        navText: ["<img src='./assets/images/arrow-left-long-solid (1).svg' />", "<img src='./assets/images/arrow-right-long-solid (1).svg' />"],
-        dots: false,
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            600: {
-                items: 2,
-                nav: false
-            },
-            1000: {
-                items: 3,
-                nav: true,
-            }
+$(".blog-area .owl-carousel").owlCarousel({
+    loop: false,
+    margin: 15,
+    responsiveClass: true,
+    navText: ["<img src='../images/arrow-left-long-solid (1).svg' />", "<img src='../images/arrow-right-long-solid (1).svg' />"],
+    dots: false,
+    responsive: {
+        0: {
+            items: 1,
+            nav: false
+        },
+        600: {
+            items: 2,
+            nav: false
+        },
+        1000: {
+            items: 3,
+            nav: true,
         }
-    });
+    }
+});
 
-    var owl = $(".detail-page-area .owl-carousel").owlCarousel({
-        loop: false,
-        margin: 15,
-        responsiveClass: true,
-        navText: ["<img src='./assets/images/arrow-left-long-solid (1).svg' />", "<img src='./assets/images/arrow-right-long-solid (1).svg' />"],
-        dots: false,
-        nav: true,
-        items: 4,
-    });
+$(".detail-page-area .owl-carousel").owlCarousel({
+    loop: false,
+    margin: 15,
+    responsiveClass: true,
+    navText: ["<img src='../images/arrow-left-long-solid (1).svg' />", "<img src='../images/arrow-right-long-solid (1).svg' />"],
+    dots: false,
+    nav: true,
+    items: 4,
 });
 
 

@@ -87,4 +87,37 @@ class AdminController extends BaseController
 
         return view('add-product-category', $data);
     }
+
+    public function products(): string
+    {
+        $data = [
+            'title' => 'Products',
+            'page_heading' => 'Products'
+        ];
+
+        return view('products', $data);
+    }
+
+    public function addProduct(): string
+    {
+        $data = [
+            'title' => 'Add Product',
+            'page_heading' => 'Add Product'
+        ];
+
+        return view('add-product', $data);
+    }
+
+    public function updateProduct($productId): string
+    {
+        $data = [
+            'title' => 'Update Product',
+            'page_heading' => 'Update Product',
+            'data' => [
+                'productId' => $productId
+            ]
+        ];
+
+        return view('add-product', $data);
+    }
 }

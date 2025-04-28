@@ -1,0 +1,941 @@
+<?= $this->extend('web/web_template'); ?>
+
+<?= $this->section('content'); ?>
+<div id="carouselExampleSlidesOnly" class="carousel slide hero-section" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="<?= base_url('images/banner-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="<?= base_url('images/banner-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="<?= base_url('images/banner-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
+
+<div class="container-slide-area pt-5">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Most Loved Brand Visionaries</h3>
+            </div>
+            <div class="right">
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev"><i
+                            class="fa-solid fa-arrow-left-long"></i></button>
+                    <button type="button" role="presentation" class="owl-next"><i
+                            class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="owl-example" class="owl-carousel owl-theme">
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>High Quality Custom Banners</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$22.47</span></h6>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bestseller-area pt-5">
+    <div class="container-fluid">
+        <h3>Curated Bestsellers to Wow Your Customers</h3>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+            <div class="product-card">
+                <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Window Products</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-slide-area py-5">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Get Exceptional Sign Services</h3>
+            </div>
+            <div class="right">
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev"><i
+                            class="fa-solid fa-arrow-left-long"></i></button>
+                    <button type="button" role="presentation" class="owl-next"><i
+                            class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="owl-example" class="owl-carousel owl-theme">
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Turnkey Project Management</h5>
+                </div>
+                <a href="#">Customize</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="off-slider-area py-5 bg-gray">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Get Exceptional Sign Services</h3>
+            </div>
+            <div class="right">
+                <a href="#">View All <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid//">
+        <div id="owl-carousel" class="owl-carousel owl-theme">
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span class="old-price">$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="main-div">
+                    <img src="<?= base_url('images/offset-slider-image.jpg') . '?t=' . time(); ?>" alt="">
+                    <div class="second-div">
+                        <h6>Turnkey Project Management</h6>
+                        <p><span>$85.66</span>$46.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-slide-area py-5">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Transform Your Business with the Right Display Solutions</h3>
+            </div>
+            <div class="right">
+                <a href="#">View All <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev"><i
+                            class="fa-solid fa-arrow-left-long"></i></button>
+                    <button type="button" role="presentation" class="owl-next"><i
+                            class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="owl-example" class="owl-carousel owl-theme">
+            <div class="business-card">
+                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Vinyl Banner</h5>
+                <h6>$25.34</h6>
+                <a href="#">Details</a>
+            </div>
+            <div class="business-card">
+                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Vinyl Banner</h5>
+                <h6>$25.34</h6>
+                <a href="#">Details</a>
+            </div>
+            <div class="business-card">
+                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Vinyl Banner</h5>
+                <h6>$25.34</h6>
+                <a href="#">Details</a>
+            </div>
+            <div class="business-card">
+                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Vinyl Banner</h5>
+                <h6>$25.34</h6>
+                <a href="#">Details</a>
+            </div>
+            <div class="business-card">
+                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Vinyl Banner</h5>
+                <h6>$25.34</h6>
+                <a href="#">Details</a>
+            </div>
+            <div class="business-card">
+                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Vinyl Banner</h5>
+                <h6>$25.34</h6>
+                <a href="#">Details</a>
+            </div>
+            <div class="business-card">
+                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>Vinyl Banner</h5>
+                <h6>$25.34</h6>
+                <a href="#">Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-slide-area py-5 bg-gray">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Elevate Your Brand with Our Latest Collections</h3>
+            </div>
+            <div class="right">
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev"><i
+                            class="fa-solid fa-arrow-left-long"></i></button>
+                    <button type="button" role="presentation" class="owl-next"><i
+                            class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="owl-example" class="owl-carousel owl-theme">
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>Wall Graphics</h5>
+                    <h4>$25.34</h4>
+                </div>
+                <a href="#">Add to cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="order-area py-5">
+    <div class="container-fluid">
+        <div class="inner-area">
+            <div class="card-area">
+                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>High-Quality Traffic & Safety Signs</h5>
+                <a href="#">Order Now</a>
+            </div>
+            <div class="card-area">
+                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>High-Quality Traffic & Safety Signs</h5>
+                <a href="#">Order Now</a>
+            </div>
+            <div class="card-area">
+                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>High-Quality Traffic & Safety Signs</h5>
+                <a href="#">Order Now</a>
+            </div>
+            <div class="card-area">
+                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
+                <h5>High-Quality Traffic & Safety Signs</h5>
+                <a href="#">Order Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="testimonial-area pt-5">
+    <div class="container-fluid">
+        <h6>Testimonials</h6>
+        <h3>Approved By Thousands of Happy Customers</h3>
+        <div id="owl-example" class="owl-carousel owl-theme">
+            <div class="testimonial-card">
+                <p>
+                    If you are looking for an excellent sign company at an affordable price, I highly recommend Sign
+                    Assign.
+                    They are creative and extremely knowledgeable about all aspects of sign design, installation,
+                    approval requirements and
+                    process. They even negotiated on our behalf with the shopping center's property manager for
+                    their agreement to a design
+                    giving us optimum visibility. In addition, They secured approval from the City of Carrollton in
+                    a timely manner
+                    resulting in ample time for installation.
+                    Sign Assign is a reliable, patient, helpful and affordable resource.
+                </p>
+                <div class="testimonial-details-area">
+                    <div class="name-area">
+                        <h6>Vetsavers Pet Hospital Carrollton, TX</h6>
+                    </div>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>
+                    If you are looking for an excellent sign company at an affordable price, I highly recommend Sign
+                    Assign.
+                    They are creative and extremely knowledgeable about all aspects of sign design, installation,
+                    approval requirements and
+                    process. They even negotiated on our behalf with the shopping center's property manager for
+                    their agreement to a design
+                    giving us optimum visibility. In addition, They secured approval from the City of Carrollton in
+                    a timely manner
+                    resulting in ample time for installation.
+                    Sign Assign is a reliable, patient, helpful and affordable resource.
+                </p>
+                <div class="testimonial-details-area">
+                    <div class="name-area">
+                        <h6>Vetsavers Pet Hospital Carrollton, TX</h6>
+                    </div>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>
+                    If you are looking for an excellent sign company at an affordable price, I highly recommend Sign
+                    Assign.
+                    They are creative and extremely knowledgeable about all aspects of sign design, installation,
+                    approval requirements and
+                    process. They even negotiated on our behalf with the shopping center's property manager for
+                    their agreement to a design
+                    giving us optimum visibility. In addition, They secured approval from the City of Carrollton in
+                    a timely manner
+                    resulting in ample time for installation.
+                    Sign Assign is a reliable, patient, helpful and affordable resource.
+                </p>
+                <div class="testimonial-details-area">
+                    <div class="name-area">
+                        <h6>Vetsavers Pet Hospital Carrollton, TX</h6>
+                    </div>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>
+                    If you are looking for an excellent sign company at an affordable price, I highly recommend Sign
+                    Assign.
+                    They are creative and extremely knowledgeable about all aspects of sign design, installation,
+                    approval requirements and
+                    process. They even negotiated on our behalf with the shopping center's property manager for
+                    their agreement to a design
+                    giving us optimum visibility. In addition, They secured approval from the City of Carrollton in
+                    a timely manner
+                    resulting in ample time for installation.
+                    Sign Assign is a reliable, patient, helpful and affordable resource.
+                </p>
+                <div class="testimonial-details-area">
+                    <div class="name-area">
+                        <h6>Vetsavers Pet Hospital Carrollton, TX</h6>
+                    </div>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>
+                    If you are looking for an excellent sign company at an affordable price, I highly recommend Sign
+                    Assign.
+                    They are creative and extremely knowledgeable about all aspects of sign design, installation,
+                    approval requirements and
+                    process. They even negotiated on our behalf with the shopping center's property manager for
+                    their agreement to a design
+                    giving us optimum visibility. In addition, They secured approval from the City of Carrollton in
+                    a timely manner
+                    resulting in ample time for installation.
+                    Sign Assign is a reliable, patient, helpful and affordable resource.
+                </p>
+                <div class="testimonial-details-area">
+                    <div class="name-area">
+                        <h6>Vetsavers Pet Hospital Carrollton, TX</h6>
+                    </div>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blog-area pt-5">
+    <div class="container-fluid">
+        <h6>The Ultimate Signage Guide</h6>
+        <h3>Learning Center</h3>
+        <div id="owl-example" class="owl-carousel owl-theme">
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h6>by signassi | Nov 11, 2024 | Signage</h6>
+                    <h5>How Festive Thanksgiving Signage Can Enhance Your Business Atmo</h5>
+                    <p>Thanksgiving is a cherished holiday in the U.S., full of warmth, gratitude, and togetherness.
+                        For businesses, it’s the perfect season to create an...
+                    </p>
+                    <a href="#">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h6>by signassi | Nov 11, 2024 | Signage</h6>
+                    <h5>How Festive Thanksgiving Signage Can Enhance Your Business Atmo</h5>
+                    <p>Thanksgiving is a cherished holiday in the U.S., full of warmth, gratitude, and togetherness.
+                        For businesses, it’s the perfect season to create an...
+                    </p>
+                    <a href="#">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h6>by signassi | Nov 11, 2024 | Signage</h6>
+                    <h5>How Festive Thanksgiving Signage Can Enhance Your Business Atmo</h5>
+                    <p>Thanksgiving is a cherished holiday in the U.S., full of warmth, gratitude, and togetherness.
+                        For businesses, it’s the perfect season to create an...
+                    </p>
+                    <a href="#">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h6>by signassi | Nov 11, 2024 | Signage</h6>
+                    <h5>How Festive Thanksgiving Signage Can Enhance Your Business Atmo</h5>
+                    <p>Thanksgiving is a cherished holiday in the U.S., full of warmth, gratitude, and togetherness.
+                        For businesses, it’s the perfect season to create an...
+                    </p>
+                    <a href="#">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h6>by signassi | Nov 11, 2024 | Signage</h6>
+                    <h5>How Festive Thanksgiving Signage Can Enhance Your Business Atmo</h5>
+                    <p>Thanksgiving is a cherished holiday in the U.S., full of warmth, gratitude, and togetherness.
+                        For businesses, it’s the perfect season to create an...
+                    </p>
+                    <a href="#">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                </div>
+            </div>
+            <div class="inner-card">
+                <div class="p-3 m-0">
+                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                </div>
+                <div class="px-3 mt-0">
+                    <h6>by signassi | Nov 11, 2024 | Signage</h6>
+                    <h5>How Festive Thanksgiving Signage Can Enhance Your Business Atmo</h5>
+                    <p>Thanksgiving is a cherished holiday in the U.S., full of warmth, gratitude, and togetherness.
+                        For businesses, it’s the perfect season to create an...
+                    </p>
+                    <a href="#">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="view-all-btn-area">
+            <a href="#">View All <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+        </div>
+    </div>
+</div>
+
+<div class="form-area py-5">
+    <div class="container-fluid">
+        <div class="form-inner-area">
+            <div class="text-area">
+                <h4 class="mb-3">Trade Partners Can Get Up to 30% Off!</h4>
+                <p>
+                    We are offering exclusive discounts for trade partners. All you need to do is provide us with
+                    your name and email, we'll
+                    ask for some further details and upon confirmation you can enjoy
+                    up to 30% discount on your orders!
+                </p>
+            </div>
+            <div class="form-card">
+                <form action="#">
+                    <div class="form-group">
+                        <input type="name" placeholder="First Name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="name" placeholder="Last Name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" class="form-control" required>
+                    </div>
+                    <a href="#">Submit Now</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?= $this->endSection(); ?>

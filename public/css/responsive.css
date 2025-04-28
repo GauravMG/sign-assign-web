@@ -1,0 +1,17 @@
+@media screen and (max-width: 1240px) {
+    .container-fluid {
+        max-width: 90%;
+    }
+
+    .mega-menu .container-fluid {
+        max-width: 95%;
+    }
+
+    .bestseller-area .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .order-area .inner-area {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

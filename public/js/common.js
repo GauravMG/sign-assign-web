@@ -153,10 +153,6 @@ optionItems.forEach(option => {
         // Set the selected text
         selected.textContent = option.textContent;
 
-        // Remove tick from all, then add to selected
-        // optionItems.forEach(opt => opt.classList.remove('selected-option'));
-        // option.classList.add('selected-option');
-
         // Close the dropdown
         options.style.display = 'none';
 

@@ -23,10 +23,12 @@
             </div>
             <div class="right">
                 <div class="owl-nav">
-                    <button type="button" role="presentation" class="owl-prev"><i
-                            class="fa-solid fa-arrow-left-long"></i></button>
-                    <button type="button" role="presentation" class="owl-next"><i
-                            class="fa-solid fa-arrow-right-long"></i></button>
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
                 </div>
             </div>
         </div>

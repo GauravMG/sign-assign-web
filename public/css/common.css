@@ -79,13 +79,6 @@ input::placeholder {
     background: #f0f0f0;
 }
 
-/* .dropdown-area .option.selected-option::after {
-    content: "\f00c";
-    font-family: "fontAwesome";
-    float: right;
-    color: #277e30;
-} */
-
 .container-fluid {
     max-width: 85%;
     margin: 0 auto;

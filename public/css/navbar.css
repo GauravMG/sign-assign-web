@@ -40,21 +40,21 @@ header {
     color: #277e30;
 }
 
-.top-menu {
+.desktop-top-menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 80px;
 }
 
-.top-menu .right-area {
+.desktop-top-menu .right-area {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
 }
 
-.top-menu .right-area .menu-links ul {
+.desktop-top-menu .right-area .menu-links ul {
     display: flex;
     align-items: center;
     list-style: none;
@@ -63,28 +63,28 @@ header {
     padding: 0;
 }
 
-.top-menu .right-area .menu-links ul li a {
+.desktop-top-menu .right-area .menu-links ul li a {
     text-decoration: none;
     color: inherit;
 }
 
-.top-menu .right-area .menu-links ul li.dropdown {
+.desktop-top-menu .right-area .menu-links ul li.dropdown {
     position: relative;
     cursor: pointer;
 }
 
-.top-menu .right-area .menu-links ul li.dropdown a {
+.desktop-top-menu .right-area .menu-links ul li.dropdown a {
     text-decoration: none;
     color: inherit;
     padding-bottom: 35px;
 }
 
-.top-menu .right-area .menu-links ul li.dropdown:hover .dropdown-content {
+.desktop-top-menu .right-area .menu-links ul li.dropdown:hover .dropdown-content {
     display: block;
     transition: all ease 0.5s;
 }
 
-.top-menu .right-area .menu-links ul li.dropdown .dropdown-content {
+.desktop-top-menu .right-area .menu-links ul li.dropdown .dropdown-content {
     display: none;
     transition: all ease 0.5s;
     position: absolute;
@@ -99,37 +99,37 @@ header {
     overflow: hidden;
 }
 
-.top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists {
+.desktop-top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists {
     padding: 10px 15px;
 }
 
-.top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists:hover {
+.desktop-top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists:hover {
     background-color: #277e30;
     color: #ffffff;
 }
 
-.top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists a {
+.desktop-top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists a {
     padding: 0;
 }
 
-.top-menu .right-area .auth-button {
+.desktop-top-menu .right-area .auth-button {
     display: flex;
     gap: 1rem;
 }
 
-.top-menu .right-area .auth-button a {
+.desktop-top-menu .right-area .auth-button a {
     text-decoration: none;
     width: max-content;
     padding: 8px 20px;
     border-radius: 4px;
 }
 
-.top-menu .right-area .auth-button a.signup-button {
+.desktop-top-menu .right-area .auth-button a.signup-button {
     background-color: #e3e0ea;
     color: #000000;
 }
 
-.top-menu .right-area .auth-button a.login-button {
+.desktop-top-menu .right-area .auth-button a.login-button {
     background-color: #277e30;
     color: #ffffff;
 }

@@ -1,0 +1,24 @@
+@media (max-width:767px) {
+
+    .header .review-area {
+        display: none;
+    }
+
+    .header .center-area {
+        display: none;
+    }
+
+    .header .contact-area {
+        gap: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .desktop-top-menu {
+        display: none;
+    }
+
+    .mega-menu {
+        display: none;
+    }
+}

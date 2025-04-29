@@ -40,8 +40,8 @@
     <link rel="stylesheet" href="<?= base_url('css/banner-page.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/footer.css') . '?t=' . time(); ?>">
     <!-- responsive css -->
-    <link rel="stylesheet" href="<?= base_url('css/responsive.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/responsive-navbar.css') . '?t=' . time(); ?>">
+    <link rel="stylesheet" href="<?= base_url('css/responsive.css') . '?t=' . time(); ?>">
 
     <!-- Section for page-specific CSS -->
     <?= $this->renderSection('pageStyles'); ?>

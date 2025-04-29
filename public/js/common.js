@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $('.container-fluid').each(function(){
+    $('.container-fluid').each(function () {
         var $container = $(this);
         var $carousel = $container.find('.owl-carousel');
-    
+
         // Initialize Owl Carousel
         $carousel.owlCarousel({
             loop: false,
@@ -18,7 +18,7 @@ $(document).ready(function () {
                     nav: false
                 },
                 600: {
-                    items: 3,
+                    items: 2,
                     nav: false
                 },
                 1000: {
@@ -31,33 +31,33 @@ $(document).ready(function () {
                 }
             }
         });
-    
+
         // Bind custom navigation buttons
-        $container.find('.owl-prev').click(function() {
+        $container.find('.owl-prev').click(function () {
             $carousel.trigger('prev.owl.carousel');
         });
-    
-        $container.find('.owl-next').click(function() {
+
+        $container.find('.owl-next').click(function () {
             $carousel.trigger('next.owl.carousel');
         });
     });
-    
+
     function updateNavButtons(event) {
         var $carousel = $(event.target);
         var $container = $carousel.closest('.container-fluid');
         var $prevButton = $container.find('.owl-prev');
         var $nextButton = $container.find('.owl-next');
-    
+
         var current = event.item.index;
         var total = event.item.count;
-    
+
         // First slide
         if (current === 0) {
             $prevButton.attr("disabled", true);
         } else {
             $prevButton.removeAttr("disabled");
         }
-    
+
         // Last slide
         if (current === total - 1) {
             $nextButton.attr("disabled", true);
@@ -82,7 +82,7 @@ $('.off-slider-area .owl-carousel').owlCarousel({
             nav: false
         },
         600: {
-            items: 3,
+            items: 2,
             nav: false
         },
         1000: {

@@ -28,45 +28,47 @@
         </div>
 </header>
 
-<nav class="container-fluid top-menu">
-    <div class="left-area">
-        <div class="logo">
-            <a href="/"><img src="<?= base_url('images/logo.png') . '?t=' . time(); ?>" alt=""></a>
+<nav class="container-fluid">
+    <div class="desktop-top-menu">
+        <div class="left-area">
+            <div class="logo">
+                <a href="/"><img src="<?= base_url('images/logo.png') . '?t=' . time(); ?>" alt=""></a>
+            </div>
         </div>
-    </div>
-    <div class="right-area">
-        <div class="search-bar">
-            <input type="text" placeholder="Search here..." class="form-control">
-        </div>
-        <div class="menu-links">
-            <ul>
-                <li>
-                    <a href="#">About Us</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Service</a>
-                    <ul class="dropdown-content">
-                        <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                        <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                        <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                        <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                        <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Design Lab</a>
-                </li>
-                <li>
-                    <a href="#">Learning Center</a>
-                </li>
-                <li>
-                    <a href="#">Contact Us</a>
-                </li>
-            </ul>
-        </div>
-        <div class="auth-button">
-            <a href="#" class="signup-button">Sign up</a>
-            <a href="#" class="login-button">Login</a>
+        <div class="right-area">
+            <div class="search-bar">
+                <input type="text" placeholder="Search here..." class="form-control">
+            </div>
+            <div class="menu-links">
+                <ul>
+                    <li>
+                        <a href="#">About Us</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Service</a>
+                        <ul class="dropdown-content">
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Design Lab</a>
+                    </li>
+                    <li>
+                        <a href="#">Learning Center</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="auth-button">
+                <a href="#" class="signup-button">Sign up</a>
+                <a href="#" class="login-button">Login</a>
+            </div>
         </div>
     </div>
 </nav>

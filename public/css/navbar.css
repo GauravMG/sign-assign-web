@@ -1,0 +1,184 @@
+header {
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.header .review-area {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header .review-area p {
+    margin: 0;
+}
+
+.header .center-area p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.header .contact-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header .contact-area a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+}
+
+.header .contact-area a svg {
+    color: #277e30;
+}
+
+.top-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.top-menu .right-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.top-menu .right-area .menu-links ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.top-menu .right-area .menu-links ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.top-menu .right-area .menu-links ul li.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.top-menu .right-area .menu-links ul li.dropdown a {
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 35px;
+}
+
+.top-menu .right-area .menu-links ul li.dropdown:hover .dropdown-content {
+    display: block;
+    transition: all ease 0.5s;
+}
+
+.top-menu .right-area .menu-links ul li.dropdown .dropdown-content {
+    display: none;
+    transition: all ease 0.5s;
+    position: absolute;
+    left: 0;
+    width: 300px;
+    background-color: #fff;
+    z-index: 99;
+    margin: 0;
+    top: 50px;
+    border-top: 2px solid #3F51B5;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists {
+    padding: 10px 15px;
+}
+
+.top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists:hover {
+    background-color: #277e30;
+    color: #ffffff;
+}
+
+.top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists a {
+    padding: 0;
+}
+
+.top-menu .right-area .auth-button {
+    display: flex;
+    gap: 1rem;
+}
+
+.top-menu .right-area .auth-button a {
+    text-decoration: none;
+    width: max-content;
+    padding: 8px 20px;
+    border-radius: 4px;
+}
+
+.top-menu .right-area .auth-button a.signup-button {
+    background-color: #e3e0ea;
+    color: #000000;
+}
+
+.top-menu .right-area .auth-button a.login-button {
+    background-color: #277e30;
+    color: #ffffff;
+}
+
+.mega-menu {
+    background-color: #452e73;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    transition: all ease 0.5s;
+}
+
+.mega-menu .container-fluid {
+    max-width: 90%;
+}
+
+.mega-menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-menu ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    position: relative;
+}
+
+.mega-menu ul li a::before {
+    content: '';
+    background-color: #ffffff;
+    width: 0;
+    height: 2px;
+    transition: all ease 0.5s;
+    border-radius: 5px;
+}
+
+.mega-menu ul li a:hover {
+    color: #ffffff;
+}
+
+.mega-menu ul li a:hover::before {
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: all ease 0.5s;
+    width: 100%;
+}

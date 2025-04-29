@@ -209,3 +209,9 @@
         </div>
     </div>
 </footer>
+
+<div class="copyright-area">
+    <div class="container-fluid">
+        <h6>Sign Assign Company copyright (©) 2025 </h6>
+    </div>
+</div>

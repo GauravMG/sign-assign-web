@@ -1,0 +1,103 @@
+footer {
+    background-color: #452e73;
+    padding: 60px 0;
+}
+
+footer .footer-inner {
+    display: flex;
+    gap: 1.5rem;
+}
+
+footer .footer-inner .footer-col:nth-child(1) {
+    flex: 1 1 25%;
+    max-width: 25%;
+}
+
+footer .footer-inner .footer-col {
+    flex: 1 1 auto;
+}
+
+footer .footer-inner .footer-col>* {
+    margin-block: 20px;
+    color: #ffffff;
+}
+
+footer .footer-inner .footer-col h5,
+footer .footer-inner .footer-col h6 {
+    display: flex;
+    gap: 5px;
+}
+
+footer .footer-inner .footer-col h6 {
+    font-size: 0.854rem;
+    max-width: 75%;
+}
+
+footer .footer-inner .footer-col h5 span:nth-child(1) {
+    flex: 1 1 10%;
+    max-width: 10%;
+}
+
+footer .footer-inner .footer-col h6 span:nth-child(1) {
+    flex: 1 1 10%;
+    max-width: 10%;
+}
+
+footer .footer-inner .footer-col h5 span svg {
+    font-size: 1.5rem;
+}
+
+footer .footer-inner .footer-col h6 span svg {
+    font-size: 1.254rem;
+}
+
+footer .footer-inner .footer-col ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+footer .footer-inner .footer-col ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+footer .footer-inner .footer-col ul li a svg {
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+footer .footer-inner .footer-col:nth-child(2) ul,
+footer .footer-inner .footer-col:nth-child(3) ul,
+footer .footer-inner .footer-col:nth-child(4) ul,
+footer .footer-inner .footer-col:nth-child(5) ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+footer .footer-inner .footer-col:nth-child(2) ul li a svg,
+footer .footer-inner .footer-col:nth-child(3) ul li a svg,
+footer .footer-inner .footer-col:nth-child(4) ul li a svg,
+footer .footer-inner .footer-col:nth-child(5) ul li a svg {
+    font-size: 1rem;
+}
+
+.copyright-area{
+    background-color: #277e30;
+    padding: 15px 0;
+}
+
+.copyright-area h6{
+    margin: 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.854rem;
+}

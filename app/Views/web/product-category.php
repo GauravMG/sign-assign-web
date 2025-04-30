@@ -1,5 +1,9 @@
 <?= $this->extend('web/web_template'); ?>
 
+<?= $this->section('pageStyles'); ?>
+<link rel="stylesheet" href="<?= base_url('css/banner-page.css'); ?>">
+<?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div id="carouselExampleSlidesOnly" class="carousel slide hero-section" data-bs-ride="carousel">
     <div class="carousel-inner">

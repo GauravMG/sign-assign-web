@@ -51,14 +51,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .desktop-top-menu .right-area .menu-links ul {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
 }
@@ -181,4 +181,8 @@ header {
     bottom: -5px;
     transition: all ease 0.5s;
     width: 100%;
+}
+
+.mobile-top-menu {
+    display: none;
 }

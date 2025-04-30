@@ -37,14 +37,11 @@
     <link rel="stylesheet" href="<?= base_url('css/common.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/navbar.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/home-page.css') . '?t=' . time(); ?>">
-    <link rel="stylesheet" href="<?= base_url('css/banner-page.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/footer.css') . '?t=' . time(); ?>">
+    <?= $this->renderSection('pageStyles'); ?>
     <!-- responsive css -->
     <link rel="stylesheet" href="<?= base_url('css/responsive-navbar.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/responsive.css') . '?t=' . time(); ?>">
-
-    <!-- Section for page-specific CSS -->
-    <?= $this->renderSection('pageStyles'); ?>
 </head>
 
 <body>

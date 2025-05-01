@@ -143,7 +143,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -192,7 +192,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -241,7 +241,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -290,7 +290,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -339,7 +339,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -388,7 +388,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -437,7 +437,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -486,7 +486,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -535,7 +535,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -584,7 +584,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -633,7 +633,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -682,7 +682,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                     <div class="inner-card">
                         <div class="p-3 m-0">
@@ -731,7 +731,7 @@
                             </div>
                             <h6>Starts at: <span class="text-green">$22.47</span></h6>
                         </div>
-                        <a href="/<?= $data['categoryName']; ?>/banner-stands">Customize</a>
+                        <a href="/product/banner-stands">Customize</a>
                     </div>
                 </div>
             </div>

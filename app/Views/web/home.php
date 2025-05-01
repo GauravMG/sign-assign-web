@@ -38,7 +38,7 @@
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -55,7 +55,7 @@
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -65,14 +65,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -82,14 +82,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -99,14 +99,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -116,14 +116,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -133,14 +133,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -150,14 +150,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -167,14 +167,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -184,14 +184,14 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>High Quality Custom Banners</h5>
+                    <h5>Vinyl Banners</h5>
                     <div class="rating-area">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -201,7 +201,7 @@
                     </div>
                     <h6>Starts at: <span class="text-green">$22.47</span></h6>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
         </div>
     </div>
@@ -213,43 +213,63 @@
         <div class="products-grid">
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>Window Products</h5>
+                <a href="/category/window-products">
+                    <h5>Window Products</h5>
+                </a>
             </div>
         </div>
     </div>
@@ -276,90 +296,90 @@
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
                     <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 </div>
                 <div class="px-3 mt-0">
-                    <h5>Turnkey Project Management</h5>
+                    <h5>Vinyl Banners</h5>
                 </div>
-                <a href="#">Customize</a>
+                <a href="/product/vinyl-banners">Customize</a>
             </div>
         </div>
     </div>
@@ -493,43 +513,43 @@
                 <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 <h5>Vinyl Banner</h5>
                 <h6>$25.34</h6>
-                <a href="#">Details</a>
+                <a href="/product/vinyl-banners">Details</a>
             </div>
             <div class="business-card">
                 <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 <h5>Vinyl Banner</h5>
                 <h6>$25.34</h6>
-                <a href="#">Details</a>
+                <a href="/product/vinyl-banners">Details</a>
             </div>
             <div class="business-card">
                 <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 <h5>Vinyl Banner</h5>
                 <h6>$25.34</h6>
-                <a href="#">Details</a>
+                <a href="/product/vinyl-banners">Details</a>
             </div>
             <div class="business-card">
                 <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 <h5>Vinyl Banner</h5>
                 <h6>$25.34</h6>
-                <a href="#">Details</a>
+                <a href="/product/vinyl-banners">Details</a>
             </div>
             <div class="business-card">
                 <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 <h5>Vinyl Banner</h5>
                 <h6>$25.34</h6>
-                <a href="#">Details</a>
+                <a href="/product/vinyl-banners">Details</a>
             </div>
             <div class="business-card">
                 <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 <h5>Vinyl Banner</h5>
                 <h6>$25.34</h6>
-                <a href="#">Details</a>
+                <a href="/product/vinyl-banners">Details</a>
             </div>
             <div class="business-card">
                 <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                 <h5>Vinyl Banner</h5>
                 <h6>$25.34</h6>
-                <a href="#">Details</a>
+                <a href="/product/vinyl-banners">Details</a>
             </div>
         </div>
     </div>
@@ -559,7 +579,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -569,7 +589,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -579,7 +599,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -589,7 +609,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -599,7 +619,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -609,7 +629,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -619,7 +639,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -629,7 +649,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -639,7 +659,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
             <div class="inner-card">
                 <div class="p-3 m-0">
@@ -649,7 +669,7 @@
                     <h5>Wall Graphics</h5>
                     <h4>$25.34</h4>
                 </div>
-                <a href="#">Add to cart</a>
+                <a href="/product/vinyl-banners">Add to cart</a>
             </div>
         </div>
     </div>

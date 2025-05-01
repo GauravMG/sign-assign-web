@@ -308,7 +308,7 @@
 
 .testimonial-area .owl-carousel .testimonial-card::after {
   content: "";
-  background-image: url('./assets/images/quote-icon.png');
+  background-image: url('../images/quote-icon.png');
   position: absolute;
   left: 50px;
   top: 50px;

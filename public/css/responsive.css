@@ -1,4 +1,4 @@
-@media screen and (max-width: 1240px) {
+@media (max-width: 1240px) {
     .container-fluid {
         max-width: 90%;
     }
@@ -13,5 +13,141 @@
 
     .order-area .inner-area {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 991px) {
+    .detail-page-area .detail-flex-inner {
+        flex-wrap: wrap;
+    }
+
+    .detail-flex-inner .slider-area {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .detail-page-area .product-detail-area {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width:767px) {
+    .bestseller-area .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonial-area .owl-carousel .testimonial-card {
+        padding: 50px 50px 50px 100px;
+    }
+
+    .testimonial-area .owl-carousel .testimonial-card::after {
+        left: 30px;
+    }
+
+    .testimonial-area .owl-carousel .testimonial-card .testimonial-details-area .name-area {
+        max-width: 50%;
+    }
+
+    .form-area .form-inner-area {
+        padding: 40px;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .form-area .form-inner-area .text-area {
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
+
+    .form-area .form-inner-area .form-card {
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
+
+    .form-area .form-inner-area .text-area h4,
+    .form-area .form-inner-area .text-area p {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .breadcrumbs-area .flex-inner {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .breadcrumbs-area .flex-inner .right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dropdown-area {
+        gap: 1rem;
+        justify-content: flex-start;
+        flex: 1 1 100%;
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .dropdown-area .custom-select {
+        width: 100%;
+    }
+
+    .banner-product-area .filter-divider {
+        flex-wrap: wrap;
+    }
+
+    .banner-product-area .filter-divider .left-area {
+        flex: 1 1 100%;
+        max-width: 100%;
+        order: 2;
+    }
+
+    .banner-product-area .banner-inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .banner-product-area .filter-divider .right-area {
+        flex: 1 1 100%;
+        max-width: 100%;
+        order: 1;
+    }
+
+    .specification-area nav .nav-tabs .nav-link {
+        padding: 10px 30px;
+    }
+
+    footer .footer-inner {
+        flex-wrap: wrap;
+    }
+
+
+    footer .footer-inner .footer-col:nth-child(1) {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    footer .footer-inner .footer-col {
+        flex: 1 1 40%;
+    }
+}
+
+@media(max-width: 580px) {
+    .detail-page-area .product-detail-area .main-desc {
+        padding: 15px;
+    }
+
+    .detail-page-area .product-detail-area .main-desc .sku-details {
+        padding: 0.154rem;
+    }
+
+    .specification-area nav .nav-tabs .nav-link {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+
+    .specification-area .tab-content {
+        padding: 30px;
     }
 }

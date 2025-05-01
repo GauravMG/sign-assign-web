@@ -213,63 +213,43 @@
         <div class="products-grid">
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
             <div class="product-card">
                 <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                <a href="/category/window-products">
-                    <h5>Window Products</h5>
-                </a>
+                <h5>Window Products</h5>
             </div>
         </div>
     </div>

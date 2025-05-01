@@ -39,16 +39,14 @@ class WebController extends BaseController
         return view('web/product-category', $data);
     }
 
-    public function productDetail($categoryName, $productName): string
+    public function productDetail($productName): string
     {
-        $categoryNameFormatted = $this->getNameFromLink($categoryName);
         $productNameFormatted = $this->getNameFromLink($productName);
 
         $data = [
-            'title' => $categoryNameFormatted . ' - '. $productNameFormatted,
-            'page_heading' => $categoryNameFormatted . ' - '. $productNameFormatted,
+            'title' => $productNameFormatted,
+            'page_heading' => $productNameFormatted,
             'data' => [
-                'categoryName' => $categoryName,
                 'productName' => $productName
             ]
         ];

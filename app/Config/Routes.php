@@ -24,6 +24,6 @@ $routes->get('/admin/forgot-password', 'AuthController::forgotPassword');
 $routes->get('/admin/login', 'AuthController::login');
 $routes->get('/admin', 'AuthController::login');
 
+$routes->get('/product/(:any)', 'WebController::productDetail/$1');
+$routes->get('/category/(:any)', 'WebController::productCategory/$1');
 $routes->get('/', 'WebController::index');
-$routes->get('/(:any)/(:any)', 'WebController::productDetail/$1/$2');
-$routes->get('/(:any)', 'WebController::productCategory/$1');

@@ -77,52 +77,52 @@
         </div>
         <div class="right">
             <div class="navbar-wrapper hidden-md hidden-lg visible-xs visible-sm">
-            <div class="navbar-wrapper-inner">
-                <div class="pure-container" data-effect="pure-effect-slide">
-                    <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left" />
-                    <!--<div class="mob-toggle">-->
-                    <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
-                    <label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
-                    <!--</div>-->
-                    <nav class="pure-drawer" data-position="left">
-                        <div class="main-nav-mob" id="navbar-mob">
-                            <div class="auto-scroll">
-                                <nav class="nav" role="navigation">
-                                    <ul class="nav__list">
-                                        <li>
-                                            <a href="#"> About Us</a>
-                                        </li>
-                                        <li>
-                                            <input id="group-1" type="checkbox" hidden />
-                                            <label for="group-1"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Services</label>
-                                            <ul class="group-list">
-                                                <li>
-                                                    <input id="sub-group-1" type="checkbox" hidden />
-                                                    <label for="sub-group-1"> Sign Installation</label>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-2" type="checkbox" hidden />
-                                                    <label for="sub-group-2">Sign Installation</label>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-3" type="checkbox" hidden />
-                                                    <label for="sub-group-3"> Sign Installation</label>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-4" type="checkbox" hidden />
-                                                    <label for="sub-group-4"> Sign Installation</label>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-5" type="checkbox" hidden />
-                                                    <label for="sub-group-5"> Sign Installation </label>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-6" type="checkbox" hidden />
-                                                    <label for="sub-group-6"> Sign Installation</label>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <!-- <li>
+                <div class="navbar-wrapper-inner">
+                    <div class="pure-container" data-effect="pure-effect-slide">
+                        <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left" />
+                        <!--<div class="mob-toggle">-->
+                        <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
+                        <label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
+                        <!--</div>-->
+                        <nav class="pure-drawer" data-position="left">
+                            <div class="main-nav-mob" id="navbar-mob">
+                                <div class="auto-scroll">
+                                    <nav class="nav" role="navigation">
+                                        <ul class="nav__list">
+                                            <li>
+                                                <a href="#"> About Us</a>
+                                            </li>
+                                            <li>
+                                                <input id="group-1" type="checkbox" hidden />
+                                                <label for="group-1"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Services</label>
+                                                <ul class="group-list">
+                                                    <li>
+                                                        <input id="sub-group-1" type="checkbox" hidden />
+                                                        <label for="sub-group-1"> Sign Installation</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-2" type="checkbox" hidden />
+                                                        <label for="sub-group-2">Sign Installation</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-3" type="checkbox" hidden />
+                                                        <label for="sub-group-3"> Sign Installation</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-4" type="checkbox" hidden />
+                                                        <label for="sub-group-4"> Sign Installation</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-5" type="checkbox" hidden />
+                                                        <label for="sub-group-5"> Sign Installation </label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-6" type="checkbox" hidden />
+                                                        <label for="sub-group-6"> Sign Installation</label>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <!-- <li>
                                             <input id="group-13" type="checkbox" hidden />
                                             <label for="group-13"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Spa and Massage</label>
                                             <ul class="group-list">
@@ -194,25 +194,25 @@
                                                 </li>
                                             </ul>
                                         </li> -->
-                                        
-                                        <li>
-                                            <a href="#"> Design Lab</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> Learning Center</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> Contact Us</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+
+                                            <li>
+                                                <a href="#"> Design Lab</a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> Learning Center</a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> Contact Us</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
-                        </div>
-                    </nav>
+                        </nav>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
             </div>
-        </div>
         </div>
     </div>
 </nav>
@@ -220,15 +220,15 @@
 <nav class="mega-menu">
     <div class="container-fluid">
         <ul>
-            <li><a href="/banner">Banner</a></li>
-            <li><a href="/window-products">Window Products</a></li>
-            <li><a href="/vehicle-products">Vehicle Products</a></li>
-            <li><a href="/marketing-tools">Marketing Tools</a></li>
-            <li><a href="/event-signs">Event Signs</a></li>
-            <li><a href="/indoor-signs">Indoor Signs</a></li>
-            <li><a href="/hardware">Hardware</a></li>
-            <li><a href="/direct-printing-on-material">Direct Printing on Material</a></li>
-            <li><a href="/traffic-and-safety-signs">Traffic & Safety Signs</a></li>
+            <li><a href="/category/banner">Banner</a></li>
+            <li><a href="/category/window-products">Window Products</a></li>
+            <li><a href="/category/vehicle-products">Vehicle Products</a></li>
+            <li><a href="/category/marketing-tools">Marketing Tools</a></li>
+            <li><a href="/category/event-signs">Event Signs</a></li>
+            <li><a href="/category/indoor-signs">Indoor Signs</a></li>
+            <li><a href="/category/hardware">Hardware</a></li>
+            <li><a href="/category/direct-printing-on-material">Direct Printing on Material</a></li>
+            <li><a href="/category/traffic-and-safety-signs">Traffic & Safety Signs</a></li>
         </ul>
     </div>
 </nav>

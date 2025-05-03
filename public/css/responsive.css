@@ -14,7 +14,21 @@
     .order-area .inner-area {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .view-all-area > * {
+        margin-block: 0.5rem;
+    }
+    
+    .view-all-area{
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .view-all-area .right{
+        width: 100%;
+    }
 }
+
 
 @media(max-width: 991px) {
     .detail-page-area .detail-flex-inner {

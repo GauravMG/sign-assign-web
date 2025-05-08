@@ -182,4 +182,24 @@ class AdminController extends BaseController
 
         return view('add-product', $data);
     }
+
+    public function invoices(): string
+    {
+        $data = [
+            'title' => 'Invoices',
+            'page_heading' => 'Invoices'
+        ];
+
+        return view('invoices', $data);
+    }
+
+    public function invoicePrint(): string
+    {
+        $data = [
+            'title' => 'Print Invoice',
+            'page_heading' => 'Print Invoice'
+        ];
+
+        return view('print-invoice', $data);
+    }
 }

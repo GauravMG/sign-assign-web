@@ -6,6 +6,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
+$routes->get('/admin/invoices/print', 'AdminController::invoicePrint');
+$routes->get('/admin/invoices', 'AdminController::invoices');
+
 $routes->get('/admin/products/update/(:any)', 'AdminController::updateProduct/$1');
 $routes->get('/admin/products/add', 'AdminController::addProduct');
 $routes->get('/admin/products', 'AdminController::products');

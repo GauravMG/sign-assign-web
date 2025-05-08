@@ -88,6 +88,68 @@ class AdminController extends BaseController
         return view('add-product-category', $data);
     }
 
+    public function viewProductCategory($productCategoryId): string
+    {
+        $data = [
+            'title' => 'Product Category Details',
+            'page_heading' => 'Product Category Details',
+            'data' => [
+                'productCategoryId' => $productCategoryId
+            ]
+        ];
+
+        return view('view-product-category', $data);
+    }
+
+    public function productSubCategories(): string
+    {
+        $data = [
+            'title' => 'Product Sub-categories',
+            'page_heading' => 'Product Sub-categories'
+        ];
+
+        return view('product-subcategories', $data);
+    }
+
+    public function addProductSubCategory($productCategoryId): string
+    {
+        $data = [
+            'title' => 'Add Product Sub-category',
+            'page_heading' => 'Add Product Sub-category',
+            'data' => [
+                'productCategoryId' => $productCategoryId
+            ]
+        ];
+
+        return view('add-product-subcategory', $data);
+    }
+
+    public function updateProductSubCategory($productSubCategoryId): string
+    {
+        $data = [
+            'title' => 'Update Product Sub-category',
+            'page_heading' => 'Update Product Sub-category',
+            'data' => [
+                'productSubCategoryId' => $productSubCategoryId
+            ]
+        ];
+
+        return view('add-product-subcategory', $data);
+    }
+
+    public function viewProductSubCategory($productSubCategoryId): string
+    {
+        $data = [
+            'title' => 'Product Sub-category Details',
+            'page_heading' => 'Product Sub-category Details',
+            'data' => [
+                'productSubCategoryId' => $productSubCategoryId
+            ]
+        ];
+
+        return view('view-product-subcategory', $data);
+    }
+
     public function products(): string
     {
         $data = [

@@ -130,10 +130,10 @@
 
 <script>
     $(document).ready(function() {
-        fetchUsers()
+        fetchProductCategories()
     })
 
-    function initializeDTUsersList() {
+    function initializeDTProductCategoriesList() {
         $("#dtProductCategoriesList").DataTable({
             "paging": true,
             "lengthChange": false,
@@ -145,7 +145,7 @@
         })
     }
 
-    async function fetchUsers() {
+    async function fetchProductCategories() {
         if ($.fn.DataTable.isDataTable("#dtProductCategoriesList")) {
             $('#dtProductCategoriesList').DataTable().destroy()
         }
@@ -179,6 +179,7 @@
                             </td>
                             <td class="list-action-container">
                                 <span onclick="onClickUpdateProductCategory(${response.data[i].productCategoryId})"><i class="fa fa-edit view-icon"></i></span>
+                                <span onclick="onClickViewProductCategory(${response.data[i].productCategoryId})"><i class="fa fa-eye view-icon"></i></span>
                             </td>
                         </tr>`;
                     }
@@ -200,7 +201,7 @@
                     });
 
 
-                    initializeDTUsersList()
+                    initializeDTProductCategoriesList()
                 }
                 loader.hide()
             }
@@ -217,7 +218,7 @@
             callbackSuccess: (response) => {
                 if (!response.success) {
                     toastr.error(response.message)
-                    fetchUsers()
+                    fetchProductCategories()
                 } else {
                     toastr.success(`Product category ${status === "inactive" ? "blocked" : "unblocked"} successfully`)
                 }
@@ -227,6 +228,10 @@
 
     function onClickUpdateProductCategory(productCategoryId) {
         window.location.href = `/admin/product-categories/update/${productCategoryId}`
+    }
+
+    function onClickViewProductCategory(productCategoryId) {
+        window.location.href = `/admin/product-categories/view/${productCategoryId}`
     }
 </script>
 <?= $this->endSection(); ?>

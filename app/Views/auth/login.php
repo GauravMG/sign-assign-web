@@ -137,7 +137,7 @@
         const jwtToken = localStorage.getItem("jwtToken")
         if ((jwtToken ?? "").trim() !== "") {
             var userData = localStorage.getItem("userData") ?? null
-            if (userData) {
+            if (userData && typeof userData === "string") {
                 userData = JSON.parse(userData)
             }
             setTimeout(() => {

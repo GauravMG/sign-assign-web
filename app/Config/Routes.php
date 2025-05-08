@@ -10,6 +10,11 @@ $routes->get('/admin/products/update/(:any)', 'AdminController::updateProduct/$1
 $routes->get('/admin/products/add', 'AdminController::addProduct');
 $routes->get('/admin/products', 'AdminController::products');
 
+$routes->get('/admin/product-subcategories/view/(:any)', 'AdminController::viewProductSubCategory/$1');
+$routes->get('/admin/product-subcategories/update/(:any)', 'AdminController::updateProductSubCategory/$1');
+$routes->get('/admin/product-subcategories/add/(:any)', 'AdminController::addProductSubCategory/$1');
+
+$routes->get('/admin/product-categories/view/(:any)', 'AdminController::viewProductCategory/$1');
 $routes->get('/admin/product-categories/update/(:any)', 'AdminController::updateProductCategory/$1');
 $routes->get('/admin/product-categories/add', 'AdminController::addProductCategory');
 $routes->get('/admin/product-categories', 'AdminController::productCategories');

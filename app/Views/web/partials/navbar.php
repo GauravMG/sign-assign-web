@@ -122,79 +122,48 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <!-- <li>
-                                            <input id="group-13" type="checkbox" hidden />
-                                            <label for="group-13"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Spa and Massage</label>
-                                            <ul class="group-list">
-                                                <li>
-                                                    <input id="sub-group-13" type="checkbox" hidden />
-                                                    <label for="sub-group-13"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Restaurants</label>
-                                                    <ul class="sub-group-list">
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-14" type="checkbox" hidden />
-                                                    <label for="sub-group-14"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Cafe's</label>
-                                                    <ul class="sub-group-list">
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-15" type="checkbox" hidden />
-                                                    <label for="sub-group-15"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Bakeries</label>
-                                                    <ul class="sub-group-list">
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-16" type="checkbox" hidden />
-                                                    <label for="sub-group-16"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Fast Food</label>
-                                                    <ul class="sub-group-list">
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-17" type="checkbox" hidden />
-                                                    <label for="sub-group-17"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Clubs & Bars</label>
-                                                    <ul class="sub-group-list">
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <input id="sub-group-18" type="checkbox" hidden />
-                                                    <label for="sub-group-18"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Breakfast</label>
-                                                    <ul class="sub-group-list">
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                        <li><a href="#">Loream Ipsum Loream</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li> -->
-
+                                            <li>
+                                                <input id="group-2" type="checkbox" hidden />
+                                                <label for="group-2"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Products</label>
+                                                <ul class="group-list">
+                                                    <li>
+                                                        <input id="sub-group-1" type="checkbox" hidden />
+                                                        <label for="sub-group-1"> Banner</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-2" type="checkbox" hidden />
+                                                        <label for="sub-group-2">Window Products</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-3" type="checkbox" hidden />
+                                                        <label for="sub-group-3"> Vehicle Products</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-4" type="checkbox" hidden />
+                                                        <label for="sub-group-4"> Marketing Tools</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-5" type="checkbox" hidden />
+                                                        <label for="sub-group-5"> Event Signs</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-6" type="checkbox" hidden />
+                                                        <label for="sub-group-6"> Indoor Signs</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-6" type="checkbox" hidden />
+                                                        <label for="sub-group-6"> Hardwares</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-6" type="checkbox" hidden />
+                                                        <label for="sub-group-6"> Direct Printing on Material</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="sub-group-6" type="checkbox" hidden />
+                                                        <label for="sub-group-6"> Direct Printing on Material</label>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                             <li>
                                                 <a href="#"> Design Lab</a>
                                             </li>

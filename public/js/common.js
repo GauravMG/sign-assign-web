@@ -47,24 +47,26 @@ $(document).ready(function () {
         var $container = $carousel.closest('.container-fluid');
         var $prevButton = $container.find('.owl-prev');
         var $nextButton = $container.find('.owl-next');
-
-        var current = event.item.index;
-        var total = event.item.count;
-
-        // First slide
+    
+        var current = event.item.index; // first visible item index
+        var total = event.item.count;   // total number of items
+        var itemsPerPage = event.page.size; // number of items visible at once
+    
+        // Disable prev button if first item is visible
         if (current === 0) {
             $prevButton.attr("disabled", true);
         } else {
             $prevButton.removeAttr("disabled");
         }
-
-        // Last slide
-        if (current === total - 1) {
+    
+        // Disable next button if last visible item is at or beyond the last item
+        if (current + itemsPerPage >= total) {
             $nextButton.attr("disabled", true);
         } else {
             $nextButton.removeAttr("disabled");
         }
     }
+    
 });
 
 

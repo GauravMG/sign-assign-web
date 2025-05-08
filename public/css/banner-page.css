@@ -101,7 +101,12 @@
     cursor: pointer;
 }
 
-.banner-product-area .banner-inner .inner-card>* {
+.banner-product-area .banner-inner .inner-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.banner-product-area .banner-inner .inner-card a>* {
     margin-block: 15px;
 }
 
@@ -133,7 +138,7 @@
     font-weight: 400;
 }
 
-.banner-product-area .banner-inner .inner-card a {
+.banner-product-area .banner-inner .inner-card a.customized-button {
     background-color: #452e73;
     text-decoration: none;
     width: 100%;
@@ -143,7 +148,7 @@
     margin: 0;
 }
 
-.banner-product-area .banner-inner .inner-card:hover a {
+.banner-product-area .banner-inner .inner-card:hover a.customized-button {
     background-color: #277e30;
     cursor: pointer;
 }

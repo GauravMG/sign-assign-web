@@ -19,7 +19,7 @@
         <div class="info-box shadow">
             <div class="info-box-content">
                 <span class="info-box-text">Total Tickets</span>
-                <span class="info-box-number">30,124</span>
+                <span class="info-box-number" id="statTotalTickets">0</span>
             </div>
             <span class="info-box-icon bg-info"><i class="fas fa-ticket-alt"></i></span>
 
@@ -30,8 +30,8 @@
     <div class="col-md-3 col-sm-6 col-12">
         <div class="info-box shadow">
             <div class="info-box-content">
-                <span class="info-box-text">New Tickets</span>
-                <span class="info-box-number">825</span>
+                <span class="info-box-text">Open Tickets</span>
+                <span class="info-box-number" id="statOpenTickets">0</span>
             </div>
             <span class="info-box-icon bg-info"><i class="fas fa-ticket-alt"></i></span>
 
@@ -43,7 +43,7 @@
         <div class="info-box shadow">
             <div class="info-box-content">
                 <span class="info-box-text">Pending Tickets</span>
-                <span class="info-box-number">350</span>
+                <span class="info-box-number" id="statPendingTickets">0</span>
             </div>
             <span class="info-box-icon bg-warning"><i class="far fa-clock"></i></span>
 
@@ -54,8 +54,8 @@
     <div class="col-md-3 col-sm-6 col-12">
         <div class="info-box shadow">
             <div class="info-box-content">
-                <span class="info-box-text">Completed Tickets</span>
-                <span class="info-box-number">23,145</span>
+                <span class="info-box-text">Closed Tickets</span>
+                <span class="info-box-number" id="statClosedTickets">0</span>
             </div>
             <span class="info-box-icon bg-success"><i class="far fa-check-circle"></i></span>
 
@@ -154,8 +154,14 @@
             callbackSuccess: (response) => {
                 if (response.success) {
                     const {
-                        data
+                        data,
+                        stats
                     } = response
+
+                    document.getElementById("statTotalTickets").innerText = formatINR(stats.totalTickets ?? 0)
+                    document.getElementById("statOpenTickets").innerText = formatINR(stats.openTickets ?? 0)
+                    document.getElementById("statPendingTickets").innerText = formatINR(stats.pendingTickets ?? 0)
+                    document.getElementById("statClosedTickets").innerText = formatINR(stats.closedTickets ?? 0)
 
                     var html = ""
 

@@ -55,6 +55,29 @@ class AdminController extends BaseController
         return view('user-details', $data);
     }
 
+    public function supportTickets(): string
+    {
+        $data = [
+            'title' => 'Support Tickets',
+            'page_heading' => 'Support Tickets'
+        ];
+
+        return view('support-tickets', $data);
+    }
+
+    public function viewSupportTicket($supportTicketId): string
+    {
+        $data = [
+            'title' => 'Support Ticket',
+            'page_heading' => 'Support Ticket',
+            'data' => [
+                'supportTicketId' => $supportTicketId
+            ]
+        ];
+
+        return view('view-support-ticket', $data);
+    }
+
     public function productCategories(): string
     {
         $data = [

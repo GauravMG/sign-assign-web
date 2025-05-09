@@ -1,38 +1,57 @@
 function formatDate(dateStr) {
-    const date = new Date(dateStr)
+    // Parse as ISO string but treat it as local, not UTC
+    const [datePart, timePart] = dateStr.split('T');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minute, second] = timePart.split(/[:.Z]/);
+
+    const localDate = new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second)
+    );
 
     const options = {
         weekday: 'short', // 'Mon', 'Tue', etc.
         month: 'short',   // 'Jan', 'Feb', etc.
-        day: '2-digit',   // 01, 02, etc.
-        year: 'numeric',  // 2024
-        hour: '2-digit',  // 01, 02, etc.
-        minute: '2-digit', // 00, 01, etc.
-        hour12: true      // AM/PM format
-    }
+        day: '2-digit',   // '01', '02', etc.
+        year: 'numeric',  // '2024'
+        hour: '2-digit',  // '01', '02', etc.
+        minute: '2-digit', // '00', '01', etc.
+        hour12: true,      // AM/PM format
+    };
 
-    return date.toLocaleString('en-US', options)
+    return localDate.toLocaleString('en-US', options);
 }
 
 function formatDateWithoutTime(dateStr) {
-    const date = new Date(dateStr)
+    // Parse as ISO string but treat it as local, not UTC
+    const [datePart, timePart] = dateStr.split('T');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minute, second] = timePart.split(/[:.Z]/);
+
+    const localDate = new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hour),
+        Number(minute),
+        Number(second)
+    );
 
     const options = {
         weekday: 'short', // 'Mon', 'Tue', etc.
         month: 'short',   // 'Jan', 'Feb', etc.
-        day: '2-digit',   // 01, 02, etc.
-        year: 'numeric'  // 2024
-    }
+        day: '2-digit',   // '01', '02', etc.
+        year: 'numeric',  // '2024'
+    };
 
-    return date.toLocaleString('en-US', options)
+    return localDate.toLocaleString('en-US', options);
 }
 
 function getDateFromDate(dateStr) {
-    const date = new Date(dateStr)
-
-    const options = {
-        day: '2-digit',   // 01, 02, etc.
-    }
-
-    return date.toLocaleString('en-US', options)
+    const date = new Date(dateStr);
+    return String(date.getUTCDate()).padStart(2, '0');
 }

@@ -22,6 +22,9 @@ $routes->get('/admin/product-categories/update/(:any)', 'AdminController::update
 $routes->get('/admin/product-categories/add', 'AdminController::addProductCategory');
 $routes->get('/admin/product-categories', 'AdminController::productCategories');
 
+$routes->get('/admin/support-tickets/(:any)', 'AdminController::viewSupportTicket/$1');
+$routes->get('/admin/support-tickets', 'AdminController::supportTickets');
+
 $routes->get('/admin/users/update/(:any)', 'AdminController::updateUser/$1');
 $routes->get('/admin/users/add', 'AdminController::addUser');
 $routes->get('/admin/users/(:any)', 'AdminController::userDetails/$1');

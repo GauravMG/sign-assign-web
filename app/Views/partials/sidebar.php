@@ -27,22 +27,22 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/products" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
                             Products
                         </p>
                     </a>
-                </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                </li> -->
+                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
                     <a href="/admin/orders" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Orders
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
                     <a href="/admin/invoices" class="nav-link">
                         <i class="nav-icon fas fa-receipt"></i>
@@ -51,19 +51,27 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
                     <a href="/admin/payments" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
                             Payments
                         </p>
                     </a>
-                </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                </li> -->
+                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/reports" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
                             Reports
+                        </p>
+                    </a>
+                </li> -->
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                    <a href="/admin/support-tickets" class="nav-link">
+                        <i class="nav-icon fas fa-headset"></i>
+                        <p>
+                            Support Tickets
                         </p>
                     </a>
                 </li>

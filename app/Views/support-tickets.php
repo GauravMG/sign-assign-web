@@ -10,6 +10,10 @@
         display: flex;
         justify-content: space-around;
     }
+
+    .dropdown-item {
+        cursor: pointer;
+    }
 </style>
 <?= $this->endSection(); ?>
 
@@ -167,8 +171,6 @@
 
                     for (let i = 0; i < data?.length; i++) {
                         const ticketStatusBtnType = data[i].ticketStatus === "closed" ? "success" : data[i].ticketStatus === "pending" ? "warning" : "info"
-                        console.log(`data[i].createdAt`, data[i].createdAt)
-                        console.log(`formatDate(data[i].createdAt)`, formatDate(data[i].createdAt))
 
                         html += `<tr>
                             <td>#${i + 1}</td>
@@ -176,15 +178,15 @@
                             <td>${data[i].subject}</td>
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-${ticketStatusBtnType}">${capitalizeFirstLetter(data[i].ticketStatus)}</button>
-                                    <button type="button" class="btn btn-${ticketStatusBtnType} dropdown-toggle dropdown-icon"
+                                    <button type="button" class="btn btn-${ticketStatusBtnType}" id="ticketStatusText_${data[i].supportTicketId}">${capitalizeFirstLetter(data[i].ticketStatus)}</button>
+                                    <button type="button" class="btn btn-${ticketStatusBtnType} dropdown-toggle dropdown-icon" id="ticketStatusDropdown_${data[i].supportTicketId}"
                                         data-toggle="dropdown">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, "open")">Open</a>
-                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, "pending")">Pending</a>
-                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, "closed")">Closed</a>
+                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'open')">Open</a>
+                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'pending')">Pending</a>
+                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'closed')">Closed</a>
                                     </div>
                                 </div>
                             </td>
@@ -219,6 +221,25 @@
                         fetchSupportTickets()
                     } else {
                         toastr.success(`Support ticket status updated successfully`)
+
+                        const ticketStatusBtnType = ticketStatus === "closed" ? "success" : ticketStatus === "pending" ? "warning" : "info"
+
+                        let ticketStatusTextEl = document.getElementById(`ticketStatusText_${supportTicketId}`)
+                        ticketStatusTextEl.innerText = capitalizeFirstLetter(ticketStatus)
+                        ticketStatusTextEl.classList.forEach(className => {
+                            if (className.startsWith('btn-')) {
+                                ticketStatusTextEl.classList.remove(className);
+                            }
+                        });
+                        ticketStatusTextEl.classList.add(`btn-${ticketStatusBtnType}`)
+
+                        let ticketStatusDropdownEl = document.getElementById(`ticketStatusDropdown_${supportTicketId}`)
+                        ticketStatusDropdownEl.classList.forEach(className => {
+                            if (className.startsWith('btn-')) {
+                                ticketStatusDropdownEl.classList.remove(className);
+                            }
+                        });
+                        ticketStatusDropdownEl.classList.add(`btn-${ticketStatusBtnType}`)
                     }
                 }
             })

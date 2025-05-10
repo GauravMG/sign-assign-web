@@ -68,8 +68,8 @@ class AdminController extends BaseController
     public function viewSupportTicket($supportTicketId): string
     {
         $data = [
-            'title' => 'Support Ticket',
-            'page_heading' => 'Support Ticket',
+            'title' => 'Support Ticket Details',
+            'page_heading' => 'Support Ticket Details',
             'data' => [
                 'supportTicketId' => $supportTicketId
             ]

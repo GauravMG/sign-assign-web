@@ -137,8 +137,8 @@
         })
     }
 
-    async function fetchSupportTickets() {
-        if ($.fn.DataTable.isDataTable("#dtSupportTicketsList")) {
+    async function fetchSupportTickets(showType = "all") {
+        if (showType === "all" && $.fn.DataTable.isDataTable("#dtSupportTicketsList")) {
             $('#dtSupportTicketsList').DataTable().destroy()
         }
 
@@ -167,40 +167,42 @@
                     document.getElementById("statPendingTickets").innerText = formatINR(stats.pendingTickets ?? 0)
                     document.getElementById("statClosedTickets").innerText = formatINR(stats.closedTickets ?? 0)
 
-                    var html = ""
+                    if (showType === "all") {
+                        var html = ""
 
-                    for (let i = 0; i < data?.length; i++) {
-                        const ticketStatusBtnType = data[i].ticketStatus === "closed" ? "success" : data[i].ticketStatus === "pending" ? "warning" : "info"
+                        for (let i = 0; i < data?.length; i++) {
+                            const ticketStatusBtnType = data[i].ticketStatus === "closed" ? "success" : data[i].ticketStatus === "pending" ? "warning" : "info"
 
-                        html += `<tr>
-                            <td>#${i + 1}</td>
-                            <td>${data[i].createdByUser?.fullName ?? "-"}</td>
-                            <td>${data[i].subject}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-${ticketStatusBtnType}" id="ticketStatusText_${data[i].supportTicketId}">${capitalizeFirstLetter(data[i].ticketStatus)}</button>
-                                    <button type="button" class="btn btn-${ticketStatusBtnType} dropdown-toggle dropdown-icon" id="ticketStatusDropdown_${data[i].supportTicketId}"
-                                        data-toggle="dropdown">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'open')">Open</a>
-                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'pending')">Pending</a>
-                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'closed')">Closed</a>
+                            html += `<tr>
+                                <td>#${i + 1}</td>
+                                <td>${data[i].createdByUser?.fullName ?? "-"}</td>
+                                <td>${data[i].subject}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-${ticketStatusBtnType}" id="ticketStatusText_${data[i].supportTicketId}">${capitalizeFirstLetter(data[i].ticketStatus)}</button>
+                                        <button type="button" class="btn btn-${ticketStatusBtnType} dropdown-toggle dropdown-icon" id="ticketStatusDropdown_${data[i].supportTicketId}"
+                                            data-toggle="dropdown">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'open')">Open</a>
+                                            <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'pending')">Pending</a>
+                                            <a class="dropdown-item" onclick="onClickUpdateTicketStatus(${data[i].supportTicketId}, 'closed')">Closed</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>${formatDate(data[i].createdAt)}</td>
-                            <td class="list-action-container">
-                                <span onclick="onClickViewSupportTicket(${data[i].supportTicketId})"><i class="fa fa-eye view-icon"></i></span>
-                            </td>
-                        </tr>`;
+                                </td>
+                                <td>${formatDate(data[i].createdAt)}</td>
+                                <td class="list-action-container">
+                                    <span onclick="onClickViewSupportTicket(${data[i].supportTicketId})"><i class="fa fa-eye view-icon"></i></span>
+                                </td>
+                            </tr>`;
+                        }
+
+                        // Insert the generated table rows
+                        document.getElementById("dataList").innerHTML = html;
+
+                        initializeDTUsersList()
                     }
-
-                    // Insert the generated table rows
-                    document.getElementById("dataList").innerHTML = html;
-
-                    initializeDTUsersList()
                 }
                 loader.hide()
             }
@@ -240,6 +242,8 @@
                             }
                         });
                         ticketStatusDropdownEl.classList.add(`btn-${ticketStatusBtnType}`)
+
+                        fetchSupportTickets("stats")
                     }
                 }
             })

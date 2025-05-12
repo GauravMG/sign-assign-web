@@ -66,7 +66,10 @@
                 </ul>
             </div>
             <div class="auth-button">
-                <a href="#" class="signup-button">Sign up</a>
+                <a href="#" class="signup-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign up</a>
+                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                </button> -->
                 <a href="#" class="login-button">Login</a>
             </div>
         </div>

@@ -215,3 +215,64 @@
         <h6>Sign Assign Company copyright (©) 2025 </h6>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="auth-inner">
+                    <div class="left-area">
+                        <h1>Sign Up</h1>
+                        <p>
+                            Sign up today and enjoy 25% OFF your first purchase! Whether you're just getting started or looking to take things to the next level, this is the perfect time to jump in and save. Don’t miss out—this special offer won’t last forever!
+                        </p>
+                    </div>
+                    <div class="right-area">
+                        <form action="">
+                            <div class="form-group">
+                                <div class="flex-inner">
+                                    <input type="text" class="form-control" placeholder="Full Name">
+                                    <input type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email Address">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password (Min 6 Characters Allowed)">
+                            </div>
+                            <div class="form-group">
+                                <div class="flex-inner">
+                                    <select name="" id="" class="form-select">
+                                        <option value="">
+                                            <div><span>India</span><span>+91</span></div>
+                                        </option>
+                                        <option value="">
+                                            <div><span>India</span><span>+91</span></div>
+                                        </option>
+                                        <option value="">
+                                            <div><span>India</span><span>+91</span></div>
+                                        </option>
+                                    </select>
+                                    <input type="tel" class="form-control" placeholder="Mobile Number">
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="">
+                                    <input type="checkbox" />
+                                    By agreeing, you'll receive the latest promotional offers,
+                                    updates, and creative ideas from us via SMS, WhatsApp, or
+                                    Email. You can opt out anytime you wish to.
+                                </label>
+                            </div>
+                            <div class="form-group mt-3">
+                                <a href="#">Create Account</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

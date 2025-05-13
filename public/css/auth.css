@@ -11,15 +11,22 @@
 }
 
 .auth-inner .left-area{
-    background-image: url('../images/login-page/Sign\ up.png');
     background-position: bottom;
     background-repeat: no-repeat;
-    background-size: 100%;
     background-color: #efefef;
     padding: 40px;
     flex: 1 1 50%;
     max-width: 50%;
-    /* min-height: 600px; */
+    min-height: 600px;
+}
+
+.auth-inner.signup .left-area{
+    background-image: url('../images/login-page/Sign\ up.png');
+    background-size: 100%;
+}
+.auth-inner.login .left-area{
+    background-image: url('../images/login-page/Login.png');
+    background-size: 70%;
 }
 
 .auth-inner .left-area h1 {
@@ -38,6 +45,9 @@
     padding: 40px;
     flex: 1 1 50%;
     max-width: 50%;
+    display: flex    ;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .auth-inner .right-area p {
@@ -55,6 +65,20 @@
 .auth-inner .right-area form .flex-inner{
     display: flex;
     gap: 0.5rem;
+    justify-content: space-between;
+}
+
+.auth-inner .right-area form .flex-inner a{
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-inner .right-area form .flex-inner a:first-child{
+    color: #452e73;
+}
+
+.auth-inner .right-area form .flex-inner a:last-child{
+    color: #df9229;
 }
 
 .auth-inner .right-area form .form-group{
@@ -68,7 +92,7 @@
     height: 45px;
 }
 
-.auth-inner .right-area form .form-group .form-control:focus{
+.auth-inner .right-area form .form-group .form-control:focus, .auth-inner .right-area form .form-group .form-select:focus{
     box-shadow: none;
     border: 0;
 }
@@ -87,7 +111,7 @@
     vertical-align: middle;
 }
 
-.auth-inner .right-area form .form-group a {
+.auth-inner .right-area form .form-group a.submit-btn {
     background-color: #df9229;
     color: #fff;
     text-decoration: none;
@@ -96,6 +120,7 @@
     height: 45px;
     align-items: center;
     justify-content: center;
+    text-transform: uppercase;
 }
 
 .auth-inner .right-area .sso-area p {
@@ -142,4 +167,30 @@
 
 .auth-inner .right-area .sso-area .social-icons-inner a img {
     width: 35%;
+}
+
+.auth-inner .right-area .sso-area .login-social-icons-inner {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.auth-inner .right-area .sso-area .login-social-icons-inner a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    color: inherit;
+    gap: 5px;
+    background-color: #f9f9f9;
+    height: 40px;
+    border-radius: 50px;
+    padding: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.auth-inner .right-area .sso-area .login-social-icons-inner a img {
+    width: 25%;
 }

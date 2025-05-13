@@ -216,12 +216,12 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="auth-inner">
+                <div class="auth-inner signup">
                     <div class="left-area">
                         <h1>Sign Up</h1>
                         <p>
@@ -267,7 +267,7 @@
                                 </label>
                             </div>
                             <div class="form-group mt-3">
-                                <a href="#">Create Account</a>
+                                <a href="#" class="submit-btn">Create Account</a>
                             </div>
                         </form>
 
@@ -291,6 +291,64 @@
 
                         <p>Already have an account? <a href="#">Log in</a></p>
                         <p>Read Our <a href="#">Terms And Conditions</a> And <a href="#">Privacy Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="auth-inner login">
+                    <div class="left-area">
+                        <h1>Login</h1>
+                        <p>
+                            Welcome back! Please log in to your account to view your order history, track shipments, and enjoy a faster checkout experience. If you’re new here, create an account to access exclusive deals, manage your wishlist, and stay updated on the latest products.
+                        </p>
+                    </div>
+                    <div class="right-area">
+                        <form action="">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email Address">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password">
+                            </div>
+                            <div class="form-group mt-3">
+                                <div class="flex-inner">
+                                    <a href="#">Get Email OTP</a>
+                                    <a href="#">Forget Password?</a>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <a href="#" class="submit-btn">Login</a>
+                            </div>
+                        </form>
+
+                        <div class="sso-area mt-4">
+                            <p>Or login with</p>
+                            <div class="login-social-icons-inner">
+                                <a href="#">
+                                    <img src="<?= base_url('images/login-page/facebook.png') . '?t=' . time(); ?>" alt="" width="100%">
+                                    Facebook
+                                </a>
+                                <a href="#">
+                                    <img src="<?= base_url('images/login-page/google.png') . '?t=' . time(); ?>" alt="" width="100%">
+                                    Google
+                                </a>
+                                <a href="#">
+                                    <img src="<?= base_url('images/login-page/social.png') . '?t=' . time(); ?>" alt="" width="100%">
+                                    Amazon
+                                </a>
+                            </div>
+                        </div>
+
+                        <p>Don't have an account? <a href="#">Sign up</a></p>
                     </div>
                 </div>
             </div>

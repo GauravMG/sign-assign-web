@@ -270,6 +270,27 @@
                                 <a href="#">Create Account</a>
                             </div>
                         </form>
+
+                        <div class="sso-area mt-4">
+                            <p>Or sign up with</p>
+                            <div class="social-icons-inner">
+                                <a href="#">
+                                    <img src="<?= base_url('images/login-page/facebook.png') . '?t=' . time(); ?>" alt="" width="100%">
+                                    Facebook
+                                </a>
+                                <a href="#">
+                                    <img src="<?= base_url('images/login-page/google.png') . '?t=' . time(); ?>" alt="" width="100%">
+                                    Google
+                                </a>
+                                <a href="#">
+                                    <img src="<?= base_url('images/login-page/social.png') . '?t=' . time(); ?>" alt="" width="100%">
+                                    Amazon
+                                </a>
+                            </div>
+                        </div>
+
+                        <p>Already have an account? <a href="#">Log in</a></p>
+                        <p>Read Our <a href="#">Terms And Conditions</a> And <a href="#">Privacy Policy</a></p>
                     </div>
                 </div>
             </div>

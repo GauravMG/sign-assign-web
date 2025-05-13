@@ -19,7 +19,7 @@
     padding: 40px;
     flex: 1 1 50%;
     max-width: 50%;
-    min-height: 600px;
+    /* min-height: 600px; */
 }
 
 .auth-inner .left-area h1 {
@@ -38,6 +38,18 @@
     padding: 40px;
     flex: 1 1 50%;
     max-width: 50%;
+}
+
+.auth-inner .right-area p {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.auth-inner .right-area p a {
+    text-decoration: none;
+    color: #df9229;
+    /* font-weight: 700; */
+    font-style: italic;
 }
 
 .auth-inner .right-area form .flex-inner{
@@ -84,4 +96,50 @@
     height: 45px;
     align-items: center;
     justify-content: center;
+}
+
+.auth-inner .right-area .sso-area p {
+    text-align: center;
+    position: relative;
+}
+
+.auth-inner .right-area .sso-area p:before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 30%;
+    left: 0;
+    top: 50%;
+    background-color: #555555;
+}
+
+.auth-inner .right-area .sso-area p:after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 30%;
+    right: 0;
+    top: 50%;
+    background-color: #555555;
+}
+
+.auth-inner .right-area .sso-area .social-icons-inner {
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+.auth-inner .right-area .sso-area .social-icons-inner a {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 0.5rem;
+}
+
+.auth-inner .right-area .sso-area .social-icons-inner a img {
+    width: 35%;
 }

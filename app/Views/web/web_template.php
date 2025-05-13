@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="<?= base_url('css/navbar.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/home-page.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/footer.css') . '?t=' . time(); ?>">
+    <link rel="stylesheet" href="<?= base_url('css/auth.css') . '?t=' . time(); ?>">
     <?= $this->renderSection('pageStyles'); ?>
     <!-- responsive css -->
     <link rel="stylesheet" href="<?= base_url('css/responsive-navbar.css') . '?t=' . time(); ?>">

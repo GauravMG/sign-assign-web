@@ -36,7 +36,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -55,7 +55,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -74,7 +74,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -93,7 +93,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -112,7 +112,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -131,7 +131,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -150,7 +150,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -169,7 +169,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -188,7 +188,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -207,7 +207,7 @@
             <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
-                    <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                        <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="px-3 mt-0">
                         <h5>Vinyl Banners</h5>
@@ -230,67 +230,7 @@
 <div class="bestseller-area pt-5">
     <div class="container-fluid">
         <h3>Curated Bestsellers to Wow Your Customers</h3>
-        <div class="products-grid">
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
-            <div class="product-card">
-                <a href="#">
-                    <img src="<?= base_url('images/product-image-cropped.jpg') . '?t=' . time(); ?>" alt="">
-                    <h5>Window Products</h5>
-                </a>
-            </div>
+        <div class="products-grid" id="curatedBestSellersContainer">
         </div>
     </div>
 </div>
@@ -311,7 +251,7 @@
             </div>
         </div>
         <div id="owl-example" class="owl-carousel owl-theme">
-           <div class="inner-card">
+            <div class="inner-card">
                 <a href="#">
                     <div class="p-3 m-0">
                         <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
@@ -1020,4 +960,8 @@
         </div>
     </div>
 </div>
+<?= $this->endSection(); ?>
+
+<?= $this->section('pageScripts'); ?>
+<script src="<?= base_url('js/home.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

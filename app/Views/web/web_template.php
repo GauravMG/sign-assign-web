@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- custom css -->
     <link rel="stylesheet" href="<?= base_url('css/common.css') . '?t=' . time(); ?>">
@@ -68,9 +69,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
         integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
+    <script src="<?= base_url('js/service-api-web.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/common.js') . '?t=' . time(); ?>"></script>
+    <script src="<?= base_url('js/helper-url.js') . '?t=' . time(); ?>"></script>
 
     <!-- Section for page-specific JS -->
     <?= $this->renderSection('pageScripts'); ?>

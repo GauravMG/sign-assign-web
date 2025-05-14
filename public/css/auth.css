@@ -65,7 +65,7 @@
 .auth-inner .right-area form .flex-inner{
     display: flex;
     gap: 0.5rem;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .auth-inner .right-area form .flex-inner a{
@@ -121,6 +121,7 @@
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .auth-inner .right-area .sso-area p {

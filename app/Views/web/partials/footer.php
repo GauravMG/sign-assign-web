@@ -200,51 +200,48 @@
                                 <input type="password" class="form-control" placeholder="Password (Min 6 Characters Allowed)">
                             </div> -->
                             <div class="form-group">
-                                <div class="col-12" style="display: inline-flex;">
-                                    <div class="col-3">
-                                        <select name="" id="" class="form-select">
-                                            <option value="">
-                                                <div>
-                                                    <!-- <span>India</span> -->
-                                                    <span>+91</span>
-                                                </div>
-                                            </option>
-                                            <option value="">
-                                                <div>
-                                                    <!-- <span>India</span> -->
-                                                    <span>+91</span>
-                                                </div>
-                                            </option>
-                                            <option value="">
-                                                <div>
-                                                    <!-- <span>India</span> -->
-                                                    <span>+91</span>
-                                                </div>
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-8 offset-1">
-                                        <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number">
-                                    </div>
+                                <div class="flex-inner">
+                                    <select name="" id="" class="form-select" style="flex: 1 1 25%">
+                                        <option value="">
+                                            <div>
+                                                <span>+91</span>
+                                            </div>
+                                        </option>
+                                        <option value="">
+                                            <div>
+                                                <span>+91</span>
+                                            </div>
+                                        </option>
+                                        <option value="">
+                                            <div>
+                                                <span>+91</span>
+                                            </div>
+                                        </option>
+                                    </select>
+                                    <input type="tel" class="form-control" style="flex: 1 1 75%" id="mobile" name="mobile" placeholder="Mobile Number">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Register as -</label>
-                                <div class="input-group">
-                                    <div class="form-check" style="margin-right: 30px; margin-bottom: 10px;">
-                                        <label class="form-check-label"><input class="form-check-input" type="radio" name="roleId" value="2" checked> Individual</label>
+                                <div class="flex-radiobtn">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="roleId" value="2" checked> Individual
+                                        </label>
                                     </div>
                                     <div class="form-check">
-                                        <label class="form-check-label"><input class="form-check-input" type="radio" name="roleId" value="3"> Business</label>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="roleId" value="3"> Business
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                             <div id="businessDetailsContainer" class="form-group">
                                 <input type="text" id="businessName" name="businessName" class="form-control" placeholder="Business name">
                             </div>
-                            <div class="form-group mt-3">
-                                <label for="">
-                                    <input type="checkbox" />
+                            <div class="form-group">
+                                <label for="terms">
+                                    <input type="checkbox" id="terms" />
                                     By agreeing, you'll receive the latest promotional offers,
                                     updates, and creative ideas from us via SMS, WhatsApp, or
                                     Email. You can opt out anytime you wish to.

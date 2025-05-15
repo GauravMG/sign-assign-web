@@ -75,6 +75,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                    <a href="/admin/banners" class="nav-link">
+                        <i class="nav-icon fas fa-image"></i>
+                        <p>
+                            Banners
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

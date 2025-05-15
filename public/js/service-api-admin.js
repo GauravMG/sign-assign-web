@@ -1,4 +1,6 @@
 const BASE_API_PATH = "http://3.109.198.252/api/v1"
+// const BASE_API_PATH = "http://10.10.10.17:9101/v1"
+
 var userData = localStorage.getItem("userData") ?? null
 if (userData) {
     userData = JSON.parse(userData)
@@ -113,9 +115,8 @@ async function uploadImage(file, keyName = "file") {
             endPoint: "/upload/single",
             payload: formData,
             callbackSuccess: (response) => {
-                console.log(`response`, response)
                 if (response.success) {
-                    resolve(response.data.url)
+                    resolve(response.data)
                 } else {
                     reject("")
                 }

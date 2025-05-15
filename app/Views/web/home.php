@@ -2,16 +2,7 @@
 
 <?= $this->section('content'); ?>
 <div id="carouselExampleSlidesOnly" class="carousel slide hero-section" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="<?= base_url('images/banner-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url('images/banner-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url('images/banner-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
-        </div>
+    <div class="carousel-inner" id="coverBannerContainer">
     </div>
 </div>
 

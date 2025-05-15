@@ -94,10 +94,13 @@
                     for (let i = 0; i < data?.length; i++) {
                         let htmlMediaEl = data[i].mediaType.includes("video") ? `<video src="${data[i].mediaUrl}" controls></video>` : `<img src="${data[i].mediaUrl}" alt="${data[i].name}" style="height: 100%;">`
 
-                        html += `<div class="card banner-card" data-id="${data[i].bannerId}">
+                        html += `<div class="card banner-card position-relative" data-id="${data[i].bannerId}">
                             <div class="card-body d-flex flex-column justify-content-between align-items-center text-center p-2" style="height: 100%;">
                                 ${htmlMediaEl}
                                 <p class="mt-2 mb-0">${data[i].name}</p>
+                                <button class="btn btn-sm btn-danger delete-banner-btn" onclick="onClickDeleteBanner(${data[i].bannerId})" data-id="${data[i].bannerId}" style="position: absolute; top: 5px; right: 5px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                         </div>`;
                     }
@@ -127,6 +130,32 @@
                     } else {
                         toastr.error(response.message);
                     }
+                    loader.hide()
+                }
+            })
+        }
+    }
+
+    async function onClickDeleteBanner(bannerId) {
+        if (confirm("Are you sure you want to delete the selected banner?")) {
+            await postAPICall({
+                endPoint: "/banner/delete",
+                payload: JSON.stringify({
+                    bannerIds: [parseInt(bannerId)]
+                }),
+                callbackComplete: () => {},
+                callbackSuccess: (response) => {
+                    const {
+                        success,
+                        message
+                    } = response
+
+                    if (!success) {
+                        toastr.error(message)
+                    } else {
+                        toastr.success(message)
+                    }
+                    fetchBanners()
                     loader.hide()
                 }
             })

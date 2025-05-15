@@ -45,6 +45,13 @@
     <!-- responsive css -->
     <link rel="stylesheet" href="<?= base_url('css/responsive-navbar.css') . '?t=' . time(); ?>">
     <link rel="stylesheet" href="<?= base_url('css/responsive.css') . '?t=' . time(); ?>">
+
+    <style>
+        #verifyAndSetPasswordContainer,
+        #businessDetailsContainer {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>

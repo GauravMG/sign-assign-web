@@ -184,16 +184,17 @@
                             Sign up today and enjoy 25% OFF your first purchase! Whether you're just getting started or looking to take things to the next level, this is the perfect time to jump in and save. Don’t miss out—this special offer won’t last forever!
                         </p>
                     </div>
+
                     <div class="right-area" id="registerFormContainer">
                         <form>
                             <div class="form-group">
                                 <div class="flex-inner">
-                                    <input type="text" class="form-control" placeholder="Full Name">
-                                    <input type="text" class="form-control" placeholder="Last Name">
+                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
                             </div>
                             <!-- <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Password (Min 6 Characters Allowed)">
@@ -223,7 +224,7 @@
                                         </select>
                                     </div>
                                     <div class="col-8 offset-1">
-                                        <input type="tel" class="form-control" placeholder="Mobile Number">
+                                        <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number">
                                     </div>
                                 </div>
                             </div>
@@ -237,6 +238,9 @@
                                         <label class="form-check-label"><input class="form-check-input" type="radio" name="roleId" value="3"> Business</label>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="businessDetailsContainer" class="form-group">
+                                <input type="text" id="businessName" name="businessName" class="form-control" placeholder="Business name">
                             </div>
                             <div class="form-group mt-3">
                                 <label for="">
@@ -272,51 +276,23 @@
                         <p>Already have an account? <a href="#">Log in</a></p>
                         <p>Read Our <a href="#">Terms And Conditions</a> And <a href="#">Privacy Policy</a></p>
                     </div>
+
                     <div class="right-area" id="verifyAndSetPasswordContainer" style="display: none;">
                         <form>
                             <div class="form-group">
-                                <div class="flex-inner">
-                                    <input type="text" class="form-control" placeholder="Full Name">
-                                    <input type="text" class="form-control" placeholder="Last Name">
-                                </div>
+                                <input type="text" class="form-control" id="otp" name="otp" placeholder="OTP">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             </div>
-                            <!-- <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password (Min 6 Characters Allowed)">
-                            </div> -->
                             <div class="form-group">
-                                <div class="col-12" style="display: inline-flex;">
-                                    <div class="col-3">
-                                        <select name="" id="" class="form-select">
-                                            <option value="">
-                                                <div>
-                                                    <!-- <span>India</span> -->
-                                                    <span>+91</span>
-                                                </div>
-                                            </option>
-                                            <option value="">
-                                                <div>
-                                                    <!-- <span>India</span> -->
-                                                    <span>+91</span>
-                                                </div>
-                                            </option>
-                                            <option value="">
-                                                <div>
-                                                    <!-- <span>India</span> -->
-                                                    <span>+91</span>
-                                                </div>
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-8 offset-1">
-                                        <input type="tel" class="form-control" placeholder="Mobile Number">
-                                    </div>
-                                </div>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
                             </div>
                             <div class="form-group mt-3">
-                                <a onclick="register()" class="submit-btn">Create Account</a>
+                                <a onclick="resendOTP()" class="submit-btn">Resend OTP</a>
+                            </div>
+                            <div class="form-group mt-3">
+                                <a onclick="verifyAndSetPassword()" class="submit-btn">Complete Setup</a>
                             </div>
                         </form>
                     </div>
@@ -341,10 +317,10 @@
                     <div class="right-area">
                         <form>
                             <div class="form-group">
-                                <input type="email" id="email" name="email" class="form-control" placeholder="Email Address">
+                                <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Email Address">
                             </div>
                             <div class="form-group">
-                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                                <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Password">
                             </div>
                             <div class="form-group mt-3">
                                 <div class="flex-inner">

@@ -22,6 +22,9 @@ $routes->get('/admin/product-categories/update/(:any)', 'AdminController::update
 $routes->get('/admin/product-categories/add', 'AdminController::addProductCategory');
 $routes->get('/admin/product-categories', 'AdminController::productCategories');
 
+$routes->get('/admin/banners/add', 'AdminController::addBanner');
+$routes->get('/admin/banners', 'AdminController::banners');
+
 $routes->get('/admin/support-tickets/(:any)', 'AdminController::viewSupportTicket/$1');
 $routes->get('/admin/support-tickets', 'AdminController::supportTickets');
 
@@ -31,10 +34,11 @@ $routes->get('/admin/users/(:any)', 'AdminController::userDetails/$1');
 $routes->get('/admin/users', 'AdminController::users');
 
 $routes->get('/admin/forgot-password', 'AuthController::forgotPassword');
-// $routes->get('/admin/register', 'AuthController::register');
+$routes->get('/admin/register', 'AuthController::register');
 $routes->get('/admin/login', 'AuthController::login');
 $routes->get('/admin', 'AuthController::login');
 
 $routes->get('/product/(:any)', 'WebController::productDetail/$1');
+$routes->get('/subcategory/(:any)', 'WebController::productSubCategory/$1');
 $routes->get('/category/(:any)', 'WebController::productCategory/$1');
 $routes->get('/', 'WebController::index');

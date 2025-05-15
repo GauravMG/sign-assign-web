@@ -47,18 +47,18 @@ $(document).ready(function () {
         var $container = $carousel.closest('.container-fluid');
         var $prevButton = $container.find('.owl-prev');
         var $nextButton = $container.find('.owl-next');
-    
+
         var current = event.item.index; // first visible item index
         var total = event.item.count;   // total number of items
         var itemsPerPage = event.page.size; // number of items visible at once
-    
+
         // Disable prev button if first item is visible
         if (current === 0) {
             $prevButton.attr("disabled", true);
         } else {
             $prevButton.removeAttr("disabled");
         }
-    
+
         // Disable next button if last visible item is at or beyond the last item
         if (current + itemsPerPage >= total) {
             $nextButton.attr("disabled", true);
@@ -66,7 +66,22 @@ $(document).ready(function () {
             $nextButton.removeAttr("disabled");
         }
     }
-    
+
+    fetchProductCategories()
+
+    let htmlNavbarAuthOptionsContainer = `<a href="#" class="signup-button" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>
+    <a href="#" class="login-button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>`
+
+    if (localStorage.getItem("jwtTokenUser")) {
+        htmlNavbarAuthOptionsContainer = `<a style="cursor: pointer;" href="/profile" class="profile-icon" title="Profile">
+            <i class="fi fi-rs-user-gear"></i>
+        </a>
+        <a style="cursor: pointer;" onclick="onClickLogout()" class="logout-icon" title="Logout" onclick="logout()">
+            <i class="fi fi-rr-sign-out-alt"></i>
+        </a>`
+    }
+
+    document.getElementById("navbarAuthOptionsContainer").innerHTML = htmlNavbarAuthOptionsContainer
 });
 
 
@@ -140,17 +155,22 @@ $(".detail-page-area .owl-carousel").owlCarousel({
     items: 4,
 });
 
+let customSelect
+let selected
+let options
+let optionItems
+if (document.getElementById('customSelect')) {
+    customSelect = document.getElementById('customSelect');
+    selected = customSelect.querySelector('.selected');
+    options = customSelect.querySelector('.options');
+    optionItems = customSelect.querySelectorAll('.option');
+}
 
-const customSelect = document.getElementById('customSelect');
-const selected = customSelect.querySelector('.selected');
-const options = customSelect.querySelector('.options');
-const optionItems = customSelect.querySelectorAll('.option');
-
-selected.addEventListener('click', () => {
+selected?.addEventListener('click', () => {
     options.style.display = options.style.display === 'block' ? 'none' : 'block';
 });
 
-optionItems.forEach(option => {
+optionItems?.forEach(option => {
     option.addEventListener('click', () => {
         // Set the selected text
         selected.textContent = option.textContent;
@@ -166,7 +186,165 @@ optionItems.forEach(option => {
 
 // Click outside to close dropdown
 document.addEventListener('click', function (e) {
-    if (!customSelect.contains(e.target)) {
+    if (!customSelect?.contains(e.target)) {
         options.style.display = 'none';
     }
 });
+
+async function fetchProductCategories() {
+    await postAPICall({
+        endPoint: "/product-category/list",
+        payload: JSON.stringify({
+            "filter": {},
+            "range": {
+                "all": true
+            },
+            "sort": [{
+                "orderBy": "name",
+                "orderDir": "asc"
+            }]
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response
+
+            if (success) {
+                let htmlNavbar = ""
+                let htmlFooter = ""
+
+                for (let i = 0; i < data?.length; i++) {
+                    // htmlNavbar += `<li><a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a></li>`
+                    htmlNavbar += `
+                    <li class="dropdown">
+                        <a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a>
+                        <ul class="dropdown-content">
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                        </ul>
+                    </li>
+                    `
+
+                    htmlFooter += `<li>
+                        <a href="/category/${getLinkFromName(data[i].name)}">
+                            <i class="fa-solid fa-arrow-right-long"></i><span>${data[i].name}</span>
+                        </a>
+                    </li>`
+                }
+
+                document.getElementById("navbarCategoryMenuListContainer").innerHTML = htmlNavbar
+                document.getElementById("footerCategoryMenuListContainer").innerHTML = htmlFooter
+            }
+        }
+    })
+}
+
+async function login() {
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Check if email is empty
+    if (!email) {
+        alert('Please enter your email address!');
+        emailInput.focus();
+        return;
+    }
+
+    // Validate email format
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address!');
+        emailInput.focus();
+        return;
+    }
+
+    // Check if password is empty
+    if (!password) {
+        alert('Please enter your password!');
+        passwordInput.focus();
+        return;
+    }
+
+    await postAPICall({
+        endPoint: "/auth/sign-in",
+        payload: JSON.stringify({
+            email,
+            password
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data, jwtToken } = response
+
+            if (success) {
+                localStorage.setItem("jwtTokenUser", jwtToken)
+                localStorage.setItem("userDataUser", JSON.stringify(data))
+
+                toastr.success(message);
+
+                setTimeout(() => {
+                    location.reload();
+                }, [1000])
+            }
+        }
+    })
+}
+
+async function register() {
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Check if email is empty
+    if (!email) {
+        alert('Please enter your email address!');
+        emailInput.focus();
+        return;
+    }
+
+    // Validate email format
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address!');
+        emailInput.focus();
+        return;
+    }
+
+    // Check if password is empty
+    if (!password) {
+        alert('Please enter your password!');
+        passwordInput.focus();
+        return;
+    }
+
+    await postAPICall({
+        endPoint: "/auth/sign-in",
+        payload: JSON.stringify({
+            email,
+            password
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data, jwtToken } = response
+
+            if (success) {
+                localStorage.setItem("jwtTokenUser", jwtToken)
+                localStorage.setItem("userDataUser", JSON.stringify(data))
+
+                toastr.success(message);
+
+                setTimeout(() => {
+                    location.reload();
+                }, [1000])
+            }
+        }
+    })
+}

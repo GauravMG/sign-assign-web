@@ -32,7 +32,7 @@
                             <i class="fa-solid fa-angle-right"></i>
                         </span>
                     </li>
-                    <li><?= $data['categoryName']; ?></li>
+                    <li><?= $data['subCategoryName']; ?></li>
                 </ul>
             </div>
             <!-- <div class="right">
@@ -95,12 +95,12 @@
     <div class="container-fluid">
         <div class="filter-divider">
             <div class="left-area">
-                <h3><?= $data['categoryName']; ?></h3>
+                <h3><?= $data['subCategoryName']; ?></h3>
                 <div class="banner-inner">
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -120,7 +120,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -140,7 +140,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -160,7 +160,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -180,7 +180,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -200,7 +200,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -220,7 +220,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -240,7 +240,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -260,7 +260,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -280,7 +280,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -300,7 +300,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -320,7 +320,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -340,7 +340,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -360,16 +360,16 @@
                 </div>
             </div>
             <div class="right-area">
-                <div class="dropdown-area">
+                <!-- <div class="dropdown-area">
                     <p>Sort By</p>
                     <div class="custom-select" id="customSelect">
                         <div class="selected">Select your Product</div>
                         <div class="options" id="sortBySubCategoriesContainer">
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="main-filter-area">
-                    <div class="filters-inner">
+                    <!-- <div class="filters-inner">
                         <div class="filter-dropdown-area">
                             <h6>Category</h6>
                             <span>
@@ -378,7 +378,7 @@
                         </div>
                         <ul id="filterBySubCategoriesContainer">
                         </ul>
-                    </div>
+                    </div> -->
                     <div class="filters-inner">
                         <div class="filter-dropdown-area">
                             <h6 class="if-inactive">Use</h6>
@@ -456,12 +456,12 @@
                             </span>
                         </div>
 
-                        <ul class="d-block">
+                        <ul class="d-none">
                             <li>
                                 <a href="#">Vinyl Banners</a>
                             </li>
                             <li>
-                                <a href="#" class="active">Heavy Duty Banners</a>
+                                <a href="#">Heavy Duty Banners</a>
                             </li>
                             <li>
                                 <a href="#">Mesh Banners</a>
@@ -479,7 +479,7 @@
                             </span>
                         </div>
 
-                        <ul class="d-block">
+                        <ul class="d-none">
                             <li>
                                 <a href="#">Vinyl Banners</a>
                             </li>
@@ -487,7 +487,7 @@
                                 <a href="#">Heavy Duty Banners</a>
                             </li>
                             <li>
-                                <a href="#" class="active">Mesh Banners</a>
+                                <a href="#">Mesh Banners</a>
                             </li>
                             <li>
                                 <a href="#">Banner Stand</a>
@@ -547,7 +547,7 @@
 </div>
 
 <div class="custom-banner-area py-5">
-    <div class="container-fluid" id="categoryDescription">
+    <div class="container-fluid" id="subCategoryDescription">
     </div>
 </div>
 
@@ -584,8 +584,8 @@
 
 <?= $this->section('pageScripts'); ?>
 <script>
-    const categoryName = '<?= $data['categoryName']; ?>'
-    let categoryId = null
+    const subCategoryName = '<?= $data['subCategoryName']; ?>'
+    let subCategoryId = null
 </script>
-<script src="<?= base_url('js/category.js') . '?t=' . time(); ?>"></script>
+<script src="<?= base_url('js/subcategory.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

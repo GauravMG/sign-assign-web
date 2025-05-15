@@ -209,4 +209,22 @@
 .banner-product-area .filter-divider .right-area .main-filter-area ul li a {
     text-decoration: none;
     color: inherit;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.banner-product-area .filter-divider .right-area .main-filter-area ul li a.active {
+    background-color: #452e73;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.banner-product-area .filter-divider .right-area .main-filter-area ul li a.active::after{
+    content: '\f057';
+    font-family: 'FontAwesome';
+
 }

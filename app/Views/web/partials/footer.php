@@ -30,52 +30,8 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h5>Quick Links</h5>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right-long"></i><span>Custom Banners</span>
-                        </a>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Vinyl Banners</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Banners Stand</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Step & Repeat Displays</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Canopy Tents</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Neon Signs</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Custom Flags</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Asset Tags</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Business Cards</span>
-                        </a>
-                    </li>
+                <h5>Choose from</h5>
+                <ul id="footerCategoryMenuListContainer">
                 </ul>
             </div>
             <div class="footer-col">
@@ -228,8 +184,8 @@
                             Sign up today and enjoy 25% OFF your first purchase! Whether you're just getting started or looking to take things to the next level, this is the perfect time to jump in and save. Don’t miss out—this special offer won’t last forever!
                         </p>
                     </div>
-                    <div class="right-area">
-                        <form action="">
+                    <div class="right-area" id="registerFormContainer">
+                        <form>
                             <div class="form-group">
                                 <div class="flex-inner">
                                     <input type="text" class="form-control" placeholder="Full Name">
@@ -239,23 +195,47 @@
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Email Address">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Password (Min 6 Characters Allowed)">
+                            </div> -->
+                            <div class="form-group">
+                                <div class="col-12" style="display: inline-flex;">
+                                    <div class="col-3">
+                                        <select name="" id="" class="form-select">
+                                            <option value="">
+                                                <div>
+                                                    <!-- <span>India</span> -->
+                                                    <span>+91</span>
+                                                </div>
+                                            </option>
+                                            <option value="">
+                                                <div>
+                                                    <!-- <span>India</span> -->
+                                                    <span>+91</span>
+                                                </div>
+                                            </option>
+                                            <option value="">
+                                                <div>
+                                                    <!-- <span>India</span> -->
+                                                    <span>+91</span>
+                                                </div>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-8 offset-1">
+                                        <input type="tel" class="form-control" placeholder="Mobile Number">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <div class="flex-inner">
-                                    <select name="" id="" class="form-select">
-                                        <option value="">
-                                            <div><span>India</span><span>+91</span></div>
-                                        </option>
-                                        <option value="">
-                                            <div><span>India</span><span>+91</span></div>
-                                        </option>
-                                        <option value="">
-                                            <div><span>India</span><span>+91</span></div>
-                                        </option>
-                                    </select>
-                                    <input type="tel" class="form-control" placeholder="Mobile Number">
+                                <label class="form-label">Register as -</label>
+                                <div class="input-group">
+                                    <div class="form-check" style="margin-right: 30px; margin-bottom: 10px;">
+                                        <label class="form-check-label"><input class="form-check-input" type="radio" name="roleId" value="2" checked> Individual</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label"><input class="form-check-input" type="radio" name="roleId" value="3"> Business</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group mt-3">
@@ -267,7 +247,7 @@
                                 </label>
                             </div>
                             <div class="form-group mt-3">
-                                <a href="#" class="submit-btn">Create Account</a>
+                                <a onclick="register()" class="submit-btn">Create Account</a>
                             </div>
                         </form>
 
@@ -292,6 +272,54 @@
                         <p>Already have an account? <a href="#">Log in</a></p>
                         <p>Read Our <a href="#">Terms And Conditions</a> And <a href="#">Privacy Policy</a></p>
                     </div>
+                    <div class="right-area" id="verifyAndSetPasswordContainer" style="display: none;">
+                        <form>
+                            <div class="form-group">
+                                <div class="flex-inner">
+                                    <input type="text" class="form-control" placeholder="Full Name">
+                                    <input type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email Address">
+                            </div>
+                            <!-- <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password (Min 6 Characters Allowed)">
+                            </div> -->
+                            <div class="form-group">
+                                <div class="col-12" style="display: inline-flex;">
+                                    <div class="col-3">
+                                        <select name="" id="" class="form-select">
+                                            <option value="">
+                                                <div>
+                                                    <!-- <span>India</span> -->
+                                                    <span>+91</span>
+                                                </div>
+                                            </option>
+                                            <option value="">
+                                                <div>
+                                                    <!-- <span>India</span> -->
+                                                    <span>+91</span>
+                                                </div>
+                                            </option>
+                                            <option value="">
+                                                <div>
+                                                    <!-- <span>India</span> -->
+                                                    <span>+91</span>
+                                                </div>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-8 offset-1">
+                                        <input type="tel" class="form-control" placeholder="Mobile Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <a onclick="register()" class="submit-btn">Create Account</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,22 +339,22 @@
                         </p>
                     </div>
                     <div class="right-area">
-                        <form action="">
+                        <form>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email Address">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
                             </div>
                             <div class="form-group mt-3">
                                 <div class="flex-inner">
-                                    <a href="#">Get Email OTP</a>
+                                    <!-- <a href="#">Get Email OTP</a> -->
                                     <a href="#">Forget Password?</a>
                                 </div>
                             </div>
 
                             <div class="form-group mt-4">
-                                <a href="#" class="submit-btn">Login</a>
+                                <a class="submit-btn" onclick="login()">Login</a>
                             </div>
                         </form>
 

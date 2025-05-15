@@ -32,11 +32,26 @@ class WebController extends BaseController
             'title' => $categoryNameFormatted,
             'page_heading' => $categoryNameFormatted,
             'data' => [
-                'categoryName' => $categoryName
+                'categoryName' => $categoryNameFormatted
             ]
         ];
 
         return view('web/product-category', $data);
+    }
+
+    public function productSubCategory($subCategoryName): string
+    {
+        $subCategoryNameFormatted = $this->getNameFromLink($subCategoryName);
+
+        $data = [
+            'title' => $subCategoryNameFormatted,
+            'page_heading' => $subCategoryNameFormatted,
+            'data' => [
+                'subCategoryName' => $subCategoryNameFormatted
+            ]
+        ];
+
+        return view('web/product-subcategory', $data);
     }
 
     public function productDetail($productName): string
@@ -47,7 +62,7 @@ class WebController extends BaseController
             'title' => $productNameFormatted,
             'page_heading' => $productNameFormatted,
             'data' => [
-                'productName' => $productName
+                'productName' => $productNameFormatted
             ]
         ];
 

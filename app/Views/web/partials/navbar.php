@@ -65,7 +65,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="auth-button">
+            <div class="auth-button" id="navbarAuthOptionsContainer">
                 <a href="#" class="signup-button" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>
                 <a href="#" class="login-button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
             </div>
@@ -188,16 +188,6 @@
 
 <nav class="mega-menu">
     <div class="container-fluid">
-        <ul>
-            <li><a href="/category/banner">Banner</a></li>
-            <li><a href="/category/window-products">Window Products</a></li>
-            <li><a href="/category/vehicle-products">Vehicle Products</a></li>
-            <li><a href="/category/marketing-tools">Marketing Tools</a></li>
-            <li><a href="/category/event-signs">Event Signs</a></li>
-            <li><a href="/category/indoor-signs">Indoor Signs</a></li>
-            <li><a href="/category/hardware">Hardware</a></li>
-            <li><a href="/category/direct-printing-on-material">Direct Printing on Material</a></li>
-            <li><a href="/category/traffic-and-safety-signs">Traffic & Safety Signs</a></li>
-        </ul>
+        <ul id="navbarCategoryMenuListContainer"></ul>
     </div>
 </nav>

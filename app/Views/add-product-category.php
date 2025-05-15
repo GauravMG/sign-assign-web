@@ -45,10 +45,10 @@
                                 <form>
                                     <div class="card-footer">
                                         <button type="button" class="btn btn-dark"><?php if (isset($data["productCategoryId"])) {
-                                                                                            echo "Update";
-                                                                                        } else {
-                                                                                            echo "Create";
-                                                                                        } ?></h3> Product Category</button>
+                                                                                        echo "Update";
+                                                                                    } else {
+                                                                                        echo "Create";
+                                                                                    } ?> Product Category</button>
                                     </div>
                                 </form>
                             </div>
@@ -171,7 +171,8 @@
             }
 
             if (fileInput.files.length > 0) {
-                image = await uploadImage(fileInput.files[0]);
+                const uploadResult = await uploadImage(fileInput.files[0]);
+                image = uploadResult.url
             }
 
             let payload = {

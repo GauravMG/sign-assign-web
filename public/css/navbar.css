@@ -115,7 +115,7 @@ header {
 
 .desktop-top-menu .right-area .auth-button {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .desktop-top-menu .right-area .auth-button a {
@@ -134,6 +134,15 @@ header {
     background-color: #277e30;
     color: #ffffff;
 }
+
+.desktop-top-menu .right-area .auth-button a.profile-icon, .desktop-top-menu .right-area .auth-button a.logout-icon {
+    padding: 0;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
 
 .mobile-top-menu {
     display: none;

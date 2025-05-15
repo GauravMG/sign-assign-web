@@ -582,4 +582,10 @@
         </div>
     </div>
 </div>
+
+<div class="fixed-cart">
+    <div class="container-fluid">
+
+    </div>
+</div>
 <?= $this->endSection(); ?>

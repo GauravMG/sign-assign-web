@@ -74,10 +74,10 @@ $(document).ready(function () {
 
     if (localStorage.getItem("jwtTokenUser")) {
         htmlNavbarAuthOptionsContainer = `<a style="cursor: pointer;" href="/profile" class="profile-icon" title="Profile">
-            <i class="fas fa-user"></i>
+            <i class="fi fi-rs-user-gear"></i>
         </a>
         <a style="cursor: pointer;" onclick="onClickLogout()" class="logout-icon" title="Logout" onclick="logout()">
-            <i class="fas fa-sign-out-alt"></i>
+            <i class="fi fi-rr-sign-out-alt"></i>
         </a>`
     }
 

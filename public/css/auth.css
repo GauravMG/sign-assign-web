@@ -90,6 +90,7 @@
     border: 0;
     background-color: #efefef;
     height: 45px;
+    font-size: 0.854rem;
 }
 
 .auth-inner .right-area form .form-group .form-control:focus, .auth-inner .right-area form .form-group .form-select:focus{

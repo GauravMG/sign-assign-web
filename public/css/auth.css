@@ -125,6 +125,30 @@
     cursor: pointer;
 }
 
+.auth-inner .right-area form .form-group .flex-radiobtn{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+
+.auth-inner .right-area form .form-group .flex-radiobtn .form-check-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.auth-inner .right-area form .form-group .flex-radiobtn .form-check-label input[type="radio"]{
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #df9229;
+    border-color: #df9229;
+}
+
+.auth-inner .right-area form .form-group .flex-radiobtn .form-check-label input[type="radio"]:focus{
+    box-shadow: none;
+}
+
 .auth-inner .right-area .sso-area p {
     text-align: center;
     position: relative;

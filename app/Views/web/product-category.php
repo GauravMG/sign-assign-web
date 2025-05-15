@@ -100,7 +100,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -120,7 +120,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -140,7 +140,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -160,7 +160,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -180,7 +180,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -200,7 +200,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -220,7 +220,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -240,7 +240,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -260,7 +260,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -280,7 +280,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -300,7 +300,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -320,7 +320,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -340,7 +340,7 @@
                     <div class="inner-card">
                         <a href="/product/banner-stands">
                             <div class="p-3 m-0">
-                            <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
+                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>Vinyl Banners</h5>
@@ -456,12 +456,12 @@
                             </span>
                         </div>
 
-                        <ul class="d-none">
+                        <ul class="d-block">
                             <li>
                                 <a href="#">Vinyl Banners</a>
                             </li>
                             <li>
-                                <a href="#">Heavy Duty Banners</a>
+                                <a href="#" class="active">Heavy Duty Banners</a>
                             </li>
                             <li>
                                 <a href="#">Mesh Banners</a>
@@ -479,7 +479,7 @@
                             </span>
                         </div>
 
-                        <ul class="d-none">
+                        <ul class="d-block">
                             <li>
                                 <a href="#">Vinyl Banners</a>
                             </li>
@@ -487,7 +487,7 @@
                                 <a href="#">Heavy Duty Banners</a>
                             </li>
                             <li>
-                                <a href="#">Mesh Banners</a>
+                                <a href="#" class="active">Mesh Banners</a>
                             </li>
                             <li>
                                 <a href="#">Banner Stand</a>

@@ -61,7 +61,7 @@ async function fetchSubCategories() {
                     htmlSortBySubCategories += `<div class="option" data-value="#">${data[i].name}</div>`
 
                     htmlFilterBySubCategories += `<li>
-                        <a href="#">${data[i].name}</a>
+                        <a href="#" class="active">${data[i].name}</a>
                     </li>`
                 }
 

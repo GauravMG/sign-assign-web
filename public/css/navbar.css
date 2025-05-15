@@ -79,11 +79,6 @@ header {
     padding-bottom: 35px;
 }
 
-.desktop-top-menu .right-area .menu-links ul li.dropdown:hover .dropdown-content {
-    display: block;
-    transition: all ease 0.5s;
-}
-
 .desktop-top-menu .right-area .menu-links ul li.dropdown .dropdown-content {
     display: none;
     transition: all ease 0.5s;
@@ -95,8 +90,14 @@ header {
     margin: 0;
     top: 50px;
     border-top: 2px solid #3F51B5;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     overflow: hidden;
+}
+
+
+.desktop-top-menu .right-area .menu-links ul li.dropdown:hover .dropdown-content {
+    display: block;
+    transition: all ease 0.5s;
 }
 
 .desktop-top-menu .right-area .menu-links ul li.dropdown .dropdown-content .dropdown-lists {
@@ -134,6 +135,11 @@ header {
     color: #ffffff;
 }
 
+.mobile-top-menu {
+    display: none;
+}
+
+
 .mega-menu {
     background-color: #452e73;
     padding: 15px 0;
@@ -151,15 +157,22 @@ header {
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1.5rem;
     padding: 0;
     margin: 0;
 }
 
-.mega-menu ul li a {
+.mega-menu ul li.dropdown{
+    position: relative;
+}
+
+.mega-menu ul li.dropdown a {
     text-decoration: none;
     color: #ffffff;
-    position: relative;
+}
+
+.mega-menu ul li.dropdown:hover a{
+    padding-bottom: 35px;
 }
 
 .mega-menu ul li a::before {
@@ -171,10 +184,6 @@ header {
     border-radius: 5px;
 }
 
-.mega-menu ul li a:hover {
-    color: #ffffff;
-}
-
 .mega-menu ul li a:hover::before {
     position: absolute;
     left: 0;
@@ -183,6 +192,40 @@ header {
     width: 100%;
 }
 
-.mobile-top-menu {
+.mega-menu ul li.dropdown .dropdown-content{
     display: none;
+    transition: all ease 0.5s;
+    position: absolute;
+    left: 0;
+    width: 300px;
+    background-color: #fff;
+    z-index: 99;
+    margin: 0;
+    top: 50px;
+    border-top: 2px solid #3F51B5;
+    /* border-radius: 5px; */
+    overflow: hidden;
+}
+
+.mega-menu ul li.dropdown:hover .dropdown-content{
+    display: block;
+    transition: all ease 0.5s;
+}
+
+.mega-menu ul li.dropdown .dropdown-content .dropdown-lists {
+    padding: 10px 15px;
+}
+
+.mega-menu ul li.dropdown .dropdown-content .dropdown-lists:hover {
+    background-color: #277e30;
+    color: #ffffff;
+}
+
+.mega-menu ul li.dropdown .dropdown-content .dropdown-lists a {
+    padding: 0;
+    color: #000000;
+}
+
+.mega-menu ul li.dropdown .dropdown-content .dropdown-lists:hover a{
+    color: #ffffff;
 }

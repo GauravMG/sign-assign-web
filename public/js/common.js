@@ -213,7 +213,19 @@ async function fetchProductCategories() {
                 let htmlFooter = ""
 
                 for (let i = 0; i < data?.length; i++) {
-                    htmlNavbar += `<li><a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a></li>`
+                    // htmlNavbar += `<li><a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a></li>`
+                    htmlNavbar += `
+                    <li class="dropdown">
+                        <a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a>
+                        <ul class="dropdown-content">
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
+                        </ul>
+                    </li>
+                    `
 
                     htmlFooter += `<li>
                         <a href="/category/${getLinkFromName(data[i].name)}">

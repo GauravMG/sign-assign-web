@@ -3,7 +3,7 @@
 <?= $this->section('pageStyles'); ?>
 <style>
     .banner-card {
-        width: 200px;
+        width: 30rem;
         margin: 10px;
         cursor: move;
     }

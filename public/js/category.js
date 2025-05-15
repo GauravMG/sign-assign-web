@@ -65,7 +65,7 @@ async function fetchSubCategories() {
                     </li>`
                 }
 
-                document.getElementById("sortBySubCategoriesContainer").innerHTML = htmlFilterBySubCategories
+                document.getElementById("sortBySubCategoriesContainer").innerHTML = htmlSortBySubCategories
                 document.getElementById("filterBySubCategoriesContainer").innerHTML = htmlFilterBySubCategories
             }
         }

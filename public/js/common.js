@@ -82,6 +82,18 @@ $(document).ready(function () {
     }
 
     document.getElementById("navbarAuthOptionsContainer").innerHTML = htmlNavbarAuthOptionsContainer
+
+    document.querySelectorAll('input[name="roleId"]').forEach(radio =>
+        radio.addEventListener('change', () => {
+            const selectedValue = document.querySelector('input[name="roleId"]:checked').value;
+            console.log("Selected Role ID:", selectedValue);
+            if (parseInt(selectedValue) === 3) {
+                document.getElementById("businessDetailsContainer").style.display = "block"
+            } else {
+                document.getElementById("businessDetailsContainer").style.display = "none"
+            }
+        })
+    );
 });
 
 
@@ -202,7 +214,8 @@ async function fetchProductCategories() {
             "sort": [{
                 "orderBy": "name",
                 "orderDir": "asc"
-            }]
+            }],
+            linkedEntities: true
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
@@ -213,19 +226,21 @@ async function fetchProductCategories() {
                 let htmlFooter = ""
 
                 for (let i = 0; i < data?.length; i++) {
-                    // htmlNavbar += `<li><a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a></li>`
                     htmlNavbar += `
                     <li class="dropdown">
-                        <a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a>
-                        <ul class="dropdown-content">
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                        </ul>
-                    </li>
-                    `
+                        <a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a>`
+
+                    if (data[i].productSubCategories?.length) {
+                        htmlNavbarSubcategory = `<ul class="dropdown-content">`
+                        for (let j = 0; j < data[i].productSubCategories?.length; j++) {
+                            htmlNavbarSubcategory += `<li class="dropdown-lists"><a href="/subcategory/${getLinkFromName(data[i].productSubCategories[j].name)}">${data[i].productSubCategories[j].name}</a></li>`
+                        }
+                        htmlNavbarSubcategory += `</ul>`
+
+                        htmlNavbar += htmlNavbarSubcategory
+                    }
+
+                    htmlNavbar += `</li>`
 
                     htmlFooter += `<li>
                         <a href="/category/${getLinkFromName(data[i].name)}">
@@ -242,8 +257,8 @@ async function fetchProductCategories() {
 }
 
 async function login() {
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
+    const emailInput = document.getElementById('loginEmail');
+    const passwordInput = document.getElementById('loginPassword');
 
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
@@ -252,21 +267,21 @@ async function login() {
 
     // Check if email is empty
     if (!email) {
-        alert('Please enter your email address!');
+        toastr.error('Please enter your email address!');
         emailInput.focus();
         return;
     }
 
     // Validate email format
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address!');
+        toastr.error('Please enter a valid email address!');
         emailInput.focus();
         return;
     }
 
     // Check if password is empty
     if (!password) {
-        alert('Please enter your password!');
+        toastr.error('Please enter your password!');
         passwordInput.focus();
         return;
     }
@@ -295,55 +310,150 @@ async function login() {
     })
 }
 
+let userEmail = null
+
 async function register() {
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
+    const verificationType = "registration"
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const firstName = document.getElementById("firstName").value
+    const lastName = document.getElementById("lastName").value
+
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value.trim();
+
+    let roleId = document.querySelector('input[name="roleId"]:checked').value;
+    roleId = parseInt(roleId)
+
+    if ((firstName ?? "").trim() === "") {
+        toastr.error('Please enter a valid first name!');
+        return
+    }
+
+    if ((lastName ?? "").trim() === "") {
+        toastr.error('Please enter a valid last name!');
+        return
+    }
 
     // Check if email is empty
     if (!email) {
-        alert('Please enter your email address!');
+        toastr.error('Please enter your email address!');
         emailInput.focus();
         return;
     }
 
     // Validate email format
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address!');
+        toastr.error('Please enter a valid email address!');
         emailInput.focus();
         return;
     }
 
-    // Check if password is empty
-    if (!password) {
-        alert('Please enter your password!');
-        passwordInput.focus();
-        return;
+    let business = {}
+    if (roleId === 3) {
+        const businessName = document.getElementById("businessName").value
+
+        if ((businessName ?? "").trim() === "") {
+            toastr.error('Please enter a valid business name!');
+            return
+        }
+
+        business = {
+            ...business,
+            name: businessName
+        }
     }
 
     await postAPICall({
-        endPoint: "/auth/sign-in",
+        endPoint: "/auth/register",
         payload: JSON.stringify({
+            verificationType,
+            firstName,
+            lastName,
             email,
-            password
+            roleId: parseInt(roleId),
+            business
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
             const { success, message, data, jwtToken } = response
 
             if (success) {
-                localStorage.setItem("jwtTokenUser", jwtToken)
-                localStorage.setItem("userDataUser", JSON.stringify(data))
+                document.getElementById("registerFormContainer").style.display = "none"
+                document.getElementById("verifyAndSetPasswordContainer").style.display = "block"
+                userEmail = email
 
+                toastr.success(response.message);
+            }
+        }
+    })
+}
+
+async function verifyAndSetPassword() {
+    const verificationType = "registration"
+
+    const otp = document.getElementById("otp").value
+    const password = document.getElementById("password").value
+    const confirmPassword = document.getElementById("confirmPassword").value
+
+    if ((otp ?? "").trim() === "") {
+        toastr.error('Please enter a valid OTP!');
+        return
+    }
+
+    if ((password ?? "").trim() === "") {
+        toastr.error('Please enter a valid password!');
+        return
+    }
+
+    if ((confirmPassword ?? "").trim() === "") {
+        toastr.error('Please enter a valid confirm password!');
+        return
+    }
+
+    if (password !== confirmPassword) {
+        toastr.error('Password and Retyped password does not match!');
+        return
+    }
+
+    await postAPICall({
+        endPoint: "/auth/reset-password",
+        payload: JSON.stringify({
+            verificationType,
+            email: userEmail,
+            hash: otp.toString(),
+            newPassword: password
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message } = response
+
+            if (success) {
                 toastr.success(message);
 
                 setTimeout(() => {
                     location.reload();
                 }, [1000])
+            }
+        }
+    })
+}
+
+async function resendOTP() {
+    const verificationType = "registration"
+
+    await postAPICall({
+        endPoint: "/auth/send-otp",
+        payload: JSON.stringify({
+            verificationType,
+            email: userEmail
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message } = response
+
+            if (success) {
+                toastr.success(message);
             }
         }
     })

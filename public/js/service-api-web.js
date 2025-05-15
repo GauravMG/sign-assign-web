@@ -1,7 +1,8 @@
 const BASE_API_PATH = "http://3.109.198.252/api/v1"
+// const BASE_API_PATH = "http://10.10.10.17:9101/v1"
 
 function getJWTToken() {
-    return localStorage.getItem("jwtToken") ?? null
+    return localStorage.getItem("jwtTokenUser") ?? null
 }
 
 async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComplete, callbackSuccess }) {

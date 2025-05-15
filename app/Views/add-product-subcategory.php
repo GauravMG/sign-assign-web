@@ -48,7 +48,7 @@
                                                                                         echo "Update";
                                                                                     } else {
                                                                                         echo "Create";
-                                                                                    } ?></h3> Product Sub-category</button>
+                                                                                    } ?> Product Sub-category</button>
                                     </div>
                                 </form>
                             </div>
@@ -178,7 +178,8 @@
             }
 
             if (fileInput.files.length > 0) {
-                image = await uploadImage(fileInput.files[0]);
+                const uploadResult = await uploadImage(fileInput.files[0]);
+                image = uploadResult.url
             }
 
             let payload = {

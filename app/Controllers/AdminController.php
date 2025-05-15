@@ -78,6 +78,26 @@ class AdminController extends BaseController
         return view('view-support-ticket', $data);
     }
 
+    public function banners(): string
+    {
+        $data = [
+            'title' => 'Banners',
+            'page_heading' => 'Banners'
+        ];
+
+        return view('banners', $data);
+    }
+
+    public function addBanner(): string
+    {
+        $data = [
+            'title' => 'Add Banner',
+            'page_heading' => 'Add Banner'
+        ];
+
+        return view('add-banner', $data);
+    }
+
     public function productCategories(): string
     {
         $data = [

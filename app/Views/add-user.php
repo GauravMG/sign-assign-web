@@ -42,10 +42,10 @@
                                 <form>
                                     <div class="card-footer">
                                         <button type="button" class="btn btn-dark"><?php if (isset($data["userId"])) {
-                                                                                            echo "Update";
-                                                                                        } else {
-                                                                                            echo "Create";
-                                                                                        } ?></h3> User</button>
+                                                                                        echo "Update";
+                                                                                    } else {
+                                                                                        echo "Create";
+                                                                                    } ?> User</button>
                                     </div>
                                 </form>
                             </div>

@@ -151,6 +151,7 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Price</th>
                                         <th>Image</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -161,6 +162,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Price</th>
                                         <th>Image</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -341,6 +343,7 @@
 
                         html += `<tr>
                             <td>${data[i].name ?? ""}</td>
+                            <td>${data[i].price ?? "-"}</td>
                             <td class="list-image-container">${firstImageData ? `<img class="list-image" src="${firstImageData.mediaUrl}" alt="${firstImageData.name}" />` : ""}</td>
                             <td>
                                 <label class="switch">

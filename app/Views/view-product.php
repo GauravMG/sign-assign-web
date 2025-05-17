@@ -191,6 +191,10 @@
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="add_variantName" placeholder="Enter name">
                 </div>
+                <div class="form-group">
+                    <label for="name">Price</label>
+                    <input type="text" class="form-control" id="add_variantPrice" placeholder="Enter price">
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -255,6 +259,7 @@
         $('#modal-add-variant').on('hidden.bs.modal', function() {
             document.getElementById("add_variantId").value = "";
             document.getElementById("add_variantName").value = "";
+            document.getElementById("add_variantPrice").value = "";
         });
     });
 
@@ -344,7 +349,7 @@
                                 </label>
                             </td>
                             <td class="list-action-container">
-                                <span onclick="onClickUpdateVariant(${data[i].variantId}, '${data[i].name}')"><i class="fa fa-edit view-icon"></i></span>
+                                <span onclick="onClickUpdateVariant(${data[i].variantId}, '${data[i].name}', '${data[i].price ?? ""}')"><i class="fa fa-edit view-icon"></i></span>
                                 <span onclick="onClickViewVariant(${data[i].variantId})"><i class="fa fa-eye view-icon"></i></span>
                             </td>
                         </tr>`;
@@ -378,14 +383,21 @@
     async function onClickSubmitAddVariant() {
         const variantId = document.getElementById("add_variantId")?.value ?? null;
         const name = document.getElementById("add_variantName").value;
+        const price = document.getElementById("add_variantPrice").value;
 
         if ((name ?? "").trim() === "") {
             toastr.error("Please enter a valid name!");
             return;
         }
 
+        if ((price ?? "").trim() === "") {
+            toastr.error("Please enter a valid price!");
+            return;
+        }
+
         let payload = {
-            name
+            name,
+            price
         }
 
         if (variantId !== "") {
@@ -443,9 +455,10 @@
         })
     }
 
-    function onClickUpdateVariant(variantId, name) {
+    function onClickUpdateVariant(variantId, name, price) {
         document.getElementById("add_variantId").value = variantId
         document.getElementById("add_variantName").value = name
+        document.getElementById("add_variantPrice").value = price
         $('#modal-add-variant').modal('show');
     }
 

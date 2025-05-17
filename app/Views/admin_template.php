@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<?= base_url('css/common-admin.css') . '?t=' . time(); ?>">
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse">
+<body class="hold-transition sidebar-mini sidebar-fix">
     <div id="global-loader" class="loader-overlay">
         <div class="loader"></div>
     </div>

@@ -42,7 +42,7 @@ class AdminController extends BaseController
         return view('add-user', $data);
     }
 
-    public function userDetails($userId): string
+    public function viewUser($userId): string
     {
         $data = [
             'title' => 'User Details',
@@ -52,7 +52,7 @@ class AdminController extends BaseController
             ]
         ];
 
-        return view('user-details', $data);
+        return view('view-user', $data);
     }
 
     public function supportTickets(): string
@@ -144,16 +144,6 @@ class AdminController extends BaseController
         return view('view-product-category', $data);
     }
 
-    public function productSubCategories(): string
-    {
-        $data = [
-            'title' => 'Product Sub-categories',
-            'page_heading' => 'Product Sub-categories'
-        ];
-
-        return view('product-subcategories', $data);
-    }
-
     public function addProductSubCategory($productCategoryId): string
     {
         $data = [
@@ -224,6 +214,58 @@ class AdminController extends BaseController
         ];
 
         return view('add-product', $data);
+    }
+
+    public function viewProduct($productId): string
+    {
+        $data = [
+            'title' => 'Product Details',
+            'page_heading' => 'Product Details',
+            'data' => [
+                'productId' => $productId
+            ]
+        ];
+
+        return view('view-product', $data);
+    }
+
+    public function addVariant($productId): string
+    {
+        $data = [
+            'title' => 'Add Variant',
+            'page_heading' => 'Add Variant',
+            'data' => [
+                'productId' => $productId
+            ]
+        ];
+
+        return view('add-variant', $data);
+    }
+
+    public function updateVariant($variantId): string
+    {
+        $data = [
+            'title' => 'Update Variant',
+            'page_heading' => 'Update Variant',
+            'data' => [
+                'variantId' => $variantId
+            ]
+        ];
+
+        return view('add-variant', $data);
+    }
+
+    public function viewVariant($variantId): string
+    {
+        $data = [
+            'title' => 'Variant Details',
+            'page_heading' => 'Variant Details',
+            'data' => [
+                'variantId' => $variantId
+            ]
+        ];
+
+        return view('view-variant', $data);
     }
 
     public function invoices(): string

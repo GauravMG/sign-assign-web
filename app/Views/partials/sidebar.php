@@ -27,14 +27,14 @@
                         </p>
                     </a>
                 </li>
-                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/products" class="nav-link">
-                        <i class="nav-icon fas fa-money-bill-wave"></i>
+                        <i class="nav-icon fas fa-box"></i>
                         <p>
                             Products
                         </p>
                     </a>
-                </li> -->
+                </li>
                 <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
                     <a href="/admin/orders" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>

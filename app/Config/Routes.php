@@ -9,8 +9,13 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/admin/invoices/print', 'AdminController::invoicePrint');
 $routes->get('/admin/invoices', 'AdminController::invoices');
 
+$routes->get('/admin/variants/view/(:any)', 'AdminController::viewVariant/$1');
+$routes->get('/admin/variants/update/(:any)', 'AdminController::updateVariant/$1');
+$routes->get('/admin/variants/add/(:any)', 'AdminController::addVariant/$1');
+
 $routes->get('/admin/products/update/(:any)', 'AdminController::updateProduct/$1');
 $routes->get('/admin/products/add', 'AdminController::addProduct');
+$routes->get('/admin/products/(:any)', 'AdminController::viewProduct/$1');
 $routes->get('/admin/products', 'AdminController::products');
 
 $routes->get('/admin/product-subcategories/view/(:any)', 'AdminController::viewProductSubCategory/$1');
@@ -30,7 +35,7 @@ $routes->get('/admin/support-tickets', 'AdminController::supportTickets');
 
 $routes->get('/admin/users/update/(:any)', 'AdminController::updateUser/$1');
 $routes->get('/admin/users/add', 'AdminController::addUser');
-$routes->get('/admin/users/(:any)', 'AdminController::userDetails/$1');
+$routes->get('/admin/users/(:any)', 'AdminController::viewUser/$1');
 $routes->get('/admin/users', 'AdminController::users');
 
 $routes->get('/admin/forgot-password', 'AuthController::forgotPassword');

@@ -229,32 +229,6 @@ class AdminController extends BaseController
         return view('view-product', $data);
     }
 
-    public function addVariant($productId): string
-    {
-        $data = [
-            'title' => 'Add Variant',
-            'page_heading' => 'Add Variant',
-            'data' => [
-                'productId' => $productId
-            ]
-        ];
-
-        return view('add-variant', $data);
-    }
-
-    public function updateVariant($variantId): string
-    {
-        $data = [
-            'title' => 'Update Variant',
-            'page_heading' => 'Update Variant',
-            'data' => [
-                'variantId' => $variantId
-            ]
-        ];
-
-        return view('add-variant', $data);
-    }
-
     public function viewVariant($variantId): string
     {
         $data = [
@@ -266,6 +240,19 @@ class AdminController extends BaseController
         ];
 
         return view('view-variant', $data);
+    }
+
+    public function addVariantMedia($variantId): string
+    {
+        $data = [
+            'title' => 'Add Variant Image',
+            'page_heading' => 'Add Variant Image',
+            'data' => [
+                'variantId' => $variantId
+            ]
+        ];
+
+        return view('add-variant-media', $data);
     }
 
     public function invoices(): string

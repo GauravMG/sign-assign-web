@@ -141,7 +141,9 @@
                                 </div>
 
                                 <div class="col-md-6 mb-4 text-right">
-                                    <a href="/admin/variants/add/<?= $data["productId"]; ?>"><button type="button" class="btn btn-dark">Add New Variant</button></a>
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-variant">
+                                        Add New Variant
+                                    </button>
                                 </div>
                             </div>
 
@@ -172,6 +174,32 @@
 
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modal-add-variant">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Variant</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="add_variantId">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="add_variantName" placeholder="Enter name">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" onclick="onClickSubmitAddVariant()">Save</button>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 <?= $this->endSection(); ?>
 
@@ -220,9 +248,14 @@
             if (targetTabId.replace("#", "") === "product-details") {
                 fetchProduct(targetTabId)
             } else if (targetTabId.replace("#", "") === "variant-list") {
-                fetchVariant(targetTabId)
+                fetchVariants(targetTabId)
             }
         })
+
+        $('#modal-add-variant').on('hidden.bs.modal', function() {
+            document.getElementById("add_variantId").value = "";
+            document.getElementById("add_variantName").value = "";
+        });
     });
 
     async function fetchProduct() {
@@ -259,7 +292,7 @@
         })
     }
 
-    async function fetchVariant() {
+    async function fetchVariants() {
         await postAPICall({
             endPoint: "/variant/list",
             payload: JSON.stringify({
@@ -311,7 +344,7 @@
                                 </label>
                             </td>
                             <td class="list-action-container">
-                                <span onclick="onClickUpdateVariant(${data[i].variantId})"><i class="fa fa-edit view-icon"></i></span>
+                                <span onclick="onClickUpdateVariant(${data[i].variantId}, '${data[i].name}')"><i class="fa fa-edit view-icon"></i></span>
                                 <span onclick="onClickViewVariant(${data[i].variantId})"><i class="fa fa-eye view-icon"></i></span>
                             </td>
                         </tr>`;
@@ -342,6 +375,56 @@
         })
     }
 
+    async function onClickSubmitAddVariant() {
+        const variantId = document.getElementById("add_variantId")?.value ?? null;
+        const name = document.getElementById("add_variantName").value;
+
+        if ((name ?? "").trim() === "") {
+            toastr.error("Please enter a valid name!");
+            return;
+        }
+
+        let payload = {
+            name
+        }
+
+        if (variantId !== "") {
+            if (confirm("Are you sure you want to update this variant?")) {
+                await postAPICall({
+                    endPoint: "/variant/update",
+                    payload: JSON.stringify({
+                        variantId: Number(variantId),
+                        ...payload
+                    }),
+                    callbackSuccess: (response) => {
+                        if (response.success) {
+                            toastr.success(response.message);
+                            $('#modal-add-variant').modal('hide');
+                            fetchVariants()
+                        }
+                    }
+                })
+            }
+        } else {
+            if (confirm("Are you sure you want to create this variant?")) {
+                await postAPICall({
+                    endPoint: "/variant/create",
+                    payload: JSON.stringify({
+                        ...payload,
+                        productId
+                    }),
+                    callbackSuccess: (response) => {
+                        if (response.success) {
+                            toastr.success(response.message);
+                            $('#modal-add-variant').modal('hide');
+                            fetchVariants()
+                        }
+                    }
+                })
+            }
+        }
+    }
+
     async function updateVariantStatus(variantId, status) {
         await postAPICall({
             endPoint: "/variant/update",
@@ -360,8 +443,10 @@
         })
     }
 
-    function onClickUpdateVariant(variantId) {
-        window.location.href = `/admin/variants/update/${variantId}`
+    function onClickUpdateVariant(variantId, name) {
+        document.getElementById("add_variantId").value = variantId
+        document.getElementById("add_variantName").value = name
+        $('#modal-add-variant').modal('show');
     }
 
     function onClickViewVariant(variantId) {

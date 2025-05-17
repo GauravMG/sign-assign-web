@@ -450,7 +450,7 @@
                 if (response.success) {
                     const data = response.data[0]
                     document.getElementById("variantName").innerText = data.name
-                    document.getElementById("variantPrice").innerText = data.price
+                    document.getElementById("variantPrice").innerText = data.price ?? "-"
                 }
 
                 loader.hide()

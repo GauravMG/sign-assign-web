@@ -6,6 +6,56 @@
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
 
 <style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    /* Hide default checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* Slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+    }
+
+    /* Circle inside the slider */
+    .slider::before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+
+    /* Checked state */
+    input:checked+.slider {
+        background-color: #28a745;
+        /* Green */
+    }
+
+    input:checked+.slider::before {
+        transform: translateX(26px);
+    }
+
     .media-card {
         width: 20rem;
         margin: 10px;
@@ -41,6 +91,11 @@
                         <a class="nav-link" id="medias-tab" data-toggle="pill"
                             href="#medias" role="tab"
                             aria-controls="medias" aria-selected="false">Images</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="attribute-list-tab" data-toggle="pill"
+                            href="#attribute-list" role="tab"
+                            aria-controls="attribute-list" aria-selected="false">Attributes</a>
                     </li>
                 </ul>
             </div>
@@ -84,6 +139,46 @@
                             <button class="btn btn-dark mt-3 ml-2" onclick="fetchVariantMedias()">Refresh</button>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade show" id="attribute-list"
+                        role="tabpanel" aria-labelledby="attribute-list-tab">
+                        <div class="overlay-wrapper">
+                            <div id="attribute-list-loader" class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                <div class="text-bold pt-2">Loading...</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>All Attributes</h4>
+                                </div>
+
+                                <div class="col-md-6 mb-4 text-right">
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-attribute">
+                                        Add New Attribute
+                                    </button>
+                                </div>
+                            </div>
+
+                            <table id="dtVariantAttributeList" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataVariantAttributeList">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -114,9 +209,72 @@
     </div>
 
 </div>
+
+<div class="modal fade" id="modal-add-attribute">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Attribute</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="selectedAttributeId" />
+
+                <!-- Attribute Selector -->
+                <div class="form-group">
+                    <label for="attributeSelect">Select Attribute</label>
+                    <select class="form-control" id="attributeSelect" onchange="onAttributeChange()">
+                        <option value="" disabled selected>Select Attribute</option>
+                    </select>
+                </div>
+
+                <!-- Text Input -->
+                <div class="form-group d-none" id="textInputGroup">
+                    <label for="textInput">Enter Text</label>
+                    <input type="text" class="form-control" id="textInput" />
+                </div>
+
+                <!-- Number Input -->
+                <div class="form-group d-none" id="numberInputGroup">
+                    <label for="numberInput">Enter Number</label>
+                    <input type="number" class="form-control" id="numberInput" />
+                </div>
+
+                <!-- Dimension Inputs -->
+                <div class="d-none" id="dimensionGroup">
+                    <div class="form-group">
+                        <label for="dimensionWidth">Width</label>
+                        <input type="text" class="form-control" id="dimensionWidth" placeholder="e.g. 10cm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="dimensionHeight">Height</label>
+                        <input type="text" class="form-control" id="dimensionHeight" placeholder="e.g. 20cm" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" onclick="onClickSubmitAddVariantAttribute()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
+<script src="<?= base_url('assets/adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
 <script>
@@ -125,6 +283,20 @@
                         } else {
                             echo "";
                         } ?>'
+
+    let allAttributes = []
+
+    function initializeDTVariantAttributeList() {
+        $("#dtVariantAttributeList").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        })
+    }
 
     const sortable = new Sortable(document.getElementById('mediaList'), {
         animation: 150
@@ -204,6 +376,8 @@
                 fetchVariant(targetTabId)
             } else if (targetTabId.replace("#", "") === "medias") {
                 fetchVariantMedias(targetTabId)
+            } else if (targetTabId.replace("#", "") === "attribute-list") {
+                fetchAttributes()
             }
         })
 
@@ -211,6 +385,16 @@
             document.getElementById("mediaUploadInput").value = "";
             document.getElementById("mediaPreviewContainer").innerHTML = "";
             uploadedFiles = []
+        });
+
+        $('#modal-add-attribute').on('hidden.bs.modal', function() {
+            document.getElementById("selectedAttributeId").value = "";
+            document.getElementById("attributeSelect").value = "";
+            if (document.getElementById("textInput")) document.getElementById("textInput").value = "";
+            if (document.getElementById("numberInput")) document.getElementById("numberInput").value = "";
+            if (document.getElementById("dimensionWidth")) document.getElementById("dimensionWidth").value = "";
+            if (document.getElementById("dimensionHeight")) document.getElementById("dimensionHeight").value = "";
+            selectedAttributeId = ""
         });
     });
 
@@ -392,6 +576,218 @@
                 }
             })
         }
+    }
+
+    async function fetchAttributes() {
+        await postAPICall({
+            endPoint: "/attribute/list",
+            payload: JSON.stringify({
+                "filter": {},
+                "range": {
+                    "all": true
+                },
+                "sort": [{
+                    "orderBy": "name",
+                    "orderDir": "asc"
+                }]
+            }),
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    data
+                } = response
+
+                if (success) {
+                    allAttributes = data
+
+                    let html = `<option value="" disabled selected>Select Attribute</option>`
+
+                    for (let i = 0; i < data?.length; i++) {
+                        html += `<option value="${data[i].attributeId}">${data[i].name}</option>`
+                    }
+
+                    document.getElementById("attributeSelect").innerHTML = html
+                }
+
+                loader.hide()
+            }
+        })
+
+        fetchVariantAttributes()
+    }
+
+    async function fetchVariantAttributes() {
+        await postAPICall({
+            endPoint: "/variant-attribute/list",
+            payload: JSON.stringify({
+                "filter": {
+                    variantId: Number(variantId)
+                },
+                "range": {
+                    "all": true
+                },
+                "sort": [{
+                    "orderBy": "createdAt",
+                    "orderDir": "asc"
+                }]
+            }),
+            callbackBeforeSend: function() {
+                $('#attribute-list-loader').fadeIn()
+                if ($.fn.DataTable.isDataTable("#dtVariantAttributeList")) {
+                    $('#dtVariantAttributeList').DataTable().destroy()
+                }
+            },
+            callbackComplete: function() {
+                $('#attribute-list-loader').fadeOut()
+            },
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    data
+                } = response
+
+                if (success) {
+                    var html = ""
+
+                    for (let i = 0; i < data?.length; i++) {
+                        html += `<tr>
+                            <td>${data[i].attribute?.name ?? ""}</td>
+                            <td>${data[i].value ?? ""}</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" class="toggle-status" data-variant-id="${data[i].variantAttributeId}" ${data[i].status ? "checked" : ""}>
+                                    <span class="slider"></span>
+                                </label>
+                            </td>
+                        </tr>`;
+                    }
+
+                    // Insert the generated table rows
+                    document.getElementById("dataVariantAttributeList").innerHTML = html;
+
+                    // Add event listeners to all toggle switches after rendering
+                    document.querySelectorAll(".toggle-status").forEach((toggle) => {
+                        toggle.addEventListener("change", function() {
+                            let variantId = this.getAttribute("data-variant-id");
+                            let newStatus = this.checked ? "active" : "inactive";
+
+                            // Call API to update status
+                            updateVariantAttributeStatus(variantId, newStatus);
+                        });
+                    });
+
+
+                    initializeDTVariantAttributeList()
+                }
+
+                loader.hide()
+            }
+        })
+    }
+
+    function onAttributeChange() {
+        const attributeId = document.getElementById('attributeSelect').value;
+
+        selectedAttributeId = attributeId
+
+        const selectedAttribute = allAttributes.find((attribute) => parseInt(attribute.attributeId) === parseInt(attributeId))
+
+        // Hide all fields first
+        document.getElementById('textInputGroup').classList.add('d-none');
+        document.getElementById('numberInputGroup').classList.add('d-none');
+        document.getElementById('dimensionGroup').classList.add('d-none');
+
+        // Show relevant field based on type
+        switch (selectedAttribute.type) {
+            case 'text':
+                document.getElementById('textInputGroup').classList.remove('d-none');
+                break;
+            case 'number':
+                document.getElementById('numberInputGroup').classList.remove('d-none');
+                break;
+            case 'dimension':
+                document.getElementById('dimensionGroup').classList.remove('d-none');
+                break;
+            case 'boolean':
+                // No input needed
+                break;
+        }
+    }
+
+    async function onClickSubmitAddVariantAttribute() {
+        const type = document.getElementById('attributeSelect').value;
+        let value = null;
+
+        if ((selectedAttributeId ?? "").trim() === "") {
+            alert("Please select an attribute!")
+            return
+        }
+
+        const selectedAttribute = allAttributes.find((attribute) => parseInt(attribute.attributeId) === parseInt(selectedAttributeId))
+
+        switch (selectedAttribute.type) {
+            case 'text':
+                value = document.getElementById('textInput').value.trim();
+                break;
+            case 'number':
+                value = document.getElementById('numberInput').value.trim();
+                break;
+            case 'dimension':
+                const width = document.getElementById('dimensionWidth').value.trim();
+                const height = document.getElementById('dimensionHeight').value.trim();
+                value = JSON.stringify({
+                    width,
+                    height
+                })
+                break;
+        }
+
+        const payload = {
+            attributeId: selectedAttributeId,
+            variantId,
+            value
+        };
+
+        await postAPICall({
+            endPoint: "/variant-attribute/create",
+            payload: JSON.stringify(payload),
+            callbackComplete: () => {},
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message
+                } = response
+
+                if (success) {
+                    toastr.success(response.message);
+                    fetchVariantAttributes()
+                    $('#modal-add-attribute').modal('hide');
+                } else {
+                    toastr.error(response.message);
+                }
+                loader.hide()
+            }
+        })
+    }
+
+    async function updateVariantAttributeStatus(variantAttributeId, status) {
+        await postAPICall({
+            endPoint: "/variant-attribute/update",
+            payload: JSON.stringify({
+                variantAttributeId: Number(variantAttributeId),
+                status: status === "inactive" ? false : true
+            }),
+            callbackSuccess: (response) => {
+                if (!response.success) {
+                    toastr.error(response.message)
+                    fetchProductCategories()
+                } else {
+                    toastr.success(`Variant attribute ${status === "inactive" ? "blocked" : "unblocked"} successfully`)
+                }
+            }
+        })
     }
 </script>
 

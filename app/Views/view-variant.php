@@ -73,6 +73,21 @@
         max-width: 100%;
         border-radius: 8px;
     }
+
+    .variant-info-card {
+        display: inline-block;
+    }
+
+    .variant-info-card>*>.info-box-text {
+        font-size: 15px;
+    }
+
+    .variant-info-card,
+    .variant-info-card .info-box-content {
+        position: relative;
+        overflow: visible !important;
+        z-index: 1;
+    }
 </style>
 <?= $this->endSection(); ?>
 
@@ -109,6 +124,18 @@
                             </div>
 
                             <h3 id="variantName"></h3>
+
+                            <div class="row">
+                                <div class="col-md-12 p-0">
+                                    <div class="info-box shadow-none col-md-3 p-0 variant-info-card">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Price:</span>
+                                            <span class="info-box-number" id="variantPrice"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -423,6 +450,7 @@
                 if (response.success) {
                     const data = response.data[0]
                     document.getElementById("variantName").innerText = data.name
+                    document.getElementById("variantPrice").innerText = data.price
                 }
 
                 loader.hide()

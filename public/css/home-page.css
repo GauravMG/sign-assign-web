@@ -98,6 +98,8 @@
 
 .bestseller-area .products-grid .product-card img {
   width: 100%;
+  max-height: 150px;
+  object-fit: fill;
 }
 
 .bestseller-area .products-grid .product-card h5 {

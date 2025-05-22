@@ -180,6 +180,7 @@
                             <td class="list-action-container">
                                 <span onclick="onClickUpdateProductCategory(${response.data[i].productCategoryId})"><i class="fa fa-edit view-icon"></i></span>
                                 <span onclick="onClickViewProductCategory(${response.data[i].productCategoryId})"><i class="fa fa-eye view-icon"></i></span>
+                                <span onclick="onClickDeleteProductCategory(${response.data[i].productCategoryId})"><i class="fa fa-trash view-icon"></i></span>
                             </td>
                         </tr>`;
                     }
@@ -232,6 +233,25 @@
 
     function onClickViewProductCategory(productCategoryId) {
         window.location.href = `/admin/product-categories/view/${productCategoryId}`
+    }
+
+    async function onClickDeleteProductCategory(productCategoryId) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            await postAPICall({
+                endPoint: "/product-category/delete",
+                payload: JSON.stringify({
+                    productCategoryIds: [Number(productCategoryId)]
+                }),
+                callbackSuccess: (response) => {
+                    if (!response.success) {
+                        toastr.error(response.message)
+                    } else {
+                        toastr.success(`Product category deleted successfully`)
+                    }
+                    fetchProductCategories()
+                }
+            })
+        }
     }
 </script>
 <?= $this->endSection(); ?>

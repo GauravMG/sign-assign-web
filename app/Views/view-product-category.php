@@ -292,6 +292,7 @@
                             <td class="list-action-container">
                                 <span onclick="onClickUpdateProductSubCategory(${response.data[i].productSubCategoryId})"><i class="fa fa-edit view-icon"></i></span>
                                 <span onclick="onClickViewProductSubCategory(${response.data[i].productSubCategoryId})"><i class="fa fa-eye view-icon"></i></span>
+                                <span onclick="onClickDeleteProductSubCategory(${response.data[i].productSubCategoryId})"><i class="fa fa-trash view-icon"></i></span>
                             </td>
                         </tr>`;
                     }
@@ -345,6 +346,25 @@
 
     function onClickViewProductSubCategory(productSubCategoryId) {
         window.location.href = `/admin/product-subcategories/view/${productSubCategoryId}`
+    }
+
+    async function onClickDeleteProductSubCategory(productSubCategoryId) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            await postAPICall({
+                endPoint: "/product-subcategory/delete",
+                payload: JSON.stringify({
+                    productSubCategoryIds: [Number(productSubCategoryId)]
+                }),
+                callbackSuccess: (response) => {
+                    if (!response.success) {
+                        toastr.error(response.message)
+                    } else {
+                        toastr.success(`Product sub-category deleted successfully`)
+                    }
+                    fetchProductSubCategories()
+                }
+            })
+        }
     }
 </script>
 

@@ -183,6 +183,7 @@
                             <td class="list-action-container">
                                 <span onclick="onClickUpdateProduct(${data[i].productId})"><i class="fa fa-edit view-icon"></i></span>
                                 <span onclick="onClickViewProduct(${data[i].productId})"><i class="fa fa-eye view-icon"></i></span>
+                                <span onclick="onClickDeleteProduct(${data[i].productId})"><i class="fa fa-trash view-icon"></i></span>
                             </td>
                         </tr>`;
                     }
@@ -234,6 +235,25 @@
 
     function onClickViewProduct(productId) {
         window.location.href = `/admin/products/${productId}`
+    }
+
+    async function onClickDeleteProduct(productId) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            await postAPICall({
+                endPoint: "/product/delete",
+                payload: JSON.stringify({
+                    productIds: [Number(productId)]
+                }),
+                callbackSuccess: (response) => {
+                    if (!response.success) {
+                        toastr.error(response.message)
+                    } else {
+                        toastr.success(`Product deleted successfully`)
+                    }
+                    fetchProducts()
+                }
+            })
+        }
     }
 </script>
 <?= $this->endSection(); ?>

@@ -207,7 +207,9 @@ async function fetchProductCategories() {
     await postAPICall({
         endPoint: "/product-category/list",
         payload: JSON.stringify({
-            "filter": {},
+            "filter": {
+                status: true
+            },
             "range": {
                 "all": true
             },

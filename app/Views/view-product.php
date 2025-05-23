@@ -91,6 +91,16 @@
                             aria-controls="product-details" aria-selected="true">Product Details</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="faq-list-tab" data-toggle="pill"
+                            href="#faq-list" role="tab"
+                            aria-controls="faq-list" aria-selected="false">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="customer-review-list-tab" data-toggle="pill"
+                            href="#customer-review-list" role="tab"
+                            aria-controls="customer-review-list" aria-selected="false">Customer Reviews</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="variant-list-tab" data-toggle="pill"
                             href="#variant-list" role="tab"
                             aria-controls="variant-list" aria-selected="false">Variants</a>
@@ -107,6 +117,28 @@
                             </div>
 
                             <h3 id="productName"></h3>
+
+                            <div class="row mt-4">
+                                <div class="col-12" id="shortDescription"></div>
+                            </div>
+
+                            <div class="row mt-4 pt-3 border-top border-dark">
+                                <div class="col-md-12">
+                                    <h3>Accordion Sections :</h3>
+                                </div>
+                                <div class="col-md-12 mt-2 bg-light p-2 border">
+                                    <h5 id="section1Title"></h5>
+                                    <div class="bold" id="section1Description"></div>
+                                </div>
+                                <div class="col-md-12 mt-2 bg-light p-2 border">
+                                    <h5 id="section2Title"></h5>
+                                    <div class="bold" id="section2Description"></div>
+                                </div>
+                                <div class="col-md-12 mt-2 bg-light p-2 border">
+                                    <h5 id="section3Title"></h5>
+                                    <div class="bold" id="section3Description"></div>
+                                </div>
+                            </div>
 
                             <div class="row mt-4 pt-3 border-top border-dark">
                                 <div class="col-md-12">
@@ -157,13 +189,55 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody id="dataList">
+                                <tbody id="dataVariantList">
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Image</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="faq-list"
+                        role="tabpanel" aria-labelledby="faq-list-tab">
+                        <div class="overlay-wrapper">
+                            <div id="faq-list-loader" class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                <div class="text-bold pt-2">Loading...</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>FAQs</h4>
+                                </div>
+
+                                <div class="col-md-6 mb-4 text-right">
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-faq">
+                                        Add New FAQ
+                                    </button>
+                                </div>
+                            </div>
+
+                            <table id="dtFAQList" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Answer</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataFAQList">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Answer</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -190,17 +264,47 @@
             <div class="modal-body">
                 <input type="hidden" class="form-control" id="add_variantId">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="add_variantName">Name</label>
                     <input type="text" class="form-control" id="add_variantName" placeholder="Enter name">
                 </div>
                 <div class="form-group">
-                    <label for="name">Price</label>
+                    <label for="add_variantPrice">Price</label>
                     <input type="text" class="form-control" id="add_variantPrice" placeholder="Enter price">
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-dark" onclick="onClickSubmitAddVariant()">Save</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="modal-add-faq">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add FAQ</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="add_faqId">
+                <div class="form-group">
+                    <label for="add_faqQuestion">Question</label>
+                    <input type="text" class="form-control" id="add_faqQuestion" placeholder="Enter Question">
+                </div>
+                <div class="form-group">
+                    <label for="add_faqAnswer">Answer</label>
+                    <textarea class="form-control" id="add_faqAnswer" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" onclick="onClickSubmitAddFAQ()">Save</button>
             </div>
         </div>
 
@@ -226,8 +330,22 @@
                             echo "";
                         } ?>'
 
+    let productFAQs = []
+
     function initializeDTVariantList() {
         $("#dtVariantList").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        })
+    }
+
+    function initializeDTFAQList() {
+        $("#dtFAQList").DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -253,6 +371,10 @@
 
             if (targetTabId.replace("#", "") === "product-details") {
                 fetchProduct(targetTabId)
+            } else if (targetTabId.replace("#", "") === "faq-list") {
+                fetchFAQs(targetTabId)
+            } else if (targetTabId.replace("#", "") === "customer-review-list") {
+                fetchCustomerReviews(targetTabId)
             } else if (targetTabId.replace("#", "") === "variant-list") {
                 fetchVariants(targetTabId)
             }
@@ -262,6 +384,12 @@
             document.getElementById("add_variantId").value = "";
             document.getElementById("add_variantName").value = "";
             document.getElementById("add_variantPrice").value = "";
+        });
+
+        $('#modal-add-faq').on('hidden.bs.modal', function() {
+            document.getElementById("add_faqId").value = "";
+            document.getElementById("add_faqQuestion").value = "";
+            document.getElementById("add_faqAnswer").value = "";
         });
     });
 
@@ -289,7 +417,18 @@
             callbackSuccess: (response) => {
                 if (response.success) {
                     const data = response.data[0]
+
                     document.getElementById("productName").innerText = data.name
+
+                    document.getElementById("shortDescription").innerText = data.shortDescription
+
+                    document.getElementById("section1Title").innerText = data.section1Title
+                    document.getElementById("section1Description").innerHTML = data.section1Description
+                    document.getElementById("section2Title").innerText = data.section2Title
+                    document.getElementById("section2Description").innerHTML = data.section2Description
+                    document.getElementById("section3Title").innerText = data.section3Title
+                    document.getElementById("section3Description").innerHTML = data.section3Description
+
                     document.getElementById("productDescription").innerHTML = data.description
                     document.getElementById("productSpecification").innerHTML = data.specification
                 }
@@ -359,7 +498,7 @@
                     }
 
                     // Insert the generated table rows
-                    document.getElementById("dataList").innerHTML = html;
+                    document.getElementById("dataVariantList").innerHTML = html;
 
                     // Add event listeners to all toggle switches after rendering
                     document.querySelectorAll(".toggle-status").forEach((toggle) => {
@@ -467,6 +606,167 @@
 
     function onClickViewVariant(variantId) {
         window.location.href = `/admin/variants/view/${variantId}`
+    }
+
+    async function fetchFAQs() {
+        await postAPICall({
+            endPoint: "/product-faq/list",
+            payload: JSON.stringify({
+                "filter": {
+                    productId: Number(productId)
+                },
+                "range": {
+                    "all": true
+                },
+                "sort": [{
+                    "orderBy": "createdAt",
+                    "orderDir": "asc"
+                }]
+            }),
+            callbackBeforeSend: function() {
+                $('#faq-list-loader').fadeIn()
+                if ($.fn.DataTable.isDataTable("#dtFAQList")) {
+                    $('#dtFAQList').DataTable().destroy()
+                }
+            },
+            callbackComplete: function() {
+                $('#faq-list-loader').fadeOut()
+            },
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    data
+                } = response
+
+                if (success) {
+                    productFAQs = data
+
+                    var html = ""
+
+                    for (let i = 0; i < data?.length; i++) {
+                        html += `<tr>
+                            <td>${data[i].question ?? ""}</td>
+                            <td>${data[i].answer ?? ""}</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" class="toggle-status" data-faq-id="${data[i].productFAQId}" ${data[i].status ? "checked" : ""}>
+                                    <span class="slider"></span>
+                                </label>
+                            </td>
+                            <td class="list-action-container">
+                                <span onclick="onClickUpdateFAQ(${data[i].productFAQId})"><i class="fa fa-edit view-icon"></i></span>
+                            </td>
+                        </tr>`;
+                    }
+
+                    // Insert the generated table rows
+                    document.getElementById("dataFAQList").innerHTML = html;
+
+                    // Add event listeners to all toggle switches after rendering
+                    document.querySelectorAll(".toggle-status").forEach((toggle) => {
+                        toggle.addEventListener("change", function() {
+                            let faqId = this.getAttribute("data-faq-id");
+                            let newStatus = this.checked ? "active" : "inactive";
+
+                            console.log(`FAQ ID: ${faqId}, New Status: ${newStatus}`);
+
+                            // Call API to update status
+                            updateVariantStatus(faqId, newStatus);
+                        });
+                    });
+
+
+                    initializeDTFAQList()
+                }
+
+                loader.hide()
+            }
+        })
+    }
+
+    async function onClickSubmitAddFAQ() {
+        const productFAQId = document.getElementById("add_faqId")?.value ?? null;
+        const question = document.getElementById("add_faqQuestion").value;
+        const answer = document.getElementById("add_faqAnswer").value;
+
+        if ((question ?? "").trim() === "") {
+            toastr.error("Please enter a valid question!");
+            return;
+        }
+
+        if ((answer ?? "").trim() === "") {
+            toastr.error("Please enter a valid answer!");
+            return;
+        }
+
+        let payload = {
+            question,
+            answer
+        }
+
+        if (productFAQId !== "") {
+            if (confirm("Are you sure you want to update this faq?")) {
+                await postAPICall({
+                    endPoint: "/product-faq/update",
+                    payload: JSON.stringify({
+                        productFAQId: Number(productFAQId),
+                        ...payload
+                    }),
+                    callbackSuccess: (response) => {
+                        if (response.success) {
+                            toastr.success(response.message);
+                            $('#modal-add-faq').modal('hide');
+                            fetchFAQs()
+                        }
+                    }
+                })
+            }
+        } else {
+            if (confirm("Are you sure you want to create this faq?")) {
+                await postAPICall({
+                    endPoint: "/product-faq/create",
+                    payload: JSON.stringify({
+                        ...payload,
+                        productId
+                    }),
+                    callbackSuccess: (response) => {
+                        if (response.success) {
+                            toastr.success(response.message);
+                            $('#modal-add-faq').modal('hide');
+                            fetchFAQs()
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    async function updateFAQStatus(productFAQId, status) {
+        await postAPICall({
+            endPoint: "/product-faq/update",
+            payload: JSON.stringify({
+                productFAQId: Number(productFAQId),
+                status: status === "inactive" ? false : true
+            }),
+            callbackSuccess: (response) => {
+                if (!response.success) {
+                    toastr.error(response.message)
+                    fetchProductCategories()
+                } else {
+                    toastr.success(`FAQ ${status === "inactive" ? "blocked" : "unblocked"} successfully`)
+                }
+            }
+        })
+    }
+
+    function onClickUpdateFAQ(productFAQId) {
+        const selectedFAQ = productFAQs.find((productFAQ) => Number(productFAQ.productFAQId) === Number(productFAQId))
+
+        document.getElementById("add_faqId").value = productFAQId
+        document.getElementById("add_faqQuestion").value = selectedFAQ.question
+        document.getElementById("add_faqAnswer").value = selectedFAQ.answer
+        $('#modal-add-faq').modal('show');
     }
 </script>
 

@@ -5,7 +5,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<div id="carouselExampleSlidesOnly" class="carousel slide hero-section" data-bs-ride="carousel">
+<!-- <div id="carouselExampleSlidesOnly" class="carousel slide hero-section" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="<?= base_url('images/banner-page-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
@@ -17,7 +17,7 @@
             <img src="<?= base_url('images/banner-page-image.jpg') . '?t=' . time(); ?>" class="d-block w-100" alt="...">
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="breadcrumbs-area">
     <div class="container-fluid">
@@ -96,267 +96,7 @@
         <div class="filter-divider">
             <div class="left-area">
                 <h3><?= $data['categoryName']; ?></h3>
-                <div class="banner-inner">
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
-                    <div class="inner-card">
-                        <a href="/product/banner-stands">
-                            <div class="p-3 m-0">
-                                <img src="<?= base_url('images/slide-image.jpg') . '?t=' . time(); ?>" alt="">
-                            </div>
-                            <div class="px-3 mt-0">
-                                <h5>Vinyl Banners</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$22.47</span></h6>
-                            </div>
-                            <a href="/product/banner-stands" class="customized-button">Customize</a>
-                        </a>
-                    </div>
+                <div class="banner-inner" id="dataList">
                 </div>
             </div>
             <div class="right-area">
@@ -585,7 +325,6 @@
 <?= $this->section('pageScripts'); ?>
 <script>
     const categoryName = '<?= $data['categoryName']; ?>'
-    let categoryId = null
 </script>
 <script src="<?= base_url('js/category.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

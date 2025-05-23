@@ -216,6 +216,7 @@ async function fetchProducts() {
                 for (let i = 0; i < data?.length; i++) {
                     let coverImage = null
                     let price = null
+
                     for (let j = 0; j < data[i].variants?.length; j++) {
                         if ((data[i].variants[j].price ?? "").toString() !== "") {
                             price = data[i].variants[j].price
@@ -234,11 +235,11 @@ async function fetchProducts() {
                     }
 
                     if ((coverImage ?? "").trim() === "") {
-                        coverImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
+                        coverImage = `${baseUrl}images/logo.png`
                     }
 
                     htmlSection1.push(`<div class="inner-card">
-                        <a href="#">
+                        <a href="/product/${getLinkFromName(data[i].name)}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>
@@ -258,7 +259,7 @@ async function fetchProducts() {
                     </div>`)
 
                     htmlSection2.push(`<div class="inner-card">
-                        <a href="#">
+                        <a href="/product/${getLinkFromName(data[i].name)}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>
@@ -287,7 +288,7 @@ async function fetchProducts() {
                     </div>`)
 
                     htmlSection5.push(`<div class="inner-card">
-                        <a href="#">
+                        <a href="/product/${getLinkFromName(data[i].name)}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>

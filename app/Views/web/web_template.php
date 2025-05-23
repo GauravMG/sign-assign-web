@@ -80,6 +80,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/license.min.js"></script>
 
+    <script>
+        const baseUrl = '<?= base_url(); ?>'
+    </script>
 
     <script src="<?= base_url('js/service-api-web.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/common.js') . '?t=' . time(); ?>"></script>

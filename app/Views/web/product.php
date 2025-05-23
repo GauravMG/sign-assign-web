@@ -123,7 +123,7 @@
             </div>
             <div class="product-detail-area">
                 <div class="main-desc">
-                    <h4>Vinyl Banners</h4>
+                    <h4 id="productName">Vinyl Banners</h4>
                     <p>
                         Each banner is a testament to our dedication to meeting your specific needs, be it for
                         outdoor
@@ -172,12 +172,12 @@
                         </span>
                         <p>Free Design Proof</p>
                     </div>
-                    <div class="facility-card">
+                    <!-- <div class="facility-card">
                         <span>
                             <i class="fa-solid fa-user-secret"></i>
                         </span>
                         <p>Hire a Designer</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="accordion mt-2" id="accordionExample">
                     <div class="accordion-item mt-2">
@@ -591,5 +591,8 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
+<script>
+    const productName = '<?= $data['productName']; ?>'
+</script>
 <script src="<?= base_url('js/product-detail.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

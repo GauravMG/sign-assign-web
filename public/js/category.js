@@ -130,7 +130,7 @@ async function fetchProducts() {
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>${data[i].name}</h5>
-                                <h6>Size (W X H): 34” x 84”)</h6>
+                                <!-- <h6>Size (W X H): 34” x 84”)</h6> -->
                                 <div class="rating-area">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>

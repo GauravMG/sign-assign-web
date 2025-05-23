@@ -59,7 +59,7 @@ optionItems?.forEach(option => {
 
 // Click outside to close dropdown
 document.addEventListener('click', function (e) {
-    if (!customSelect?.contains(e.target)) {
+    if (!customSelect?.contains(e.target) && options) {
         options.style.display = 'none';
     }
 });

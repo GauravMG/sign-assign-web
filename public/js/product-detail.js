@@ -52,6 +52,52 @@ async function fetchProducts() {
 
                 document.getElementById("nav-home").innerHTML = data.description
                 document.getElementById("nav-profile").innerHTML = data.specification
+
+                fetchProductFAQs()
+            }
+        }
+    })
+}
+
+async function fetchProductFAQs() {
+    await postAPICall({
+        endPoint: "/product-faq/list",
+        payload: JSON.stringify({
+            "filter": {
+                productId: Number(productId)
+            },
+            "range": {
+                all: true
+            },
+            "sort": [{
+                "orderBy": "createdAt",
+                "orderDir": "asc"
+            }],
+            linkedEntities: true
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response
+
+            if (success) {
+                let html = ``
+
+                for (const [index, faq] of data.entries()) {
+                    html += `<div class="accordion-item">
+                        <h2 class="accordion-header" id="faq-heading-${index}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-${index}" aria-expanded="false" aria-controls="faq-collapse-${index}">
+                                ${faq.question}
+                            </button>
+                        </h2>
+                        <div id="faq-collapse-${index}" class="accordion-collapse collapse" aria-labelledby="faq-heading-${index}" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                ${faq.answer}
+                            </div>
+                        </div>
+                    </div>`
+                }
+
+                document.getElementById("faqAccordion").innerHTML = html
             }
         }
     })

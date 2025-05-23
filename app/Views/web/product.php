@@ -250,18 +250,8 @@
             </div>
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
                 tabindex="0">
-                <p>
-                    At Sign Assign, we redefine advertising prowess with our unparalleled range of custom banners,
-                    providing a dynamic and
-                    impactful solution to elevate your brand's visibility. Our vinyl banners stand as a testament to
-                    our commitment to
-                    quality, versatility, and visual excellence. Crafted with precision and vibrancy, our custom
-                    banners serve as a powerful
-                    marketing tool, captivating attention and communicating messages effectively. Each banner is a
-                    testament to our
-                    dedication to meeting your specific needs, be it for outdoor events, storefronts, trade shows,
-                    or promotional displays.
-                </p>
+                <div class="accordion" id="faqAccordion">
+                </div>
             </div>
             <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
                 tabindex="0">

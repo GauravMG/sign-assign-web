@@ -17,17 +17,47 @@
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" placeholder="Enter name">
                     </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select class="form-control" id="productCategoryId" name="productCategoryId">
-                            <option value="-">-- Select category --</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>Category</label>
+                            <select class="form-control" id="productCategoryId" name="productCategoryId">
+                                <option value="-">-- Select category --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Sub-Category</label>
+                            <select class="form-control" id="productSubCategoryId" name="productSubCategoryId">
+                                <option value="-">-- Select sub-category --</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Sub-Category</label>
-                        <select class="form-control" id="productSubCategoryId" name="productSubCategoryId">
-                            <option value="-">-- Select sub-category --</option>
-                        </select>
+                        <label for="shortDescription">Short Description</label>
+                        <textarea class="form-control" id="shortDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="section1Title">Section 1 Title</label>
+                        <input type="text" class="form-control" id="section1Title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="section1Description">Section 1 Description</label>
+                        <textarea class="form-control" id="section1Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="section2Title">Section 2 Title</label>
+                        <input type="text" class="form-control" id="section2Title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="section2Description">Section 2 Description</label>
+                        <textarea class="form-control" id="section2Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="section3Title">Section 3 Title</label>
+                        <input type="text" class="form-control" id="section3Title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="section3Description">Section 3 Description</label>
+                        <textarea class="form-control" id="section3Description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
@@ -54,19 +84,36 @@
 <script>
     const productId = '<?= isset($data) ? $data["productId"] : "" ?>';
     let productCategories = [];
+
     document.addEventListener("DOMContentLoaded", function() {
+        $('#shortDescription').summernote({
+            height: 100
+        });
+        $('#section1Description').summernote({
+            height: 150
+        });
+        $('#section2Description').summernote({
+            height: 150
+        });
+        $('#section3Description').summernote({
+            height: 150
+        });
         $('#description').summernote({
             height: 350
         });
         $('#specification').summernote({
             height: 350
         });
+
         fetchMasterData();
+
         document.getElementById("productCategoryId").addEventListener("change", function() {
             const selectedCatId = this.value;
             updateSubCategoryOptions(selectedCatId);
         });
+
         document.querySelector(".btn-dark").addEventListener("click", onClickSubmit);
+
         async function fetchMasterData() {
             await postAPICall({
                 endPoint: "/product-category/list",
@@ -111,6 +158,7 @@
             }
             document.getElementById("productSubCategoryId").innerHTML = subCategoryHtml;
         }
+
         async function fetchProduct() {
             await postAPICall({
                 endPoint: "/product/list",
@@ -133,10 +181,24 @@
                     } = response;
                     if (success && data.length > 0) {
                         const product = data[0];
+
                         document.getElementById("name").value = product.name;
+
+                        $('#shortDescription').summernote('code', product.shortDescription);
+
+                        document.getElementById("section1Title").value = product.section1Title
+                        $('#section1Description').summernote('code', product.section1Description);
+                        document.getElementById("section2Title").value = product.section2Title
+                        $('#section2Description').summernote('code', product.section2Description);
+                        document.getElementById("section3Title").value = product.section3Title
+                        $('#section3Description').summernote('code', product.section3Description);
+
                         $('#description').summernote('code', product.description);
+
                         $('#specification').summernote('code', product.specification);
+
                         document.getElementById("productCategoryId").value = product.productCategoryId;
+
                         updateSubCategoryOptions(product.productCategoryId, product.productSubCategoryId);
                     }
                 }
@@ -144,24 +206,60 @@
         }
         async function onClickSubmit() {
             const name = document.getElementById("name").value.trim();
+
+            const shortDescription = $('#shortDescription').summernote('code');
+
+            const section1Title = document.getElementById("section1Title").value.trim()
+            const section1Description = $('#section1Description').summernote('code');
+            const section2Title = document.getElementById("section2Title").value.trim()
+            const section2Description = $('#section2Description').summernote('code');
+            const section3Title = document.getElementById("section3Title").value.trim()
+            const section3Description = $('#section3Description').summernote('code');
+
             const description = $('#description').summernote('code');
+
             const specification = $('#specification').summernote('code');
+
             const productCategoryId = document.getElementById("productCategoryId").value;
             const productSubCategoryId = document.getElementById("productSubCategoryId").value;
+
             if (!name) return toastr.error("Please enter a valid name!");
+
+            if ((shortDescription ?? "").trim() === "") return toastr.error("Please enter a valid short description!");
+
+            if ((section1Title ?? "").trim() === "") return toastr.error("Please enter a valid section 1 title!");
+            if ((section1Description ?? "").trim() === "") return toastr.error("Please enter a valid section 1 description!");
+            if ((section2Title ?? "").trim() === "") return toastr.error("Please enter a valid section 2 title!");
+            if ((section2Description ?? "").trim() === "") return toastr.error("Please enter a valid section 2 description!");
+            if ((section3Title ?? "").trim() === "") return toastr.error("Please enter a valid section 3 title!");
+            if ((section3Description ?? "").trim() === "") return toastr.error("Please enter a valid section 3 description!");
+
             if ((description ?? "").trim() === "") return toastr.error("Please enter a valid description!");
+
             if ((specification ?? "").trim() === "") return toastr.error("Please enter a valid specification!");
+
             if (productCategoryId === "-") return toastr.error("Please select a category!");
+
             if (productSubCategoryId === "-") return toastr.error("Please select a sub-category!");
+
             const payload = {
                 name,
+                shortDescription,
+                section1Title,
+                section1Description,
+                section2Title,
+                section2Description,
+                section3Title,
+                section3Description,
                 description,
                 specification,
                 productCategoryId: Number(productCategoryId),
                 productSubCategoryId: Number(productSubCategoryId)
             };
+
             const endpoint = productId ? "/product/update" : "/product/create";
             const confirmMsg = productId ? "Are you sure you want to update this product?" : "Are you sure you want to create this product?";
+
             if (confirm(confirmMsg)) {
                 await postAPICall({
                     endPoint: endpoint,

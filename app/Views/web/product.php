@@ -123,12 +123,9 @@
             </div>
             <div class="product-detail-area">
                 <div class="main-desc">
-                    <h4 id="productName">Vinyl Banners</h4>
-                    <p>
-                        Each banner is a testament to our dedication to meeting your specific needs, be it for
-                        outdoor
-                        events, storefronts, trade shows, or promotional displays.
-                    </p>
+                    <h4 id="productName"></h4>
+                    <div id="shortDescription">
+                    </div>
                     <div class="sku-details">
                         <div class="review-area">
                             <div class="rating-area">
@@ -183,66 +180,36 @@
                     <div class="accordion-item mt-2">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Accordion Item #1
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="section1Title">
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show"
                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default,
-                                until the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify
-                                any of this with
-                                custom CSS or overriding our default variables. It's also worth noting that just
-                                about any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <div class="accordion-body" id="section1Description">
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item mt-2">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Accordion Item #2
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="section2Title">
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse"
                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                until the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify
-                                any of this with
-                                custom CSS or overriding our default variables. It's also worth noting that just
-                                about any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <div class="accordion-body" id="section2Description">
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item mt-2">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Accordion Item #3
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="section3Title">
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse"
                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                until the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify
-                                any of this with
-                                custom CSS or overriding our default variables. It's also worth noting that just
-                                about any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <div class="accordion-body" id="section3Description">
                             </div>
                         </div>
                     </div>
@@ -277,77 +244,9 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
                 tabindex="0">
-                <p>
-                    At Sign Assign, we redefine advertising prowess with our unparalleled range of custom banners,
-                    providing a dynamic and
-                    impactful solution to elevate your brand's visibility. Our vinyl banners stand as a testament to
-                    our commitment to
-                    quality, versatility, and visual excellence. Crafted with precision and vibrancy, our custom
-                    banners serve as a powerful
-                    marketing tool, captivating attention and communicating messages effectively. Each banner is a
-                    testament to our
-                    dedication to meeting your specific needs, be it for outdoor events, storefronts, trade shows,
-                    or promotional displays.
-                </p>
-
-                <p>
-                    We understand the significance of customization, which is why our custom banners come in various
-                    sizes, shapes, and
-                    designs. Whether you desire a bold, large-format banner to dominate the skyline or a compact yet
-                    impactful display for
-                    your storefront, we cater to every requirement.
-                </p>
-
-                <p>
-                    Our team collaborates closely with you to ensure your vision is brought to life with precision
-                    and attention to detail.
-                    Utilizing cutting-edge printing technology and premium-grade vinyl materials, our banners boast
-                    durability and weather
-                    resistance, standing strong against the elements for extended periods.
-                </p>
-
-                <p>
-                    Rain or shine, these banners maintain their vibrant colors and crisp graphics, ensuring
-                    longevity and value for your
-                    investment. Moreover, our commitment to sustainability shines through our eco-friendly printing
-                    practices, minimizing
-                    environmental impact without compromising on quality. From concept to creation, we prioritize
-                    eco-conscious solutions to
-                    meet modern standards while delivering exceptional results.
-                </p>
-
-                <p>
-                    As a testament to our expertise, Sign Assign is your go-to source for custom banners in Texas.
-                    Whether you seek a
-                    promotional banner to announce an event or a branded display to enhance your business presence,
-                    our dedication to
-                    excellence ensures that your expectations are not just met but exceeded. Revitalize your
-                    marketing strategy and
-                    captivate your audience with Sign Assign's custom vinyl banners. Contact us today and discover
-                    how our tailored
-                    solutions can transform your space, amplify your brand's message, and leave a lasting impression
-                    on your audience.
-                </p>
-
-                <p>
-                    Elevate your brand with Sign Assign – where excellence meets innovation in custom banner
-                    craftsmanship.
-                </p>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
                 tabindex="0">
-                <p>
-                    At Sign Assign, we redefine advertising prowess with our unparalleled range of custom banners,
-                    providing a dynamic and
-                    impactful solution to elevate your brand's visibility. Our vinyl banners stand as a testament to
-                    our commitment to
-                    quality, versatility, and visual excellence. Crafted with precision and vibrancy, our custom
-                    banners serve as a powerful
-                    marketing tool, captivating attention and communicating messages effectively. Each banner is a
-                    testament to our
-                    dedication to meeting your specific needs, be it for outdoor events, storefronts, trade shows,
-                    or promotional displays.
-                </p>
             </div>
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
                 tabindex="0">

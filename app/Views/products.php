@@ -164,14 +164,6 @@
                     var html = ""
 
                     for (let i = 0; i < data?.length; i++) {
-                        let coverImage = null
-                        for (let j = 0; j < data[i]?.productMedias?.length; j++) {
-                            if (data[i].productMedias[j].mediaType.indexOf("image") >= 0) {
-                                coverImage = data[i].productMedias[j]
-                                break
-                            }
-                        }
-
                         html += `<tr>
                             <td>${data[i].name ?? ""}</td>
                             <td>

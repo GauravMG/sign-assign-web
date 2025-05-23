@@ -589,3 +589,7 @@
     </div>
 </div>
 <?= $this->endSection(); ?>
+
+<?= $this->section('pageScripts'); ?>
+<script src="<?= base_url('js/product-detail.js') . '?t=' . time(); ?>"></script>
+<?= $this->endSection(); ?>

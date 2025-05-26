@@ -98,6 +98,16 @@ class AdminController extends BaseController
         return view('add-banner', $data);
     }
 
+    public function attributes(): string
+    {
+        $data = [
+            'title' => 'Attributes',
+            'page_heading' => 'Attributes'
+        ];
+
+        return view('attributes', $data);
+    }
+
     public function productCategories(): string
     {
         $data = [

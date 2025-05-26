@@ -27,6 +27,8 @@ $routes->get('/admin/product-categories/update/(:any)', 'AdminController::update
 $routes->get('/admin/product-categories/add', 'AdminController::addProductCategory');
 $routes->get('/admin/product-categories', 'AdminController::productCategories');
 
+$routes->get('/admin/attributes', 'AdminController::attributes');
+
 $routes->get('/admin/banners/add', 'AdminController::addBanner');
 $routes->get('/admin/banners', 'AdminController::banners');
 

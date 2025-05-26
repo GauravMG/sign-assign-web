@@ -35,6 +35,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                    <a href="/admin/attributes" class="nav-link">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>
+                            Attributes
+                        </p>
+                    </a>
+                </li>
                 <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
                     <a href="/admin/orders" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>

@@ -94,6 +94,7 @@
                             <th>Name</th>
                             <th>Type</th>
                             <th>Unit</th>
+                            <th>Options</th>
                             <th>Is Filterable</th>
                             <th>Actions</th>
                         </tr>
@@ -105,6 +106,7 @@
                             <th>Name</th>
                             <th>Type</th>
                             <th>Unit</th>
+                            <th>Options</th>
                             <th>Is Filterable</th>
                             <th>Actions</th>
                         </tr>
@@ -246,10 +248,16 @@
                     var html = ""
 
                     for (let i = 0; i < response.data?.length; i++) {
+                        let options = ''
+                        if (response.data[i]?.options) {
+                            options = typeof response.data[i].options === "string" ? JSON.parse(response.data[i].options).join(",") : response.data[i].options.join(",")
+                        }
+
                         html += `<tr>
                             <td>${response.data[i].name ?? ""}</td>
                             <td>${response.data[i].type ?? ""}</td>
                             <td>${response.data[i].unit ?? ""}</td>
+                            <td>${options}</td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="toggle-status" data-attribute-id="${response.data[i].attributeId}" ${response.data[i].status ? "checked" : ""}>

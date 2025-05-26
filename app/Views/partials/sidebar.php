@@ -13,7 +13,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin">
                     <a href="/admin/users" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users
                         </p>
@@ -21,7 +21,7 @@
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/product-categories" class="nav-link">
-                        <i class="nav-icon fas fa-box"></i>
+                        <i class="nav-icon fas fa-layer-group"></i>
                         <p>
                             Product Categories
                         </p>
@@ -29,7 +29,7 @@
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/products" class="nav-link">
-                        <i class="nav-icon fas fa-box"></i>
+                        <i class="nav-icon fas fa-boxes"></i>
                         <p>
                             Products
                         </p>
@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/attributes" class="nav-link">
-                        <i class="nav-icon fas fa-box"></i>
+                        <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Attributes
                         </p>
@@ -85,7 +85,7 @@
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/banners" class="nav-link">
-                        <i class="nav-icon fas fa-image"></i>
+                        <i class="nav-icon fas fa-images"></i>
                         <p>
                             Banners
                         </p>

@@ -2,6 +2,19 @@
 
 <?= $this->section('pageStyles'); ?>
 <link rel="stylesheet" href="<?= base_url('css/banner-detail-page.css'); ?>">
+
+<style>
+    .customer-review-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .variant-image {
+        width: 100%;
+        height: 180px;
+        object-fit: fill;
+    }
+</style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -214,6 +227,25 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div class="main-desc mt-2">
+                    <h5 class="mb-3">Choose a Variant:</h5>
+                    <div class="btn-group" role="group" aria-label="Product Variants">
+                        <input type="radio" class="btn-check" name="variant" id="variant1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="variant1">Standard Vinyl</label>
+
+                        <input type="radio" class="btn-check" name="variant" id="variant2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="variant2">Premium Matte</label>
+
+                        <input type="radio" class="btn-check" name="variant" id="variant3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="variant3">Mesh Banner</label>
+                    </div>
+                </div> -->
+                <div class="main-desc mt-2 p-4">
+                    <h5 class="mb-3">Choose a Variant:</h5>
+                    <div class="d-flex overflow-auto flex-nowrap gap-3 pb-2" id="selectionVariants">
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -254,19 +286,38 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
-                tabindex="0">
-                <p>
-                    At Sign Assign, we redefine advertising prowess with our unparalleled range of custom banners,
-                    providing a dynamic and
-                    impactful solution to elevate your brand's visibility. Our vinyl banners stand as a testament to
-                    our commitment to
-                    quality, versatility, and visual excellence. Crafted with precision and vibrancy, our custom
-                    banners serve as a powerful
-                    marketing tool, captivating attention and communicating messages effectively. Each banner is a
-                    testament to our
-                    dedication to meeting your specific needs, be it for outdoor events, storefronts, trade shows,
-                    or promotional displays.
-                </p>
+                tabindex="0" id="customerReviewsContainer">
+                <div class="d-flex mb-4">
+                    <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" class="rounded-circle me-3 customer-review-image" alt="John Doe">
+                    <div>
+                        <h6 class="mb-1">Melissa R., <small class="text-muted">Event Coordinator</small></h6>
+                        <div class="text-warning mb-2" style="font-size: 1rem;">
+                            ★★★★★
+                        </div>
+                        <strong>"Great Quality and Super Fast Turnaround!"</strong>
+                        <p class="mb-0 mt-2">
+                            We needed a large outdoor banner for a charity fundraiser and SignAssign delivered beyond expectations.
+                            The colors were vibrant, the material felt sturdy, and it withstood wind and light rain without any issues.
+                            The order process was easy, and it arrived two days ahead of schedule. Will definitely be ordering again!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4">
+                    <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" class="rounded-circle me-3 customer-review-image" alt="Sarah Lee">
+                    <div>
+                        <h6 class="mb-1">Jason T., <small class="text-muted">Small Business Owner</small></h6>
+                        <div class="text-warning mb-2" style="font-size: 1rem;">
+                            ★★★★★
+                        </div>
+                        <strong>"Exactly What We Needed for Our Grand Opening"</strong>
+                        <p class="mb-0 mt-2">
+                            I ordered a vinyl banner to hang outside my new café, and it came out perfect. The print was sharp and eye-catching,
+                            and the grommets made installation a breeze. The team was responsive and helped me size the design just right.
+                            Couldn’t be happier with the result!
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

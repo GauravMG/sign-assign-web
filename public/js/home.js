@@ -222,7 +222,7 @@ async function fetchProducts() {
                             price = data[i].variants[j].price
                         }
 
-                        for (let k = 0; k < data[i].variants[j]?.variantMedias.length; k++) {
+                        for (let k = 0; k < data[i].variants[j]?.variantMedias?.length; k++) {
                             if (data[i].variants[j].variantMedias[k].mediaType.indexOf("image") >= 0 && (data[i].variants[j].variantMedias[k].mediaUrl ?? "").trim() !== "") {
                                 coverImage = data[i].variants[j].variantMedias[k].mediaUrl
                                 break
@@ -235,7 +235,7 @@ async function fetchProducts() {
                     }
 
                     if ((coverImage ?? "").trim() === "") {
-                        coverImage = `${baseUrl}images/logo.png`
+                        coverImage = `${baseUrl}images/no-preview-available.jpg`
                     }
 
                     htmlSection1.push(`<div class="inner-card">

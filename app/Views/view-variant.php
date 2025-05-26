@@ -191,6 +191,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Value</th>
+                                        <th>Additional Price</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -200,6 +201,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Value</th>
+                                        <th>Additional Price</th>
                                         <th>Status</th>
                                     </tr>
                                 </tfoot>
@@ -270,6 +272,30 @@
                     <input type="number" class="form-control" id="numberInput" />
                 </div>
 
+                <!-- Boolean Input -->
+                <div class="form-group d-none" id="booleanInputGroup">
+                    <label>
+                        <input type="checkbox" id="booleanInput" />
+                        Yes / No
+                    </label>
+                </div>
+
+                <!-- Select Input -->
+                <div class="form-group d-none" id="selectInputGroup">
+                    <label for="selectInput">Choose Option</label>
+                    <select class="form-control" id="selectInput">
+                        <!-- options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <!-- Multi Select Input -->
+                <div class="form-group d-none" id="multiSelectInputGroup">
+                    <label for="multiSelectInput">Choose Multiple Options</label>
+                    <select multiple class="form-control" id="multiSelectInput">
+                        <!-- options will be populated dynamically -->
+                    </select>
+                </div>
+
                 <!-- Dimension Inputs -->
                 <div class="d-none" id="dimensionGroup">
                     <div class="form-group">
@@ -280,6 +306,12 @@
                         <label for="dimensionHeight">Height</label>
                         <input type="text" class="form-control" id="dimensionHeight" placeholder="e.g. 20cm" />
                     </div>
+                </div>
+
+                <!-- Additional Price Input -->
+                <div class="form-group" id="additionalPriceGroup">
+                    <label for="additionalPrice">Additional Price (optional)</label>
+                    <input type="number" step="0.01" min="0" class="form-control" id="additionalPrice" placeholder="e.g. 49.99" />
                 </div>
             </div>
 
@@ -680,9 +712,30 @@
                     var html = ""
 
                     for (let i = 0; i < data?.length; i++) {
+                        let value = ''
+                        if (data[i].value) {
+                            if (Array.isArray(data[i].value)) {
+                                value = data[i].value.join(',');
+                            } else if (typeof data[i].value === "string") {
+                                try {
+                                    const parsed = JSON.parse(data[i].value);
+                                    if (Array.isArray(parsed)) {
+                                        value = parsed.join(',');
+                                    } else {
+                                        // fallback: treat the string as plain text
+                                        value = data[i].value;
+                                    }
+                                } catch (e) {
+                                    // If JSON parsing fails, treat as plain comma-separated string
+                                    value = data[i].value;
+                                }
+                            }
+                        }
+
                         html += `<tr>
                             <td>${data[i].attribute?.name ?? ""}</td>
-                            <td>${data[i].value ?? ""}</td>
+                            <td>${value ?? ""}</td>
+                            <td>${(data[i].additionalPrice ?? "").toString().trim() !== "" ? `$${data[i].additionalPrice ?? ""}` : "-"}</td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="toggle-status" data-variant-id="${data[i].variantAttributeId}" ${data[i].status ? "checked" : ""}>
@@ -715,67 +768,169 @@
         })
     }
 
+    function populateAttributeDropdown() {
+        const dropdown = document.getElementById('attributeSelect');
+        dropdown.innerHTML = '<option value="" disabled selected>Select Attribute</option>';
+
+        allAttributes.forEach(attr => {
+            const option = document.createElement('option');
+            option.value = attr.attributeId;
+            option.text = attr.name;
+            dropdown.appendChild(option);
+        });
+    }
+
     function onAttributeChange() {
-        const attributeId = document.getElementById('attributeSelect').value;
+        const selectedId = parseInt(document.getElementById('attributeSelect').value);
+        const selectedAttr = allAttributes.find(attr => parseInt(attr.attributeId) === parseInt(selectedId));
 
-        selectedAttributeId = attributeId
+        // Hide all input groups first
+        ['textInputGroup', 'numberInputGroup', 'booleanInputGroup', 'selectInputGroup', 'multiSelectInputGroup', 'dimensionGroup'].forEach(id => {
+            document.getElementById(id).classList.add('d-none');
+        });
 
-        const selectedAttribute = allAttributes.find((attribute) => parseInt(attribute.attributeId) === parseInt(attributeId))
+        if (!selectedAttr) return;
 
-        // Hide all fields first
-        document.getElementById('textInputGroup').classList.add('d-none');
-        document.getElementById('numberInputGroup').classList.add('d-none');
-        document.getElementById('dimensionGroup').classList.add('d-none');
+        document.getElementById('selectedAttributeId').value = selectedAttr.attributeId;
 
-        // Show relevant field based on type
-        switch (selectedAttribute.type) {
+        switch (selectedAttr.type) {
             case 'text':
                 document.getElementById('textInputGroup').classList.remove('d-none');
                 break;
             case 'number':
                 document.getElementById('numberInputGroup').classList.remove('d-none');
                 break;
+            case 'boolean':
+                document.getElementById('booleanInputGroup').classList.remove('d-none');
+                break;
+            case 'select':
+                const selectInput = document.getElementById('selectInput');
+                selectInput.innerHTML = '';
+                try {
+                    const options = JSON.parse(selectedAttr.options || '[]');
+                    options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt;
+                        option.text = opt;
+                        selectInput.appendChild(option);
+                    });
+                } catch (err) {
+                    console.error('Invalid JSON in select options');
+                }
+                document.getElementById('selectInputGroup').classList.remove('d-none');
+                break;
+            case 'multi_select':
+                const multiSelectInput = document.getElementById('multiSelectInput');
+                multiSelectInput.innerHTML = '';
+                try {
+                    const options = JSON.parse(selectedAttr.options || '[]');
+                    options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt;
+                        option.text = opt;
+                        multiSelectInput.appendChild(option);
+                    });
+                } catch (err) {
+                    console.error('Invalid JSON in multi_select options');
+                }
+                document.getElementById('multiSelectInputGroup').classList.remove('d-none');
+                break;
             case 'dimension':
                 document.getElementById('dimensionGroup').classList.remove('d-none');
-                break;
-            case 'boolean':
-                // No input needed
                 break;
         }
     }
 
     async function onClickSubmitAddVariantAttribute() {
-        const type = document.getElementById('attributeSelect').value;
+        const selectedAttributeId = document.getElementById('selectedAttributeId').value?.trim();
         let value = null;
 
-        if ((selectedAttributeId ?? "").trim() === "") {
-            alert("Please select an attribute!")
-            return
+        if (!selectedAttributeId) {
+            alert("Please select an attribute!");
+            return;
         }
 
-        const selectedAttribute = allAttributes.find((attribute) => parseInt(attribute.attributeId) === parseInt(selectedAttributeId))
+        const selectedAttribute = allAttributes.find((attribute) => parseInt(attribute.attributeId) === parseInt(selectedAttributeId));
+        if (!selectedAttribute) {
+            alert("Invalid attribute selected!");
+            return;
+        }
 
         switch (selectedAttribute.type) {
             case 'text':
                 value = document.getElementById('textInput').value.trim();
+                if (!value) {
+                    alert("Text value required.");
+                    return;
+                }
                 break;
+
             case 'number':
-                value = document.getElementById('numberInput').value.trim();
+                const num = document.getElementById('numberInput').value.trim();
+                if (!num || isNaN(num)) {
+                    alert("Valid number required.");
+                    return;
+                }
+                value = parseFloat(num);
                 break;
+
+            case 'boolean':
+                value = document.getElementById('booleanInput').checked;
+                break;
+
+            case 'select':
+                value = document.getElementById('selectInput').value;
+                if (!value) {
+                    alert("Please select an option.");
+                    return;
+                }
+                break;
+
+            case 'multi_select':
+                const selectedOptions = Array.from(document.getElementById('multiSelectInput').selectedOptions);
+                value = selectedOptions.map(opt => opt.value);
+                if (value.length === 0) {
+                    alert("Please select at least one option.");
+                    return;
+                }
+                value = JSON.stringify(value); // Optional: store as JSON
+                break;
+
             case 'dimension':
                 const width = document.getElementById('dimensionWidth').value.trim();
                 const height = document.getElementById('dimensionHeight').value.trim();
+                if (!width || !height) {
+                    alert("Both width and height required.");
+                    return;
+                }
                 value = JSON.stringify({
                     width,
                     height
-                })
+                });
                 break;
+
+            default:
+                alert("Unsupported attribute type.");
+                return;
+        }
+
+        // Get optional additional price
+        const additionalPriceInput = document.getElementById('additionalPrice').value.trim();
+        let additionalPrice = null;
+        if (additionalPriceInput !== "") {
+            if (isNaN(additionalPriceInput) || parseFloat(additionalPriceInput) < 0) {
+                return toastr.error("Additional price must be a positive number.");
+            }
+            additionalPrice = parseFloat(additionalPriceInput);
         }
 
         const payload = {
             attributeId: selectedAttributeId,
             variantId,
-            value
+            value,
+            ...(additionalPrice !== null && {
+                additionalPrice
+            }) // only include if set
         };
 
         await postAPICall({
@@ -786,18 +941,17 @@
                 const {
                     success,
                     message
-                } = response
-
+                } = response;
                 if (success) {
-                    toastr.success(response.message);
-                    fetchVariantAttributes()
+                    toastr.success(message);
+                    fetchVariantAttributes();
                     $('#modal-add-attribute').modal('hide');
                 } else {
-                    toastr.error(response.message);
+                    toastr.error(message);
                 }
-                loader.hide()
+                loader.hide();
             }
-        })
+        });
     }
 
     async function updateVariantAttributeStatus(variantAttributeId, status) {

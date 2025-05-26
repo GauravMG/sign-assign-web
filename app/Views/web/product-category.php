@@ -100,26 +100,27 @@
                 </div>
             </div>
             <div class="right-area">
-                <div class="dropdown-area">
+                <!-- <div class="dropdown-area">
                     <p>Sort By</p>
                     <div class="custom-select" id="customSelect">
                         <div class="selected">Select your Product</div>
                         <div class="options" id="sortBySubCategoriesContainer">
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="main-filter-area">
                     <div class="filters-inner">
                         <div class="filter-dropdown-area">
                             <h6>Category</h6>
                             <span>
-                                <i class="fa-solid fa-caret-down"></i>
+                                <i class="fa-solid fa-caret-up"></i>
                             </span>
                         </div>
                         <ul id="filterBySubCategoriesContainer">
                         </ul>
                     </div>
-                    <div class="filters-inner">
+                    <div id="dynamicAttributeFilters"></div>
+                    <!-- <div class="filters-inner">
                         <div class="filter-dropdown-area">
                             <h6 class="if-inactive">Use</h6>
                             <span>
@@ -279,7 +280,7 @@
                                 <a href="#">Banner Stand</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

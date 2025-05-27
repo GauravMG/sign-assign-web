@@ -133,7 +133,7 @@ async function fetchProductVariants() {
                     }
 
                     if ((coverImage ?? "").trim() === "") {
-                        coverImage = `${baseUrl}images/logo.png`
+                        coverImage = `${baseUrl}images/no-preview-available.jpg`
                     }
 
                     html += `<div class="card variant-card" id="variantSelection_${variant.variantId}">

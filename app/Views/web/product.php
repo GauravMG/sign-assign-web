@@ -182,7 +182,7 @@
                     </div> -->
                 </div>
                 <div class="accordion mt-2" id="accordionExample">
-                    <div class="accordion-item mt-2">
+                    <div class="accordion-item mt-2 d-none" id="accordionSection1Container">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="section1Title">
@@ -194,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item mt-2">
+                    <div class="accordion-item mt-2 d-none" id="accordionSection2Container">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="section2Title">
@@ -206,7 +206,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item mt-2">
+                    <div class="accordion-item mt-2 d-none" id="accordionSection3Container">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="section3Title">

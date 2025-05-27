@@ -1,4 +1,5 @@
 let productId = null
+let variants = []
 
 $(document).ready(function () {
     $(".detail-page-area .owl-carousel").owlCarousel({
@@ -13,6 +14,24 @@ $(document).ready(function () {
 
     fetchProducts()
 })
+
+function reloadOwlCarousel($carousel, items) {
+    $carousel.trigger('destroy.owl.carousel').html('');
+
+    items.forEach(item => {
+        $carousel.append(item);
+    });
+
+    $carousel.owlCarousel({
+        loop: false,
+        margin: 15,
+        responsiveClass: true,
+        navText: ["<img src='../images/arrow-left-long-solid (1).svg' />", "<img src='../images/arrow-right-long-solid (1).svg' />"],
+        dots: false,
+        nav: true,
+        items: 4,
+    });
+}
 
 async function fetchProducts() {
     await postAPICall({
@@ -53,10 +72,102 @@ async function fetchProducts() {
                 document.getElementById("nav-home").innerHTML = data.description
                 document.getElementById("nav-profile").innerHTML = data.specification
 
+                fetchProductVariants()
                 fetchProductFAQs()
             }
         }
     })
+}
+
+async function fetchProductVariants() {
+    await postAPICall({
+        endPoint: "/variant/list",
+        payload: JSON.stringify({
+            "filter": {
+                productId: Number(productId)
+            },
+            "range": {
+                all: true
+            },
+            "sort": [{
+                "orderBy": "price",
+                "orderDir": "asc"
+            }],
+            linkedEntities: true
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response
+
+            if (success) {
+                variants = data ?? []
+                let html = ``
+                let firstVariantId = null
+
+                for (let variant of data) {
+                    if (!firstVariantId) {
+                        firstVariantId = variant.variantId
+                    }
+
+                    let coverImage = null
+                    let price = null
+
+                    if ((variant.price ?? "").toString() !== "") {
+                        price = variant.price
+                    }
+
+                    for (let k = 0; k < variant.variantMedias?.length; k++) {
+                        if (variant.variantMedias[k].mediaType.indexOf("image") >= 0 && (variant.variantMedias[k].mediaUrl ?? "").trim() !== "") {
+                            coverImage = variant.variantMedias[k].mediaUrl
+                            break
+                        }
+                    }
+
+                    if ((coverImage ?? "").trim() === "") {
+                        coverImage = `${baseUrl}images/logo.png`
+                    }
+
+                    html += `<div class="card variant-card" id="variantSelection_${variant.variantId}">
+                        <img src="${coverImage}" class="card-img-top variant-image" alt="${variant.name}">
+                        <div class="mt-2">
+                            <h6 class="card-title mb-1">${variant.name}</h6>
+                            <p class="card-text text-muted mb-2">${price ? `$${price}` : "-"}</p>
+                            <button class="btn btn-outline-primary btn-sm w-100" onclick="onSelectProductVariant(${variant.variantId})">Select</button>
+                        </div>
+                    </div>`
+                }
+
+                if (data?.length) {
+                    document.getElementById("selectionVariantsContainer").classList.remove("d-none")
+                }
+
+                document.getElementById("selectionVariants").innerHTML = html
+
+                onSelectProductVariant(firstVariantId)
+            }
+        }
+    })
+}
+
+function onSelectProductVariant(variantId) {
+    const selectedVariant = variants.find((variant) => Number(variant.variantId) === Number(variantId))
+
+    let htmlImagesSlider = []
+    let firstImage = null
+
+    for (let media of selectedVariant.variantMedias) {
+        if (!firstImage) {
+            firstImage = media
+        }
+
+        htmlImagesSlider.push(`<div class="inner-card">
+            <img src="${media.mediaUrl}" alt="${selectedVariant.name}">
+        </div>`)
+    }
+
+    $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${baseUrl}images/no-preview-available.jpg`)
+
+    reloadOwlCarousel($("#owl-example"), htmlImagesSlider)
 }
 
 async function fetchProductFAQs() {

@@ -9,10 +9,20 @@
         height: 70px;
     }
 
+    .variant-card {
+        min-width: 120px;
+        padding: 5px;
+    }
+
     .variant-image {
-        width: 100%;
-        height: 180px;
+        width: 120px;
+        height: 60px;
         object-fit: fill;
+    }
+
+    .detail-page-area .owl-carousel .inner-card img {
+        width: 120px;
+        height: 100px;
     }
 </style>
 <?= $this->endSection(); ?>
@@ -112,26 +122,8 @@
     <div class="container-fluid">
         <div class="detail-flex-inner">
             <div class="slider-area">
-                <img src="<?= base_url('images/detail-page-slider.jpg') . '?t=' . time(); ?>" alt="">
+                <img id="productCoverImage" src="" alt="">
                 <div id="owl-example" class="owl-carousel owl-theme">
-                    <div class="inner-card">
-                        <img src="<?= base_url('images/detail-page-slider.jpg') . '?t=' . time(); ?>" alt="">
-                    </div>
-                    <div class="inner-card">
-                        <img src="<?= base_url('images/detail-page-slider.jpg') . '?t=' . time(); ?>" alt="">
-                    </div>
-                    <div class="inner-card">
-                        <img src="<?= base_url('images/detail-page-slider.jpg') . '?t=' . time(); ?>" alt="">
-                    </div>
-                    <div class="inner-card">
-                        <img src="<?= base_url('images/detail-page-slider.jpg') . '?t=' . time(); ?>" alt="">
-                    </div>
-                    <div class="inner-card">
-                        <img src="<?= base_url('images/detail-page-slider.jpg') . '?t=' . time(); ?>" alt="">
-                    </div>
-                    <div class="inner-card">
-                        <img src="<?= base_url('images/detail-page-slider.jpg') . '?t=' . time(); ?>" alt="">
-                    </div>
                 </div>
             </div>
             <div class="product-detail-area">
@@ -240,7 +232,7 @@
                         <label class="btn btn-outline-primary" for="variant3">Mesh Banner</label>
                     </div>
                 </div> -->
-                <div class="main-desc mt-2 p-4">
+                <div class="main-desc mt-2 p-4 d-none" id="selectionVariantsContainer">
                     <h5 class="mb-3">Choose a Variant:</h5>
                     <div class="d-flex overflow-auto flex-nowrap gap-3 pb-2" id="selectionVariants">
                     </div>

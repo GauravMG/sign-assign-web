@@ -1,5 +1,13 @@
 <?= $this->extend('web/web_template'); ?>
 
+<?= $this->section('pageStyles'); ?>
+<style>
+    #owlSection3 img {
+        height: 220px;
+    }
+</style>
+<?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div id="carouselExampleSlidesOnly" class="carousel slide hero-section" data-bs-ride="carousel">
     <div class="carousel-inner" id="coverBannerContainer">

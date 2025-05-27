@@ -161,6 +161,10 @@ async function fetchProductVariants() {
 function onSelectProductVariant(variantId) {
     const selectedVariant = variants.find((variant) => Number(variant.variantId) === Number(variantId))
 
+    if (!selectedVariant) {
+        return false
+    }
+
     let htmlImagesSlider = []
     let firstImage = null
 

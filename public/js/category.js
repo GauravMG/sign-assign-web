@@ -268,8 +268,8 @@ async function renderAttributeFilters() {
                                 <h6>${attr.name}</h6>
                                 <span><i class="fa-solid fa-caret-down"></i></span>
                             </div>
-                            <div class="attribute-input d-none">${inputHTML}</div>
-                            <ul></ul>
+                            <!-- <div class="attribute-input d-none">${inputHTML}</div> -->
+                            <ul>${inputHTML}</ul>
                         `;
 
                         container.appendChild(wrapper);

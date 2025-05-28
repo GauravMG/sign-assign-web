@@ -208,58 +208,16 @@ async function renderAttributeFilters() {
 
                     let inputHTML = '';
                     switch (attr.type) {
-                        // case 'text':
-                        // case 'textarea':
-                        //     inputHTML = `
-                        //         <input type="text" name="${attr.attributeId}" placeholder="Enter ${attr.name}" 
-                        //             oninput="onFilterAttribute('${attr.attributeId}', this.value)" />
-                        //     `;
-                        //     break;
-
-                        // case 'number':
-                        //     inputHTML = `
-                        //         <input type="number" name="${attr.attributeId}" placeholder="Enter ${attr.name}" 
-                        //             oninput="onFilterAttribute('${attr.attributeId}', this.value)" />
-                        //     `;
-                        //     break;
-
                         case 'select':
-                            // inputHTML = `
-                            //     <select onchange="onFilterAttribute('${attr.attributeId}', this.value)">
-                            //         <option value="">Select ${attr.name}</option>
-                            //         ${attr.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
-                            //     </select>
-                            // `;
+                        case 'multi_select':
+                        case 'checkbox':
+                        case 'radio':
+                        default:
                             attr.options.forEach((opt) => {
                                 inputHTML += `<li style="cursor: pointer;">
                                     <a onclick="onFilterAttribute(${attr.attributeId}, '${opt}')">${opt}</a>
                                 </li>`
                             })
-                            break;
-
-                        case 'multi_select':
-                        case 'checkbox':
-                            inputHTML = attr.options.map(opt => `
-                                <label>
-                                    <input type="checkbox" 
-                                        onchange="onCheckboxFilter('${attr.attributeId}', '${opt}', this.checked)" />
-                                    ${opt}
-                                </label>
-                            `).join('<br>');
-                            break;
-
-                        case 'radio':
-                            inputHTML = attr.options.map(opt => `
-                                <label>
-                                    <input type="radio" name="${attr.attributeId}" 
-                                        value="${opt}" onchange="onFilterAttribute('${attr.attributeId}', '${opt}')" />
-                                    ${opt}
-                                </label>
-                            `).join('<br>');
-                            break;
-
-                        default:
-                        // inputHTML = `<p>Unsupported type: ${attr.type}</p>`;
                     }
 
                     if ((inputHTML ?? "").trim() !== "") {
@@ -268,7 +226,6 @@ async function renderAttributeFilters() {
                                 <h6>${attr.name}</h6>
                                 <span><i class="fa-solid fa-caret-down"></i></span>
                             </div>
-                            <!-- <div class="attribute-input d-none">${inputHTML}</div> -->
                             <ul>${inputHTML}</ul>
                         `;
 
@@ -304,8 +261,23 @@ function bindFilterToggle() {
 }
 
 function onFilterAttribute(attributeId, value) {
-    selectedAttributeFilters[attributeId] = value;
-    fetchProducts();
+    if (!selectedAttributeFilters[attributeId]) {
+        selectedAttributeFilters[attributeId] = []
+    }
+
+    const link = event.target;
+
+    // Toggle active class
+    link.classList.toggle("active");
+
+    const idIndex = selectedAttributeFilters[attributeId].indexOf(value);
+
+    if (idIndex === -1) {
+        selectedAttributeFilters[attributeId].push(value);
+    } else {
+        selectedAttributeFilters[attributeId].splice(idIndex, 1);
+    }
+    fetchProducts()
 }
 
 function onCheckboxFilter(attributeId, value, isChecked) {

@@ -207,7 +207,6 @@ async function renderAttributeFilters() {
                     wrapper.className = 'filters-inner';
 
                     let inputHTML = '';
-                    console.log(`attr.type`, attr.type)
                     switch (attr.type) {
                         case 'select':
                         case 'multi_select':

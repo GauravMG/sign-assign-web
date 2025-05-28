@@ -207,17 +207,20 @@ async function renderAttributeFilters() {
                     wrapper.className = 'filters-inner';
 
                     let inputHTML = '';
+                    console.log(`attr.type`, attr.type)
                     switch (attr.type) {
                         case 'select':
                         case 'multi_select':
                         case 'checkbox':
                         case 'radio':
-                        default:
                             attr.options.forEach((opt) => {
                                 inputHTML += `<li style="cursor: pointer;">
                                     <a onclick="onFilterAttribute(${attr.attributeId}, '${opt}')">${opt}</a>
                                 </li>`
                             })
+                            break
+
+                        default:
                     }
 
                     if ((inputHTML ?? "").trim() !== "") {

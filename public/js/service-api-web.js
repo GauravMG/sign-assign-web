@@ -94,15 +94,17 @@ async function refreshToken() {
 
 function onClickLogout() {
     console.log(`called onClickLogout`)
-    postAPICall({
-        endPoint: "/auth/logout",
-        callbackSuccess: (response) => {
-            if (response.success) {
-                localStorage.removeItem("jwtTokenUser")
-                localStorage.removeItem("userDataUser")
-
-                window.location.href = "/"
+    if ((localStorage.getItem("jwtTokenUser") ?? "").trim() !== "") {
+        postAPICall({
+            endPoint: "/auth/logout",
+            callbackSuccess: (response) => {
+                if (response.success) {
+                    localStorage.removeItem("jwtTokenUser")
+                    localStorage.removeItem("userDataUser")
+    
+                    window.location.href = "/"
+                }
             }
-        }
-    })
+        })
+    }
 }

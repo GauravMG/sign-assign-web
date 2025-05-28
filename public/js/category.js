@@ -224,12 +224,17 @@ async function renderAttributeFilters() {
                         //     break;
 
                         case 'select':
-                            inputHTML = `
-                                <select onchange="onFilterAttribute('${attr.attributeId}', this.value)">
-                                    <option value="">Select ${attr.name}</option>
-                                    ${attr.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
-                                </select>
-                            `;
+                            // inputHTML = `
+                            //     <select onchange="onFilterAttribute('${attr.attributeId}', this.value)">
+                            //         <option value="">Select ${attr.name}</option>
+                            //         ${attr.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                            //     </select>
+                            // `;
+                            attr.options.forEach((opt) => {
+                                inputHTML += `<li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(${attr.attributeId}, '${opt}')">${opt}</a>
+                                </li>`
+                            })
                             break;
 
                         case 'multi_select':
@@ -264,6 +269,7 @@ async function renderAttributeFilters() {
                                 <span><i class="fa-solid fa-caret-down"></i></span>
                             </div>
                             <div class="attribute-input d-none">${inputHTML}</div>
+                            <ul></ul>
                         `;
 
                         container.appendChild(wrapper);

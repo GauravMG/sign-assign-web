@@ -82,6 +82,7 @@
 
     <script>
         const baseUrl = '<?= base_url(); ?>'
+        const baseUrlUserDashboard = '<?= base_url(); ?>'.replace(":8080", ":5173")
     </script>
 
     <script src="<?= base_url('js/service-api-web.js') . '?t=' . time(); ?>"></script>

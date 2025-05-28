@@ -1,3 +1,14 @@
+const params = new URLSearchParams(window.location.search);
+const queryParams = {};
+
+for (const [key, value] of params.entries()) {
+    queryParams[key] = value;
+}
+
+if (queryParams?.event === "logout") {
+    onClickLogout()
+}
+
 $(document).ready(function () {
     fetchProductCategories()
 
@@ -5,7 +16,12 @@ $(document).ready(function () {
     <a href="#" class="login-button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>`
 
     if (localStorage.getItem("jwtTokenUser")) {
-        htmlNavbarAuthOptionsContainer = `<a style="cursor: pointer;" href="/user-dashboard" class="profile-icon" title="Profile">
+        const token = localStorage.getItem('jwtTokenUser');
+        const user = localStorage.getItem('userDataUser');
+        const encodedUser = encodeURIComponent(user);
+        const userDashboardLink = `${baseUrlUserDashboard}user-dashboard?token=${token}&user=${encodedUser}`;
+
+        htmlNavbarAuthOptionsContainer = `<a style="cursor: pointer;" href="${userDashboardLink}" class="profile-icon" title="Profile">
             <i class="fi fi-rs-user-gear"></i>
         </a>
         <a style="cursor: pointer;" onclick="onClickLogout()" class="logout-icon" title="Logout" onclick="logout()">
@@ -289,9 +305,12 @@ async function verifyAndSetPassword() {
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
-            const { success, message } = response
+            const { success, message, data, jwtToken } = response
 
             if (success) {
+                localStorage.setItem("jwtTokenUser", jwtToken)
+                localStorage.setItem("userDataUser", JSON.stringify(data))
+
                 toastr.success(message);
 
                 setTimeout(() => {

@@ -24,6 +24,11 @@
         width: 120px;
         height: 100px;
     }
+
+    .option-card.selected {
+		border-color: #007bff;
+		background-color: #e7f1ff;
+	}
 </style>
 <?= $this->endSection(); ?>
 
@@ -155,6 +160,7 @@
                         </p>
                     </div>
                 </div>
+                <div id="attributesContainer"></div>
                 <div class="facility-grid mt-2">
                     <div class="facility-card">
                         <span>
@@ -237,6 +243,7 @@
                     <div class="d-flex overflow-auto flex-nowrap gap-3 pb-2" id="selectionVariants">
                     </div>
                 </div>
+                <div id="attributes"></div>
 
             </div>
         </div>

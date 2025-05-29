@@ -181,6 +181,87 @@ function onSelectProductVariant(variantId) {
     $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${baseUrl}images/no-preview-available.jpg`)
 
     reloadOwlCarousel($("#owl-example"), htmlImagesSlider)
+
+    // Group attributes by attribute name
+    const groupedAttributes = {};
+
+    selectedVariant.variantAttributes.forEach((item) => {
+        const attrName = item.attribute.name;
+        if (!groupedAttributes[attrName]) {
+            groupedAttributes[attrName] = [];
+        }
+        groupedAttributes[attrName].push(item);
+    });
+
+    // Create and inject HTML
+    const mainDesc = document.querySelector('.main-desc');
+
+    // Create container to insert after .main-desc
+    const container = document.createElement('div');
+    container.classList.add('attribute-options');
+
+    Object.entries(groupedAttributes).forEach(([groupName, items]) => {
+        const groupDiv = document.createElement('div');
+        groupDiv.classList.add('attribute-group');
+        groupDiv.classList.add('main-desc');
+        groupDiv.classList.add('mt-2');
+        groupDiv.classList.add('p-4');
+
+        // Header
+        const header = document.createElement('h5');
+        header.textContent = groupName;
+        groupDiv.appendChild(header);
+
+        // Option cards
+        const optionWrapper = document.createElement('div');
+        optionWrapper.classList.add('option-wrapper');
+        optionWrapper.style.display = 'flex';
+        optionWrapper.style.flexWrap = 'wrap';
+        optionWrapper.style.gap = '10px';
+
+        items.forEach((item) => {
+            const card = document.createElement('div');
+            card.classList.add('option-card');
+            card.style.border = '1px solid #ccc';
+            card.style.borderRadius = '6px';
+            card.style.padding = '8px 12px';
+            card.style.cursor = 'pointer';
+            card.style.userSelect = 'none';
+            card.style.transition = 'all 0.3s';
+            card.style.marginRight = '10px';
+            card.style.minWidth = '100px';
+            card.style.textAlign = 'center';
+
+            // Value
+            const valueEl = document.createElement('div');
+            valueEl.textContent = item.value;
+            valueEl.style.fontWeight = 'bold';
+
+            // Additional price
+            const priceEl = document.createElement('div');
+            priceEl.textContent = item.additionalPrice && item.additionalPrice !== "0" ? `+ $${item.additionalPrice}` : '';
+            priceEl.style.fontSize = '12px';
+            priceEl.style.color = '#777';
+
+            card.appendChild(valueEl);
+            card.appendChild(priceEl);
+
+            card.addEventListener('click', () => {
+                optionWrapper.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+                card.classList.add('selected');
+            });
+
+            optionWrapper.appendChild(card);
+        });
+
+        groupDiv.appendChild(optionWrapper);
+        container.appendChild(groupDiv);
+    });
+
+    // Insert container after .main-desc
+    // mainDesc.parentNode.insertBefore(container, mainDesc.nextSibling);
+    document.getElementById("attributesContainer").innerHTML = ""
+    document.getElementById("attributesContainer").append(container)
 }
 
 async function fetchProductFAQs() {

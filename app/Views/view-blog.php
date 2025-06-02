@@ -101,7 +101,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="medias-tab" data-toggle="pill"
                             href="#medias" role="tab"
-                            aria-controls="medias" aria-selected="false">Images</a>
+                            aria-controls="medias" aria-selected="false">Media</a>
                     </li>
                 </ul>
             </div>
@@ -136,17 +136,17 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>All Images</h4>
+                                    <h4>All Media</h4>
                                 </div>
 
                                 <div class="col-md-6 mb-4 text-right">
                                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-media">
-                                        Add New Images
+                                        Add New Media Item
                                     </button>
                                 </div>
                             </div>
 
-                            <h5 class="mb-2"><small><i>Please drag-n-drop the cards to arrange sequence of images. The images will show in the same sequence on website.</i></small>
+                            <h5 class="mb-2"><small><i>Please drag-n-drop the cards to arrange sequence of media items. The items will show in the same sequence on website.</i></small>
                             </h5>
                             <div id="mediaList" class="media-container">
                             </div>
@@ -240,10 +240,26 @@
                 const previewElement = document.createElement("div");
                 previewElement.className = "position-relative m-2";
 
-                previewElement.innerHTML = `
-                    <img src="${e.target.result}" style="width:100px; height:100px; object-fit:cover;" class="border rounded">
-                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0" style="right: 0; top: 0;" onclick="removeImage(${index})">×</button>
+                const isImage = file.type.startsWith("image/");
+                const isVideo = file.type.startsWith("video/");
+
+                let mediaPreview = "";
+
+                if (isImage) {
+                    mediaPreview = `<img src="${e.target.result}" style="width:100px; height:100px; object-fit:cover;" class="border rounded">`;
+                } else if (isVideo) {
+                    mediaPreview = `
+                    <video width="100" height="100" controls class="border rounded" style="object-fit:cover;">
+                        <source src="${e.target.result}" type="${file.type}">
+                        Your browser does not support the video tag.
+                    </video>
                 `;
+                }
+
+                previewElement.innerHTML = `
+                ${mediaPreview}
+                <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0" style="right: 0; top: 0;" onclick="removeImage(${index})">×</button>
+            `;
 
                 previewContainer.appendChild(previewElement);
             };

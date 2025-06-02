@@ -284,4 +284,50 @@ class AdminController extends BaseController
 
         return view('print-invoice', $data);
     }
+
+    public function blogs(): string
+    {
+        $data = [
+            'title' => 'Blogs',
+            'page_heading' => 'Blogs'
+        ];
+
+        return view('blogs', $data);
+    }
+
+    public function addBlog(): string
+    {
+        $data = [
+            'title' => 'Add Blog',
+            'page_heading' => 'Add Blog'
+        ];
+
+        return view('add-blog', $data);
+    }
+
+    public function updateBlog($blogId): string
+    {
+        $data = [
+            'title' => 'Update Blog',
+            'page_heading' => 'Update Blog',
+            'data' => [
+                'blogId' => $blogId
+            ]
+        ];
+
+        return view('add-blog', $data);
+    }
+
+    public function viewBlog($blogId): string
+    {
+        $data = [
+            'title' => 'Blog Details',
+            'page_heading' => 'Blog Details',
+            'data' => [
+                'blogId' => $blogId
+            ]
+        ];
+
+        return view('view-blog', $data);
+    }
 }

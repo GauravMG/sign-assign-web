@@ -395,7 +395,7 @@ async function fetchBlogs() {
                             <h6>by signassi | ${formatDateWithoutTime(data[i].createdAt) ?? "Nov 11, 2024"} | Signage</h6>
                             <h5>${data[i].title}</h5>
                             <p>${getTextFromHTML(data[i].description, 60)}</p>
-                            <a href="/blog/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                            <a href="/blogs/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
                         </div>
                     </div>`);
                 }

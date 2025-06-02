@@ -295,7 +295,7 @@
         <div id="owlLearningCenter" class="owl-carousel owl-theme">
         </div>
         <div class="view-all-btn-area">
-            <a href="#">View All <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+            <a href="/blogs">View All <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
         </div>
     </div>
 </div>

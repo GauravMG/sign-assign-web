@@ -42,7 +42,7 @@
             <div class="menu-links">
                 <ul>
                     <li>
-                        <a href="#">About Us</a>
+                        <a href="/about-us">About Us</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">Service</a>
@@ -58,7 +58,7 @@
                         <a href="#">Design Lab</a>
                     </li>
                     <li>
-                        <a href="#">Learning Center</a>
+                        <a href="/blogs">Learning Center</a>
                     </li>
                     <li>
                         <a href="#">Contact Us</a>

@@ -156,7 +156,7 @@ async function fetchBanners() {
 
                     if (isVideo) {
                         html += `
-                            <video class="d-block w-100" autoplay muted loop playsinline>
+                            <video class="d-block w-100" muted loop playsinline>
                                 <source src="${mediaUrl}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -385,7 +385,7 @@ async function fetchBlogs() {
                     html.push(`<div class="inner-card">
                         <div class="p-3 m-0">` +
                         (isVideo
-                            ? `<video class="w-100 rounded" autoplay muted loop playsinline>
+                            ? `<video class="w-100 rounded" muted loop playsinline>
                                      <source src="${mediaUrl}" type="video/mp4">
                                      Your browser does not support the video tag.
                                    </video>`

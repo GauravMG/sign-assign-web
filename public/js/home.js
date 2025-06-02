@@ -37,32 +37,11 @@ $(document).ready(function () {
         items: 1,
     });
 
-    $(".blog-area .owl-carousel").owlCarousel({
-        loop: false,
-        margin: 15,
-        responsiveClass: true,
-        navText: ["<img src='../images/arrow-left-long-solid (1).svg' />", "<img src='../images/arrow-right-long-solid (1).svg' />"],
-        dots: false,
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            600: {
-                items: 2,
-                nav: false
-            },
-            1000: {
-                items: 3,
-                nav: true,
-            }
-        }
-    });
-
     Promise.all([
         fetchBanners(),
         fetchCuratedBestsellers(),
-        fetchProducts()
+        fetchProducts(),
+        fetchBlogs()
     ])
 })
 
@@ -92,6 +71,36 @@ function reloadOwlCarousel($carousel, items) {
     const $container = $carousel.closest('.container-fluid');
     $container.find('.owl-prev').off().click(() => $carousel.trigger('prev.owl.carousel'));
     $container.find('.owl-next').off().click(() => $carousel.trigger('next.owl.carousel'));
+}
+
+function reloadOwlCarouselBlog($carousel, items) {
+    $carousel.trigger('destroy.owl.carousel').html('');
+
+    items.forEach(item => {
+        $carousel.append(item);
+    });
+
+    $carousel.owlCarousel({
+        loop: false,
+        margin: 15,
+        responsiveClass: true,
+        navText: ["<img src='../images/arrow-left-long-solid (1).svg' />", "<img src='../images/arrow-right-long-solid (1).svg' />"],
+        dots: false,
+        responsive: {
+            0: {
+                items: 1,
+                nav: false
+            },
+            600: {
+                items: 2,
+                nav: false
+            },
+            1000: {
+                items: 3,
+                nav: true,
+            }
+        }
+    });
 }
 
 function updateNavButtons(event) {
@@ -306,6 +315,61 @@ async function fetchProducts() {
                 reloadOwlCarousel($("#owlSection3"), htmlSection3)
                 reloadOwlCarousel($("#owlSection4"), htmlSection4)
                 reloadOwlCarousel($("#owlSection5"), htmlSection5)
+            }
+        }
+    })
+}
+
+async function fetchBlogs() {
+    await postAPICall({
+        endPoint: "/blog/list",
+        payload: JSON.stringify({
+            "filter": {},
+            "range": {
+                "page": 1,
+                pageSize: 10
+            },
+            "sort": [{
+                "orderBy": "createdAt",
+                "orderDir": "desc"
+            }],
+            linkedEntities: true
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response
+
+            if (success) {
+                let html = []
+
+                for (let i = 0; i < data?.length; i++) {
+                    let coverImage = null
+
+                    for (let k = 0; k < data[i]?.blogMedias?.length; k++) {
+                        if (data[i].blogMedias[k].mediaType.indexOf("image") >= 0 && (data[i].blogMedias[k].mediaUrl ?? "").trim() !== "") {
+                            coverImage = data[i].blogMedias[k].mediaUrl
+                            break
+                        }
+                    }
+
+                    if ((coverImage ?? "").trim() === "") {
+                        coverImage = `${baseUrl}images/no-preview-available.jpg`
+                    }
+
+                    html.push(`<div class="inner-card">
+                        <div class="p-3 m-0">
+                            <img src="${coverImage}" alt="${data[i].title}">
+                        </div>
+                        <div class="px-3 mt-0">
+                            <h6>by signassi | ${formatDateWithoutTime(data[i].createdAt) ?? "Nov 11, 2024"} | Signage</h6>
+                            <h5>${data[i].title}</h5>
+                            <p>${getTextFromHTML(data[i].description, 60)}</p>
+                            <a href="/blog/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                        </div>
+                    </div>`)
+                }
+
+                reloadOwlCarouselBlog($("#owlLearningCenter"), html)
             }
         }
     })

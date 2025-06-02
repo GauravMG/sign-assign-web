@@ -132,32 +132,46 @@ async function fetchBanners() {
     await postAPICall({
         endPoint: "/banner/list",
         payload: JSON.stringify({
-            "filter": {},
-            "range": {
+            filter: {},
+            range: {
                 all: true
             },
-            "sort": [{
-                "orderBy": "sequenceNumber",
-                "orderDir": "asc"
+            sort: [{
+                orderBy: "sequenceNumber",
+                orderDir: "asc"
             }]
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
-            const { success, message, data } = response
+            const { success, data } = response;
 
             if (success) {
-                let html = ""
+                let html = "";
 
                 for (let i = 0; i < data?.length; i++) {
-                    html += `<div class="carousel-item${i === 0 ? " active" : ""}">
-                        <img src="${data[i].mediaUrl}" class="d-block w-100" alt="${data[i].name}">
-                    </div>`
+                    const mediaUrl = data[i].mediaUrl;
+                    const isVideo = /\.(mp4|webm|ogg)$/i.test(mediaUrl); // Simple extension check
+
+                    html += `<div class="carousel-item${i === 0 ? " active" : ""}">`;
+
+                    if (isVideo) {
+                        html += `
+                            <video class="d-block w-100" autoplay muted loop playsinline>
+                                <source src="${mediaUrl}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        `;
+                    } else {
+                        html += `<img src="${mediaUrl}" class="d-block w-100" alt="${data[i].name}">`;
+                    }
+
+                    html += `</div>`;
                 }
 
-                document.getElementById("coverBannerContainer").innerHTML = html
+                document.getElementById("coverBannerContainer").innerHTML = html;
             }
         }
-    })
+    });
 }
 
 async function fetchCuratedBestsellers() {
@@ -324,53 +338,70 @@ async function fetchBlogs() {
     await postAPICall({
         endPoint: "/blog/list",
         payload: JSON.stringify({
-            "filter": {},
-            "range": {
-                "page": 1,
+            filter: {},
+            range: {
+                page: 1,
                 pageSize: 10
             },
-            "sort": [{
-                "orderBy": "createdAt",
-                "orderDir": "desc"
+            sort: [{
+                orderBy: "createdAt",
+                orderDir: "desc"
             }],
             linkedEntities: true
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
-            const { success, message, data } = response
+            const { success, data } = response;
 
             if (success) {
-                let html = []
+                let html = [];
 
                 for (let i = 0; i < data?.length; i++) {
-                    let coverImage = null
+                    let mediaUrl = "";
+                    let isVideo = false;
 
                     for (let k = 0; k < data[i]?.blogMedias?.length; k++) {
-                        if (data[i].blogMedias[k].mediaType.indexOf("image") >= 0 && (data[i].blogMedias[k].mediaUrl ?? "").trim() !== "") {
-                            coverImage = data[i].blogMedias[k].mediaUrl
+                        const media = data[i].blogMedias[k];
+                        const mediaUrlClean = (media.mediaUrl ?? "").trim();
+
+                        if (mediaUrlClean === "") continue;
+
+                        if (media.mediaType?.indexOf("image") >= 0) {
+                            mediaUrl = mediaUrlClean;
+                            isVideo = false;
+                            break;
+                        } else if (media.mediaType?.indexOf("video") >= 0 && mediaUrl === "") {
+                            mediaUrl = mediaUrlClean;
+                            isVideo = true;
                             break
                         }
                     }
 
-                    if ((coverImage ?? "").trim() === "") {
-                        coverImage = `${baseUrl}images/no-preview-available.jpg`
+                    if (mediaUrl === "") {
+                        mediaUrl = `${baseUrl}images/no-preview-available.jpg`;
+                        isVideo = false;
                     }
 
                     html.push(`<div class="inner-card">
-                        <div class="p-3 m-0">
-                            <img src="${coverImage}" alt="${data[i].title}">
-                        </div>
+                        <div class="p-3 m-0">` +
+                        (isVideo
+                            ? `<video class="w-100 rounded" autoplay muted loop playsinline>
+                                     <source src="${mediaUrl}" type="video/mp4">
+                                     Your browser does not support the video tag.
+                                   </video>`
+                            : `<img src="${mediaUrl}" alt="${data[i].title}" class="w-100 rounded">`) +
+                        `</div>
                         <div class="px-3 mt-0">
                             <h6>by signassi | ${formatDateWithoutTime(data[i].createdAt) ?? "Nov 11, 2024"} | Signage</h6>
                             <h5>${data[i].title}</h5>
                             <p>${getTextFromHTML(data[i].description, 60)}</p>
                             <a href="/blog/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
                         </div>
-                    </div>`)
+                    </div>`);
                 }
 
-                reloadOwlCarouselBlog($("#owlLearningCenter"), html)
+                reloadOwlCarouselBlog($("#owlLearningCenter"), html);
             }
         }
-    })
+    });
 }

@@ -342,16 +342,20 @@ async function fetchProductBulkDiscount() {
                 if (data[0]?.dataJson) {
                     let dataJson = typeof data[0].dataJson === "string" ? JSON.parse(data[0].dataJson) : data[0].dataJson
 
-                    for (let el of dataJson) {
-                        html += `<tr>
-                            <td>${el.minQty} - ${el.maxQty} units</td>
-                            <td><span class="badge bg-secondary">${el.discount}%</span></td>
-                            <!-- <td>No discount</td> -->
-                        </tr>`
+                    if (dataJson?.length) {
+                        document.getElementById("accordionBulkDiscountContainer").classList.remove("d-none")
+
+                        for (let el of dataJson) {
+                            html += `<tr>
+                                <td>${el.minQty} - ${el.maxQty} units</td>
+                                <td><span class="badge bg-secondary">${el.discount}%</span></td>
+                                <!-- <td>No discount</td> -->
+                            </tr>`
+                        }
+
+                        document.getElementById("dtBulkDiscountList").innerHTML = html
                     }
                 }
-
-                document.getElementById("dtBulkDiscountList").innerHTML = html
             }
         }
     })

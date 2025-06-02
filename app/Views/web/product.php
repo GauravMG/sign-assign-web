@@ -187,7 +187,7 @@
                         <p>Hire a Designer</p>
                     </div> -->
                 </div>
-                <div class="accordion mt-2" id="accordionExample">
+                <div class="accordion mt-2 d-none" id="accordionBulkDiscountContainer">
                     <div class="accordion-item mt-2" id="bulkDiscountContainer">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -197,7 +197,7 @@
                             </button>
                         </h2>
                         <div id="collapseOneBulkDiscount" class="accordion-collapse collapse show"
-                            data-bs-parent="#accordionExample">
+                            data-bs-parent="#accordionBulkDiscountContainer">
                             <div class="accordion-body">
                                 <div class="table-responsive">
                                     <table class="table align-middle table-bordered table-hover mb-0 shadow-sm rounded">

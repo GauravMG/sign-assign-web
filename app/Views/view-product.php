@@ -147,7 +147,7 @@
 
                             <div class="row mt-4 pt-3 border-top border-dark">
                                 <div class="col-md-12">
-                                    <h3>Features :</h3>
+                                    <h3>Key Features :</h3>
                                 </div>
                                 <div class="col-md-12 bg-light p-2 border">
                                     <div id="productFeatures"></div>

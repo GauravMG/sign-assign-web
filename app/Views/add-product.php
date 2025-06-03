@@ -60,7 +60,7 @@
                         <textarea class="form-control" id="section3Description"></textarea>
                     </div> -->
                     <div class="form-group">
-                        <label for="features">Features</label>
+                        <label for="features">Key Features</label>
                         <textarea class="form-control" id="features"></textarea>
                     </div>
                     <div class="form-group">

@@ -285,7 +285,7 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-features-tab" data-bs-toggle="tab" data-bs-target="#nav-features"
                     type="button" role="tab" aria-controls="nav-features" aria-selected="true">
-                    Features
+                    Key Features
                 </button>
                 <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
                     type="button" role="tab" aria-controls="nav-home" aria-selected="false">

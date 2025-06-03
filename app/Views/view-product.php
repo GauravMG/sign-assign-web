@@ -147,6 +147,15 @@
 
                             <div class="row mt-4 pt-3 border-top border-dark">
                                 <div class="col-md-12">
+                                    <h3>Features :</h3>
+                                </div>
+                                <div class="col-md-12 bg-light p-2 border">
+                                    <div id="productFeatures"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4 pt-3 border-top border-dark">
+                                <div class="col-md-12">
                                     <h3>Description :</h3>
                                 </div>
                                 <div class="col-md-12 bg-light p-2 border">
@@ -473,6 +482,7 @@
                     // document.getElementById("section3Title").innerText = data.section3Title
                     // document.getElementById("section3Description").innerHTML = data.section3Description
 
+                    document.getElementById("productFeatures").innerHTML = data.features
                     document.getElementById("productDescription").innerHTML = data.description
                     document.getElementById("productSpecification").innerHTML = data.specification
                 }

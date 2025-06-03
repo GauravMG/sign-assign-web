@@ -60,6 +60,10 @@
                         <textarea class="form-control" id="section3Description"></textarea>
                     </div> -->
                     <div class="form-group">
+                        <label for="features">Features</label>
+                        <textarea class="form-control" id="features"></textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description"></textarea>
                     </div>
@@ -89,14 +93,17 @@
         $('#shortDescription').summernote({
             height: 100
         });
-        $('#section1Description').summernote({
-            height: 150
-        });
-        $('#section2Description').summernote({
-            height: 150
-        });
-        $('#section3Description').summernote({
-            height: 150
+        // $('#section1Description').summernote({
+        //     height: 150
+        // });
+        // $('#section2Description').summernote({
+        //     height: 150
+        // });
+        // $('#section3Description').summernote({
+        //     height: 150
+        // });
+        $('#features').summernote({
+            height: 200
         });
         $('#description').summernote({
             height: 350
@@ -193,8 +200,8 @@
                         // document.getElementById("section3Title").value = product.section3Title
                         // $('#section3Description').summernote('code', product.section3Description);
 
+                        $('#features').summernote('code', product.features);
                         $('#description').summernote('code', product.description);
-
                         $('#specification').summernote('code', product.specification);
 
                         document.getElementById("productCategoryId").value = product.productCategoryId;
@@ -216,8 +223,8 @@
             // const section3Title = document.getElementById("section3Title").value.trim()
             // const section3Description = $('#section3Description').summernote('code');
 
+            const features = $('#features').summernote('code');
             const description = $('#description').summernote('code');
-
             const specification = $('#specification').summernote('code');
 
             const productCategoryId = document.getElementById("productCategoryId").value;
@@ -233,6 +240,8 @@
             // if ((section2Description ?? "").trim() === "") return toastr.error("Please enter a valid section 2 description!");
             // if ((section3Title ?? "").trim() === "") return toastr.error("Please enter a valid section 3 title!");
             // if ((section3Description ?? "").trim() === "") return toastr.error("Please enter a valid section 3 description!");
+
+            if ((features ?? "").trim() === "") return toastr.error("Please enter a valid features!");
 
             if ((description ?? "").trim() === "") return toastr.error("Please enter a valid description!");
 
@@ -251,6 +260,7 @@
                 // section2Description,
                 // section3Title,
                 // section3Description,
+                features,
                 description,
                 specification,
                 productCategoryId: Number(productCategoryId),

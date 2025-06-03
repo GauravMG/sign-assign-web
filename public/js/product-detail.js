@@ -78,6 +78,7 @@ async function fetchProducts() {
                 //     document.getElementById("accordionSection3Container").classList.remove("d-none")
                 // }
 
+                document.getElementById("nav-features").innerHTML = data.features
                 document.getElementById("nav-home").innerHTML = data.description
                 document.getElementById("nav-profile").innerHTML = data.specification
 

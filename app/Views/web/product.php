@@ -162,14 +162,19 @@
                 </div>
                 <div id="attributesContainer"></div>
                 <div class="add-to-cart-area mt-2">
-                    <a href="#" class="add-to-card-button">
-                        <span><i class="fa-solid fa-cart-plus"></i></span>
-                        Add to cart
-                    </a>
-                    <a href="#" class="go-to-card-button">
-                        <span><i class="fa-solid fa-cart-plus"></i></span>
-                        Go to cart
-                    </a>
+                    <h5 class="text-end">
+                        <strong>$4,000.00/-</strong>
+                    </h5>
+                    <div class="flex-area">
+                        <a href="#" class="add-to-card-button">
+                            <span><i class="fa-solid fa-cart-plus"></i></span>
+                            Add to cart
+                        </a>
+                        <a href="#" class="go-to-card-button">
+                            <span><i class="fa-solid fa-cart-plus"></i></span>
+                            Go to cart
+                        </a>
+                    </div>
                 </div>
                 <div class="facility-grid mt-2">
                     <div class="facility-card">

@@ -143,6 +143,28 @@ header {
     font-size: 18px;
 }
 
+.desktop-top-menu .right-area .cart-area {
+    position: relative;
+}
+
+.desktop-top-menu .right-area .cart-area span {
+    position: absolute;
+    background-color: #452e73;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.desktop-top-menu .right-area .cart-area i {
+    font-size: 1.254rem;
+    color: #452e73;
+    vertical-align: text-top;
+    cursor: pointer;
+}
 
 .mobile-top-menu {
     display: none;

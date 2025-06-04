@@ -26,9 +26,9 @@
     }
 
     .option-card.selected {
-		border-color: #007bff;
-		background-color: #e7f1ff;
-	}
+        border-color: #007bff;
+        background-color: #e7f1ff;
+    }
 </style>
 <?= $this->endSection(); ?>
 
@@ -161,6 +161,14 @@
                     </div>
                 </div>
                 <div id="attributesContainer"></div>
+                <div class="add-to-cart-area main-desc mt-2">
+                    <a href="#" class="add-to-card-button">
+                        Add to cart
+                    </a>
+                    <a href="#" class="go-to-card-button">
+                        Go to cart
+                    </a>
+                </div>
                 <div class="facility-grid mt-2">
                     <div class="facility-card">
                         <span>

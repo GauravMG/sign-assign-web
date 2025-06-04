@@ -385,7 +385,8 @@
   margin-block: 15px;
 }
 
-.blog-area .owl-carousel .inner-card img {
+.blog-area .owl-carousel .inner-card img,
+.blog-area .owl-carousel .inner-card video {
   border-radius: 10px;
   width: 100%;
   aspect-ratio: 3 / 2;

@@ -156,12 +156,12 @@ async function fetchBanners() {
 
                     if (isVideo) {
                         html += `
-                            <video class="d-block w-100" muted loop playsinline>
+                            <video class="d-block w-100" muted loop playsinline autoplay>
                                 <source src="${mediaUrl}" type="video/mp4">
-                                Your browser does not support the video tag.
                             </video>
                         `;
-                    } else {
+                    }
+                    else {
                         html += `<img src="${mediaUrl}" class="d-block w-100" alt="${data[i].name}">`;
                     }
 

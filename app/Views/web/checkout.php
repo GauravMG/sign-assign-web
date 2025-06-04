@@ -26,7 +26,22 @@
                                 </div>
                             </div>
                             <div class="right-area">
-                                <h4>$2500.00</h4>
+                                <div class="qty-counter">
+                                    <div class="left-area">
+                                        <h4>$2500.00</h4>
+                                    </div>
+                                    <div class="right-area">
+                                        <span class="minus">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </span>
+                                        <span>
+                                            <h6>02</h6>
+                                        </span>
+                                        <span class="plus">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <p>Estimate Delivery</p>
                                 <h6>Web, June 15, 2025</h6>
                             </div>

@@ -39,6 +39,7 @@
     justify-content: space-between;
     background-color: #f7f7f7;
     padding: 15px;
+    cursor: pointer;
 }
 
 .two-col-layout .right-inner-area .order-summary-area .visible-area p {
@@ -207,9 +208,43 @@
     align-items: flex-end
 }
 
-.checkout-page-area .product-detail-area .box-inner .inner .right-area h4 {
+.checkout-page-area .product-detail-area .box-inner .inner .right-area .qty-counter {
+    display: flex;
+    gap: 0.554rem;
+    margin-bottom: 1rem;
+}
+
+.checkout-page-area .product-detail-area .box-inner .inner .right-area .qty-counter .left-area h4 {
     font-size: 1.354rem;
     font-weight: 800;
+    margin-bottom: 0;
+}
+
+.checkout-page-area .product-detail-area .box-inner .inner .right-area .qty-counter .right-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.554rem;
+    background-color: #e0e0e0;
+    width: 80px;
+    padding: 5px 0;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+.checkout-page-area .product-detail-area .box-inner .inner .right-area .qty-counter .right-area span.minus svg {
+    color: #a5a5a5;
+    cursor: pointer;
+}
+
+.checkout-page-area .product-detail-area .box-inner .inner .right-area .qty-counter .right-area span h6 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.checkout-page-area .product-detail-area .box-inner .inner .right-area .qty-counter .right-area span.plus svg {
+    color: #ffa500;
+    cursor: pointer;
 }
 
 .checkout-page-area .product-detail-area .box-inner .inner .right-area p {

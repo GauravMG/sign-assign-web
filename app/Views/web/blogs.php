@@ -10,7 +10,8 @@
     </div>
 </div>
 <div class="container-fluid py-5">
-    <div class="blog-area">
+    <h5>Blogs</h5>
+    <div class="blog-list-area">
         <div class="inner-card">
             <div class="p-3 m-0">
                 <video class="w-100 rounded" muted="" loop="" playsinline="">

@@ -162,15 +162,15 @@
                 </div>
                 <div id="attributesContainer"></div>
                 <div class="add-to-cart-area mt-2">
-                    <h5 class="text-end">
+                    <!-- <h5 class="text-end">
                         <strong>$4,000.00/-</strong>
-                    </h5>
+                    </h5> -->
                     <div class="flex-area">
                         <a href="#" class="add-to-card-button">
                             <span><i class="fa-solid fa-cart-plus"></i></span>
-                            Add to cart
+                            Add to cart (<span>$4,000.00</span>)
                         </a>
-                        <a href="#" class="go-to-card-button">
+                        <a href="/checkout" class="go-to-card-button">
                             <span><i class="fa-solid fa-cart-plus"></i></span>
                             Go to cart
                         </a>

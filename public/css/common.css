@@ -24,6 +24,69 @@ input::placeholder {
     font-weight: 500;
 }
 
+.breadcrumbs-area {
+    background-color: #ffffff;
+    padding: 30px 0;
+}
+
+.breadcrumbs-area .flex-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs-area .flex-inner .right {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.breadcrumbs-area ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 1rem;
+}
+
+.breadcrumbs-area ul li a {
+    color: #848484;
+    text-decoration: none;
+}
+
+.breadcrumbs-area .right a.btn {
+    text-decoration: none;
+    width: max-content;
+    padding: 8px 20px;
+    border-radius: 4px;
+    background-color: #277e30;
+    color: #ffffff;
+}
+
+.breadcrumbs-area .right .price-area div {
+    text-align: center;
+}
+
+.breadcrumbs-area .right .price-area div span {
+    text-decoration: line-through;
+}
+
+.breadcrumbs-area .right .price-area div h6 {
+    margin: 0;
+    color: #277e30;
+    font-weight: 600;
+}
+
+.breadcrumbs-area .right .price-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.breadcrumbs-area .right .price-area div p {
+    margin: 0;
+}
+
 .dropdown-area {
     display: flex;
     align-items: center;

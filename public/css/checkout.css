@@ -1,0 +1,207 @@
+.checkout-page-area{
+    background-color: #f7f7f7;
+}
+
+.checkout-page-area h3{
+    margin-bottom: 3rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #452e73;
+}
+
+.two-col-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.two-col-layout .left-inner-area {
+    flex: 1 1 75%;
+    max-width: 75%;
+}
+
+.checkout-page-area .shopping-cart-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 0.554rem;
+}
+
+
+.checkout-page-area .shopping-cart-strip h6 {
+    font-weight: 700;
+    margin: 0;
+}
+
+.checkout-page-area .shopping-cart-strip h6 span {
+    color: #277e30;
+    font-weight: 500;
+    font-size: 0.854rem;
+    margin-left: 5px;
+}
+
+.checkout-page-area .shopping-cart-strip a {
+    color: #ffa500;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.two-col-layout .right-inner-area {
+    flex: 1 1 25%;
+    max-width: 25%;
+    background-color: #fff;
+    height: 550px;
+    padding: 15px;
+    border-radius: 0.554rem;
+}
+
+.promo-code-area {
+    display: flex;
+}
+
+.promo-code-area input {
+    border-radius: 0;
+    max-width: 75%;
+    flex: 1 1 75%;
+}
+
+.promo-code-area input:focus {
+    box-shadow: none;
+    border-color: #452e73;
+}
+
+.promo-code-area button {
+    max-width: 25%;
+    flex: 1 1 25%;
+    border: 1px solid #d9d9d9;
+}
+
+.two-col-layout .right-inner-area .coupon-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.554rem;
+    color: #ffa50f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.two-col-layout .right-inner-area .order-summary-area h6{
+    margin-block: 1rem;
+}
+
+.two-col-layout .right-inner-area .order-summary-area .visible-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f7f7f7;
+    padding: 15px;
+}
+.two-col-layout .right-inner-area .order-summary-area .visible-area p{
+    margin: 0;
+}
+
+.two-col-layout .right-inner-area .order-summary-area .hidden-area {
+    background-color: #f7f7f7;
+    margin-top: 1rem;
+}
+
+.two-col-layout .right-inner-area .order-summary-area .hidden-area .flex-value{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.two-col-layout .right-inner-area .order-summary-area .hidden-area .subtotal-area{
+    padding: 15px;
+}
+
+.two-col-layout .right-inner-area .order-summary-area .hidden-area .subtotal-area h6 {
+    font-size: 0.654rem;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.two-col-layout .right-inner-area .order-summary-area .hidden-area .total-area{
+    border-top: 1px solid #ccc;
+    padding: 15px;
+}
+
+.two-col-layout .right-inner-area .order-summary-area .hidden-area .total-area p{
+    margin: 0;
+}
+
+.two-col-layout .right-inner-area .order-summary-area .checkout-button {
+    background-color: #ffa73f;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin-top: 1rem;
+}
+
+.checkout-page-area .product-detail-area {
+    padding-block: 2rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+}
+
+.checkout-page-area .product-detail-area {
+    padding-block:2rem;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 2rem
+}
+
+.checkout-page-area .product-detail-area .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.checkout-page-area .product-detail-area .inner .left-area {
+    display: flex;
+    align-items: center;
+    gap: 3rem
+}
+
+.checkout-page-area .product-detail-area .inner .left-area img {
+    width: 30%;
+    border-radius: .554rem
+}
+
+.checkout-page-area .product-detail-area .inner .left-area h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: .254rem
+}
+
+.checkout-page-area .product-detail-area .inner .left-area p {
+    font-size: .854rem;
+    line-height: 1.5rem;
+    margin: 0;
+}
+
+/* .checkout-page-area .product-detail-area .inner .left-area p span {
+} */
+
+.checkout-page-area .product-detail-area .inner .right-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end
+}
+
+.checkout-page-area .product-detail-area .inner .right-area h4 {
+    font-size: 1.354rem;
+    font-weight: 800;
+}
+
+.checkout-page-area .product-detail-area .inner .right-area h6 {
+    font-size: .854rem;
+}

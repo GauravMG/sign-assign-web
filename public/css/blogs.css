@@ -1,0 +1,90 @@
+.subheader-area {
+    background-image: url('https://img.setka.io/clients/D3SuW9_Vtk6NhYeFXfduUy55A4Dromkt/post_images/partners-9-of-the-best-hubspot-blog-templates-for-an-extraordinary-content-experience-cover-1200x630-2022022213055847.png');
+    height: 100%;
+    aspect-ratio: 16/5;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.blog-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.blog-area .inner-card {
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+.blog-area .inner-card>* {
+    margin-block: 15px;
+}
+
+.blog-area .inner-card img,
+.blog-area .inner-card video {
+    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    margin: 0;
+}
+
+.blog-area .inner-card h6 {
+    color: #8b8b8b;
+    font-weight: 400;
+    text-align: left;
+}
+
+.blog-area .inner-card h5 {
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: left;
+    line-height: normal;
+}
+
+.blog-area .inner-card p {
+    text-align: left;
+}
+
+.blog-area .inner-card a {
+    color: #452e73;
+    border: 1px solid #452e736e;
+    text-decoration: none;
+    width: max-content;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.blog-area .inner-card:hover a {
+    background-color: #277e30;
+    cursor: pointer;
+    transition: all ease 0.5s;
+    color: #ffffff;
+}
+
+.blog-area .view-all-btn-area {
+    display: flex;
+    justify-content: center;
+    margin-block: 30px;
+}
+
+
+.blog-area .view-all-btn-area a {
+    text-decoration: none;
+    width: max-content;
+    padding: 8px 20px;
+    border-radius: 4px;
+    background-color: #452e73;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 0;
+}

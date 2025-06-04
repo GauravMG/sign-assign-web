@@ -62,27 +62,29 @@ async function fetchProducts() {
 
                 document.getElementById("shortDescription").innerHTML = data.shortDescription
 
-                if ((data.section1Title ?? "").trim() !== "") {
-                    document.getElementById("section1Title").innerText = data.section1Title
-                    document.getElementById("section1Description").innerHTML = data.section1Description
-                    document.getElementById("accordionSection1Container").classList.remove("d-none")
-                }
-                if ((data.section2Title ?? "").trim() !== "") {
-                    document.getElementById("section2Title").innerText = data.section2Title
-                    document.getElementById("section2Description").innerHTML = data.section2Description
-                    document.getElementById("accordionSection2Container").classList.remove("d-none")
-                }
-                if ((data.section3Title ?? "").trim() !== "") {
-                    document.getElementById("section3Title").innerText = data.section3Title
-                    document.getElementById("section3Description").innerHTML = data.section3Description
-                    document.getElementById("accordionSection3Container").classList.remove("d-none")
-                }
+                // if ((data.section1Title ?? "").trim() !== "") {
+                //     document.getElementById("section1Title").innerText = data.section1Title
+                //     document.getElementById("section1Description").innerHTML = data.section1Description
+                //     document.getElementById("accordionSection1Container").classList.remove("d-none")
+                // }
+                // if ((data.section2Title ?? "").trim() !== "") {
+                //     document.getElementById("section2Title").innerText = data.section2Title
+                //     document.getElementById("section2Description").innerHTML = data.section2Description
+                //     document.getElementById("accordionSection2Container").classList.remove("d-none")
+                // }
+                // if ((data.section3Title ?? "").trim() !== "") {
+                //     document.getElementById("section3Title").innerText = data.section3Title
+                //     document.getElementById("section3Description").innerHTML = data.section3Description
+                //     document.getElementById("accordionSection3Container").classList.remove("d-none")
+                // }
 
+                document.getElementById("nav-features").innerHTML = data.features
                 document.getElementById("nav-home").innerHTML = data.description
                 document.getElementById("nav-profile").innerHTML = data.specification
 
                 fetchProductVariants()
                 fetchProductFAQs()
+                fetchProductBulkDiscount()
             }
         }
     })
@@ -159,7 +161,7 @@ async function fetchProductVariants() {
 }
 
 function onSelectProductVariant(variantId) {
-    const selectedVariant = variants.find((variant) => Number(variant.variantId) === Number(variantId))
+    let selectedVariant = variants.find((variant) => Number(variant.variantId) === Number(variantId))
 
     if (!selectedVariant) {
         return false
@@ -184,6 +186,13 @@ function onSelectProductVariant(variantId) {
 
     // Group attributes by attribute name
     const groupedAttributes = {};
+
+    selectedVariant.variantAttributes.sort((a, b) => {
+        const priceA = parseFloat(a.additionalPrice) || 0;
+        const priceB = parseFloat(b.additionalPrice) || 0;
+
+        return priceA - priceB; // ascending order
+    });
 
     selectedVariant.variantAttributes.forEach((item) => {
         const attrName = item.attribute.name;
@@ -303,6 +312,51 @@ async function fetchProductFAQs() {
                 }
 
                 document.getElementById("faqAccordion").innerHTML = html
+            }
+        }
+    })
+}
+
+async function fetchProductBulkDiscount() {
+    await postAPICall({
+        endPoint: "/product-bulk-discount/list",
+        payload: JSON.stringify({
+            "filter": {
+                productId: Number(productId)
+            },
+            "range": {
+                all: true
+            },
+            "sort": [{
+                "orderBy": "createdAt",
+                "orderDir": "asc"
+            }],
+            linkedEntities: true
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response
+
+            if (success) {
+                let html = ``
+
+                if (data[0]?.dataJson) {
+                    let dataJson = typeof data[0].dataJson === "string" ? JSON.parse(data[0].dataJson) : data[0].dataJson
+
+                    if (dataJson?.length) {
+                        document.getElementById("accordionBulkDiscountContainer").classList.remove("d-none")
+
+                        for (let el of dataJson) {
+                            html += `<tr>
+                                <td>${el.minQty} - ${el.maxQty} units</td>
+                                <td><span class="badge bg-secondary">${el.discount}%</span></td>
+                                <!-- <td>No discount</td> -->
+                            </tr>`
+                        }
+
+                        document.getElementById("dtBulkDiscountList").innerHTML = html
+                    }
+                }
             }
         }
     })

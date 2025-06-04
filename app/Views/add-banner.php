@@ -16,8 +16,8 @@
             <form>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control" id="image" accept="image/*">
+                        <label for="image">Image / Video</label>
+                        <input type="file" class="form-control" id="image" accept="image/*,video/*">
                         <div id="imagePreview" class="mt-2"></div>
                         <button type="button" class="btn btn-danger mt-2 d-none" id="removeImage">Remove Image</button>
                     </div>
@@ -55,13 +55,26 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
+                    const fileType = file.type;
                     uploadedImage = e.target.result;
-                    document.getElementById("imagePreview").innerHTML = `<img src="${uploadedImage}" class="img-fluid" width="150" alt="Image">`;
+
+                    let previewHTML = "";
+
+                    if (fileType.startsWith("image/")) {
+                        previewHTML = `<img src="${uploadedImage}" class="img-fluid" width="150" alt="Image">`;
+                    } else if (fileType.startsWith("video/")) {
+                        previewHTML = `<video controls width="150"><source src="${uploadedImage}" type="${fileType}">Your browser does not support the video tag.</video>`;
+                    } else {
+                        previewHTML = `<p>Unsupported file type</p>`;
+                    }
+
+                    document.getElementById("imagePreview").innerHTML = previewHTML;
                     document.getElementById("removeImage").classList.remove("d-none");
                 };
                 reader.readAsDataURL(file);
             }
         });
+
 
         document.getElementById("removeImage").addEventListener("click", function() {
             uploadedImage = "";

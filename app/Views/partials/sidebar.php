@@ -91,6 +91,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                    <a href="/admin/blogs" class="nav-link">
+                        <i class="nav-icon fas fa-blog"></i>
+                        <p>
+                            Blogs
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -6,6 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
+$routes->get('/admin/blogs/update/(:any)', 'AdminController::updateBlog/$1');
+$routes->get('/admin/blogs/add', 'AdminController::addBlog');
+$routes->get('/admin/blogs/(:any)', 'AdminController::viewBlog/$1');
+$routes->get('/admin/blogs', 'AdminController::blogs');
+
 $routes->get('/admin/invoices/print', 'AdminController::invoicePrint');
 $routes->get('/admin/invoices', 'AdminController::invoices');
 
@@ -45,7 +50,11 @@ $routes->get('/admin/register', 'AuthController::register');
 $routes->get('/admin/login', 'AuthController::login');
 $routes->get('/admin', 'AuthController::login');
 
+$routes->get('/blogs/(:any)', 'WebController::blogDetail/$1');
+$routes->get('/blogs', 'WebController::blogs');
+$routes->get('/checkout', 'WebController::checkout');
 $routes->get('/product/(:any)', 'WebController::productDetail/$1');
 $routes->get('/subcategory/(:any)', 'WebController::productSubCategory/$1');
 $routes->get('/category/(:any)', 'WebController::productCategory/$1');
+$routes->get('/about-us', 'WebController::aboutUs');
 $routes->get('/', 'WebController::index');

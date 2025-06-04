@@ -195,7 +195,36 @@
                         <p>Hire a Designer</p>
                     </div> -->
                 </div>
-                <div class="accordion mt-2" id="accordionExample">
+                <div class="accordion mt-2 d-none" id="accordionBulkDiscountContainer">
+                    <div class="accordion-item mt-2" id="bulkDiscountContainer">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOneBulkDiscount" aria-expanded="true"
+                                aria-controls="collapseOneBulkDiscount">
+                                <i class="bi bi-tags-fill me-2"></i> Bulk Purchase Discounts
+                            </button>
+                        </h2>
+                        <div id="collapseOneBulkDiscount" class="accordion-collapse collapse show"
+                            data-bs-parent="#accordionBulkDiscountContainer">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-bordered table-hover mb-0 shadow-sm rounded">
+                                        <thead class="table-primary text-center">
+                                            <tr>
+                                                <th scope="col">📦 Quantity Range</th>
+                                                <th scope="col">💸 Discount Offered</th>
+                                                <!-- <th scope="col">🔍 Effective Price Info</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center" id="dtBulkDiscountList">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="accordion mt-2" id="accordionExample">
                     <div class="accordion-item mt-2 d-none" id="accordionSection1Container">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -232,7 +261,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="main-desc mt-2">
                     <h5 class="mb-3">Choose a Variant:</h5>
                     <div class="btn-group" role="group" aria-label="Product Variants">
@@ -262,11 +291,15 @@
     <div class="container-fluid">
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                <button class="nav-link active" id="nav-features-tab" data-bs-toggle="tab" data-bs-target="#nav-features"
+                    type="button" role="tab" aria-controls="nav-features" aria-selected="true">
+                    Key Features
+                </button>
+                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="false">
                     Description
                 </button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                <button class="nav-link " id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                     type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                     Product Specification
                 </button>
@@ -274,14 +307,17 @@
                     type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                     FAQs
                 </button>
-                <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled"
+                <!-- <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled"
                     type="button" role="tab" aria-controls="nav-disabled" aria-selected="false">
                     Customer Reviews
-                </button>
+                </button> -->
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+            <div class="tab-pane fade show active" id="nav-features" role="tabpanel" aria-labelledby="nav-features-tab"
+                tabindex="0">
+            </div>
+            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
                 tabindex="0">
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
@@ -292,7 +328,7 @@
                 <div class="accordion" id="faqAccordion">
                 </div>
             </div>
-            <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
+            <!-- <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
                 tabindex="0" id="customerReviewsContainer">
                 <div class="d-flex mb-4">
                     <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" class="rounded-circle me-3 customer-review-image" alt="John Doe">
@@ -325,7 +361,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

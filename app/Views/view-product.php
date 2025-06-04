@@ -105,6 +105,11 @@
                             href="#variant-list" role="tab"
                             aria-controls="variant-list" aria-selected="false">Variants</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="discount-list-tab" data-toggle="pill"
+                            href="#discount-list" role="tab"
+                            aria-controls="discount-list" aria-selected="false">Discounts</a>
+                    </li>
                 </ul>
             </div>
             <div class="card-body">
@@ -122,7 +127,7 @@
                                 <div class="col-12" id="shortDescription"></div>
                             </div>
 
-                            <div class="row mt-4 pt-3 border-top border-dark">
+                            <!-- <div class="row mt-4 pt-3 border-top border-dark">
                                 <div class="col-md-12">
                                     <h3>Accordion Sections :</h3>
                                 </div>
@@ -137,6 +142,15 @@
                                 <div class="col-md-12 mt-2 bg-light p-2 border">
                                     <h5 id="section3Title"></h5>
                                     <div class="bold" id="section3Description"></div>
+                                </div>
+                            </div> -->
+
+                            <div class="row mt-4 pt-3 border-top border-dark">
+                                <div class="col-md-12">
+                                    <h3>Key Features :</h3>
+                                </div>
+                                <div class="col-md-12 bg-light p-2 border">
+                                    <div id="productFeatures"></div>
                                 </div>
                             </div>
 
@@ -157,6 +171,48 @@
                                     <div id="productSpecification"></div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="faq-list"
+                        role="tabpanel" aria-labelledby="faq-list-tab">
+                        <div class="overlay-wrapper">
+                            <div id="faq-list-loader" class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                <div class="text-bold pt-2">Loading...</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>FAQs</h4>
+                                </div>
+
+                                <div class="col-md-6 mb-4 text-right">
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-faq">
+                                        Add New FAQ
+                                    </button>
+                                </div>
+                            </div>
+
+                            <table id="dtFAQList" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Answer</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataFAQList">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Answer</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
 
@@ -204,47 +260,42 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade show" id="faq-list"
-                        role="tabpanel" aria-labelledby="faq-list-tab">
+                    <div class="tab-pane fade show" id="discount-list" role="tabpanel" aria-labelledby="discount-list-tab">
                         <div class="overlay-wrapper">
-                            <div id="faq-list-loader" class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                            <div id="discount-list-loader" class="overlay">
+                                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                                 <div class="text-bold pt-2">Loading...</div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4>FAQs</h4>
-                                </div>
-
-                                <div class="col-md-6 mb-4 text-right">
-                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-faq">
-                                        Add New FAQ
-                                    </button>
-                                </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="mb-0">Manage Bulk Purchase Discounts</h4>
+                                <button type="button" class="btn btn-success" id="addDiscountRow">
+                                    <i class="fas fa-plus"></i> Add Discount
+                                </button>
                             </div>
 
-                            <table id="dtFAQList" class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Question</th>
-                                        <th>Answer</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="dataFAQList">
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Question</th>
-                                        <th>Answer</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover text-center align-middle" id="bulkDiscountTable">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Min Qty</th>
+                                            <th>Max Qty</th>
+                                            <th>Discount (%)</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="discountTableBody">
+                                        <!-- Existing rows will be added here dynamically -->
+                                    </tbody>
+                                </table>
+
+                                <div class="text-right mt-2">
+                                    <button class="btn btn-success" id="saveDiscountsBtn">Save Discounts</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -377,6 +428,8 @@
                 fetchCustomerReviews(targetTabId)
             } else if (targetTabId.replace("#", "") === "variant-list") {
                 fetchVariants(targetTabId)
+            } else if (targetTabId.replace("#", "") === "discount-list") {
+                fetchProductBulkDiscount(targetTabId)
             }
         })
 
@@ -422,13 +475,14 @@
 
                     document.getElementById("shortDescription").innerText = data.shortDescription
 
-                    document.getElementById("section1Title").innerText = data.section1Title
-                    document.getElementById("section1Description").innerHTML = data.section1Description
-                    document.getElementById("section2Title").innerText = data.section2Title
-                    document.getElementById("section2Description").innerHTML = data.section2Description
-                    document.getElementById("section3Title").innerText = data.section3Title
-                    document.getElementById("section3Description").innerHTML = data.section3Description
+                    // document.getElementById("section1Title").innerText = data.section1Title
+                    // document.getElementById("section1Description").innerHTML = data.section1Description
+                    // document.getElementById("section2Title").innerText = data.section2Title
+                    // document.getElementById("section2Description").innerHTML = data.section2Description
+                    // document.getElementById("section3Title").innerText = data.section3Title
+                    // document.getElementById("section3Description").innerHTML = data.section3Description
 
+                    document.getElementById("productFeatures").innerHTML = data.features
                     document.getElementById("productDescription").innerHTML = data.description
                     document.getElementById("productSpecification").innerHTML = data.specification
                 }
@@ -768,6 +822,115 @@
         document.getElementById("add_faqAnswer").value = selectedFAQ.answer
         $('#modal-add-faq').modal('show');
     }
+
+    const discountTableBody = document.getElementById('discountTableBody');
+    const addRowBtn = document.getElementById('addDiscountRow');
+    const saveDiscountsBtn = document.getElementById('saveDiscountsBtn');
+
+    function createDiscountRow(minQty = '', maxQty = '', discount = '') {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td><input type="number" class="form-control form-control-sm minQty" value="${minQty}" /></td>
+            <td><input type="number" class="form-control form-control-sm maxQty" value="${maxQty}" /></td>
+            <td><input type="number" class="form-control form-control-sm discount" step="0.01" value="${discount}" /></td>
+            <td>
+                <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+            </td>
+        `;
+
+        row.querySelector('.delete-btn').addEventListener('click', () => {
+            row.remove();
+        });
+
+        discountTableBody.appendChild(row);
+    }
+
+    // Add new row on button click
+    addRowBtn.addEventListener('click', () => {
+        createDiscountRow();
+    });
+
+    async function fetchProductBulkDiscount() {
+        await postAPICall({
+            endPoint: "/product-bulk-discount/list",
+            payload: JSON.stringify({
+                "filter": {
+                    productId: Number(productId)
+                },
+                "range": {
+                    "all": true
+                },
+                "sort": [{
+                    "orderBy": "createdAt",
+                    "orderDir": "asc"
+                }]
+            }),
+            callbackBeforeSend: function() {
+                $('#discount-list-loader').fadeIn()
+            },
+            callbackComplete: function() {
+                $('#discount-list-loader').fadeOut()
+            },
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    data
+                } = response
+
+                if (success) {
+                    if (data[0]?.dataJson) {
+                        let dataJson = typeof data[0].dataJson === "string" ? JSON.parse(data[0].dataJson) : data[0].dataJson
+                        console.log(`dataJson`, dataJson)
+
+                        dataJson.forEach(d => createDiscountRow(d.minQty, d.maxQty, d.discount))
+                    }
+                }
+
+                loader.hide()
+            }
+        })
+    }
+
+    // Save all discount data to backend
+    saveDiscountsBtn.addEventListener('click', async () => {
+        const allRows = discountTableBody.querySelectorAll('tr');
+        const discounts = [];
+
+        allRows.forEach(row => {
+            const minQty = row.querySelector('.minQty').value;
+            const maxQty = row.querySelector('.maxQty').value;
+            const discount = row.querySelector('.discount').value;
+
+            if (minQty || maxQty || discount) {
+                discounts.push({
+                    minQty: Number(minQty),
+                    maxQty: Number(maxQty),
+                    discount: parseFloat(discount)
+                });
+            }
+        });
+
+        console.log('Saving discounts:', discounts);
+
+        if (confirm("Are you sure you want to update bulk discounts?")) {
+            await postAPICall({
+                endPoint: "/product-bulk-discount/update",
+                payload: JSON.stringify({
+                    productId: Number(productId),
+                    dataJson: JSON.stringify(discounts)
+                }),
+                callbackSuccess: (response) => {
+                    if (response.success) {
+                        toastr.success(response.message);
+                    } else if (!response.success) {
+                        toastr.error(response.message);
+                    }
+                }
+            })
+        }
+    });
 </script>
 
 <?= $this->endSection(); ?>

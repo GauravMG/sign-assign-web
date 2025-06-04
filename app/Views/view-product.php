@@ -95,11 +95,11 @@
                             href="#faq-list" role="tab"
                             aria-controls="faq-list" aria-selected="false">FAQs</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="customer-review-list-tab" data-toggle="pill"
                             href="#customer-review-list" role="tab"
                             aria-controls="customer-review-list" aria-selected="false">Customer Reviews</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" id="variant-list-tab" data-toggle="pill"
                             href="#variant-list" role="tab"

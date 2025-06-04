@@ -473,7 +473,7 @@
 
                     document.getElementById("productName").innerText = data.name
 
-                    document.getElementById("shortDescription").innerText = data.shortDescription
+                    document.getElementById("shortDescription").innerHTML = data.shortDescription
 
                     // document.getElementById("section1Title").innerText = data.section1Title
                     // document.getElementById("section1Description").innerHTML = data.section1Description

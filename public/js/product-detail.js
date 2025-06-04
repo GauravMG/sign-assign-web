@@ -195,11 +195,13 @@ function onSelectProductVariant(variantId) {
     });
 
     selectedVariant.variantAttributes.forEach((item) => {
-        const attrName = item.attribute.name;
-        if (!groupedAttributes[attrName]) {
-            groupedAttributes[attrName] = [];
+        const attrName = item.attribute?.name;
+        if (attrName) {
+            if (!groupedAttributes[attrName]) {
+                groupedAttributes[attrName] = [];
+            }
+            groupedAttributes[attrName].push(item);
         }
-        groupedAttributes[attrName].push(item);
     });
 
     // Create and inject HTML

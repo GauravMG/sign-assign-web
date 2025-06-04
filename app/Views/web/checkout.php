@@ -1,7 +1,7 @@
 <?= $this->extend('web/web_template'); ?>
 
 <?= $this->section('pageStyles'); ?>
-<link rel="stylesheet" href="<?= base_url('css/checkout.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('css/checkout.css'). '?t=' . time(); ?>">
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -15,32 +15,66 @@
                     <a href="#">Continue Shopping <span><i class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
                 <div class="product-detail-area">
-                    <div class="inner">
-                        <div class="left-area"><img alt="" src="https://placehold.co/300x200">
-                            <div>
-                                <h5>Custom Vinyl Banner</h5>
-                                <p>Size (W X H): <span>3' X 2'(FT)</span> | Choose Material:<span>Vinyl Print</span></p>
-                                <p>Sides: <span>Single Sided</span> | Upgrade to Premium:<span>Standard 13 Oz</span></p>
-                                <p>Hanging OPtions: <span>Metal Grommets</span></p>
+                    <div class="box-inner">
+                        <div class="inner">
+                            <div class="left-area"><img alt="" src="https://placehold.co/300x200">
+                                <div>
+                                    <h5>Custom Vinyl Banner</h5>
+                                    <p>Size (W X H): <span>3' X 2'(FT)</span> | Choose Material:<span>Vinyl Print</span></p>
+                                    <p>Sides: <span>Single Sided</span> | Upgrade to Premium:<span>Standard 13 Oz</span></p>
+                                    <p>Hanging OPtions: <span>Metal Grommets</span></p>
+                                </div>
+                            </div>
+                            <div class="right-area">
+                                <div class="qty-counter">
+                                    <div class="left-area">
+                                        <h4>$2500.00</h4>
+                                    </div>
+                                    <div class="right-area">
+                                        <span class="minus">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </span>
+                                        <span>
+                                            <h6>02</h6>
+                                        </span>
+                                        <span class="plus">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <p>Estimate Delivery</p>
+                                <h6>Web, June 15, 2025</h6>
                             </div>
                         </div>
-                        <div class="right-area">
-                            <h4>$2500.00</h4>
-                            <h6>Qty: 10</h6>
-                        </div>
-                    </div>
-                    <div class="inner">
-                        <div class="left-area"><img alt="" src="https://placehold.co/300x200">
-                            <div>
-                                <h5>Custom Vinyl Banner</h5>
-                                <p>Size (W X H): <span>3' X 2'(FT)</span> | Choose Material:<span>Vinyl Print</span></p>
-                                <p>Sides: <span>Single Sided</span> | Upgrade to Premium:<span>Standard 13 Oz</span></p>
-                                <p>Hanging OPtions: <span>Metal Grommets</span></p>
+                        <div class="bulk-qty-inner">
+                            <div class="left-area">
+                                <p>Bulk Quantity Discount</p>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>Qty:</th>
+                                            <td>2-10</td>
+                                            <td>11-50</td>
+                                            <td>51-100</td>
+                                            <td>101-250</td>
+                                            <td>251-500</td>
+                                            <td>501-999</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Price:</th>
+                                            <td>$10.50</td>
+                                            <td>$10.00</td>
+                                            <td>$9.50</td>
+                                            <td>$9.00</td>
+                                            <td>$8.00</td>
+                                            <td>$7.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-                        <div class="right-area">
-                            <h4>$2500.00</h4>
-                            <h6>Qty: 10</h6>
+                            <div class="right-area">
+                                <a href="#"><span><i class="fa-regular fa-bookmark"></i></span>Save for later</a>
+                            </div>
                         </div>
                     </div>
                 </div>

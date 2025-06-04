@@ -2,6 +2,13 @@
   padding: 100px 0 0 0;
 } */
 
+.carousel-inner .carousel-item video,
+.carousel-inner .carousel-item img {
+  max-width: 100%;
+  object-fit: cover;
+  aspect-ratio: 5 / 2;
+}
+
 .container-slide-area h3,
 .bestseller-area h3,
 .off-slider-area h3 {

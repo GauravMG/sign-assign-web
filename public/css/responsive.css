@@ -45,13 +45,17 @@
         max-width: 100%;
     }
 
-    .auth-inner .left-area{
+    .auth-inner .left-area {
         display: none;
     }
 
-    .auth-inner .right-area{
+    .auth-inner .right-area {
         flex: 1 1 100%;
         max-width: 100%;
+    }
+
+    .blog-area {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 

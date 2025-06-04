@@ -10,7 +10,7 @@
     </div>
 </div>
 <div class="container-fluid py-5">
-    <h5>Blogs</h5>
+    <h3>Blogs</h3>
     <div class="blog-list-area">
         <div class="inner-card">
             <div class="p-3 m-0">

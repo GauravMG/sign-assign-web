@@ -1,7 +1,7 @@
 <?= $this->extend('web/web_template'); ?>
 
 <?= $this->section('pageStyles'); ?>
-<link rel="stylesheet" href="<?= base_url('css/checkout.css'). '?t=' . time(); ?>">
+<link rel="stylesheet" href="<?= base_url('css/checkout.css') . '?t=' . time(); ?>">
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -16,6 +16,17 @@
                 </div>
                 <div class="product-detail-area">
                     <div class="box-inner">
+                        <div class="rush-hour-area">
+                            <!-- <label>
+                                <input type="checkbox" className="form-checkbox" />
+                                <span>Rush Hour Delivery <span>(extra charges apply)</span></span>
+                            </label> -->
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span>Rush Hour Delivery <span>(extra charges apply*)</span></span>
+                        </div>
                         <div class="inner">
                             <div class="left-area"><img alt="" src="https://placehold.co/300x200">
                                 <div>

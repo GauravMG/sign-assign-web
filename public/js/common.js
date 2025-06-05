@@ -40,7 +40,66 @@ $(document).ready(function () {
             }
         })
     );
+
+    updateCartProductQuantity(0)
+
+    $('#signupModal').on('hidden.bs.modal', function () {
+        document.getElementById("firstName").value = "";
+        document.getElementById("lastName").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("mobile").value = "";
+        document.getElementById("roleId").value = "";
+        document.getElementById("businessName").value = "";
+        document.getElementById("otp").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("confirmPassword").value = "";
+    });
+
+    $('#loginModal').on('hidden.bs.modal', function () {
+        document.getElementById("loginEmail").value = "";
+        document.getElementById("loginPassword").value = "";
+
+        document.getElementById("registerFormContainer").style.display = "block"
+        document.getElementById("verifyAndSetPasswordContainer").style.display = "none"
+    });
+
+    $('#forgotPasswordModal').on('hidden.bs.modal', function () {
+        document.getElementById("forgotEmail").value = "";
+        document.getElementById("forgotOTP").value = "";
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirmNewPassword").value = "";
+
+        document.getElementById("forgotPasswordRequestContainer").style.display = "block"
+        document.getElementById("forgotPasswordVerifyContainer").style.display = "none"
+    });
 });
+
+function onClickOpenModalSignUp() {
+    $("#loginModal").modal("hide");
+    $("#forgotPasswordModal").modal("hide");
+    $("#signupModal").modal("show");
+}
+
+function onClickOpenModalLogin() {
+    $("#signupModal").modal("hide");
+    $("#forgotPasswordModal").modal("hide");
+    $("#loginModal").modal("show");
+}
+
+function onClickOpenModalForgotPassword() {
+    $("#signupModal").modal("hide");
+    $("#loginModal").modal("hide");
+    $("#forgotPasswordModal").modal("show");
+}
+
+function updateCartProductQuantity(cartProductCount) {
+    document.getElementById("cartProductCount").innerText = cartProductCount
+    if (Number(cartProductCount) > 0) {
+        document.getElementById("cartProductCount").classList.remove("d-none")
+    } else {
+        document.getElementById("cartProductCount").classList.add("d-none")
+    }
+}
 
 let customSelect
 let selected
@@ -266,12 +325,10 @@ async function register() {
     })
 }
 
-async function verifyAndSetPassword() {
-    const verificationType = "registration"
-
-    const otp = document.getElementById("otp").value
-    const password = document.getElementById("password").value
-    const confirmPassword = document.getElementById("confirmPassword").value
+async function verifyAndSetPassword(verificationType) {
+    const otp = document.getElementById(verificationType === "forgot_password" ? "forgotOTP" : "otp").value
+    const password = document.getElementById(verificationType === "forgot_password" ? "newPassword" : "password").value
+    const confirmPassword = document.getElementById(verificationType === "forgot_password" ? "confirmNewPassword" : "confirmPassword").value
 
     if ((otp ?? "").trim() === "") {
         toastr.error('Please enter a valid OTP!');
@@ -319,20 +376,42 @@ async function verifyAndSetPassword() {
     })
 }
 
-async function resendOTP() {
-    const verificationType = "registration"
+async function resendOTP(verificationType) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const email = (userEmail ?? "").trim() === "" && verificationType === "forgot_password" ? document.getElementById('forgotEmail').value.trim() : userEmail.trim()
+
+    // Check if email is empty
+    if (!email) {
+        toastr.error('Please enter your email address!');
+        emailInput.focus();
+        return;
+    }
+
+    // Validate email format
+    if (!emailRegex.test(email)) {
+        toastr.error('Please enter a valid email address!');
+        emailInput.focus();
+        return;
+    }
 
     await postAPICall({
         endPoint: "/auth/send-otp",
         payload: JSON.stringify({
             verificationType,
-            email: userEmail
+            email
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
             const { success, message } = response
 
             if (success) {
+                if (verificationType === "forgot_password" && (userEmail ?? "").trim() === "") {
+                    document.getElementById("forgotPasswordRequestContainer").style.display = "none"
+                    document.getElementById("forgotPasswordVerifyContainer").style.display = "block"
+                    userEmail = email
+                }
+
                 toastr.success(message);
             }
         }

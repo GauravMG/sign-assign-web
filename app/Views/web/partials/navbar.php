@@ -66,13 +66,15 @@
                 </ul>
             </div>
             <div class="auth-button" id="navbarAuthOptionsContainer">
-                <a href="#" class="signup-button" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>
-                <a href="#" class="login-button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                <a class="signup-button" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>
+                <a class="login-button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
             </div>
-            <div class="cart-area">
-                <i class="fi fi-rr-shopping-cart"></i>
-                <span>5</span>
-            </div>
+            <a href="/checkout">
+                <div class="cart-area">
+                    <i class="fi fi-rr-shopping-cart"></i>
+                    <span id="cartProductCount"></span>
+                </div>
+            </a>
         </div>
     </div>
     <div class="mobile-top-menu">

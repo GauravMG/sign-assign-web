@@ -201,7 +201,7 @@
                             </div> -->
                             <div class="form-group">
                                 <div class="flex-inner">
-                                    <select name="" id="" class="form-select" style="flex: 1 1 25%">
+                                    <!-- <select name="" id="" class="form-select" style="flex: 1 1 25%">
                                         <option value="">
                                             <div>
                                                 <span>+91</span>
@@ -217,7 +217,7 @@
                                                 <span>+91</span>
                                             </div>
                                         </option>
-                                    </select>
+                                    </select> -->
                                     <input type="tel" class="form-control" style="flex: 1 1 75%" id="mobile" name="mobile" placeholder="Mobile Number">
                                 </div>
                             </div>
@@ -252,7 +252,7 @@
                             </div>
                         </form>
 
-                        <div class="sso-area mt-4">
+                        <!-- <div class="sso-area mt-4">
                             <p>Or sign up with</p>
                             <div class="social-icons-inner">
                                 <a href="#">
@@ -268,9 +268,9 @@
                                     Amazon
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <p>Already have an account? <a href="#">Log in</a></p>
+                        <p>Already have an account? <a onclick="onClickOpenModalLogin()">Log in</a></p>
                         <p>Read Our <a href="#">Terms And Conditions</a> And <a href="#">Privacy Policy</a></p>
                     </div>
 
@@ -286,10 +286,10 @@
                                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
                             </div>
                             <div class="form-group mt-3">
-                                <a onclick="resendOTP()" class="submit-btn">Resend OTP</a>
+                                <a onclick="resendOTP('registration')" class="submit-btn">Resend OTP</a>
                             </div>
                             <div class="form-group mt-3">
-                                <a onclick="verifyAndSetPassword()" class="submit-btn">Complete Setup</a>
+                                <a onclick="verifyAndSetPassword('registration')" class="submit-btn">Complete Setup</a>
                             </div>
                         </form>
                     </div>
@@ -322,7 +322,7 @@
                             <div class="form-group mt-3">
                                 <div class="flex-inner">
                                     <!-- <a href="#">Get Email OTP</a> -->
-                                    <a href="#">Forget Password?</a>
+                                    <a onclick="onClickOpenModalForgotPassword()">Forget Password?</a>
                                 </div>
                             </div>
 
@@ -331,7 +331,7 @@
                             </div>
                         </form>
 
-                        <div class="sso-area mt-4">
+                        <!-- <div class="sso-area mt-4">
                             <p>Or login with</p>
                             <div class="login-social-icons-inner">
                                 <a href="#">
@@ -347,9 +347,60 @@
                                     Amazon
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <p>Don't have an account? <a href="#">Sign up</a></p>
+                        <p>Don't have an account? <a onclick="onClickOpenModalSignUp()">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="auth-inner forgot-password">
+                    <div class="left-area">
+                        <h1>Forgot Password</h1>
+                        <p>
+                            Enter the email associated with your account, and we'll send you an OTP to reset your password securely.
+                        </p>
+                    </div>
+
+                    <div class="right-area" id="forgotPasswordRequestContainer">
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="forgotEmail" name="forgotEmail" placeholder="Enter your Email">
+                            </div>
+                            <div class="form-group mt-3">
+                                <a onclick="resendOTP('forgot_password')" class="submit-btn">Send OTP</a>
+                            </div>
+                        </form>
+                        <p>Remembered your password? <a onclick="onClickOpenModalLogin()">Log in</a></p>
+                    </div>
+
+                    <div class="right-area" id="forgotPasswordVerifyContainer" style="display: none;">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="forgotOTP" name="forgotOTP" placeholder="Enter OTP">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New Password">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password">
+                            </div>
+                            <div class="form-group mt-3">
+                                <a onclick="resendOTP('forgot_password')" class="submit-btn">Resend OTP</a>
+                            </div>
+                            <div class="form-group mt-3">
+                                <a onclick="verifyAndSetPassword('forgot_password')" class="submit-btn">Reset Password</a>
+                            </div>
+                        </form>
+                        <p>Go back to <a onclick="onClickOpenModalLogin()">Login</a></p>
                     </div>
                 </div>
             </div>

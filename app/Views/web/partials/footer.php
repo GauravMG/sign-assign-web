@@ -67,7 +67,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/learning-center">
                             <i class="fa-solid fa-arrow-right"></i><span>Blog</span>
                         </a>
                     </li>

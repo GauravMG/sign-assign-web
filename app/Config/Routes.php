@@ -50,8 +50,8 @@ $routes->get('/admin/register', 'AuthController::register');
 $routes->get('/admin/login', 'AuthController::login');
 $routes->get('/admin', 'AuthController::login');
 
-$routes->get('/blogs/(:any)', 'WebController::blogDetail/$1');
-$routes->get('/blogs', 'WebController::blogs');
+$routes->get('/learning-center/(:any)', 'WebController::blogDetail/$1');
+$routes->get('/learning-center', 'WebController::blogs');
 $routes->get('/checkout', 'WebController::checkout');
 $routes->get('/product/(:any)', 'WebController::productDetail/$1');
 $routes->get('/subcategory/(:any)', 'WebController::productSubCategory/$1');

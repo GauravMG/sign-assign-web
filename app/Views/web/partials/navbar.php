@@ -58,7 +58,7 @@
                         <a href="#">Design Lab</a>
                     </li>
                     <li>
-                        <a href="/blogs">Learning Center</a>
+                        <a href="/learning-center">Learning Center</a>
                     </li>
                     <li>
                         <a href="#">Contact Us</a>

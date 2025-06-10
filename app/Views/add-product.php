@@ -19,6 +19,24 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
+                            <label for="sku">SKU</label>
+                            <input type="text" class="form-control" id="sku" placeholder="Enter sku">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="price">Price</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="price"
+                                    placeholder="Enter price"
+                                    oninput="validateDecimal(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
                             <label>Category</label>
                             <select class="form-control" id="productCategoryId" name="productCategoryId">
                                 <option value="-">-- Select category --</option>
@@ -31,9 +49,15 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="shortDescription">Short Description</label>
-                        <textarea class="form-control" id="shortDescription"></textarea>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="shortDescription">Short Description</label>
+                            <textarea class="form-control" id="shortDescription"></textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="features">Key Features</label>
+                            <textarea class="form-control" id="features"></textarea>
+                        </div>
                     </div>
                     <!-- <div class="form-group">
                         <label for="section1Title">Section 1 Title</label>
@@ -59,10 +83,6 @@
                         <label for="section3Description">Section 3 Description</label>
                         <textarea class="form-control" id="section3Description"></textarea>
                     </div> -->
-                    <div class="form-group">
-                        <label for="features">Key Features</label>
-                        <textarea class="form-control" id="features"></textarea>
-                    </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description"></textarea>
@@ -91,7 +111,7 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         $('#shortDescription').summernote({
-            height: 100
+            height: 200
         });
         // $('#section1Description').summernote({
         //     height: 150
@@ -190,6 +210,8 @@
                         const product = data[0];
 
                         document.getElementById("name").value = product.name;
+                        document.getElementById("sku").value = product.sku;
+                        document.getElementById("price").value = product.price;
 
                         $('#shortDescription').summernote('code', product.shortDescription);
 
@@ -213,6 +235,8 @@
         }
         async function onClickSubmit() {
             const name = document.getElementById("name").value.trim();
+            const sku = document.getElementById("sku").value.trim();
+            const price = document.getElementById("price").value.trim();
 
             const shortDescription = $('#shortDescription').summernote('code');
 
@@ -231,6 +255,10 @@
             const productSubCategoryId = document.getElementById("productSubCategoryId").value;
 
             if (!name) return toastr.error("Please enter a valid name!");
+
+            if (!sku) return toastr.error("Please enter a valid sku!");
+
+            if (!price) return toastr.error("Please enter a valid price!");
 
             if ((shortDescription ?? "").trim() === "") return toastr.error("Please enter a valid short description!");
 
@@ -253,6 +281,8 @@
 
             const payload = {
                 name,
+                sku,
+                price,
                 shortDescription,
                 // section1Title,
                 // section1Description,

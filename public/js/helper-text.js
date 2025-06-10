@@ -21,3 +21,15 @@ function getTextFromHTML(htmlString, maxLength) {
 
     return text;
 }
+
+function validateDecimal(input) {
+    // Allow empty value or decimal (e.g. 0.5, 10, 10.25)
+    const value = input.value;
+    if (value === '') return;
+
+    const isValid = /^(\d+(\.\d{0,2})?)?$/.test(value);
+    if (!isValid) {
+        // Remove last character if it's invalid
+        input.value = value.slice(0, -1);
+    }
+}

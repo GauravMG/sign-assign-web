@@ -85,9 +85,14 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="discountPercentage" class="form-label">Discount Percentage</label>
-                            <div class="d-flex align-items-center gap-1" style="max-width: 200px;">
-                                <input type="text" class="form-control" id="discountPercentage" oninput="validateDecimal(this)">
-                                <span>%</span>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="discountPercentage"
+                                    oninput="validateDecimal(this)"
+                                >
+                                <span class="input-group-text">%</span>
                             </div>
                         </div>
                     </div>
@@ -119,18 +124,6 @@
         $(document).ready(function() {
             fetchUsers()
         })
-
-        function validateDecimal(input) {
-            // Allow empty value or decimal (e.g. 0.5, 10, 10.25)
-            const value = input.value;
-            if (value === '') return;
-
-            const isValid = /^(\d+(\.\d{0,2})?)?$/.test(value);
-            if (!isValid) {
-                // Remove last character if it's invalid
-                input.value = value.slice(0, -1);
-            }
-        }
 
         async function fetchUsers() {
             await Promise.all([

@@ -1,5 +1,9 @@
 let productId = null
-let variants = []
+let selectedAttributes = []
+let productPrice = 0
+let totalSelectedAttributePrice = 0
+let totalDiscount = 0
+let payablePrice = 0
 
 $(document).ready(function () {
     $(".detail-page-area .owl-carousel").owlCarousel({
@@ -33,6 +37,13 @@ function reloadOwlCarousel($carousel, items) {
     });
 }
 
+function calculatePayablePrice() {
+    let payablePrice = Number(productPrice) + Number(totalSelectedAttributePrice)
+    payablePrice = payablePrice - Number(totalDiscount)
+
+    document.getElementById("payablePrice").innerText = payablePrice
+}
+
 async function fetchProducts() {
     await postAPICall({
         endPoint: "/product/list",
@@ -57,8 +68,12 @@ async function fetchProducts() {
                 const data = allData[0]
 
                 productId = data.productId
+                productPrice = data.price ?? 0
+                calculatePayablePrice()
 
                 document.getElementById("productName").innerText = data.name
+                document.getElementById("productSku").innerText = data.sku ?? "-"
+                document.getElementById("productPrice").innerText = data.price ?? 0
 
                 document.getElementById("shortDescription").innerHTML = data.shortDescription
 
@@ -82,7 +97,143 @@ async function fetchProducts() {
                 document.getElementById("nav-home").innerHTML = data.description
                 document.getElementById("nav-profile").innerHTML = data.specification
 
-                fetchProductVariants()
+                let htmlImagesSlider = []
+                let firstImage = null
+
+                for (let media of data.productMedias) {
+                    if (!firstImage) {
+                        firstImage = media
+                    }
+
+                    htmlImagesSlider.push(`<div class="inner-card">
+                        <img src="${media.mediaUrl}" alt="${data.name}">
+                    </div>`)
+                }
+
+                $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${baseUrl}images/no-preview-available.jpg`)
+
+                reloadOwlCarousel($("#owl-example"), htmlImagesSlider)
+
+                // Group attributes by attribute name
+                const groupedAttributes = {};
+
+                data.productAttributes.sort((a, b) => {
+                    const priceA = parseFloat(a.additionalPrice) || 0;
+                    const priceB = parseFloat(b.additionalPrice) || 0;
+
+                    return priceA - priceB; // ascending order
+                });
+
+                data.productAttributes.forEach((item) => {
+                    const attrName = item.attribute?.name;
+                    if (attrName) {
+                        if (!groupedAttributes[attrName]) {
+                            groupedAttributes[attrName] = [];
+                        }
+                        groupedAttributes[attrName].push(item);
+                    }
+                });
+
+                // Create and inject HTML
+                const mainDesc = document.querySelector('.main-desc');
+
+                // Create container to insert after .main-desc
+                const container = document.createElement('div');
+                container.classList.add('attribute-options');
+
+                Object.entries(groupedAttributes).forEach(([groupName, items]) => {
+                    const groupDiv = document.createElement('div');
+                    groupDiv.classList.add('attribute-group');
+                    groupDiv.classList.add('main-desc');
+                    groupDiv.classList.add('mt-2');
+                    groupDiv.classList.add('p-4');
+
+                    // Header
+                    const header = document.createElement('h5');
+                    header.textContent = groupName;
+                    groupDiv.appendChild(header);
+
+                    // Option cards
+                    const optionWrapper = document.createElement('div');
+                    optionWrapper.classList.add('option-wrapper');
+                    optionWrapper.style.display = 'flex';
+                    optionWrapper.style.flexWrap = 'wrap';
+                    optionWrapper.style.gap = '10px';
+
+                    items.forEach((item) => {
+                        const card = document.createElement('div');
+                        card.classList.add('option-card');
+                        card.style.border = '1px solid #ccc';
+                        card.style.borderRadius = '6px';
+                        card.style.padding = '8px 12px';
+                        card.style.cursor = 'pointer';
+                        card.style.userSelect = 'none';
+                        card.style.transition = 'all 0.3s';
+                        card.style.marginRight = '10px';
+                        card.style.minWidth = '100px';
+                        card.style.textAlign = 'center';
+
+                        // Value
+                        const valueEl = document.createElement('div');
+
+                        let displayValue = item.value;
+                        try {
+                            const parsedValue = JSON.parse(item.value);
+                            if (typeof parsedValue === 'object' && parsedValue !== null) {
+                                const parts = [];
+                                if (parsedValue.width) parts.push(`Width: ${parsedValue.width}`);
+                                if (parsedValue.height) parts.push(`Height: ${parsedValue.height}`);
+                                displayValue = parts.join(', ');
+                            }
+                        } catch (e) {
+                            // fallback: show as is if parsing fails
+                            displayValue = item.value;
+                        }
+                        valueEl.textContent = displayValue;
+
+                        valueEl.style.fontWeight = 'bold';
+
+                        // Additional price
+                        const priceEl = document.createElement('div');
+                        priceEl.textContent = item.additionalPrice && item.additionalPrice !== "0" ? `+ $${item.additionalPrice}` : '';
+                        priceEl.style.fontSize = '12px';
+                        priceEl.style.color = '#777';
+
+                        card.appendChild(valueEl);
+                        card.appendChild(priceEl);
+
+                        card.addEventListener('click', () => {
+                            // 1. Visual selection update
+                            optionWrapper.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+                            card.classList.add('selected');
+
+                            // 2. Remove previous selection from this group in selectedAttributes
+                            selectedAttributes = selectedAttributes.filter(attr => attr.attributeId !== item.attributeId);
+
+                            // 3. Add newly selected item
+                            selectedAttributes.push(item);
+
+                            // 4. Recalculate totalSelectedAttributePrice
+                            totalSelectedAttributePrice = selectedAttributes.reduce((sum, attr) => {
+                                const price = parseFloat(attr.additionalPrice);
+                                return sum + (isNaN(price) ? 0 : price);
+                            }, 0);
+                            calculatePayablePrice()
+                        });
+
+                        optionWrapper.appendChild(card);
+                    });
+
+                    groupDiv.appendChild(optionWrapper);
+                    container.appendChild(groupDiv);
+                });
+
+                // Insert container after .main-desc
+                // mainDesc.parentNode.insertBefore(container, mainDesc.nextSibling);
+                document.getElementById("attributesContainer").innerHTML = ""
+                document.getElementById("attributesContainer").append(container)
+
+                // fetchProductVariants()
                 fetchProductFAQs()
                 fetchProductBulkDiscount()
             }
@@ -90,190 +241,190 @@ async function fetchProducts() {
     })
 }
 
-async function fetchProductVariants() {
-    await postAPICall({
-        endPoint: "/variant/list",
-        payload: JSON.stringify({
-            "filter": {
-                productId: Number(productId)
-            },
-            "range": {
-                all: true
-            },
-            "sort": [{
-                "orderBy": "price",
-                "orderDir": "asc"
-            }],
-            linkedEntities: true
-        }),
-        callbackComplete: () => { },
-        callbackSuccess: (response) => {
-            const { success, message, data } = response
+// async function fetchProductVariants() {
+//     await postAPICall({
+//         endPoint: "/variant/list",
+//         payload: JSON.stringify({
+//             "filter": {
+//                 productId: Number(productId)
+//             },
+//             "range": {
+//                 all: true
+//             },
+//             "sort": [{
+//                 "orderBy": "price",
+//                 "orderDir": "asc"
+//             }],
+//             linkedEntities: true
+//         }),
+//         callbackComplete: () => { },
+//         callbackSuccess: (response) => {
+//             const { success, message, data } = response
 
-            if (success) {
-                variants = data ?? []
-                let html = ``
-                let firstVariantId = null
+//             if (success) {
+//                 variants = data ?? []
+//                 let html = ``
+//                 let firstVariantId = null
 
-                for (let variant of data) {
-                    if (!firstVariantId) {
-                        firstVariantId = variant.variantId
-                    }
+//                 for (let variant of data) {
+//                     if (!firstVariantId) {
+//                         firstVariantId = variant.variantId
+//                     }
 
-                    let coverImage = null
-                    let price = null
+//                     let coverImage = null
+//                     let price = null
 
-                    if ((variant.price ?? "").toString() !== "") {
-                        price = variant.price
-                    }
+//                     if ((variant.price ?? "").toString() !== "") {
+//                         price = variant.price
+//                     }
 
-                    for (let k = 0; k < variant.variantMedias?.length; k++) {
-                        if (variant.variantMedias[k].mediaType.indexOf("image") >= 0 && (variant.variantMedias[k].mediaUrl ?? "").trim() !== "") {
-                            coverImage = variant.variantMedias[k].mediaUrl
-                            break
-                        }
-                    }
+//                     for (let k = 0; k < variant.variantMedias?.length; k++) {
+//                         if (variant.variantMedias[k].mediaType.indexOf("image") >= 0 && (variant.variantMedias[k].mediaUrl ?? "").trim() !== "") {
+//                             coverImage = variant.variantMedias[k].mediaUrl
+//                             break
+//                         }
+//                     }
 
-                    if ((coverImage ?? "").trim() === "") {
-                        coverImage = `${baseUrl}images/no-preview-available.jpg`
-                    }
+//                     if ((coverImage ?? "").trim() === "") {
+//                         coverImage = `${baseUrl}images/no-preview-available.jpg`
+//                     }
 
-                    html += `<div class="card variant-card" id="variantSelection_${variant.variantId}">
-                        <img src="${coverImage}" class="card-img-top variant-image" alt="${variant.name}">
-                        <div class="mt-2">
-                            <h6 class="card-title mb-1">${variant.name}</h6>
-                            <p class="card-text text-muted mb-2">${price ? `$${price}` : "-"}</p>
-                            <button class="btn btn-outline-primary btn-sm w-100" onclick="onSelectProductVariant(${variant.variantId})">Select</button>
-                        </div>
-                    </div>`
-                }
+//                     html += `<div class="card variant-card" id="variantSelection_${variant.variantId}">
+//                         <img src="${coverImage}" class="card-img-top variant-image" alt="${variant.name}">
+//                         <div class="mt-2">
+//                             <h6 class="card-title mb-1">${variant.name}</h6>
+//                             <p class="card-text text-muted mb-2">${price ? `$${price}` : "-"}</p>
+//                             <button class="btn btn-outline-primary btn-sm w-100" onclick="onSelectProductVariant(${variant.variantId})">Select</button>
+//                         </div>
+//                     </div>`
+//                 }
 
-                if (data?.length > 1) {
-                    document.getElementById("selectionVariantsContainer").classList.remove("d-none")
-                }
+//                 if (data?.length > 1) {
+//                     document.getElementById("selectionVariantsContainer").classList.remove("d-none")
+//                 }
 
-                document.getElementById("selectionVariants").innerHTML = html
+//                 document.getElementById("selectionVariants").innerHTML = html
 
-                onSelectProductVariant(firstVariantId)
-            }
-        }
-    })
-}
+//                 onSelectProductVariant(firstVariantId)
+//             }
+//         }
+//     })
+// }
 
-function onSelectProductVariant(variantId) {
-    let selectedVariant = variants.find((variant) => Number(variant.variantId) === Number(variantId))
+// function onSelectProductVariant(variantId) {
+//     let selectedVariant = variants.find((variant) => Number(variant.variantId) === Number(variantId))
 
-    if (!selectedVariant) {
-        return false
-    }
+//     if (!selectedVariant) {
+//         return false
+//     }
 
-    let htmlImagesSlider = []
-    let firstImage = null
+//     let htmlImagesSlider = []
+//     let firstImage = null
 
-    for (let media of selectedVariant.variantMedias) {
-        if (!firstImage) {
-            firstImage = media
-        }
+//     for (let media of selectedVariant.variantMedias) {
+//         if (!firstImage) {
+//             firstImage = media
+//         }
 
-        htmlImagesSlider.push(`<div class="inner-card">
-            <img src="${media.mediaUrl}" alt="${selectedVariant.name}">
-        </div>`)
-    }
+//         htmlImagesSlider.push(`<div class="inner-card">
+//             <img src="${media.mediaUrl}" alt="${selectedVariant.name}">
+//         </div>`)
+//     }
 
-    $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${baseUrl}images/no-preview-available.jpg`)
+//     $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${baseUrl}images/no-preview-available.jpg`)
 
-    reloadOwlCarousel($("#owl-example"), htmlImagesSlider)
+//     reloadOwlCarousel($("#owl-example"), htmlImagesSlider)
 
-    // Group attributes by attribute name
-    const groupedAttributes = {};
+//     // Group attributes by attribute name
+//     const groupedAttributes = {};
 
-    selectedVariant.variantAttributes.sort((a, b) => {
-        const priceA = parseFloat(a.additionalPrice) || 0;
-        const priceB = parseFloat(b.additionalPrice) || 0;
+//     selectedVariant.variantAttributes.sort((a, b) => {
+//         const priceA = parseFloat(a.additionalPrice) || 0;
+//         const priceB = parseFloat(b.additionalPrice) || 0;
 
-        return priceA - priceB; // ascending order
-    });
+//         return priceA - priceB; // ascending order
+//     });
 
-    selectedVariant.variantAttributes.forEach((item) => {
-        const attrName = item.attribute?.name;
-        if (attrName) {
-            if (!groupedAttributes[attrName]) {
-                groupedAttributes[attrName] = [];
-            }
-            groupedAttributes[attrName].push(item);
-        }
-    });
+//     selectedVariant.variantAttributes.forEach((item) => {
+//         const attrName = item.attribute?.name;
+//         if (attrName) {
+//             if (!groupedAttributes[attrName]) {
+//                 groupedAttributes[attrName] = [];
+//             }
+//             groupedAttributes[attrName].push(item);
+//         }
+//     });
 
-    // Create and inject HTML
-    const mainDesc = document.querySelector('.main-desc');
+//     // Create and inject HTML
+//     const mainDesc = document.querySelector('.main-desc');
 
-    // Create container to insert after .main-desc
-    const container = document.createElement('div');
-    container.classList.add('attribute-options');
+//     // Create container to insert after .main-desc
+//     const container = document.createElement('div');
+//     container.classList.add('attribute-options');
 
-    Object.entries(groupedAttributes).forEach(([groupName, items]) => {
-        const groupDiv = document.createElement('div');
-        groupDiv.classList.add('attribute-group');
-        groupDiv.classList.add('main-desc');
-        groupDiv.classList.add('mt-2');
-        groupDiv.classList.add('p-4');
+//     Object.entries(groupedAttributes).forEach(([groupName, items]) => {
+//         const groupDiv = document.createElement('div');
+//         groupDiv.classList.add('attribute-group');
+//         groupDiv.classList.add('main-desc');
+//         groupDiv.classList.add('mt-2');
+//         groupDiv.classList.add('p-4');
 
-        // Header
-        const header = document.createElement('h5');
-        header.textContent = groupName;
-        groupDiv.appendChild(header);
+//         // Header
+//         const header = document.createElement('h5');
+//         header.textContent = groupName;
+//         groupDiv.appendChild(header);
 
-        // Option cards
-        const optionWrapper = document.createElement('div');
-        optionWrapper.classList.add('option-wrapper');
-        optionWrapper.style.display = 'flex';
-        optionWrapper.style.flexWrap = 'wrap';
-        optionWrapper.style.gap = '10px';
+//         // Option cards
+//         const optionWrapper = document.createElement('div');
+//         optionWrapper.classList.add('option-wrapper');
+//         optionWrapper.style.display = 'flex';
+//         optionWrapper.style.flexWrap = 'wrap';
+//         optionWrapper.style.gap = '10px';
 
-        items.forEach((item) => {
-            const card = document.createElement('div');
-            card.classList.add('option-card');
-            card.style.border = '1px solid #ccc';
-            card.style.borderRadius = '6px';
-            card.style.padding = '8px 12px';
-            card.style.cursor = 'pointer';
-            card.style.userSelect = 'none';
-            card.style.transition = 'all 0.3s';
-            card.style.marginRight = '10px';
-            card.style.minWidth = '100px';
-            card.style.textAlign = 'center';
+//         items.forEach((item) => {
+//             const card = document.createElement('div');
+//             card.classList.add('option-card');
+//             card.style.border = '1px solid #ccc';
+//             card.style.borderRadius = '6px';
+//             card.style.padding = '8px 12px';
+//             card.style.cursor = 'pointer';
+//             card.style.userSelect = 'none';
+//             card.style.transition = 'all 0.3s';
+//             card.style.marginRight = '10px';
+//             card.style.minWidth = '100px';
+//             card.style.textAlign = 'center';
 
-            // Value
-            const valueEl = document.createElement('div');
-            valueEl.textContent = item.value;
-            valueEl.style.fontWeight = 'bold';
+//             // Value
+//             const valueEl = document.createElement('div');
+//             valueEl.textContent = item.value;
+//             valueEl.style.fontWeight = 'bold';
 
-            // Additional price
-            const priceEl = document.createElement('div');
-            priceEl.textContent = item.additionalPrice && item.additionalPrice !== "0" ? `+ $${item.additionalPrice}` : '';
-            priceEl.style.fontSize = '12px';
-            priceEl.style.color = '#777';
+//             // Additional price
+//             const priceEl = document.createElement('div');
+//             priceEl.textContent = item.additionalPrice && item.additionalPrice !== "0" ? `+ $${item.additionalPrice}` : '';
+//             priceEl.style.fontSize = '12px';
+//             priceEl.style.color = '#777';
 
-            card.appendChild(valueEl);
-            card.appendChild(priceEl);
+//             card.appendChild(valueEl);
+//             card.appendChild(priceEl);
 
-            card.addEventListener('click', () => {
-                optionWrapper.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
-                card.classList.add('selected');
-            });
+//             card.addEventListener('click', () => {
+//                 optionWrapper.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+//                 card.classList.add('selected');
+//             });
 
-            optionWrapper.appendChild(card);
-        });
+//             optionWrapper.appendChild(card);
+//         });
 
-        groupDiv.appendChild(optionWrapper);
-        container.appendChild(groupDiv);
-    });
+//         groupDiv.appendChild(optionWrapper);
+//         container.appendChild(groupDiv);
+//     });
 
-    // Insert container after .main-desc
-    // mainDesc.parentNode.insertBefore(container, mainDesc.nextSibling);
-    document.getElementById("attributesContainer").innerHTML = ""
-    document.getElementById("attributesContainer").append(container)
-}
+//     // Insert container after .main-desc
+//     // mainDesc.parentNode.insertBefore(container, mainDesc.nextSibling);
+//     document.getElementById("attributesContainer").innerHTML = ""
+//     document.getElementById("attributesContainer").append(container)
+// }
 
 async function fetchProductFAQs() {
     await postAPICall({

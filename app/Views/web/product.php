@@ -136,8 +136,13 @@
                     <h4 id="productName"></h4>
                     <div id="shortDescription">
                     </div>
+                    <div class="price-area my-2">
+                        <h5 class="text-success">
+                            $ <span id="productPrice"></span>
+                        </h5>
+                    </div>
                     <div class="sku-details">
-                        <div class="review-area">
+                        <!-- <div class="review-area">
                             <div class="rating-area">
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
@@ -147,8 +152,8 @@
                             </div>
                             <p>1565 Reviews</p>
                         </div>
-                        <div>|</div>
-                        <p>SKU: BBRM0B01</p>
+                        <div>|</div> -->
+                        <p>SKU: <span id="productSku"></span></p>
                         <div>
                             <span><i class="fa-solid fa-share-nodes"></i></span>
                         </div>
@@ -162,13 +167,10 @@
                 </div>
                 <div id="attributesContainer"></div>
                 <div class="add-to-cart-area mt-2">
-                    <!-- <h5 class="text-end">
-                        <strong>$4,000.00/-</strong>
-                    </h5> -->
                     <div class="flex-area">
                         <a href="#" class="add-to-card-button">
                             <span><i class="fa-solid fa-cart-plus"></i></span>
-                            Add to cart (<span>$4,000.00</span>)
+                            Add to cart ($<span id="payablePrice"></span>)
                         </a>
                         <a href="/checkout" class="go-to-card-button">
                             <span><i class="fa-solid fa-cart-plus"></i></span>

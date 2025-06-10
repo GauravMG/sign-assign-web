@@ -64,21 +64,11 @@ async function fetchProducts() {
 
                 for (let i = 0; i < data?.length; i++) {
                     let coverImage = null
-                    let price = null
+                    let price = data[i].price ?? 0
 
-                    for (let j = 0; j < data[i].variants?.length; j++) {
-                        if ((data[i].variants[j].price ?? "").toString() !== "") {
-                            price = data[i].variants[j].price
-                        }
-
-                        for (let k = 0; k < data[i].variants[j]?.variantMedias?.length; k++) {
-                            if (data[i].variants[j].variantMedias[k].mediaType.indexOf("image") >= 0 && (data[i].variants[j].variantMedias[k].mediaUrl ?? "").trim() !== "") {
-                                coverImage = data[i].variants[j].variantMedias[k].mediaUrl
-                                break
-                            }
-                        }
-
-                        if ((coverImage ?? "").trim() !== "") {
+                    for (let k = 0; k < data[i]?.productMedias?.length; k++) {
+                        if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
+                            coverImage = data[i].productMedias[k].mediaUrl
                             break
                         }
                     }

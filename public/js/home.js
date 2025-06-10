@@ -238,21 +238,11 @@ async function fetchProducts() {
 
                 for (let i = 0; i < data?.length; i++) {
                     let coverImage = null
-                    let price = null
+                    let price = data[i].price ?? 0
 
-                    for (let j = 0; j < data[i].variants?.length; j++) {
-                        if ((data[i].variants[j].price ?? "").toString() !== "") {
-                            price = data[i].variants[j].price
-                        }
-
-                        for (let k = 0; k < data[i].variants[j]?.variantMedias?.length; k++) {
-                            if (data[i].variants[j].variantMedias[k].mediaType.indexOf("image") >= 0 && (data[i].variants[j].variantMedias[k].mediaUrl ?? "").trim() !== "") {
-                                coverImage = data[i].variants[j].variantMedias[k].mediaUrl
-                                break
-                            }
-                        }
-
-                        if ((coverImage ?? "").trim() !== "") {
+                    for (let k = 0; k < data[i]?.productMedias?.length; k++) {
+                        if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
+                            coverImage = data[i].productMedias[k].mediaUrl
                             break
                         }
                     }
@@ -275,7 +265,7 @@ async function fetchProducts() {
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                 </div>
-                                <h6>Starts at: <span class="text-green">${price ? `$${price}` : "-"}</span></h6>
+                                <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
                             </div>
                             <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Customize</a>
                         </a>
@@ -298,7 +288,7 @@ async function fetchProducts() {
                             <img src="${coverImage}" alt="${data[i].name}">
                             <div class="second-div">
                                 <h6>${data[i].name}</h6>
-                                <p><!-- span>${price ? `$${price}` : "-"}</span> -->${price ? `$${price}` : "-"}</p>
+                                <p>$ ${price}</p>
                             </div>
                         </div>
                     </div>`)
@@ -306,7 +296,7 @@ async function fetchProducts() {
                     htmlSection4.push(`<div class="business-card">
                         <img src="${coverImage}" alt="${data[i].name}">
                         <h5>${data[i].name}</h5>
-                        <h6>${price ? `$${price}` : "-"}</h6>
+                        <h6>$ ${price}</h6>
                         <a href="/product/vinyl-banners">Details</a>
                     </div>`)
 
@@ -317,7 +307,7 @@ async function fetchProducts() {
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>${data[i].name}</h5>
-                                <h4>${price ? `$${price}` : "-"}</h4>
+                                <h4>$ ${price}</h4>
                             </div>
                             <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Customize</a>
                         </a>

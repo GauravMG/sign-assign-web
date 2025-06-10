@@ -168,8 +168,8 @@
                 <div id="attributesContainer"></div>
                 <div class="add-to-cart-area mt-2">
                     <div class="flex-area">
-                        <a href="#" class="add-to-card-button">
-                            <span><i class="fa-solid fa-cart-plus"></i></span>
+                        <a onclick="addToCart()" class="add-to-card-button" style="cursor: pointer;>
+                            <span><i class=" fa-solid fa-cart-plus"></i></span>
                             Add to cart ($<span id="payablePrice"></span>)
                         </a>
                         <a href="/checkout" class="go-to-card-button">
@@ -284,11 +284,11 @@
                         <label class="btn btn-outline-primary" for="variant3">Mesh Banner</label>
                     </div>
                 </div> -->
-                <div class="main-desc mt-2 p-4 d-none" id="selectionVariantsContainer">
+                <!-- <div class="main-desc mt-2 p-4 d-none" id="selectionVariantsContainer">
                     <h5 class="mb-3">Choose a Variant:</h5>
                     <div class="d-flex overflow-auto flex-nowrap gap-3 pb-2" id="selectionVariants">
                     </div>
-                </div>
+                </div> -->
                 <div id="attributes"></div>
 
             </div>

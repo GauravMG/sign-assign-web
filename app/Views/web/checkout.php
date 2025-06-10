@@ -11,84 +11,10 @@
         <div class="two-col-layout">
             <div class="left-inner-area">
                 <div class="shopping-cart-strip">
-                    <h6>Shopping Cart <span>(04 Items)</span></h6>
-                    <a href="#">Continue Shopping <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    <h6>Shopping Cart <span id="shoppingCartitemCount"></span></h6>
+                    <a href="/">Continue Shopping <span><i class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
-                <div class="product-detail-area">
-                    <div class="box-inner">
-                        <div class="rush-hour-area">
-                            <!-- <label>
-                                <input type="checkbox" className="form-checkbox" />
-                                <span>Rush Hour Delivery <span>(extra charges apply)</span></span>
-                            </label> -->
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-                            </label>
-                            <span>Rush Hour Delivery <span>(extra charges apply*)</span></span>
-                        </div>
-                        <div class="inner">
-                            <div class="left-area"><img alt="" src="https://placehold.co/300x200">
-                                <div>
-                                    <h5>Custom Vinyl Banner</h5>
-                                    <p>Size (W X H): <span>3' X 2'(FT)</span> | Choose Material:<span>Vinyl Print</span></p>
-                                    <p>Sides: <span>Single Sided</span> | Upgrade to Premium:<span>Standard 13 Oz</span></p>
-                                    <p>Hanging OPtions: <span>Metal Grommets</span></p>
-                                </div>
-                            </div>
-                            <div class="right-area">
-                                <div class="qty-counter">
-                                    <div class="left-area">
-                                        <h4>$2500.00</h4>
-                                    </div>
-                                    <div class="right-area">
-                                        <span class="minus">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                        <span>
-                                            <h6>02</h6>
-                                        </span>
-                                        <span class="plus">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <p>Estimate Delivery</p>
-                                <h6>Web, June 15, 2025</h6>
-                            </div>
-                        </div>
-                        <div class="bulk-qty-inner">
-                            <div class="left-area">
-                                <p>Bulk Quantity Discount</p>
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <th>Qty:</th>
-                                            <td>2-10</td>
-                                            <td>11-50</td>
-                                            <td>51-100</td>
-                                            <td>101-250</td>
-                                            <td>251-500</td>
-                                            <td>501-999</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Price:</th>
-                                            <td>$10.50</td>
-                                            <td>$10.00</td>
-                                            <td>$9.50</td>
-                                            <td>$9.00</td>
-                                            <td>$8.00</td>
-                                            <td>$7.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="right-area">
-                                <a href="#"><span><i class="fa-regular fa-bookmark"></i></span>Save for later</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="product-detail-area" id="cartItemsContainer"></div>
             </div>
             <div class="right-inner-area">
                 <div class="promo-code-area">
@@ -105,8 +31,8 @@
                     <div class="hidden-area">
                         <div class="subtotal-area">
                             <div class="flex-value">
-                                <p>Subtotal(50 items)</p>
-                                <p>$5000.00</p>
+                                <p>Subtotal(<span id="subTotalItemCount"></span>)</p>
+                                <p>$<span id="subTotalPrice"></span></p>
                             </div>
                             <div class="flex-value">
                                 <p>Super saver shipping</p>
@@ -118,7 +44,7 @@
                         <div class="total-area">
                             <div class="flex-value">
                                 <p>Grand Total</p>
-                                <p>$5000.00</p>
+                                <p>$<span id="grandTotalPrice"></span></p>
                             </div>
                         </div>
                     </div>

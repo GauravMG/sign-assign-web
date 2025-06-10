@@ -38,10 +38,19 @@ function reloadOwlCarousel($carousel, items) {
 }
 
 function calculatePayablePrice() {
-    let payablePrice = Number(productPrice) + Number(totalSelectedAttributePrice)
-    payablePrice = payablePrice - Number(totalDiscount)
+    // Convert all values to cents for precise arithmetic
+    const productPriceCents = Math.round(Number(productPrice) * 100);
+    const attributesPriceCents = Math.round(Number(totalSelectedAttributePrice) * 100);
+    const discountCents = Math.round(Number(totalDiscount) * 100);
 
-    document.getElementById("payablePrice").innerText = payablePrice
+    // Calculate in cents
+    let payablePriceCents = productPriceCents + attributesPriceCents - discountCents;
+
+    // Convert back to dollars
+    payablePrice = payablePriceCents / 100;
+
+    // Display with exactly 2 decimal places
+    document.getElementById("payablePrice").innerText = payablePrice.toFixed(2);
 }
 
 async function fetchProducts() {
@@ -68,7 +77,7 @@ async function fetchProducts() {
                 const data = allData[0]
 
                 productId = data.productId
-                productPrice = data.price ?? 0
+                productPrice = Number(data.price ?? 0)
                 calculatePayablePrice()
 
                 document.getElementById("productName").innerText = data.name
@@ -208,16 +217,17 @@ async function fetchProducts() {
                             card.classList.add('selected');
 
                             // 2. Remove previous selection from this group in selectedAttributes
-                            selectedAttributes = selectedAttributes.filter(attr => attr.attributeId !== item.attributeId);
+                            selectedAttributes = selectedAttributes.filter(attr => attr.productAttributeId !== item.productAttributeId);
 
                             // 3. Add newly selected item
                             selectedAttributes.push(item);
 
                             // 4. Recalculate totalSelectedAttributePrice
                             totalSelectedAttributePrice = selectedAttributes.reduce((sum, attr) => {
-                                const price = parseFloat(attr.additionalPrice);
-                                return sum + (isNaN(price) ? 0 : price);
-                            }, 0);
+                                const price = parseFloat(attr.additionalPrice) || 0;
+                                // Convert to cents, sum, then convert back to dollars
+                                return sum + Math.round(price * 100);
+                            }, 0) / 100;
                             calculatePayablePrice()
                         });
 
@@ -513,4 +523,36 @@ async function fetchProductBulkDiscount() {
             }
         }
     })
+}
+
+function addToCart() {
+    const quantity = 1
+    const payablePriceByQuantity = Math.round(payablePrice * quantity * 100) / 100
+    const payablePriceByQuantityAfterDiscount = Math.round((payablePriceByQuantity - totalDiscount) * 100) / 100
+
+    const cartItem = {
+        productId: productId,
+        selectedAttributes: selectedAttributes,
+        productPrice: productPrice,
+        totalSelectedAttributePrice: totalSelectedAttributePrice,
+        totalDiscount,
+        quantity,
+        payablePrice,
+        payablePriceByQuantity,
+        payablePriceByQuantityAfterDiscount,
+    };
+
+    // Optional: fetch existing cart or create new
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Optional: avoid duplicates by productId — remove old one
+    cart = cart.filter(item => item.productId !== productId);
+
+    // Add new item
+    cart.push(cartItem);
+
+    // Save back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    console.log("Cart updated:", cart);
 }

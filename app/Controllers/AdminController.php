@@ -239,31 +239,31 @@ class AdminController extends BaseController
         return view('view-product', $data);
     }
 
-    public function viewVariant($variantId): string
-    {
-        $data = [
-            'title' => 'Variant Details',
-            'page_heading' => 'Variant Details',
-            'data' => [
-                'variantId' => $variantId
-            ]
-        ];
+    // public function viewVariant($variantId): string
+    // {
+    //     $data = [
+    //         'title' => 'Variant Details',
+    //         'page_heading' => 'Variant Details',
+    //         'data' => [
+    //             'variantId' => $variantId
+    //         ]
+    //     ];
 
-        return view('view-variant', $data);
-    }
+    //     return view('view-variant', $data);
+    // }
 
-    public function addVariantMedia($variantId): string
-    {
-        $data = [
-            'title' => 'Add Variant Image',
-            'page_heading' => 'Add Variant Image',
-            'data' => [
-                'variantId' => $variantId
-            ]
-        ];
+    // public function addVariantMedia($variantId): string
+    // {
+    //     $data = [
+    //         'title' => 'Add Variant Image',
+    //         'page_heading' => 'Add Variant Image',
+    //         'data' => [
+    //             'variantId' => $variantId
+    //         ]
+    //     ];
 
-        return view('add-variant-media', $data);
-    }
+    //     return view('add-variant-media', $data);
+    // }
 
     public function invoices(): string
     {

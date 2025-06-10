@@ -14,9 +14,9 @@ $routes->get('/admin/blogs', 'AdminController::blogs');
 $routes->get('/admin/invoices/print', 'AdminController::invoicePrint');
 $routes->get('/admin/invoices', 'AdminController::invoices');
 
-$routes->get('/admin/variant-media/add/(:any)', 'AdminController::addVariantMedia/$1');
+// $routes->get('/admin/variant-media/add/(:any)', 'AdminController::addVariantMedia/$1');
 
-$routes->get('/admin/variants/view/(:any)', 'AdminController::viewVariant/$1');
+// $routes->get('/admin/variants/view/(:any)', 'AdminController::viewVariant/$1');
 
 $routes->get('/admin/products/update/(:any)', 'AdminController::updateProduct/$1');
 $routes->get('/admin/products/add', 'AdminController::addProduct');

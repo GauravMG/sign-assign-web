@@ -1,7 +1,19 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let productData = []
+let userDiscountPercentage = 0
 
+getSelfData()
 fetchProducts()
+
+async function getSelfData() {
+    selfData = await getMe()
+    userDiscountPercentage = selfData?.userDiscountPercentage ?? 0
+
+    if (userDiscountPercentage > 0) {
+        document.getElementById("businessDiscountContainer").classList.remove("d-none")
+        document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
+    }
+}
 
 async function fetchProducts() {
     let productIds = cart.map((el) => Number(el.productId))
@@ -148,7 +160,12 @@ function renderCartItems() {
     document.getElementById("shoppingCartitemCount").innerText = `(${subTotalItemCount} Item${subTotalItemCount > 1 ? "s" : ""})`
     document.getElementById("subTotalItemCount").innerText = `${subTotalItemCount} item${subTotalItemCount > 1 ? "s" : ""}`
     document.getElementById("subTotalPrice").innerText = subTotalPrice
-    document.getElementById("grandTotalPrice").innerText = subTotalPrice
+
+    let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
+    document.getElementById("businessDiscountPrice").innerText = `$${businessDiscountPrice}`
+
+    let grandTotalPrice = Math.round((subTotalPrice - businessDiscountPrice) * 100) / 100
+    document.getElementById("grandTotalPrice").innerText = grandTotalPrice
 }
 
 function changeQuantity(productId, changeType) {

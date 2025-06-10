@@ -38,6 +38,10 @@
                                 <p>Super saver shipping</p>
                                 <p>$0.00</p>
                             </div>
+                            <div class="flex-value d-none" id="businessDiscountContainer">
+                                <p>Business discount</p>
+                                <p><span id="businessDiscountPrice"></span> (<span id="businessDiscountPercentage"></span>)</p>
+                            </div>
                             <h6>Estimated delivery Wed,</h6>
                             <h6>June 15, 2025</h6>
                         </div>

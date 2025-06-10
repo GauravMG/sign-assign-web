@@ -41,7 +41,7 @@ $(document).ready(function () {
         })
     );
 
-    updateCartProductQuantity(0)
+    showUpdatedCartItemCount()
 
     $('#signupModal').on('hidden.bs.modal', function () {
         document.getElementById("firstName").value = "";
@@ -90,15 +90,6 @@ function onClickOpenModalForgotPassword() {
     $("#signupModal").modal("hide");
     $("#loginModal").modal("hide");
     $("#forgotPasswordModal").modal("show");
-}
-
-function updateCartProductQuantity(cartProductCount) {
-    document.getElementById("cartProductCount").innerText = cartProductCount
-    if (Number(cartProductCount) > 0) {
-        document.getElementById("cartProductCount").classList.remove("d-none")
-    } else {
-        document.getElementById("cartProductCount").classList.add("d-none")
-    }
 }
 
 let customSelect

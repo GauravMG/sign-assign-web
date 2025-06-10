@@ -93,7 +93,6 @@ async function refreshToken() {
 }
 
 function onClickLogout() {
-    console.log(`called onClickLogout`)
     if ((localStorage.getItem("jwtTokenUser") ?? "").trim() !== "") {
         postAPICall({
             endPoint: "/auth/logout",
@@ -102,9 +101,29 @@ function onClickLogout() {
                     localStorage.removeItem("jwtTokenUser")
                     localStorage.removeItem("userDataUser")
     
+                    window.history.replaceState({}, document.title, window.location.pathname);
                     window.location.href = "/"
                 }
             }
         })
     }
+}
+
+function getMe() {
+    return new Promise(async (resolve, reject) => {
+        await postAPICall({
+            endPoint: "/auth/get-me",
+            callbackBeforeSend: () => { },
+            callbackComplete: () => { },
+            callbackSuccess: (response) => {
+                const {success, message, data} = response
+
+                if (success) {
+                    resolve(data);
+                } else {
+                    reject(message);
+                }
+            }
+        })
+    });
 }

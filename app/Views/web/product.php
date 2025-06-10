@@ -168,7 +168,7 @@
                 <div id="attributesContainer"></div>
                 <div class="add-to-cart-area mt-2">
                     <div class="flex-area">
-                        <a onclick="addToCart()" class="add-to-card-button" style="cursor: pointer;>
+                        <a onclick="addToCart()" class="add-to-card-button" style="cursor: pointer;">
                             <span><i class=" fa-solid fa-cart-plus"></i></span>
                             Add to cart ($<span id="payablePrice"></span>)
                         </a>

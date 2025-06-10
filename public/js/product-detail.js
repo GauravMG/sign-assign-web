@@ -555,4 +555,7 @@ function addToCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 
     console.log("Cart updated:", cart);
+    alert("Product added to cart!")
+
+    showUpdatedCartItemCount()
 }

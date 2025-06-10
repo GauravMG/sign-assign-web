@@ -166,6 +166,8 @@ function renderCartItems() {
 
     let grandTotalPrice = Math.round((subTotalPrice - businessDiscountPrice) * 100) / 100
     document.getElementById("grandTotalPrice").innerText = grandTotalPrice
+
+    showUpdatedCartItemCount()
 }
 
 function changeQuantity(productId, changeType) {

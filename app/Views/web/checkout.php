@@ -17,27 +17,27 @@
                 <div class="product-detail-area" id="cartItemsContainer"></div>
             </div>
             <div class="right-inner-area">
-                <div class="promo-code-area">
+                <!-- <div class="promo-code-area">
                     <input type="text" class="form-control" placeholder="Promocode">
                     <button type="button" class="">Apply</button>
                 </div>
-                <a href="#" class="coupon-link">View all coupons <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                <a href="#" class="coupon-link">View all coupons <span><i class="fa-solid fa-arrow-right"></i></span></a> -->
                 <div class="order-summary-area">
                     <h6>Order Summary</h6>
-                    <div class="visible-area">
+                    <!-- <div class="visible-area">
                         <p>Estimate Shipping</p>
                         <span><i class="fa-solid fa-angle-down"></i></span>
-                    </div>
+                    </div> -->
                     <div class="hidden-area">
                         <div class="subtotal-area">
                             <div class="flex-value">
                                 <p>Subtotal(<span id="subTotalItemCount"></span>)</p>
                                 <p>$<span id="subTotalPrice"></span></p>
                             </div>
-                            <div class="flex-value">
+                            <!-- <div class="flex-value">
                                 <p>Super saver shipping</p>
                                 <p>$0.00</p>
-                            </div>
+                            </div> -->
                             <div class="flex-value d-none" id="businessDiscountContainer">
                                 <p>Business discount</p>
                                 <p><span id="businessDiscountPrice"></span> (<span id="businessDiscountPercentage"></span>)</p>

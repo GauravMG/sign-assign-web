@@ -417,3 +417,18 @@ async function resendOTP(verificationType) {
         }
     })
 }
+
+function showUpdatedCartItemCount() {
+    let totalCartItems = 0
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cart.forEach(item => totalCartItems = Math.round((totalCartItems + item.quantity) * 100) / 100);
+
+    if (totalCartItems > 0) {
+        document.getElementById("cartProductCount").innerText = totalCartItems
+        document.getElementById("cartProductCount").classList.remove("d-none")
+    } else {
+        document.getElementById("cartProductCount").innerText = ""
+        document.getElementById("cartProductCount").classList.add("d-none")
+    }
+}

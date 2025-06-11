@@ -95,7 +95,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between">
             <h3><?= $data['categoryName']; ?></h3>
-            <a href="#" class="filter-button">Filters</a>
+            <a href="#" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">Filters</a>
         </div>
         <div class="filter-divider">
             <div class="left-area">
@@ -154,6 +154,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>

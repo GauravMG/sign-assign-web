@@ -407,3 +407,143 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div class="modal fade right" id="filterModal" tabindex="-1" aria-labelledby="filterModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Filters</strong></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="main-filter-area">
+                    <div id="dynamicAttributeFilters">
+                        <div class="filters-inner">
+                            <div class="filter-dropdown-area">
+                                <h6>Finish</h6>
+                                <span><svg class="fa-caret-down svg-inline--fa" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path>
+                                    </svg><!-- <i class="fa-solid fa-caret-down"></i> Font Awesome fontawesome.com --></span>
+                            </div>
+                            <ul class="d-none d-block">
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(4, 'Gloss')">Gloss</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(4, 'Matt')">Matt</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filters-inner">
+                            <div class="filter-dropdown-area">
+                                <h6>Lamination</h6>
+                                <span><svg class="fa-caret-down svg-inline--fa" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path>
+                                    </svg><!-- <i class="fa-solid fa-caret-down"></i> Font Awesome fontawesome.com --></span>
+                            </div>
+                            <ul class="d-none d-block">
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(7, 'Gloss')">Gloss</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(7, 'Matte')">Matte</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(7, 'Dry Erase')">Dry Erase</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filters-inner">
+                            <div class="filter-dropdown-area">
+                                <h6>Material</h6>
+                                <span><svg class="svg-inline--fa fa-caret-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path>
+                                    </svg><!-- <i class="fa-solid fa-caret-down"></i> Font Awesome fontawesome.com --></span>
+                            </div>
+                            <ul class="d-none d-block">
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(10, '13 oz (standard)')">13 oz (standard)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(10, '20 oz (heavy duty)')">20 oz (heavy duty)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(10, '08 oz (standard)')">08 oz (standard)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(10, '09 oz (premium)')">09 oz (premium)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(10, '12 oz (heavy duty)')">12 oz (heavy duty)</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filters-inner">
+                            <div class="filter-dropdown-area">
+                                <h6>Options:</h6>
+                                <span><svg class="svg-inline--fa fa-caret-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path>
+                                    </svg><!-- <i class="fa-solid fa-caret-down"></i> Font Awesome fontawesome.com --></span>
+                            </div>
+                            <ul class="d-none d-block">
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(11, 'Hem (standard – Included)')">Hem (standard – Included)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(11, 'Grommets (4 corners – included)')">Grommets (4 corners – included)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(11, 'Additional Grommets (1 set of 4)')">Additional Grommets (1 set of 4)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(11, 'Reinforced Corners')">Reinforced Corners</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(11, 'Pole Pocket (Top)')">Pole Pocket (Top)</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(11, 'Pole Pocket (Top @ Bottom)')">Pole Pocket (Top @ Bottom)</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filters-inner">
+                            <div class="filter-dropdown-area">
+                                <h6>Pole Pocket</h6>
+                                <span><svg class="svg-inline--fa fa-caret-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path>
+                                    </svg><!-- <i class="fa-solid fa-caret-down"></i> Font Awesome fontawesome.com --></span>
+                            </div>
+                            <ul class="d-none d-block">
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(8, 'Top')">Top</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(8, 'Top @ Bottom')">Top @ Bottom</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filters-inner">
+                            <div class="filter-dropdown-area">
+                                <h6>Printing</h6>
+                                <span><svg class="svg-inline--fa fa-caret-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                        <path fill="currentColor" d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"></path>
+                                    </svg><!-- <i class="fa-solid fa-caret-down"></i> Font Awesome fontawesome.com --></span>
+                            </div>
+                            <ul class="d-none d-block">
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(6, 'Single sided')">Single sided</a>
+                                </li>
+                                <li style="cursor: pointer;">
+                                    <a onclick="onFilterAttribute(6, 'Double Sided')">Double Sided</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

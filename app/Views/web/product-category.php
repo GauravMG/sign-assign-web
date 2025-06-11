@@ -93,21 +93,15 @@
 
 <div class="banner-product-area py-5">
     <div class="container-fluid">
+        <div class="d-flex justify-content-between">
+            <h3><?= $data['categoryName']; ?></h3>
+            <a href="#" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">Filters</a>
+        </div>
         <div class="filter-divider">
             <div class="left-area">
-                <h3><?= $data['categoryName']; ?></h3>
-                <div class="banner-inner" id="dataList">
-                </div>
+                <div class="banner-inner" id="dataList"></div>
             </div>
             <div class="right-area">
-                <!-- <div class="dropdown-area">
-                    <p>Sort By</p>
-                    <div class="custom-select" id="customSelect">
-                        <div class="selected">Select your Product</div>
-                        <div class="options" id="sortBySubCategoriesContainer">
-                        </div>
-                    </div>
-                </div> -->
                 <div class="main-filter-area">
                     <div class="filters-inner">
                         <div class="filter-dropdown-area">
@@ -120,167 +114,6 @@
                         </ul>
                     </div>
                     <div id="dynamicAttributeFilters"></div>
-                    <!-- <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6 class="if-inactive">Use</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-
-                        <ul class="d-none">
-                            <li>
-                                <a href="#">Vinyl Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Heavy Duty Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Mesh Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Banner Stand</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6 class="if-inactive">Height</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-
-                        <ul class="d-none">
-                            <li>
-                                <a href="#">Vinyl Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Heavy Duty Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Mesh Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Banner Stand</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6 class="if-inactive">Stand Type</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-
-                        <ul class="d-none">
-                            <li>
-                                <a href="#">Vinyl Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Heavy Duty Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Mesh Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Banner Stand</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6 class="if-inactive">Print Type</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-
-                        <ul class="d-block">
-                            <li>
-                                <a href="#">Vinyl Banners</a>
-                            </li>
-                            <li>
-                                <a href="#" class="active">Heavy Duty Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Mesh Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Banner Stand</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6 class="if-inactive">Graphic Material</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-
-                        <ul class="d-block">
-                            <li>
-                                <a href="#">Vinyl Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Heavy Duty Banners</a>
-                            </li>
-                            <li>
-                                <a href="#" class="active">Mesh Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Banner Stand</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6 class="if-inactive">Adjustable Hardware</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-
-                        <ul class="d-none">
-                            <li>
-                                <a href="#">Vinyl Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Heavy Duty Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Mesh Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Banner Stand</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6 class="if-inactive">Product Type</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-
-                        <ul class="d-none">
-                            <li>
-                                <a href="#">Vinyl Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Heavy Duty Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Mesh Banners</a>
-                            </li>
-                            <li>
-                                <a href="#">Banner Stand</a>
-                            </li>
-                        </ul>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -321,6 +154,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>

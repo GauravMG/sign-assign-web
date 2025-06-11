@@ -135,7 +135,8 @@ header {
     color: #ffffff;
 }
 
-.desktop-top-menu .right-area .auth-button a.profile-icon, .desktop-top-menu .right-area .auth-button a.logout-icon {
+.desktop-top-menu .right-area .auth-button a.profile-icon,
+.desktop-top-menu .right-area .auth-button a.logout-icon {
     padding: 0;
     color: inherit;
     display: flex;
@@ -187,13 +188,14 @@ header {
 .mega-menu ul {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     padding: 0;
     margin: 0;
 }
 
-.mega-menu ul li.dropdown{
+.mega-menu ul li.dropdown {
     position: relative;
 }
 
@@ -202,7 +204,7 @@ header {
     color: #ffffff;
 }
 
-.mega-menu ul li.dropdown:hover a{
+.mega-menu ul li.dropdown:hover a {
     padding-bottom: 35px;
 }
 
@@ -223,7 +225,7 @@ header {
     width: 100%;
 }
 
-.mega-menu ul li.dropdown .dropdown-content{
+.mega-menu ul li.dropdown .dropdown-content {
     display: none;
     transition: all ease 0.5s;
     position: absolute;
@@ -238,7 +240,7 @@ header {
     overflow: hidden;
 }
 
-.mega-menu ul li.dropdown:hover .dropdown-content{
+.mega-menu ul li.dropdown:hover .dropdown-content {
     display: block;
     transition: all ease 0.5s;
 }
@@ -257,6 +259,6 @@ header {
     color: #000000;
 }
 
-.mega-menu ul li.dropdown .dropdown-content .dropdown-lists:hover a{
+.mega-menu ul li.dropdown .dropdown-content .dropdown-lists:hover a {
     color: #ffffff;
 }

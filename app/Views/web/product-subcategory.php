@@ -93,32 +93,16 @@
 
 <div class="banner-product-area py-5">
     <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3><?= $data['subCategoryName']; ?></h3>
+            <a href="#" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">Filters</a>
+        </div>
         <div class="filter-divider">
             <div class="left-area">
-                <h3><?= $data['subCategoryName']; ?></h3>
-                <div class="banner-inner" id="dataList">
-                </div>
+                <div class="banner-inner" id="dataList"></div>
             </div>
             <div class="right-area">
-                <!-- <div class="dropdown-area">
-                    <p>Sort By</p>
-                    <div class="custom-select" id="customSelect">
-                        <div class="selected">Select your Product</div>
-                        <div class="options" id="sortBySubCategoriesContainer">
-                        </div>
-                    </div>
-                </div> -->
                 <div class="main-filter-area">
-                    <!-- <div class="filters-inner">
-                        <div class="filter-dropdown-area">
-                            <h6>Category</h6>
-                            <span>
-                                <i class="fa-solid fa-caret-down"></i>
-                            </span>
-                        </div>
-                        <ul id="filterBySubCategoriesContainer">
-                        </ul>
-                    </div> -->
                     <div id="dynamicAttributeFilters"></div>
                 </div>
             </div>
@@ -127,8 +111,7 @@
 </div>
 
 <div class="custom-banner-area py-5">
-    <div class="container-fluid" id="subCategoryDescription">
-    </div>
+    <div class="container-fluid" id="subCategoryDescription"></div>
 </div>
 
 <div class="form-area py-5">

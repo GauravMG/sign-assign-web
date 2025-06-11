@@ -93,7 +93,7 @@
 
 <div class="banner-product-area py-5">
     <div class="container-fluid">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
             <h3><?= $data['categoryName']; ?></h3>
             <a href="#" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">Filters</a>
         </div>

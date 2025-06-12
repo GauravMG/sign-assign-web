@@ -395,7 +395,7 @@
     font-weight: 600;
 }
 
-/* Modal Styles */
+/* Modal Overlay */
 .clover-modal {
     display: none;
     position: fixed;
@@ -404,61 +404,138 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
 }
 
+/* Modal Box */
 .clover-modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
     max-width: 500px;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Modal Slide Animation */
+@keyframes slideIn {
+    from {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: #555;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .close:hover {
-    color: black;
+    color: #000;
+}
+
+/* Modal Heading */
+.clover-modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.clover-modal-content p {
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #666;
 }
 
 /* Form Styles */
+#cloverPaymentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Row */
 .clover-form-row {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
+/* Multi-column Row */
+.clover-form-row.flex {
+    display: flex;
+    gap: 10px;
+}
+
+/* Equal flex items with consistent field sizing */
+.clover-form-row.flex>div {
+    flex: 1;
+}
+
+/* Form Field Container */
 .clover-field {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 5px;
+    height: 40px;
+    padding: 0;
+    /* remove extra padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
 }
 
+.clover-field iframe {
+    height: 100% !important;
+    width: 100% !important;
+    border: none !important;
+}
+
+.clover-field:focus-within {
+    border-color: #4CAF50;
+    background: #fff;
+}
+
+/* Error Messages */
 .clover-error {
     color: #dc3545;
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: 3px;
+    padding-left: 2px;
 }
 
+/* Submit Button */
 .clover-button {
     background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    color: #fff;
+    padding: 14px;
     font-size: 16px;
-    width: 100%;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.clover-button:hover {
+    background-color: #43a047;
 }
 
 .clover-button:disabled {
-    background-color: #cccccc;
+    background-color: #bdbdbd;
     cursor: not-allowed;
 }

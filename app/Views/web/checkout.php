@@ -64,25 +64,24 @@
     <div class="clover-modal-content">
         <span class="close" onclick="closeCloverModal()">&times;</span>
         <h2>Payment Information</h2>
-        <p>$<span class="grandTotalPrice"></span> refundable deposit is required to reserve your seat.</p>
 
         <form id="cloverPaymentForm">
             <div class="clover-form-row">
-                <div id="card-number" class="clover-field"></div>
+                <div id="card-number" class="clover-field p-1"></div>
                 <div id="card-number-error" class="clover-error"></div>
             </div>
 
-            <div class="clover-form-row" style="display: flex; gap: 10px;">
+            <div class="clover-form-row flex">
                 <div style="flex: 1;">
-                    <div id="card-date" class="clover-field"></div>
+                    <div id="card-date" class="clover-field p-1"></div>
                     <div id="card-date-error" class="clover-error"></div>
                 </div>
                 <div style="flex: 1;">
-                    <div id="card-cvv" class="clover-field"></div>
+                    <div id="card-cvv" class="clover-field p-1"></div>
                     <div id="card-cvv-error" class="clover-error"></div>
                 </div>
                 <div style="flex: 1;">
-                    <div id="card-postal-code" class="clover-field"></div>
+                    <div id="card-postal-code" class="clover-field p-1"></div>
                     <div id="card-postal-code-error" class="clover-error"></div>
                 </div>
             </div>

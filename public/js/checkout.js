@@ -7,12 +7,15 @@ getSelfData()
 fetchProducts()
 
 async function getSelfData() {
-    selfData = await getMe()
-    userDiscountPercentage = selfData?.userDiscountPercentage ?? 0
+    const isUserLoggedIn = checkIfUserLoggedIn()
+    if (isUserLoggedIn) {
+        selfData = await getMe()
+        userDiscountPercentage = selfData?.userDiscountPercentage ?? 0
 
-    if (userDiscountPercentage > 0) {
-        document.getElementById("businessDiscountContainer").classList.remove("d-none")
-        document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
+        if (userDiscountPercentage > 0) {
+            document.getElementById("businessDiscountContainer").classList.remove("d-none")
+            document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
+        }
     }
 }
 
@@ -304,6 +307,13 @@ function handleElementChange(event, elementId) {
 
 // Modal functions
 function openCloverModal() {
+    const isUserLoggedIn = checkIfUserLoggedIn()
+    if (!isUserLoggedIn) {
+        alert('Please login to complete your purchase!');
+        $("#loginModal").modal("show");
+        return
+    }
+
     document.getElementById('cloverModal').style.display = 'block';
     initializeClover();
 }

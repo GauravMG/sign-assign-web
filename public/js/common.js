@@ -423,3 +423,7 @@ function showUpdatedCartItemCount() {
         document.getElementById("cartProductCount").classList.add("d-none")
     }
 }
+
+function checkIfUserLoggedIn() {
+    return !!localStorage.getItem("jwtTokenUser")
+}

@@ -522,3 +522,49 @@ function showUpdatedCartItemCount() {
 function checkIfUserLoggedIn() {
     return !!localStorage.getItem("jwtTokenUser")
 }
+
+async function fetchUserAddresses() {
+    return await new Promise((resolve, reject) => {
+        postAPICall({
+            endPoint: "/user-address/list",
+            payload: JSON.stringify({
+                "range": {
+                    "all": true
+                }
+            }),
+            callbackComplete: () => { },
+            callbackSuccess: (response) => {
+                const { success, message, data } = response
+
+                if (success) {
+                    resolve(data)
+                } else {
+                    reject(new Error(message))
+                }
+            }
+        })
+    })
+}
+
+async function fetchBusinessClients() {
+    return await new Promise((resolve, reject) => {
+        postAPICall({
+            endPoint: "/business-client/list",
+            payload: JSON.stringify({
+                "range": {
+                    "all": true
+                }
+            }),
+            callbackComplete: () => { },
+            callbackSuccess: (response) => {
+                const { success, message, data } = response
+
+                if (success) {
+                    resolve(data)
+                } else {
+                    reject(new Error(message))
+                }
+            }
+        })
+    })
+}

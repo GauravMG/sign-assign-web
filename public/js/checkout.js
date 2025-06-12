@@ -2,6 +2,11 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let productData = []
 let userDiscountPercentage = 0
 let grandTotalPrice = 0
+let amountDetails = {
+    subTotalPrice: 0,
+    businessDiscountPrice: 0,
+    grandTotalPrice: 0
+}
 
 getSelfData()
 fetchProducts()
@@ -172,6 +177,12 @@ function renderCartItems() {
     document.querySelectorAll(".grandTotalPrice").forEach(element => {
         element.textContent = grandTotalPrice;
     });
+
+    amountDetails = {
+        subTotalPrice,
+        businessDiscountPrice,
+        grandTotalPrice
+    }
 
     showUpdatedCartItemCount()
 }
@@ -353,12 +364,12 @@ document.getElementById('cloverPaymentForm').addEventListener('submit', async fu
                 payload: JSON.stringify({
                     sourceToken: token,
                     amount: grandTotalPrice,
-                    cart
+                    cart,
+                    amountDetails
                 }),
                 callbackComplete: () => { },
                 callbackSuccess: (response) => {
                     const { success, message, data } = response
-                    console.log(`response ===`, response)
 
                     if (success) {
                         // Payment successful
@@ -398,5 +409,5 @@ window.onclick = function (event) {
 
 function clearCart() {
     localStorage.setItem('cart', JSON.stringify([]));
-    window.location.href = "/"
+    window.location.href = `${BASE_URL_USER_DASHBOARD}`
 }

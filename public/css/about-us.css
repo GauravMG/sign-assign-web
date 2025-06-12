@@ -140,3 +140,44 @@ h3 {
     max-width: 60%;
     margin: 0 auto;
 }
+
+.why-choose-area .flex-inner {
+    display: flex;
+    margin-top: 3rem;
+}
+
+.why-choose-area .flex-inner .left-area {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    flex: 1 1 35%;
+    max-width: 35%;
+    border-radius: 0.554rem;
+    overflow: hidden;
+}
+
+.why-choose-area .flex-inner .left-area .inner {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #efefef;
+}
+
+.why-choose-area .flex-inner .left-area .inner:last-child {
+    border-bottom: 0;
+}
+
+.why-choose-area .flex-inner .left-area .inner .img-area img {
+    width: 45px;
+}
+
+.why-choose-area .flex-inner .left-area .inner .text-area h4 {
+    font-weight: 600;
+    font-size: 1.254rem;
+}
+
+.why-choose-area .flex-inner .left-area .inner .text-area p {
+    max-width: 100%;
+    margin: 0;
+}

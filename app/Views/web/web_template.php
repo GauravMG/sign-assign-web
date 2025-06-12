@@ -79,6 +79,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/license.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         const BASE_URL = '<?= base_url(); ?>'
@@ -87,6 +88,7 @@
         const BASE_URL_EDITOR = '<?= BASE_URL_EDITOR ?>'
     </script>
 
+    <script src="<?= base_url('js/utils/alert.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/service-api-web.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/common.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/helper-url.js') . '?t=' . time(); ?>"></script>

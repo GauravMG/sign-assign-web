@@ -81,8 +81,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/license.min.js"></script>
 
     <script>
-        const baseUrl = '<?= base_url(); ?>'
-        const baseUrlUserDashboard = '<?= base_url(); ?>'.replace(":8080", ":5173")
+        const BASE_URL = '<?= base_url(); ?>'
+        const BASE_URL_API = '<?= BASE_URL_API ?>'
+        const BASE_URL_USER_DASHBOARD = '<?= BASE_URL_USER_DASHBOARD ?>'
+        const BASE_URL_EDITOR = '<?= BASE_URL_EDITOR ?>'
     </script>
 
     <script src="<?= base_url('js/service-api-web.js') . '?t=' . time(); ?>"></script>

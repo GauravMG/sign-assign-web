@@ -110,12 +110,12 @@
                     <!-- <a onclick="onClickSignInWithGoogle()" class="btn btn-block btn-primary">
                         <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
                     </a> -->
-                    <a onclick="onClickSignInWithGoogle()" class="btn btn-block btn-danger">
+                    <!-- <a onclick="onClickSignInWithGoogle()" class="btn btn-block btn-danger">
                         <i class="fab fa-google mr-2"></i> Sign in using Google
-                    </a>
+                    </a> -->
                 </div>
 
-                <p class="mb-1">
+                <p class="mb-1 mt-2">
                     <a href="/admin/forgot-password">Forgot your password? Reset Password!</a>
                 </p>
                 <!-- <p class="mb-0">
@@ -134,6 +134,7 @@
     <script src="<?= base_url('js/helper-validation.js'); ?>"></script>
 
     <script>
+        const BASE_URL_API = '<?= BASE_URL_API ?>'
         const jwtToken = localStorage.getItem("jwtToken")
         if ((jwtToken ?? "").trim() !== "") {
             var userData = localStorage.getItem("userData") ?? null
@@ -141,12 +142,8 @@
                 userData = JSON.parse(userData)
             }
             setTimeout(() => {
-                if ([1, 3].indexOf(parseInt(userData.roleId)) >= 0) {
+                if ([1, 5].indexOf(parseInt(userData.roleId)) >= 0) {
                     window.location.href = "/admin/users"
-                } else if ([4].indexOf(parseInt(userData.roleId)) >= 0) {
-                    window.location.href = "/admin/orders"
-                } else if ([2].indexOf(parseInt(userData.roleId)) >= 0) {
-                    window.location.href = "/admin/orders"
                 }
             }, [1000])
         }
@@ -178,7 +175,7 @@
                 }
 
                 $.ajax({
-                    url: `http://3.109.198.252/api/v1/auth/sign-in`,
+                    url: `${BASE_URL_API}/v1/auth/sign-in`,
                     method: 'POST',
                     data: {
                         email,
@@ -189,22 +186,30 @@
                     },
                     complete: function() {},
                     success: function(response) {
-                        if (response.success) {
-                            localStorage.setItem("jwtToken", response.jwtToken)
-                            localStorage.setItem("userData", JSON.stringify(response.data))
+                        const {success, message, jwtToken, data} = response
 
+                        if (success) {
                             loader.hide()
-                            toastr.success(response.message);
+
+                            if ([1, 5].indexOf(parseInt(data.roleId)) >= 0) {
+                                toastr.success(message);
+
+                                localStorage.setItem("jwtToken", jwtToken)
+                                localStorage.setItem("userData", JSON.stringify(data))
+                            } else {
+                                toastr.success("You are not authorized to access the admin panel. Please surf through the website to checkout our exciting products. Redirecting you to the website...");
+
+                                localStorage.setItem("jwtTokenUser", jwtToken)
+                                localStorage.setItem("userDataUser", JSON.stringify(data))
+                            }
 
                             setTimeout(() => {
-                                if ([1, 3].indexOf(parseInt(response.data.roleId)) >= 0) {
+                                if ([1, 5].indexOf(parseInt(data.roleId)) >= 0) {
                                     window.location.href = "/admin/users"
-                                } else if ([4].indexOf(parseInt(response.data.roleId)) >= 0) {
-                                    window.location.href = "/admin/orders"
-                                } else if ([2].indexOf(parseInt(response.data.roleId)) >= 0) {
-                                    window.location.href = "/admin/orders"
+                                } else {
+                                    window.location.href = "/"
                                 }
-                            }, [1000])
+                            }, [1500])
                         }
                     },
                     error: function(xhr, status, error, message) {

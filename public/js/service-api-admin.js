@@ -1,6 +1,3 @@
-const BASE_API_PATH = "http://3.109.198.252/api/v1"
-// const BASE_API_PATH = "http://10.10.10.17:9101/v1"
-
 var userData = localStorage.getItem("userData") ?? null
 if (userData) {
     userData = JSON.parse(userData)
@@ -23,7 +20,7 @@ async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComp
     const isFormData = payload instanceof FormData;
 
     $.ajax({
-        url: `${BASE_API_PATH}${endPoint}`,
+        url: `${BASE_URL_API}/v1${endPoint}`,
         method: 'POST',
         data: payload ?? {},
         contentType: isFormData ? false : 'application/json',

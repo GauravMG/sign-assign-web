@@ -158,6 +158,7 @@
     <script src="<?= base_url('js/helper-validation.js'); ?>"></script>
 
     <script>
+        const BASE_URL_API = '<?= BASE_URL_API ?>'
         const jwtToken = localStorage.getItem("jwtToken")
         if ((jwtToken ?? "").trim() !== "") {
             var userData = localStorage.getItem("userData") ?? null
@@ -165,12 +166,8 @@
                 userData = JSON.parse(userData)
             }
             setTimeout(() => {
-                if ([1, 3].indexOf(parseInt(userData.roleId)) >= 0) {
+                if ([1, 5].indexOf(parseInt(userData.roleId)) >= 0) {
                     window.location.href = "/admin/users"
-                } else if ([4].indexOf(parseInt(userData.roleId)) >= 0) {
-                    window.location.href = "/admin/orders"
-                } else if ([2].indexOf(parseInt(userData.roleId)) >= 0) {
-                    window.location.href = "/admin/orders"
                 }
             }, [1000])
         }
@@ -199,7 +196,7 @@
                 }
 
                 $.ajax({
-                    url: `http://3.109.198.252/api/v1/auth/send-otp`,
+                    url: `${BASE_URL_API}/v1/auth/send-otp`,
                     method: 'POST',
                     data: {
                         verificationType,
@@ -267,7 +264,7 @@
                 }
 
                 $.ajax({
-                    url: `http://3.109.198.252/api/v1/auth/reset-password`,
+                    url: `${BASE_URL_API}/v1/auth/reset-password`,
                     method: 'POST',
                     data: {
                         verificationType,
@@ -312,7 +309,7 @@
 
         function resendOTP() {
             $.ajax({
-                url: `http://3.109.198.252/api/v1/auth/send-otp`,
+                url: `${BASE_URL_API}/v1/auth/send-otp`,
                 method: 'POST',
                 data: {
                     verificationType,

@@ -48,18 +48,64 @@
                         <div class="total-area">
                             <div class="flex-value">
                                 <p>Grand Total</p>
-                                <p>$<span id="grandTotalPrice"></span></p>
+                                <p>$<span class="grandTotalPrice"></span></p>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="checkout-button">Proceed to Checkout</a>
+                    <a onclick="openCloverModal()" class="checkout-button" style="cursor: pointer;">Proceed to Checkout</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- The Modal -->
+<div id="cloverModal" class="clover-modal">
+    <div class="clover-modal-content">
+        <span class="close" onclick="closeCloverModal()">&times;</span>
+        <h2>Payment Information</h2>
+        <p>$<span class="grandTotalPrice"></span> refundable deposit is required to reserve your seat.</p>
+
+        <form id="cloverPaymentForm">
+            <div class="clover-form-row">
+                <div id="card-number" class="clover-field"></div>
+                <div id="card-number-error" class="clover-error"></div>
+            </div>
+
+            <div class="clover-form-row" style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <div id="card-date" class="clover-field"></div>
+                    <div id="card-date-error" class="clover-error"></div>
+                </div>
+                <div style="flex: 1;">
+                    <div id="card-cvv" class="clover-field"></div>
+                    <div id="card-cvv-error" class="clover-error"></div>
+                </div>
+                <div style="flex: 1;">
+                    <div id="card-postal-code" class="clover-field"></div>
+                    <div id="card-postal-code-error" class="clover-error"></div>
+                </div>
+            </div>
+
+            <div class="clover-form-row">
+                <button type="submit" id="submitButton" class="clover-button">Pay $<span class="grandTotalPrice"></span></button>
+            </div>
+        </form>
+    </div>
+</div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
+<script src="<?= CLOVER_SDK_SCRIPT_PATH; ?>"></script>
+
+<script>
+    // Clover configuration
+    const cloverConfig = {
+        merchantId: '<?= CLOVER_MERCHANT_ID; ?>', // Replace with your merchant ID
+        publicToken: '<?= CLOVER_PUBLIC_TOKEN; ?>', // Replace with your public token
+        environment: '<?= CLOVER_ENVIRONMENT; ?>', // or 'production'
+    };
+</script>
+
 <script src="<?= base_url('js/checkout.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

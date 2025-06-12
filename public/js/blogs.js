@@ -45,7 +45,7 @@ async function fetchBlogs() {
                     }
 
                     if (mediaUrl === "") {
-                        mediaUrl = `${baseUrl}images/no-preview-available.jpg`;
+                        mediaUrl = `${BASE_URL}images/no-preview-available.jpg`;
                         isVideo = false;
                     }
 

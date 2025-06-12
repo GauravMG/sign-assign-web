@@ -92,3 +92,20 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+/**
+ * base paths
+ */
+define("BASE_URL_API", "http://3.109.198.252/api");
+define("BASE_URL_USER_DASHBOARD", "http://3.109.198.252/user-dashboard");
+define("BASE_URL_EDITOR", "http://3.109.198.252/editor");
+
+/**
+ * clover payment gateway
+ */
+// define("CLOVER_SDK_SCRIPT_PATH", "https://checkout.clover.com/sdk.js"); // production
+define("CLOVER_SDK_SCRIPT_PATH", "https://checkout.sandbox.dev.clover.com/sdk.js"); // sandbox
+define("CLOVER_MERCHANT_ID", "NAPH3AFV1GDN1");
+define("CLOVER_PUBLIC_TOKEN", "e17ad97586e71562f798ff5a68c9c54e");
+// define("CLOVER_ENVIRONMENT", "production"); // production
+define("CLOVER_ENVIRONMENT", "sandbox"); // sandbox

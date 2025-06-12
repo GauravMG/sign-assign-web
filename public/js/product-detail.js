@@ -119,7 +119,7 @@ async function fetchProducts() {
                     </div>`)
                 }
 
-                $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${baseUrl}images/no-preview-available.jpg`)
+                $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${BASE_URL}images/no-preview-available.jpg`)
 
                 reloadOwlCarousel($("#owl-example"), htmlImagesSlider)
 
@@ -296,7 +296,7 @@ async function fetchProducts() {
 //                     }
 
 //                     if ((coverImage ?? "").trim() === "") {
-//                         coverImage = `${baseUrl}images/no-preview-available.jpg`
+//                         coverImage = `${BASE_URL}images/no-preview-available.jpg`
 //                     }
 
 //                     html += `<div class="card variant-card" id="variantSelection_${variant.variantId}">
@@ -341,7 +341,7 @@ async function fetchProducts() {
 //         </div>`)
 //     }
 
-//     $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${baseUrl}images/no-preview-available.jpg`)
+//     $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${BASE_URL}images/no-preview-available.jpg`)
 
 //     reloadOwlCarousel($("#owl-example"), htmlImagesSlider)
 

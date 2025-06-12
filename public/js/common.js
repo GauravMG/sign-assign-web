@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     if (localStorage.getItem("jwtTokenUser")) {
         const token = localStorage.getItem('jwtTokenUser');
-        const userDashboardLink = `${baseUrlUserDashboard}user-dashboard?token=${token}`;
+        const userDashboardLink = `${BASE_URL_USER_DASHBOARD}?token=${token}`;
 
         htmlNavbarAuthOptionsContainer = `<a style="cursor: pointer;" href="${userDashboardLink}" class="profile-icon" title="Profile">
             <i class="fi fi-rs-user-gear"></i>

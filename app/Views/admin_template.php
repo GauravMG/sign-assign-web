@@ -67,6 +67,10 @@
     <script src="<?= base_url('assets/adminlte/dist/js/adminlte.min.js'); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <script>
+        const BASE_URL_API = '<?= BASE_URL_API ?>'
+    </script>
+
     <!-- Section for page-specific JS -->
     <?= $this->renderSection('pageScripts'); ?>
 

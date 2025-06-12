@@ -1,6 +1,7 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let productData = []
 let userDiscountPercentage = 0
+let grandTotalPrice = 0
 
 getSelfData()
 fetchProducts()
@@ -65,7 +66,7 @@ function renderCartItems() {
         }
 
         if ((coverImage ?? "").trim() === "") {
-            coverImage = `${baseUrl}images/no-preview-available.jpg`
+            coverImage = `${BASE_URL}images/no-preview-available.jpg`
         }
 
         const selectedAttrs = cartItem.selectedAttributes;
@@ -164,8 +165,10 @@ function renderCartItems() {
     let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
     document.getElementById("businessDiscountPrice").innerText = `$${businessDiscountPrice}`
 
-    let grandTotalPrice = Math.round((subTotalPrice - businessDiscountPrice) * 100) / 100
-    document.getElementById("grandTotalPrice").innerText = grandTotalPrice
+    grandTotalPrice = Math.round((subTotalPrice - businessDiscountPrice) * 100) / 100
+    document.querySelectorAll(".grandTotalPrice").forEach(element => {
+        element.textContent = grandTotalPrice;
+    });
 
     showUpdatedCartItemCount()
 }
@@ -247,4 +250,143 @@ function handleRushHourSelection(productId, isSelected) {
         cartItem.rushHourDelivery = isSelected;
         calculatePayablePrice(); // Recalculate prices
     }
+}
+
+// Clover elements
+let clover;
+let cardNumber;
+let cardDate;
+let cardCvv;
+let cardPostalCode;
+
+// Initialize Clover when modal opens
+function initializeClover() {
+    // Load Clover SDK if not already loaded
+    if (typeof Clover === 'undefined') {
+        console.error('Clover SDK not loaded');
+        return;
+    }
+
+    // Initialize Clover instance
+    clover = new Clover(cloverConfig.publicToken, {
+        merchantId: cloverConfig.merchantId
+    });
+
+    // Create card elements
+    const elements = clover.elements();
+    cardNumber = elements.create('CARD_NUMBER');
+    cardDate = elements.create('CARD_DATE');
+    cardCvv = elements.create('CARD_CVV');
+    cardPostalCode = elements.create('CARD_POSTAL_CODE');
+
+    // Mount elements to DOM
+    cardNumber.mount('#card-number');
+    cardDate.mount('#card-date');
+    cardCvv.mount('#card-cvv');
+    cardPostalCode.mount('#card-postal-code');
+
+    // Add event listeners for validation
+    cardNumber.addEventListener('change', (event) => handleElementChange(event, 'card-number'));
+    cardDate.addEventListener('change', (event) => handleElementChange(event, 'card-date'));
+    cardCvv.addEventListener('change', (event) => handleElementChange(event, 'card-cvv'));
+    cardPostalCode.addEventListener('change', (event) => handleElementChange(event, 'card-postal-code'));
+}
+
+// Handle element change events
+function handleElementChange(event, elementId) {
+    const errorElement = document.getElementById(`${elementId}-error`);
+    if (event.error) {
+        errorElement.textContent = event.error.message;
+    } else {
+        errorElement.textContent = '';
+    }
+}
+
+// Modal functions
+function openCloverModal() {
+    document.getElementById('cloverModal').style.display = 'block';
+    initializeClover();
+}
+
+function closeCloverModal() {
+    document.getElementById('cloverModal').style.display = 'none';
+    // Clean up Clover elements if needed
+}
+
+// Form submission
+document.getElementById('cloverPaymentForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const submitButton = document.getElementById('submitButton');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Processing...';
+
+    try {
+        // Create payment token
+        const { token, errors } = await clover.createToken();
+
+        if (errors) {
+            // Display errors to user
+            Object.keys(errors).forEach(key => {
+                const errorElement = document.getElementById(`${key.toLowerCase().replace('_', '-')}-error`);
+                if (errorElement) {
+                    errorElement.textContent = errors[key];
+                }
+            });
+            return;
+        }
+
+        // Call your backend to process the payment
+        try {
+            await postAPICall({
+                endPoint: "/payment/create",
+                payload: JSON.stringify({
+                    sourceToken: token,
+                    amount: grandTotalPrice,
+                    cart
+                }),
+                callbackComplete: () => { },
+                callbackSuccess: (response) => {
+                    const { success, message, data } = response
+                    console.log(`response ===`, response)
+
+                    if (success) {
+                        // Payment successful
+                        alert('Payment successful!');
+                        closeCloverModal();
+                        clearCart()
+                        // Redirect or update UI as needed
+                    } else {
+                        // Payment failed
+                        alert(`Payment failed: ${message}`);
+                    }
+                }
+            })
+        } catch (error) {
+            console.error('API call failed:', error);
+            return {
+                success: false,
+                error: 'Network error'
+            };
+        }
+    } catch (error) {
+        console.error('Payment error:', error);
+        alert('An error occurred during payment processing.');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = `Pay $${grandTotalPrice}`;
+    }
+});
+
+// Close modal when clicking outside
+window.onclick = function (event) {
+    const modal = document.getElementById('cloverModal');
+    if (event.target === modal) {
+        closeCloverModal();
+    }
+}
+
+function clearCart() {
+    localStorage.setItem('cart', JSON.stringify([]));
+    window.location.href = "/"
 }

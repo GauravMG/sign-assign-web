@@ -133,7 +133,7 @@ async function fetchProducts() {
                     }
 
                     if ((coverImage ?? "").trim() === "") {
-                        coverImage = `${baseUrl}images/no-preview-available.jpg`
+                        coverImage = `${BASE_URL}images/no-preview-available.jpg`
                     }
 
                     html.push(`<div class="inner-card">
@@ -153,7 +153,7 @@ async function fetchProducts() {
                                 </div>
                                 <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
                             </div>
-                            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Customize</a>
+                            <a href="${BASE_URL_EDITOR}" target="_blank" class="customized-button">Customize</a>
                         </a>
                     </div>`)
                 }

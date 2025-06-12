@@ -46,7 +46,7 @@ $routes->get('/admin/users/(:any)', 'AdminController::viewUser/$1');
 $routes->get('/admin/users', 'AdminController::users');
 
 $routes->get('/admin/forgot-password', 'AuthController::forgotPassword');
-$routes->get('/admin/register', 'AuthController::register');
+// $routes->get('/admin/register', 'AuthController::register');
 $routes->get('/admin/login', 'AuthController::login');
 $routes->get('/admin', 'AuthController::login');
 

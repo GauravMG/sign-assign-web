@@ -409,5 +409,5 @@ window.onclick = function (event) {
 
 function clearCart() {
     localStorage.setItem('cart', JSON.stringify([]));
-    window.location.href = `${BASE_URL_USER_DASHBOARD}/orders`
+    window.location.href = `${BASE_URL_USER_DASHBOARD}`
 }

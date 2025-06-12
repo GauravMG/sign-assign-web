@@ -312,7 +312,7 @@
                         </p>
                     </div>
                     <div class="right-area">
-                        <form>
+                        <form onsubmit="return false;">
                             <div class="form-group">
                                 <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Email Address">
                             </div>
@@ -327,7 +327,7 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <a class="submit-btn" onclick="login()">Login</a>
+                                <button type="submit" class="submit-btn" onclick="login()">Login</button>
                             </div>
                         </form>
 

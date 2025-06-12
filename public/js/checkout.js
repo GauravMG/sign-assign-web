@@ -320,8 +320,21 @@ function handleElementChange(event, elementId) {
 function openCloverModal() {
     const isUserLoggedIn = checkIfUserLoggedIn()
     if (!isUserLoggedIn) {
-        alert('Please login to complete your purchase!');
-        $("#loginModal").modal("show");
+        showAlert({
+            type: 'info',
+            title: 'Login Required',
+            text: 'Please log in to proceed with the checkout. Your cart will be saved!',
+            showCancel: true,
+            confirmText: 'Login Now',
+            cancelText: 'Continue Browsing',
+            onConfirm: () => {
+                $("#loginModal").modal("show");
+            },
+            onCancel: () => {
+                console.log('User chose not to log in right now.');
+            }
+        });
+
         return
     }
 
@@ -358,41 +371,55 @@ document.getElementById('cloverPaymentForm').addEventListener('submit', async fu
         }
 
         // Call your backend to process the payment
-        try {
-            await postAPICall({
-                endPoint: "/payment/create",
-                payload: JSON.stringify({
-                    sourceToken: token,
-                    amount: grandTotalPrice,
-                    cart,
-                    amountDetails
-                }),
-                callbackComplete: () => { },
-                callbackSuccess: (response) => {
-                    const { success, message, data } = response
+        await postAPICall({
+            endPoint: "/payment/create",
+            payload: JSON.stringify({
+                sourceToken: token,
+                amount: grandTotalPrice,
+                cart,
+                amountDetails
+            }),
+            callbackComplete: () => { },
+            callbackSuccess: (response) => {
+                const { success, message, data } = response
 
-                    if (success) {
-                        // Payment successful
-                        alert('Payment successful!');
-                        closeCloverModal();
-                        clearCart()
-                        // Redirect or update UI as needed
-                    } else {
-                        // Payment failed
-                        alert(`Payment failed: ${message}`);
-                    }
+                if (success) {
+                    // Payment successful
+                    showAlert({
+                        type: 'success',
+                        title: 'Payment Successful',
+                        text: 'Thank you for your purchase! Your order has been placed and a confirmation has been sent to your email.',
+                        confirmText: 'OK',
+                        onConfirm: () => {
+                            // Optional: redirect to orders page or homepage
+                            window.location.href = `${BASE_URL_USER_DASHBOARD}/orders`;
+                        }
+                    });
+
+                    closeCloverModal();
+                    clearCart()
+                    // Redirect or update UI as needed
+                } else {
+                    // Payment failed
+                    throw new Error(message)
+
                 }
-            })
-        } catch (error) {
-            console.error('API call failed:', error);
-            return {
-                success: false,
-                error: 'Network error'
-            };
-        }
+            },
+            callbackError: (errorMessage) => {
+                throw new Error(errorMessage)
+            }
+        })
     } catch (error) {
         console.error('Payment error:', error);
-        alert('An error occurred during payment processing.');
+        showAlert({
+            type: 'error',
+            title: 'Payment Failed',
+            text: 'Unfortunately, your payment could not be processed. Please try again or use a different payment method.',
+            confirmText: 'Try Again',
+            onConfirm: () => {
+                window.location.href = '/checkout';
+            }
+        });
     } finally {
         submitButton.disabled = false;
         submitButton.textContent = `Pay $${grandTotalPrice}`;

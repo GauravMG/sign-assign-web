@@ -28,6 +28,14 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
+                    <a href="/admin/attributes" class="nav-link">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>
+                            Attributes
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/product-categories" class="nav-link">
                         <i class="nav-icon fas fa-layer-group"></i>
                         <p>
@@ -43,22 +51,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
-                    <a href="/admin/attributes" class="nav-link">
-                        <i class="nav-icon fas fa-tags"></i>
-                        <p>
-                            Attributes
-                        </p>
-                    </a>
-                </li>
-                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
                     <a href="/admin/orders" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Orders
                         </p>
                     </a>
-                </li> -->
+                </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
                     <a href="/admin/invoices" class="nav-link">
                         <i class="nav-icon fas fa-receipt"></i>

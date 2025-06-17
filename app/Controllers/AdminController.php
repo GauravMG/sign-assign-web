@@ -311,6 +311,29 @@ class AdminController extends BaseController
     //     return view('add-variant-media', $data);
     // }
 
+    public function orders(): string
+    {
+        $data = [
+            'title' => 'Orders',
+            'page_heading' => 'Orders'
+        ];
+
+        return view('orders', $data);
+    }
+
+    public function viewOrder($orderId): string
+    {
+        $data = [
+            'title' => 'Order Details',
+            'page_heading' => 'Order Details',
+            'data' => [
+                'orderId' => $orderId
+            ]
+        ];
+
+        return view('view-order', $data);
+    }
+
     public function invoices(): string
     {
         $data = [

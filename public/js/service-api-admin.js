@@ -4,16 +4,24 @@ if (userData) {
 }
 
 function getJWTToken() {
-    const jwtToken = localStorage.getItem("jwtToken") ?? null
+    const jwtToken = localStorage.getItem("jwtToken") ?? null;
 
     if ((jwtToken ?? "").trim() === "") {
-        toastr.error("Session expired! Please login again.");
+        showAlert({
+            type: "error",
+            title: "Session Expired",
+            text: "Your session has expired. Please log in again.",
+            timer: 1500,
+            showConfirmButton: false
+        });
 
-        setTimeout(() => window.location.href = "/admin/login", 1500)
-        return
+        setTimeout(() => {
+            window.location.href = "/admin/login";
+        }, 1600); // Slightly more than timer for smooth UX
+        return;
     }
 
-    return jwtToken
+    return jwtToken;
 }
 
 async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComplete, callbackSuccess }) {
@@ -49,56 +57,49 @@ async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComp
                 }
             }
 
-            if (['Unauthorized: Your account is in-active. Please contact admin.'].indexOf(errorMessage) >= 0) {
-                toastr.error(errorMessage);
+            const handleLogout = (msg) => {
+                showAlert({
+                    type: "error",
+                    title: "Authentication Error",
+                    text: msg,
+                    timer: 1500,
+                    showConfirmButton: false
+                });
 
-                localStorage.removeItem("jwtToken")
-                localStorage.removeItem("userData")
+                localStorage.removeItem("jwtToken");
+                localStorage.removeItem("userData");
 
-                setTimeout(() => window.location.href = "/admin/login", 1500)
-                return
+                setTimeout(() => window.location.href = "/admin/login", 1600);
+            };
+
+            if (errorMessage === 'Unauthorized: Your account is in-active. Please contact admin.') {
+                return handleLogout(errorMessage);
             }
 
-            if (['jwt malformed'].includes(errorMessage)) {
-                toastr.error("Session expired! Please login again.");
-
-                localStorage.removeItem("jwtToken")
-                localStorage.removeItem("userData")
-
-                setTimeout(() => window.location.href = "/admin/login", 1500)
-                return
+            if (errorMessage === 'jwt malformed') {
+                return handleLogout("Session expired! Please login again.");
             }
 
-            if (['jwt expired'].includes(errorMessage)) {
+            if (errorMessage === 'jwt expired') {
                 try {
-                    await refreshToken(); // Wait for the token refresh before retrying the API call
-
-                    postAPICall({ endPoint, payload, callbackBeforeSend, callbackComplete, callbackSuccess });
+                    await refreshToken();
+                    return postAPICall({ endPoint, payload, callbackBeforeSend, callbackComplete, callbackSuccess });
                 } catch (refreshError) {
-                    toastr.error("Session expired! Please login again.");
-
-                    localStorage.removeItem("jwtToken")
-                    localStorage.removeItem("userData")
-
-                    setTimeout(() => window.location.href = "/admin/login", 1500)
-                    return
+                    return handleLogout("Session expired! Please login again.");
                 }
-
-                return;
             }
 
-            if (xhr.responseJSON.status === 401) {
-                toastr.error(errorMessage);
-
-                localStorage.removeItem("jwtToken")
-                localStorage.removeItem("userData")
-
-                setTimeout(() => window.location.href = "/admin/login", 1500)
-                return
+            if (xhr.responseJSON?.status === 401) {
+                return handleLogout(errorMessage);
             }
 
             loader.hide();
-            toastr.error(errorMessage);
+
+            showAlert({
+                type: "error",
+                title: "Error",
+                text: errorMessage
+            });
         }
     });
 }

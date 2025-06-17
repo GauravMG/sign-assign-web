@@ -194,101 +194,135 @@ async function login() {
 
     // Check if email is empty
     if (!email) {
-        toastr.error('Please enter your email address!');
-        emailInput.focus();
+        showAlert({
+            type: 'error',
+            title: 'Missing Email',
+            text: 'Please enter your email address!',
+            onConfirm: () => emailInput.focus()
+        });
         return;
     }
 
     // Validate email format
     if (!emailRegex.test(email)) {
-        toastr.error('Please enter a valid email address!');
-        emailInput.focus();
+        showAlert({
+            type: 'error',
+            title: 'Invalid Email',
+            text: 'Please enter a valid email address!',
+            onConfirm: () => emailInput.focus()
+        });
         return;
     }
 
     // Check if password is empty
     if (!password) {
-        toastr.error('Please enter your password!');
-        passwordInput.focus();
+        showAlert({
+            type: 'error',
+            title: 'Missing Password',
+            text: 'Please enter your password!',
+            onConfirm: () => passwordInput.focus()
+        });
         return;
     }
 
     await postAPICall({
         endPoint: "/auth/sign-in",
-        payload: JSON.stringify({
-            email,
-            password
-        }),
+        payload: JSON.stringify({ email, password }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
-            const { success, message, data, jwtToken } = response
+            const { success, message, data, jwtToken } = response;
 
             if (success) {
-                localStorage.setItem("jwtTokenUser", jwtToken)
-                localStorage.setItem("userDataUser", JSON.stringify(data))
+                localStorage.setItem("jwtTokenUser", jwtToken);
+                localStorage.setItem("userDataUser", JSON.stringify(data));
 
-                toastr.success(message);
+                showAlert({
+                    type: 'success',
+                    title: 'Login Successful',
+                    text: message || 'You have been logged in successfully!',
+                    timer: 1500
+                });
 
                 setTimeout(() => {
                     location.reload();
-                }, [1000])
+                }, 1500);
+            } else {
+                showAlert({
+                    type: 'error',
+                    title: 'Login Failed',
+                    text: message || 'Something went wrong. Please try again.'
+                });
             }
         }
-    })
+    });
 }
 
 let userEmail = null
 
 async function register() {
-    const verificationType = "registration"
+    const verificationType = "registration";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const firstName = document.getElementById("firstName").value
-    const lastName = document.getElementById("lastName").value
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
 
     const emailInput = document.getElementById('email');
     const email = emailInput.value.trim();
 
-    let roleId = document.querySelector('input[name="roleId"]:checked').value;
-    roleId = parseInt(roleId)
+    let roleId = parseInt(document.querySelector('input[name="roleId"]:checked').value);
 
-    if ((firstName ?? "").trim() === "") {
-        toastr.error('Please enter a valid first name!');
-        return
+    if (!firstName) {
+        showAlert({
+            type: 'error',
+            title: 'Invalid First Name',
+            text: 'Please enter a valid first name!'
+        });
+        return;
     }
 
-    if ((lastName ?? "").trim() === "") {
-        toastr.error('Please enter a valid last name!');
-        return
+    if (!lastName) {
+        showAlert({
+            type: 'error',
+            title: 'Invalid Last Name',
+            text: 'Please enter a valid last name!'
+        });
+        return;
     }
 
-    // Check if email is empty
     if (!email) {
-        toastr.error('Please enter your email address!');
-        emailInput.focus();
+        showAlert({
+            type: 'error',
+            title: 'Missing Email',
+            text: 'Please enter your email address!',
+            onConfirm: () => emailInput.focus()
+        });
         return;
     }
 
-    // Validate email format
     if (!emailRegex.test(email)) {
-        toastr.error('Please enter a valid email address!');
-        emailInput.focus();
+        showAlert({
+            type: 'error',
+            title: 'Invalid Email Format',
+            text: 'Please enter a valid email address!',
+            onConfirm: () => emailInput.focus()
+        });
         return;
     }
 
-    let business = {}
+    let business = {};
     if (roleId === 3) {
-        const businessName = document.getElementById("businessName").value
+        const businessName = document.getElementById("businessName").value.trim();
 
-        if ((businessName ?? "").trim() === "") {
-            toastr.error('Please enter a valid business name!');
-            return
+        if (!businessName) {
+            showAlert({
+                type: 'error',
+                title: 'Missing Business Name',
+                text: 'Please enter a valid business name!'
+            });
+            return;
         }
 
-        business = {
-            ...business,
-            name: businessName
-        }
+        business.name = businessName;
     }
 
     await postAPICall({
@@ -298,47 +332,77 @@ async function register() {
             firstName,
             lastName,
             email,
-            roleId: parseInt(roleId),
+            roleId,
             business
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
-            const { success, message, data, jwtToken } = response
+            const { success, message } = response;
 
             if (success) {
-                document.getElementById("registerFormContainer").style.display = "none"
-                document.getElementById("verifyAndSetPasswordContainer").style.display = "block"
-                userEmail = email
+                document.getElementById("registerFormContainer").style.display = "none";
+                document.getElementById("verifyAndSetPasswordContainer").style.display = "block";
+                userEmail = email;
 
-                toastr.success(response.message);
+                showAlert({
+                    type: 'success',
+                    title: 'Registration Successful',
+                    text: message || 'Verification sent. Please check your email.'
+                });
+            } else {
+                showAlert({
+                    type: 'error',
+                    title: 'Registration Failed',
+                    text: message || 'An error occurred. Please try again.'
+                });
             }
         }
-    })
+    });
 }
 
 async function verifyAndSetPassword(verificationType) {
-    const otp = document.getElementById(verificationType === "forgot_password" ? "forgotOTP" : "otp").value
-    const password = document.getElementById(verificationType === "forgot_password" ? "newPassword" : "password").value
-    const confirmPassword = document.getElementById(verificationType === "forgot_password" ? "confirmNewPassword" : "confirmPassword").value
+    const otpInputId = verificationType === "forgot_password" ? "forgotOTP" : "otp";
+    const passwordInputId = verificationType === "forgot_password" ? "newPassword" : "password";
+    const confirmPasswordInputId = verificationType === "forgot_password" ? "confirmNewPassword" : "confirmPassword";
 
-    if ((otp ?? "").trim() === "") {
-        toastr.error('Please enter a valid OTP!');
-        return
+    const otp = document.getElementById(otpInputId).value.trim();
+    const password = document.getElementById(passwordInputId).value.trim();
+    const confirmPassword = document.getElementById(confirmPasswordInputId).value.trim();
+
+    if (!otp) {
+        showAlert({
+            type: 'error',
+            title: 'Missing OTP',
+            text: 'Please enter a valid OTP!'
+        });
+        return;
     }
 
-    if ((password ?? "").trim() === "") {
-        toastr.error('Please enter a valid password!');
-        return
+    if (!password) {
+        showAlert({
+            type: 'error',
+            title: 'Missing Password',
+            text: 'Please enter a valid password!'
+        });
+        return;
     }
 
-    if ((confirmPassword ?? "").trim() === "") {
-        toastr.error('Please enter a valid confirm password!');
-        return
+    if (!confirmPassword) {
+        showAlert({
+            type: 'error',
+            title: 'Missing Confirm Password',
+            text: 'Please enter the confirm password!'
+        });
+        return;
     }
 
     if (password !== confirmPassword) {
-        toastr.error('Password and Retyped password does not match!');
-        return
+        showAlert({
+            type: 'error',
+            title: 'Password Mismatch',
+            text: 'Password and retyped password do not match!'
+        });
+        return;
     }
 
     await postAPICall({
@@ -346,43 +410,64 @@ async function verifyAndSetPassword(verificationType) {
         payload: JSON.stringify({
             verificationType,
             email: userEmail,
-            hash: otp.toString(),
+            hash: otp,
             newPassword: password
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
-            const { success, message, data, jwtToken } = response
+            const { success, message, data, jwtToken } = response;
 
             if (success) {
-                localStorage.setItem("jwtTokenUser", jwtToken)
-                localStorage.setItem("userDataUser", JSON.stringify(data))
+                localStorage.setItem("jwtTokenUser", jwtToken);
+                localStorage.setItem("userDataUser", JSON.stringify(data));
 
-                toastr.success(message);
+                showAlert({
+                    type: 'success',
+                    title: 'Password Updated',
+                    text: message || 'Your password has been updated successfully.'
+                });
 
                 setTimeout(() => {
                     location.reload();
-                }, [1000])
+                }, 1000);
+            } else {
+                showAlert({
+                    type: 'error',
+                    title: 'Error',
+                    text: message || 'Something went wrong. Please try again.'
+                });
             }
         }
-    })
+    });
 }
 
 async function resendOTP(verificationType) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const email = (userEmail ?? "").trim() === "" && verificationType === "forgot_password" ? document.getElementById('forgotEmail').value.trim() : userEmail.trim()
+    const emailInputElement = document.getElementById('forgotEmail');
+    const email = (userEmail ?? "").trim() === "" && verificationType === "forgot_password"
+        ? emailInputElement.value.trim()
+        : userEmail.trim();
 
     // Check if email is empty
     if (!email) {
-        toastr.error('Please enter your email address!');
-        emailInput.focus();
+        showAlert({
+            type: 'error',
+            title: 'Missing Email',
+            text: 'Please enter your email address!'
+        });
+        if (emailInputElement) emailInputElement.focus();
         return;
     }
 
     // Validate email format
     if (!emailRegex.test(email)) {
-        toastr.error('Please enter a valid email address!');
-        emailInput.focus();
+        showAlert({
+            type: 'error',
+            title: 'Invalid Email',
+            text: 'Please enter a valid email address!'
+        });
+        if (emailInputElement) emailInputElement.focus();
         return;
     }
 
@@ -394,19 +479,29 @@ async function resendOTP(verificationType) {
         }),
         callbackComplete: () => { },
         callbackSuccess: (response) => {
-            const { success, message } = response
+            const { success, message } = response;
 
             if (success) {
                 if (verificationType === "forgot_password" && (userEmail ?? "").trim() === "") {
-                    document.getElementById("forgotPasswordRequestContainer").style.display = "none"
-                    document.getElementById("forgotPasswordVerifyContainer").style.display = "block"
-                    userEmail = email
+                    document.getElementById("forgotPasswordRequestContainer").style.display = "none";
+                    document.getElementById("forgotPasswordVerifyContainer").style.display = "block";
+                    userEmail = email;
                 }
 
-                toastr.success(message);
+                showAlert({
+                    type: 'success',
+                    title: 'OTP Sent',
+                    text: message || 'OTP has been sent to your email.'
+                });
+            } else {
+                showAlert({
+                    type: 'error',
+                    title: 'Failed',
+                    text: message || 'Something went wrong. Please try again.'
+                });
             }
         }
-    })
+    });
 }
 
 function showUpdatedCartItemCount() {
@@ -426,4 +521,50 @@ function showUpdatedCartItemCount() {
 
 function checkIfUserLoggedIn() {
     return !!localStorage.getItem("jwtTokenUser")
+}
+
+async function fetchUserAddresses() {
+    return await new Promise((resolve, reject) => {
+        postAPICall({
+            endPoint: "/user-address/list",
+            payload: JSON.stringify({
+                "range": {
+                    "all": true
+                }
+            }),
+            callbackComplete: () => { },
+            callbackSuccess: (response) => {
+                const { success, message, data } = response
+
+                if (success) {
+                    resolve(data)
+                } else {
+                    reject(new Error(message))
+                }
+            }
+        })
+    })
+}
+
+async function fetchBusinessClients() {
+    return await new Promise((resolve, reject) => {
+        postAPICall({
+            endPoint: "/business-client/list",
+            payload: JSON.stringify({
+                "range": {
+                    "all": true
+                }
+            }),
+            callbackComplete: () => { },
+            callbackSuccess: (response) => {
+                const { success, message, data } = response
+
+                if (success) {
+                    resolve(data)
+                } else {
+                    reject(new Error(message))
+                }
+            }
+        })
+    })
 }

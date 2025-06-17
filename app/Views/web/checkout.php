@@ -52,14 +52,50 @@
                             </div>
                         </div>
                     </div>
-                    <a onclick="openCloverModal()" class="checkout-button" style="cursor: pointer;">Proceed to Checkout</a>
+                    <a onclick="openShippingAddressModal()" class="checkout-button" style="cursor: pointer;">Proceed to Checkout</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- The Modal -->
+<!-- Shipping Selection Modal -->
+<div id="shippingSelectionModal" class="shipping-modal">
+    <div class="shipping-modal-content">
+        <span class="shipping-modal-close" onclick="closeShippingModal()">&times;</span>
+
+        <div id="shippingSelectionArea">
+            <h4>Select Shipping Options</h4>
+
+            <!-- Show only for business user -->
+            <div id="shippingSelectionBusinessContainer" class="d-none">
+                <div class="form-group mb-3">
+                    <label><input type="radio" name="orderType" value="self" checked onchange="toggleOrderType(this.value)"> Order for Myself</label>
+                    <label><input type="radio" name="orderType" value="client" onchange="toggleOrderType(this.value)"> Order for Client</label>
+                </div>
+
+                <div id="clientSelectionArea" class="form-group mb-3 d-none">
+                    <label for="clientSelect">Select Client:</label>
+                    <select id="clientSelect" class="form-control" onchange="loadClientAddress(this.value)">
+                        <option value="">-- Select Client --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="addressSelectionArea" class="form-group mb-3">
+                <label for="shippingAddress">Select Shipping Address:</label>
+                <select id="shippingAddress" class="form-control">
+                </select>
+            </div>
+        </div>
+
+        <div class="text-end">
+            <button class="btn btn-success" onclick="continueToPayment()">Continue to Payment</button>
+        </div>
+    </div>
+</div>
+
+<!-- Payment Modal -->
 <div id="cloverModal" class="clover-modal">
     <div class="clover-modal-content">
         <span class="close" onclick="closeCloverModal()">&times;</span>

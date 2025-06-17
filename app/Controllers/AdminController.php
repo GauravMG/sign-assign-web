@@ -9,6 +9,52 @@ class AdminController extends BaseController
         return $this->users();
     }
 
+    public function staff(): string
+    {
+        $data = [
+            'title' => 'My Staff',
+            'page_heading' => 'My Staff'
+        ];
+
+        return view('staff', $data);
+    }
+
+    public function addStaff(): string
+    {
+        $data = [
+            'title' => 'Add Staff',
+            'page_heading' => 'Add Staff'
+        ];
+
+        return view('add-staff', $data);
+    }
+
+    public function updateStaff($userId): string
+    {
+        $data = [
+            'title' => 'Update Staff',
+            'page_heading' => 'Update Staff',
+            'data' => [
+                'userId' => $userId
+            ]
+        ];
+
+        return view('add-staff', $data);
+    }
+
+    public function viewStaff($userId): string
+    {
+        $data = [
+            'title' => 'Staff Details',
+            'page_heading' => 'Staff Details',
+            'data' => [
+                'userId' => $userId
+            ]
+        ];
+
+        return view('view-staff', $data);
+    }
+
     public function users(): string
     {
         $data = [

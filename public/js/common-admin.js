@@ -24,4 +24,7 @@ $(document).ready(function () {
     if (roleId === 4) {
         document.querySelectorAll('.sidebar-nav-item-brokerstaff').forEach(item => item.style.display = 'block');
     }
+    if (roleId === 5) {
+        document.querySelectorAll('.sidebar-nav-item-staff').forEach(item => item.style.display = 'block');
+    }
 })

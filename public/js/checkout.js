@@ -7,6 +7,10 @@ let amountDetails = {
     businessDiscountPrice: 0,
     grandTotalPrice: 0
 }
+let userAddresses = []
+let businessClients = []
+let selectedShippingAddressId = null
+let selectedBusinessClientId = null
 
 getSelfData()
 fetchProducts()
@@ -266,6 +270,156 @@ function handleRushHourSelection(productId, isSelected) {
     }
 }
 
+/**
+ * 
+ * shipping address 
+ */
+// Modal functions
+async function openShippingAddressModal() {
+    const isUserLoggedIn = checkIfUserLoggedIn();
+    if (!isUserLoggedIn) {
+        showAlert({
+            type: 'info',
+            title: 'Login Required to Continue',
+            text: 'To select a shipping address and proceed with your order, please log in to your account.',
+            showCancel: true,
+            confirmText: 'Login Now',
+            cancelText: 'Go Back',
+            onConfirm: () => $("#loginModal").modal("show"),
+        });
+        return;
+    }
+
+    resetShippingModalState(); // reset before showing
+    document.getElementById('shippingSelectionModal').style.display = 'block';
+
+    const selectedOrderType = document.querySelector('input[name="orderType"]:checked')?.value || 'self';
+    await toggleOrderType(selectedOrderType);
+}
+
+function closeShippingModal() {
+    document.getElementById('shippingSelectionModal').style.display = 'none';
+    resetShippingModalState();
+}
+
+function resetShippingModalState() {
+    // Hide all dynamic sections
+    document.getElementById('shippingSelectionBusinessContainer')?.classList.add('d-none');
+    document.getElementById('clientSelectionArea')?.classList.add('d-none');
+    document.getElementById('addressSelectionArea')?.classList.remove('d-none'); // default visible for 'self'
+    document.getElementById('newAddressForm')?.classList.add('d-none');
+
+    // Clear dropdowns/HTML
+    document.getElementById('clientSelect') && (document.getElementById('clientSelect').innerHTML = '');
+    document.getElementById('addressSelectionArea') && (document.getElementById('addressSelectionArea').innerHTML = `
+        <label for="shippingAddress">Select Shipping Address:</label>
+        <select id="shippingAddress" class="form-control">
+        </select>`);
+
+    // Reset radio
+    const orderTypeInputs = document.querySelectorAll('input[name="orderType"]');
+    orderTypeInputs.forEach(input => {
+        if (input.value === 'self') input.checked = true;
+    });
+}
+
+function continueToPayment() {
+    selectedShippingAddressId = document.getElementById("shippingAddress")?.value ?? null;
+
+    closeShippingModal();
+    openCloverModal(); // your existing Clover flow
+}
+
+window.addEventListener("click", function (event) {
+    const modal = document.getElementById('shippingSelectionModal');
+    if (event.target === modal) {
+        closeShippingModal();
+    }
+});
+
+async function toggleOrderType(value) {
+    const clientArea = document.getElementById('clientSelectionArea');
+    const addressArea = document.getElementById('addressSelectionArea');
+    const businessContainer = document.getElementById('shippingSelectionBusinessContainer');
+    const addressSelectContainer = document.getElementById('addressSelectionArea');
+
+    // Clear address area before re-rendering
+    addressArea.innerHTML = '';
+
+    // Show business-specific container only if roleId is business
+    const userDataUser = JSON.parse(localStorage.getItem("userDataUser") || "{}");
+    const isBusinessUser = [3, 4].includes(Number(userDataUser.roleId));
+    if (isBusinessUser) {
+        businessContainer.classList.remove("d-none");
+    } else {
+        businessContainer.classList.add("d-none");
+    }
+
+    if (value === 'self') {
+        // Hide client-related fields
+        clientArea.classList.add('d-none');
+        addressArea.classList.remove('d-none');
+
+        // Load user's own addresses
+        if (!userAddresses || userAddresses.length === 0) {
+            userAddresses = await fetchUserAddresses();
+        }
+
+        let html = `<label for="shippingAddress">Select Shipping Address:</label>`;
+        html += `<select id="shippingAddress" class="form-control">`;
+        for (const addr of userAddresses) {
+            html += `<option value="${addr.userAddressId}">${createFullName(addr)} - ${formatAddress(addr)}</option>`;
+        }
+        html += `</select>`;
+
+        addressArea.innerHTML = html;
+
+    } else if (value === 'client') {
+        // Show client dropdown, hide own address list
+        clientArea.classList.remove('d-none');
+        addressArea.classList.add('d-none');
+        addressArea.innerHTML = '';
+
+        if (!businessClients || businessClients.length === 0) {
+            businessClients = await fetchBusinessClients();
+        }
+
+        let options = `<option value="">-- Select Client --</option>`;
+        for (const client of businessClients) {
+            options += `<option value="${client.businessClientId}">${createFullName(client)}</option>`;
+        }
+
+        document.getElementById('clientSelect').innerHTML = options;
+    }
+}
+
+function loadClientAddress(businessClientId) {
+    if (!businessClientId) {
+        document.getElementById('addressSelectionArea').classList.add('d-none');
+        document.getElementById('addressSelectionArea').innerHTML = '';
+        return;
+    }
+
+    const selectedClient = businessClients.find(client =>
+        Number(client.businessClientId) === Number(businessClientId)
+    );
+
+    if (!selectedClient) return;
+
+    selectedBusinessClientId = businessClientId
+
+    document.getElementById('addressSelectionArea').innerHTML = `
+        <div class="custom-shipping-alert">
+            Shipping to: <strong>${formatAddress(selectedClient)}</strong>
+        </div>
+    `;
+    document.getElementById('addressSelectionArea').classList.remove('d-none');
+}
+
+/**
+ * 
+ * clover payment gateway
+ */
 // Clover elements
 let clover;
 let cardNumber;
@@ -318,20 +472,30 @@ function handleElementChange(event, elementId) {
 
 // Modal functions
 function openCloverModal() {
-    const isUserLoggedIn = checkIfUserLoggedIn()
-    if (!isUserLoggedIn) {
-        alert('Please login to complete your purchase!');
-        $("#loginModal").modal("show");
-        return
-    }
+    document.getElementById('shippingSelectionModal').style.display = 'none';
 
     document.getElementById('cloverModal').style.display = 'block';
     initializeClover();
 }
 
 function closeCloverModal() {
-    document.getElementById('cloverModal').style.display = 'none';
-    // Clean up Clover elements if needed
+    const cloverModal = document.getElementById('cloverModal');
+    cloverModal.style.display = 'none';
+
+    // Optional: Clear Clover field containers if you're reinitializing later
+    document.getElementById('card-number').innerHTML = '';
+    document.getElementById('card-date').innerHTML = '';
+    document.getElementById('card-cvv').innerHTML = '';
+    document.getElementById('card-postal-code').innerHTML = '';
+
+    // Also clear any error messages
+    document.querySelectorAll('.clover-error').forEach(el => el.textContent = '');
+
+    // Optional: Reset form (if needed)
+    document.getElementById('cloverPaymentForm').reset();
+
+    // Optional: Re-enable the button in case it was disabled
+    document.getElementById('submitButton').disabled = false;
 }
 
 // Form submission
@@ -358,14 +522,17 @@ document.getElementById('cloverPaymentForm').addEventListener('submit', async fu
         }
 
         // Call your backend to process the payment
-        try {
-            await postAPICall({
+        await new Promise((resolve, reject) => {
+            postAPICall({
                 endPoint: "/payment/create",
                 payload: JSON.stringify({
                     sourceToken: token,
                     amount: grandTotalPrice,
                     cart,
-                    amountDetails
+                    amountDetails,
+                    shippingAddressId: selectedShippingAddressId ? Number(selectedShippingAddressId) : null,
+                    shippingAddressDetails: selectedBusinessClientId ? businessClients.find((businessClient) => Number(businessClient.businessClientId) === Number(selectedBusinessClientId)) : userAddresses.find((userAddress) => Number(userAddress.userAddressId) === Number(selectedShippingAddressId)),
+                    businessClientId: selectedBusinessClientId ? Number(selectedBusinessClientId) : null
                 }),
                 callbackComplete: () => { },
                 callbackSuccess: (response) => {
@@ -373,27 +540,44 @@ document.getElementById('cloverPaymentForm').addEventListener('submit', async fu
 
                     if (success) {
                         // Payment successful
-                        alert('Payment successful!');
+                        showAlert({
+                            type: 'success',
+                            title: 'Payment Successful',
+                            text: 'Thank you for your purchase! Your order has been placed and a confirmation has been sent to your email.',
+                            confirmText: 'OK',
+                            onConfirm: () => {
+                                // Optional: redirect to orders page or homepage
+                                window.location.href = `${BASE_URL_USER_DASHBOARD}/orders`;
+                            }
+                        });
+
                         closeCloverModal();
                         clearCart()
                         // Redirect or update UI as needed
+                        resolve()
                     } else {
                         // Payment failed
-                        alert(`Payment failed: ${message}`);
+                        reject(new Error(message))
+
                     }
+                },
+                callbackError: (errorMessage) => {
+                    reject(new Error(errorMessage))
                 }
             })
-        } catch (error) {
-            console.error('API call failed:', error);
-            return {
-                success: false,
-                error: 'Network error'
-            };
-        }
+        })
     } catch (error) {
         console.error('Payment error:', error);
-        alert('An error occurred during payment processing.');
-    } finally {
+        showAlert({
+            type: 'error',
+            title: 'Payment Failed',
+            text: 'Unfortunately, your payment could not be processed. Please try again or use a different payment method.',
+            confirmText: 'Try Again',
+            onConfirm: () => {
+                window.location.href = '/checkout';
+            }
+        });
+
         submitButton.disabled = false;
         submitButton.textContent = `Pay $${grandTotalPrice}`;
     }

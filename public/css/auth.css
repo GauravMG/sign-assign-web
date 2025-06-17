@@ -1,16 +1,16 @@
-.modal-content{
+.modal-content {
     border-radius: 0;
 }
 
-.modal-body{
+.modal-body {
     padding: 0;
 }
 
-.auth-inner{
+.auth-inner {
     display: flex;
 }
 
-.auth-inner .left-area{
+.auth-inner .left-area {
     background-position: bottom;
     background-repeat: no-repeat;
     background-color: #efefef;
@@ -20,11 +20,12 @@
     min-height: 600px;
 }
 
-.auth-inner.signup .left-area{
+.auth-inner.signup .left-area {
     background-image: url('../images/login-page/Sign\ up.png');
     background-size: 100%;
 }
-.auth-inner.login .left-area{
+
+.auth-inner.login .left-area {
     background-image: url('../images/login-page/Login.png');
     background-size: 70%;
 }
@@ -41,11 +42,11 @@
     color: #555555;
 }
 
-.auth-inner .right-area{
+.auth-inner .right-area {
     padding: 40px;
     flex: 1 1 50%;
     max-width: 50%;
-    display: flex    ;
+    display: flex;
     flex-direction: column;
     justify-content: center;
 }
@@ -62,30 +63,31 @@
     font-style: italic;
 }
 
-.auth-inner .right-area form .flex-inner{
+.auth-inner .right-area form .flex-inner {
     display: flex;
     gap: 0.5rem;
     justify-content: flex-end;
 }
 
-.auth-inner .right-area form .flex-inner a{
+.auth-inner .right-area form .flex-inner a {
     text-decoration: none;
     font-weight: 500;
 }
 
-.auth-inner .right-area form .flex-inner a:first-child{
+.auth-inner .right-area form .flex-inner a:first-child {
     color: #452e73;
 }
 
-.auth-inner .right-area form .flex-inner a:last-child{
+.auth-inner .right-area form .flex-inner a:last-child {
     color: #df9229;
 }
 
-.auth-inner .right-area form .form-group{
+.auth-inner .right-area form .form-group {
     margin-bottom: 0.5rem;
 }
 
-.auth-inner .right-area form .form-group .form-control, .auth-inner .right-area form .form-group .form-select{
+.auth-inner .right-area form .form-group .form-control,
+.auth-inner .right-area form .form-group .form-select {
     border-radius: 4px;
     border: 0;
     background-color: #efefef;
@@ -93,25 +95,27 @@
     font-size: 0.854rem;
 }
 
-.auth-inner .right-area form .form-group .form-control:focus, .auth-inner .right-area form .form-group .form-select:focus{
+.auth-inner .right-area form .form-group .form-control:focus,
+.auth-inner .right-area form .form-group .form-select:focus {
     box-shadow: none;
     border: 0;
 }
 
-.auth-inner .right-area form .form-group .form-select option{
+.auth-inner .right-area form .form-group .form-select option {
     display: flex;
     gap: 0.5rem;
 }
 
-.auth-inner .right-area form .form-group label{
+.auth-inner .right-area form .form-group label {
     font-size: 0.754rem;
 }
 
-.auth-inner .right-area form .form-group input[type= "checkbox"]{
+.auth-inner .right-area form .form-group input[type="checkbox"] {
     accent-color: #df9229;
     vertical-align: middle;
 }
 
+.auth-inner .right-area form .form-group .submit-btn,
 .auth-inner .right-area form .form-group a.submit-btn {
     background-color: #df9229;
     color: #fff;
@@ -123,9 +127,10 @@
     justify-content: center;
     text-transform: uppercase;
     cursor: pointer;
+    border: unset;
 }
 
-.auth-inner .right-area form .form-group .flex-radiobtn{
+.auth-inner .right-area form .form-group .flex-radiobtn {
     display: flex;
     gap: 1rem;
     justify-content: flex-start;
@@ -138,14 +143,14 @@
     cursor: pointer;
 }
 
-.auth-inner .right-area form .form-group .flex-radiobtn .form-check-label input[type="radio"]{
+.auth-inner .right-area form .form-group .flex-radiobtn .form-check-label input[type="radio"] {
     width: 1.5rem;
     height: 1.5rem;
     background-color: #df9229;
     border-color: #df9229;
 }
 
-.auth-inner .right-area form .form-group .flex-radiobtn .form-check-label input[type="radio"]:focus{
+.auth-inner .right-area form .form-group .flex-radiobtn .form-check-label input[type="radio"]:focus {
     box-shadow: none;
 }
 

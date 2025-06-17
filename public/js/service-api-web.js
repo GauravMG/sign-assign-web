@@ -2,17 +2,20 @@ function getJWTToken() {
     return localStorage.getItem("jwtTokenUser") ?? null
 }
 
-async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComplete, callbackSuccess }) {
+async function postAPICall({
+    endPoint,
+    payload,
+    callbackBeforeSend,
+    callbackComplete,
+    callbackSuccess,
+    callbackError
+}) {
     const isFormData = payload instanceof FormData;
+    const jwtToken = getJWTToken();
 
-    const jwtToken = getJWTToken()
-
-    let headers = {}
+    let headers = {};
     if (jwtToken) {
-        headers = {
-            ...headers,
-            "Authorization": `Bearer ${jwtToken}`
-        }
+        headers["Authorization"] = `Bearer ${jwtToken}`;
     }
 
     $.ajax({
@@ -22,50 +25,72 @@ async function postAPICall({ endPoint, payload, callbackBeforeSend, callbackComp
         contentType: isFormData ? false : 'application/json',
         processData: !isFormData,
         headers,
-        beforeSend: callbackBeforeSend ?? function () {
-        },
-        complete: callbackComplete ?? function () {
-        },
+        beforeSend: callbackBeforeSend ?? (() => { }),
+        complete: callbackComplete ?? (() => { }),
         success: callbackSuccess,
         error: async function (xhr, status, error, message) {
             let errorMessage = "Something went wrong";
 
-            if (xhr.responseJSON && xhr.responseJSON.message) {
+            if (xhr.responseJSON?.message) {
                 errorMessage = xhr.responseJSON.message;
             } else if (xhr.responseText) {
                 try {
-                    let parsedResponse = JSON.parse(xhr.responseText);
+                    const parsedResponse = JSON.parse(xhr.responseText);
                     errorMessage = parsedResponse.message || errorMessage;
-                } catch (e) {
+                } catch {
                     errorMessage = xhr.responseText;
                 }
             }
 
-            if (['jwt expired'].includes(errorMessage)) {
+            // Handle JWT Expired
+            if (errorMessage === 'jwt expired') {
                 try {
-                    await refreshToken(); // Wait for the token refresh before retrying the API call
+                    await refreshToken();
+                    return postAPICall({
+                        endPoint,
+                        payload,
+                        callbackBeforeSend,
+                        callbackComplete,
+                        callbackSuccess,
+                        callbackError
+                    });
+                } catch {
+                    localStorage.removeItem("jwtTokenUser");
+                    localStorage.removeItem("userDataUser");
 
-                    postAPICall({ endPoint, payload, callbackBeforeSend, callbackComplete, callbackSuccess });
-                } catch (refreshError) {
-                    toastr.error("Session expired! Please login again.");
+                    showAlert({
+                        type: "error",
+                        title: "Session Expired",
+                        text: "Please login again.",
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
 
-                    localStorage.removeItem("jwtTokenUser")
-                    localStorage.removeItem("userDataUser")
-
-                    setTimeout(() => window.location.href = "/", 1500)
-                    return
+                    setTimeout(() => window.location.href = "/", 1600);
+                    return;
                 }
+            }
 
+            // Handle 401
+            if (xhr.responseJSON?.status === 401) {
+                showAlert({
+                    type: 'error',
+                    title: 'Unauthorized',
+                    text: errorMessage,
+                });
                 return;
             }
 
-            if (xhr.responseJSON.status === 401) {
-                toastr.error(errorMessage);
-                // setTimeout(() => window.location.href = "/", 1500)
-                return
+            // Default Error Callback Handling
+            if (typeof callbackError === 'function') {
+                callbackError(errorMessage);
+            } else {
+                showAlert({
+                    type: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
             }
-
-            toastr.error(errorMessage);
         }
     });
 }
@@ -97,7 +122,7 @@ function onClickLogout() {
                 if (response.success) {
                     localStorage.removeItem("jwtTokenUser")
                     localStorage.removeItem("userDataUser")
-    
+
                     window.history.replaceState({}, document.title, window.location.pathname);
                     window.location.href = "/"
                 }
@@ -113,7 +138,7 @@ function getMe() {
             callbackBeforeSend: () => { },
             callbackComplete: () => { },
             callbackSuccess: (response) => {
-                const {success, message, data} = response
+                const { success, message, data } = response
 
                 if (success) {
                     resolve(data);

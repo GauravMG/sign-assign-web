@@ -9,6 +9,52 @@ class AdminController extends BaseController
         return $this->users();
     }
 
+    public function staff(): string
+    {
+        $data = [
+            'title' => 'My Staff',
+            'page_heading' => 'My Staff'
+        ];
+
+        return view('staff', $data);
+    }
+
+    public function addStaff(): string
+    {
+        $data = [
+            'title' => 'Add Staff',
+            'page_heading' => 'Add Staff'
+        ];
+
+        return view('add-staff', $data);
+    }
+
+    public function updateStaff($userId): string
+    {
+        $data = [
+            'title' => 'Update Staff',
+            'page_heading' => 'Update Staff',
+            'data' => [
+                'userId' => $userId
+            ]
+        ];
+
+        return view('add-staff', $data);
+    }
+
+    public function viewStaff($userId): string
+    {
+        $data = [
+            'title' => 'Staff Details',
+            'page_heading' => 'Staff Details',
+            'data' => [
+                'userId' => $userId
+            ]
+        ];
+
+        return view('view-staff', $data);
+    }
+
     public function users(): string
     {
         $data = [
@@ -264,6 +310,29 @@ class AdminController extends BaseController
 
     //     return view('add-variant-media', $data);
     // }
+
+    public function orders(): string
+    {
+        $data = [
+            'title' => 'Orders',
+            'page_heading' => 'Orders'
+        ];
+
+        return view('orders', $data);
+    }
+
+    public function viewOrder($orderId): string
+    {
+        $data = [
+            'title' => 'Order Details',
+            'page_heading' => 'Order Details',
+            'data' => [
+                'orderId' => $orderId
+            ]
+        ];
+
+        return view('view-order', $data);
+    }
 
     public function invoices(): string
     {

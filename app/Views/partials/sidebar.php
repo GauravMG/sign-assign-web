@@ -11,7 +11,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/users" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
@@ -20,22 +20,14 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
-                    <a href="/admin/product-categories" class="nav-link">
-                        <i class="nav-icon fas fa-layer-group"></i>
+                    <a href="/admin/staff" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Product Categories
+                            My Staff
                         </p>
                     </a>
                 </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
-                    <a href="/admin/products" class="nav-link">
-                        <i class="nav-icon fas fa-boxes"></i>
-                        <p>
-                            Products
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/attributes" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
@@ -43,15 +35,31 @@
                         </p>
                     </a>
                 </li>
-                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
+                    <a href="/admin/product-categories" class="nav-link">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>
+                            Product Categories
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
+                    <a href="/admin/products" class="nav-link">
+                        <i class="nav-icon fas fa-boxes"></i>
+                        <p>
+                            Products
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
                     <a href="/admin/orders" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Orders
                         </p>
                     </a>
-                </li> -->
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
                     <a href="/admin/invoices" class="nav-link">
                         <i class="nav-icon fas fa-receipt"></i>
                         <p>
@@ -59,7 +67,7 @@
                         </p>
                     </a>
                 </li>
-                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-brokerstaff">
+                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
                     <a href="/admin/payments" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
@@ -67,7 +75,7 @@
                         </p>
                     </a>
                 </li> -->
-                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/reports" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
                         <p>
@@ -75,7 +83,7 @@
                         </p>
                     </a>
                 </li> -->
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/support-tickets" class="nav-link">
                         <i class="nav-icon fas fa-headset"></i>
                         <p>
@@ -83,7 +91,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/banners" class="nav-link">
                         <i class="nav-icon fas fa-images"></i>
                         <p>
@@ -91,7 +99,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/blogs" class="nav-link">
                         <i class="nav-icon fas fa-blog"></i>
                         <p>

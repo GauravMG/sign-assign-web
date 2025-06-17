@@ -14,6 +14,9 @@ $routes->get('/admin/blogs', 'AdminController::blogs');
 $routes->get('/admin/invoices/print', 'AdminController::invoicePrint');
 $routes->get('/admin/invoices', 'AdminController::invoices');
 
+$routes->get('/admin/orders/(:any)', 'AdminController::viewOrder/$1');
+$routes->get('/admin/orders', 'AdminController::orders');
+
 // $routes->get('/admin/variant-media/add/(:any)', 'AdminController::addVariantMedia/$1');
 
 // $routes->get('/admin/variants/view/(:any)', 'AdminController::viewVariant/$1');
@@ -39,6 +42,11 @@ $routes->get('/admin/banners', 'AdminController::banners');
 
 $routes->get('/admin/support-tickets/(:any)', 'AdminController::viewSupportTicket/$1');
 $routes->get('/admin/support-tickets', 'AdminController::supportTickets');
+
+$routes->get('/admin/staff/update/(:any)', 'AdminController::updateStaff/$1');
+$routes->get('/admin/staff/add', 'AdminController::addStaff');
+$routes->get('/admin/staff/(:any)', 'AdminController::viewStaff/$1');
+$routes->get('/admin/staff', 'AdminController::staff');
 
 $routes->get('/admin/users/update/(:any)', 'AdminController::updateUser/$1');
 $routes->get('/admin/users/add', 'AdminController::addUser');

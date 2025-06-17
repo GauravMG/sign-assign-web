@@ -56,7 +56,7 @@
                     <ul class="list-group" id="assignedStaffList"></ul>
                 </div>
 
-                <!-- <div class="mb-4">
+                <div class="mb-4 d-none staffTaskContainer">
                     <h5><strong>Add Task</strong></h5>
                     <form id="addTaskForm">
                         <div class="form-group">
@@ -71,10 +71,10 @@
                     </form>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4 d-none staffTaskContainer">
                     <h5><strong>Staff Tasks</strong></h5>
                     <ul class="list-group" id="taskList"></ul>
-                </div> -->
+                </div>
 
             </div>
         </div>
@@ -113,70 +113,10 @@
 
 <script>
     const orderId = '<?= $data["orderId"]; ?>'
+    let orderStaffMappingIds = []
 
     document.addEventListener("DOMContentLoaded", function() {
         fetchOrder()
-
-        /**
-         * 
-         * fetch(`/api/orders/${orderId}`)
-            .then(res => res.json())
-            .then(({
-                data: order
-            }) => {
-                // Products
-                const productList = document.getElementById("productList");
-                order.orderProducts.forEach(product => {
-                    const dataJson = typeof product.dataJson === "string" ? JSON.parse(product.dataJson) : product.dataJson;
-                    const li = document.createElement("li");
-                    li.className = "list-group-item d-flex justify-content-between align-items-center";
-                    li.innerHTML = `${product.product.name} <span><strong>$${dataJson.payablePriceByQuantityAfterDiscount}</strong></span>`;
-                    productList.appendChild(li);
-                });
-
-                // Shipping Address
-                document.getElementById("shippingAddress").innerText = formatAddressWithName(order.shippingAddressDetails);
-
-                // Amount
-                document.getElementById("subtotal").innerText = order.amountDetails?.subTotalPrice ?? 0;
-                document.getElementById("discount").innerText = order.amountDetails?.businessDiscountPrice ?? 0;
-                document.getElementById("grandTotal").innerText = order.amountDetails?.grandTotalPrice ?? 0;
-
-                // Payment
-                const source = order.transaction?.responseDataJson?.source ?? {};
-                document.getElementById("cardBrand").innerText = source.brand ?? 'N/A';
-                document.getElementById("cardLast4").innerText = source.last4 ?? 'N/A';
-                document.getElementById("paymentStatus").innerText = order.transaction?.status ?? 'N/A';
-                document.getElementById("amountPaid").innerText = order.amount ?? 0;
-
-                // Assigned Staff
-                const assignedStaffList = document.getElementById("assignedStaffList");
-                (order.assignedStaff ?? []).forEach(staff => {
-                    const li = document.createElement("li");
-                    li.className = "list-group-item";
-                    li.innerText = staff.name;
-                    assignedStaffList.appendChild(li);
-                });
-
-                // Staff Dropdown for Task Assignment
-                fetch(`/api/staff/list`)
-                    .then(res => res.json())
-                    .then(({
-                        data: staffList
-                    }) => {
-                        const staffSelect = document.getElementById("staffSelect");
-                        staffList.forEach(staff => {
-                            const option = document.createElement("option");
-                            option.value = staff.id;
-                            option.text = staff.name;
-                            staffSelect.appendChild(option);
-                        });
-                    });
-
-                // Tasks
-                renderTaskList(order.staffTasks ?? []);
-            });
-         */
 
         $('#staffName').select2({
             placeholder: 'Search and select staff members',
@@ -227,6 +167,11 @@
 
             const selectedStaffIds = $('#staffName').val();
 
+            if (!selectedStaffIds?.length) {
+                alert("Please select at least 1 staff member!")
+                return
+            }
+
             await postAPICall({
                 endPoint: "/order-staff-mapping/create",
                 payload: JSON.stringify(selectedStaffIds.map((selectedStaffId) => ({
@@ -250,35 +195,42 @@
             })
         });
 
-
         // Handle Add Task Form
-        document.getElementById("addTaskForm").addEventListener("submit", function(e) {
+        document.getElementById("addTaskForm").addEventListener("submit", async function(e) {
             e.preventDefault();
             const payload = {
-                staff_id: document.getElementById("staffSelect").value,
-                description: document.getElementById("taskDescription").value
+                orderStaffMappingId: document.getElementById("staffSelect").value,
+                task: document.getElementById("taskDescription").value
             };
-            fetch(`/api/orders/${orderId}/add-task`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                })
-                .then(res => res.json())
-                .then(({
-                    success,
-                    data,
-                    message
-                }) => {
+
+            if (!payload.orderStaffMappingId) {
+                alert("Please select at least 1 staff member!")
+                return
+            }
+
+            if (!payload.task.length) {
+                alert("Please enter task description!")
+                return
+            }
+
+            await postAPICall({
+                endPoint: "/order-staff-task/create",
+                payload: JSON.stringify(payload),
+                callbackComplete: () => {},
+                callbackSuccess: (response) => {
+                    const {
+                        success,
+                        message
+                    } = response
+
                     if (success) {
-                        alert("Task added successfully");
-                        renderTaskList(data.updatedTasks);
-                        document.getElementById("addTaskForm").reset();
+                        window.location.reload()
                     } else {
-                        alert("Failed to add task: " + message);
+                        alert(message)
                     }
-                });
+                    loader.hide()
+                }
+            })
         });
     });
 
@@ -311,95 +263,6 @@
                         li.innerHTML = `${product.product.name} <span><strong>$${dataJson.payablePriceByQuantityAfterDiscount}</strong></span>`;
                         productList.appendChild(li);
                     });
-                    // order.orderProducts.forEach(orderProduct => {
-                    //     const product = orderProduct.product;
-                    //     const cartItem = orderProduct.dataJson;
-
-                    //     if (!product) return;
-
-                    //     let coverImage = null;
-
-                    //     for (let k = 0; k < product?.productMedias?.length; k++) {
-                    //         if (product.productMedias[k].mediaType.indexOf("image") >= 0 && (product.productMedias[k].mediaUrl ?? "").trim() !== "") {
-                    //             coverImage = product.productMedias[k].mediaUrl;
-                    //             break;
-                    //         }
-                    //     }
-
-                    //     if ((coverImage ?? "").trim() === "") {
-                    //         coverImage = `${BASE_URL}images/no-preview-available.jpg`;
-                    //     }
-
-                    //     const selectedAttrs = cartItem.selectedAttributes ?? [];
-
-                    //     const attributesHtml = selectedAttrs.map(attr => {
-                    //         let displayValue = attr.value;
-
-                    //         if (attr.attribute?.type === "dimension") {
-                    //             try {
-                    //                 const val = JSON.parse(attr.value);
-                    //                 displayValue = `${val.width} X ${val.height} (FT)`;
-                    //             } catch (e) {
-                    //                 displayValue = attr.value;
-                    //             }
-                    //         }
-
-                    //         return `${attr.attribute?.name || 'Attribute'}: <span>${displayValue}</span>`;
-                    //     }).join(" | ");
-
-                    //     // Bulk Discount (optional, if needed for orders as well)
-                    //     let bulkDiscountHeaderInnerHtml = "<th>Qty:</th>";
-                    //     let bulkDiscountBodyInnerHtml = "<th>Discount:</th>";
-                    //     if (product.productBulkDiscounts?.length) {
-                    //         product.productBulkDiscounts.forEach((productBulkDiscount) => {
-                    //             bulkDiscountHeaderInnerHtml += `<td>${productBulkDiscount.minQty}-${productBulkDiscount.maxQty}</td>`;
-                    //             bulkDiscountBodyInnerHtml += `<td>${productBulkDiscount.discount}%</td>`;
-                    //         });
-                    //     }
-
-                    //     const itemHtml = `<div class="box-inner">
-                    //         <div class="inner">
-                    //             <div class="left-area">
-                    //                 <img alt="${product.name}" src="${coverImage}">
-                    //                 <div>
-                    //                     <h5>${product.name}</h5>
-                    //                     <p>${attributesHtml}</p>
-                    //                 </div>
-                    //             </div>
-                    //             <div class="right-area">
-                    //                 <div class="qty-counter">
-                    //                     <div class="left-area">
-                    //                         <div class="price-container">
-                    //                             ${cartItem.payablePriceByQuantity !== cartItem.payablePriceByQuantityAfterDiscount
-                    //         ? `<h6 class="original-price">$${cartItem.payablePriceByQuantity.toFixed(2)}</h6>`
-                    //         : ""}
-                    //                             <h4 class="final-price">$${cartItem.payablePriceByQuantityAfterDiscount.toFixed(2)}</h4>
-                    //                         </div>
-                    //                     </div>
-                    //                     <div class="right-area">
-                    //                         <h6>Qty: ${cartItem.quantity}</h6>
-                    //                     </div>
-                    //                 </div>
-                    //                 <p>Estimate Delivery</p>
-                    //                 <h6>Wed, June 15, 2025</h6> <!-- Or fetch dynamically if you have order date -->
-                    //             </div>
-                    //         </div>
-
-                    //         ${(product.productBulkDiscounts ?? []).length ? `<div class="bulk-qty-inner">
-                    //             <div class="left-area">
-                    //                 <p>Bulk Quantity Discount</p>
-                    //                 <table class="table table-bordered">
-                    //                     <tbody>
-                    //                         <tr>${bulkDiscountHeaderInnerHtml}</tr>
-                    //                         <tr>${bulkDiscountBodyInnerHtml}</tr>
-                    //                     </tbody>
-                    //                 </table>
-                    //             </div>
-                    //         </div>` : ""}
-                    //     </div>`;
-
-                    //     document.querySelector("#productList").insertAdjacentHTML("beforeend", itemHtml);
-                    // });
 
                     // Shipping Address
                     document.getElementById("shippingAddress").innerText = formatAddressWithName(order.shippingAddressDetails);
@@ -444,13 +307,39 @@
                 } = response
 
                 if (success) {
+                    const staffTaskElements = document.querySelectorAll('.staffTaskContainer');
+                    if (data?.length) {
+                        staffTaskElements.forEach(el => el.classList.remove('d-none'));
+                    } else {
+                        staffTaskElements.forEach(el => el.classList.add('d-none'));
+                    }
+
                     const assignedStaffList = document.getElementById("assignedStaffList");
+                    assignedStaffList.innerHTML = "";
+
+                    const staffSelect = document.getElementById("staffSelect");
+                    staffSelect.innerHTML = "";
+
+                    // Populate both select and list
                     (data ?? []).forEach(staffMapping => {
+                        const fullName = createFullName(staffMapping.user);
+
+                        // Append to list
                         const li = document.createElement("li");
                         li.className = "list-group-item";
-                        li.innerText = createFullName(staffMapping.user);
+                        li.innerText = fullName;
                         assignedStaffList.appendChild(li);
+
+                        // Append to select
+                        const option = document.createElement("option");
+                        option.value = staffMapping.orderStaffMappingId;
+                        option.textContent = fullName;
+                        staffSelect.appendChild(option);
+
+                        orderStaffMappingIds.push(Number(staffMapping.orderStaffMappingId))
                     });
+
+                    renderTaskList()
                 }
                 loader.hide()
             }
@@ -462,19 +351,38 @@
         modal.show();
     }
 
-    // function renderTaskList(tasks) {
-    //     const taskList = document.getElementById("taskList");
-    //     taskList.innerHTML = "";
-    //     tasks.forEach(task => {
-    //         const li = document.createElement("li");
-    //         li.className = "list-group-item d-flex justify-content-between align-items-center";
-    //         li.innerHTML = `
-    //         <div><strong>${task.staff_name}:</strong> ${task.description}</div>
-    //         <span class="badge badge-${task.status === 'completed' ? 'success' : 'warning'}">
-    //             ${capitalizeFirstLetter(task.status)}
-    //         </span>`;
-    //         taskList.appendChild(li);
-    //     });
-    // }
+    async function renderTaskList() {
+        await postAPICall({
+            endPoint: "/order-staff-task/list",
+            payload: JSON.stringify({
+                "filter": {
+                    orderStaffMappingId: orderStaffMappingIds.map((orderStaffMappingId) => Number(orderStaffMappingId))
+                }
+            }),
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    data: tasks
+                } = response
+
+                if (success) {
+                    const taskList = document.getElementById("taskList");
+                    taskList.innerHTML = "";
+                    tasks.forEach(task => {
+                        const li = document.createElement("li");
+                        li.className = "list-group-item d-flex justify-content-between align-items-center";
+                        li.innerHTML = `
+                        <div><strong>${createFullName(task.orderStaffMapping.user)}:</strong> ${task.task}</div>
+                        <span class="badge badge-${task.taskStatus === 'completed' ? 'success' : 'warning'}">
+                            ${capitalizeFirstLetter(task.taskStatus)}
+                        </span>`;
+                        taskList.appendChild(li);
+                    });
+                }
+                loader.hide()
+            }
+        })
+    }
 </script>
 <?= $this->endSection(); ?>

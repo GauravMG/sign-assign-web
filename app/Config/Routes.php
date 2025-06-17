@@ -40,6 +40,11 @@ $routes->get('/admin/banners', 'AdminController::banners');
 $routes->get('/admin/support-tickets/(:any)', 'AdminController::viewSupportTicket/$1');
 $routes->get('/admin/support-tickets', 'AdminController::supportTickets');
 
+$routes->get('/admin/staff/update/(:any)', 'AdminController::updateStaff/$1');
+$routes->get('/admin/staff/add', 'AdminController::addStaff');
+$routes->get('/admin/staff/(:any)', 'AdminController::viewStaff/$1');
+$routes->get('/admin/staff', 'AdminController::staff');
+
 $routes->get('/admin/users/update/(:any)', 'AdminController::updateUser/$1');
 $routes->get('/admin/users/add', 'AdminController::addUser');
 $routes->get('/admin/users/(:any)', 'AdminController::viewUser/$1');

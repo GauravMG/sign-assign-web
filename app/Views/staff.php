@@ -65,9 +65,9 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('headerButtons'); ?>
-<!-- <div class="col-md-5 offset-md-7" id="addUserButtonContainer">
-    <a href="/admin/users/add"><button type="button" class="btn btn-dark">Add New User</button></a>
-</div> -->
+<div class="col-md-5 offset-md-7" id="addUserButtonContainer">
+    <a href="/admin/staff/add"><button type="button" class="btn btn-dark">Add New Staff</button></a>
+</div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -75,7 +75,7 @@
     <div class="col-12">
         <div class="card card-dark">
             <div class="card-header">
-                <h3 class="card-title">All Users</h3>
+                <h3 class="card-title">All Staff</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -84,7 +84,6 @@
                         <tr>
                             <th>Full Name</th>
                             <th>Email</th>
-                            <th>Resgistration Date</th>
                             <th>Account Status</th>
                             <th>Actions</th>
                         </tr>
@@ -95,7 +94,6 @@
                         <tr>
                             <th>Full Name</th>
                             <th>Email</th>
-                            <th>Resgistration Date</th>
                             <th>Account Status</th>
                             <th>Actions</th>
                         </tr>
@@ -123,9 +121,9 @@
 
 <script>
     $(document).ready(function() {
-        // if (parseInt(userData.roleId) != 3) {
-        //     document.getElementById("addUserButtonContainer").style.display = "none"
-        // }
+        if (parseInt(userData.roleId) != 1) {
+            document.getElementById("addUserButtonContainer").style.display = "none"
+        }
 
         fetchUsers()
     })
@@ -151,7 +149,7 @@
             endPoint: "/user/list",
             payload: JSON.stringify({
                 "filter": {
-                    "roleId": [2, 3, 4]
+                    "roleId": [5]
                 },
                 "range": {
                     "all": true
@@ -170,7 +168,6 @@
                         html += `<tr>
                             <td>${response.data[i].fullName ?? ""}</td>
                             <td>${response.data[i].email}</td>
-                            <td>${formatDate(response.data[i].createdAt)}</td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="toggle-status" data-user-id="${response.data[i].userId}" ${response.data[i].status ? "checked" : ""}>
@@ -220,18 +217,18 @@
                     toastr.error(response.message)
                     fetchUsers()
                 } else {
-                    toastr.success(`User ${status === "inactive" ? "blocked" : "unblocked"} successfully`)
+                    toastr.success(`Staff ${status === "inactive" ? "blocked" : "unblocked"} successfully`)
                 }
             }
         })
     }
 
     function onClickUpdateUser(userId) {
-        window.location.href = `/admin/users/update/${userId}`
+        window.location.href = `/admin/staff/update/${userId}`
     }
 
     function onClickViewUser(userId) {
-        window.location.href = `/admin/users/${userId}`
+        window.location.href = `/admin/staff/${userId}`
     }
 </script>
 <?= $this->endSection(); ?>

@@ -200,7 +200,6 @@
                         });
                     });
 
-
                     initializeDTUsersList()
                 }
                 loader.hide()

@@ -61,7 +61,7 @@
                         <a href="/learning-center">Learning Center</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="/contact-us">Contact Us</a>
                     </li>
                 </ul>
             </div>

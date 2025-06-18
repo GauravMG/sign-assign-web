@@ -19,6 +19,10 @@ h3 {
     font-size: calc(16px + 1vw);
 }
 
+p {
+    margin-bottom: 0;
+}
+
 input::placeholder {
     font-size: 0.854rem;
     font-weight: 500;

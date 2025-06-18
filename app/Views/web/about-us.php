@@ -159,7 +159,7 @@
     </div>
 </div>
 
-<div class="our-story-area pt-5">
+<div class="our-story-area">
     <div class="container-fluid">
         <div class="flex-area">
             <div class="left-area">
@@ -168,7 +168,7 @@
             <div class="right-area">
                 <h6>Owner Name</h6>
                 <h3>Our Story</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eius autem amet fugiat neque doloribus, dolorum dicta, eligendi ipsum reprehenderit porro consequuntur aliquid eaque sint! Veniam iusto expedita est dolore ducimus, tempore consequatur repellat adipisci id, eveniet harum blanditiis, tenetur praesentium corporis. Blanditiis, illum. Commodi optio vitae exercitationem saepe dolorem!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis mollitia delectus saepe repellat repudiandae deleniti nihil totam, explicabo, porro facere hic eius sint corporis accusamus commodi fugiat debitis quis libero architecto similique? Necessitatibus, error aperiam saepe laboriosam nihil voluptates quidem iusto nostrum praesentium, alias deserunt quam nulla voluptatem officiis? Hic sit eum rem, accusantium voluptate, doloremque quos ut quam quas assumenda, ab laudantium maiores nam neque harum nesciunt soluta nostrum id. Consequuntur ullam iusto nesciunt harum nam quia laboriosam minima.</p>
             </div>
         </div>
     </div>

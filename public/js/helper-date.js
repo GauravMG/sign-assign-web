@@ -55,3 +55,18 @@ function getDateFromDate(dateStr) {
     const date = new Date(dateStr);
     return String(date.getUTCDate()).padStart(2, '0');
 }
+
+function getDateTimeDifference(startStr, endStr) {
+    const start = new Date(startStr);
+    const end = new Date(endStr);
+
+    let diffMs = end - start; // Difference in milliseconds
+    if (diffMs < 0) diffMs = 0; // Ensure non-negative
+
+    const totalMinutes = Math.floor(diffMs / 60000);
+    const days = Math.floor(totalMinutes / (24 * 60));
+    const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
+    const minutes = totalMinutes % 60;
+
+    return `${days}d ${hours}h ${minutes}m`;
+}

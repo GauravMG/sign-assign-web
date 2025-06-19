@@ -6,7 +6,122 @@
 
 <?= $this->section('content'); ?>
 
-<h1>Contact US</h1>
+<div class="subheader-area">
+    <div class="container-fluid">
+    </div>
+</div>
+
+<div class="custom-banner-area py-5">
+    <div class="container-fluid">
+        <h3 class="text-center mb-3">Build your own custom banner and sign online</h3>
+        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum fugit a exercitationem non rerum distinctio perspiciatis, eligendi accusantium doloribus incidunt voluptates dicta itaque animi, omnis vel nam recusandae, hic soluta. Obcaecati magnam dolor, soluta qui cum ullam iste quia necessitatibus.</p>
+        <p class="text-center"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae dicta debitis, officiis laboriosam, dolor natus, eveniet nesciunt enim amet neque inventore magni quos rem cum!</p>
+    </div>
+</div>
+
+<div class="contact-area py-5">
+    <div class="container-fluid">
+        <h4>Feel free to contact us for more information</h4>
+        <div class="flex-area">
+            <div class="inner">
+                <div class="left-area">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="right-area">
+                    <p>Phone Number:</p>
+                    <h5>972-418-5253</h5>
+                </div>
+            </div>
+            <div class="inner">
+                <div class="left-area">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <div class="right-area">
+                    <p>Email Address:</p>
+                    <h5>order@signasign.com</h5>
+                </div>
+            </div>
+            <div class="inner">
+                <div class="left-area">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="right-area">
+                    <p>Our Address:</p>
+                    <h5>702 Shephar Dr, garland, TX 75042, US</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="connect-area py-5">
+    <div class="container-fluid">
+        <div class="flex-area">
+            <div class="map-area">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55973.49628588048!2d77.08445298517653!3d28.739158955030646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d00d4b3ffffff%3A0xd3e6b2fd692c9caf!2sA-Sign%20INSTITUTE!5e0!3m2!1sen!2sin!4v1750315322291!5m2!1sen!2sin" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="form-area">
+                <h4>Let's Connect</h4>
+                <form action="#">
+                    <div class="form-group mb-2">
+                        <input type="name" placeholder="Enter Name" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="email" placeholder="Enter Email" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="text" placeholder="Enter Phone" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <select name="" id="" class="form-select">
+                            <option value="">Option One</option>
+                            <option value="">Option Two</option>
+                            <option value="">Option Three</option>
+                            <option value="">Option Four</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <textarea name="" rows="3" class="form-control" id="" placeholder="Please describe your situation"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <a href="#">Submit</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-area py-5">
+    <div class="container-fluid">
+        <div class="form-inner-area">
+            <div class="text-area">
+                <h4 class="mb-3">Trade Partners Can Get Up to 30% Off!</h4>
+                <p>
+                    We are offering exclusive discounts for trade partners. All you need to do is provide us with
+                    your name and email, we'll
+                    ask for some further details and upon confirmation you can enjoy
+                    up to 30% discount on your orders!
+                </p>
+            </div>
+            <div class="form-card">
+                <form action="#">
+                    <div class="form-group">
+                        <input type="name" placeholder="First Name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="name" placeholder="Last Name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" class="form-control" required>
+                    </div>
+                    <a href="#">Submit Now</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?= $this->endSection(); ?>
 

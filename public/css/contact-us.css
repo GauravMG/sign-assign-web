@@ -1,0 +1,114 @@
+h3 {
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #452e73;
+}
+
+
+.subheader-area {
+    background-image: url('https://img.setka.io/clients/D3SuW9_Vtk6NhYeFXfduUy55A4Dromkt/post_images/partners-9-of-the-best-hubspot-blog-templates-for-an-extraordinary-content-experience-cover-1200x630-2022022213055847.png');
+    height: 100%;
+    aspect-ratio: 16/5;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.custom-banner-area p {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.contact-area h4 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.contact-area .flex-area {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    box-shadow: 0px 5px 10px 0px #d9d9d9;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+.contact-area .flex-area .inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-area .flex-area .inner .left-area svg {
+    font-size: 2rem;
+    color: #452e73;
+}
+
+.contact-area .flex-area .inner .right-area p {
+    text-transform: uppercase;
+    color: #8f8f8f;
+    font-size: 0.754rem;
+}
+
+.contact-area .flex-area .inner .right-area h5 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.connect-area .flex-area {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 3rem;
+}
+
+.connect-area .flex-area .form-area {
+    width: 100%;
+    background-color: #452e730d;
+    border-radius: 0.554rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+}
+
+.connect-area .flex-area .form-area h4 {
+    text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: #452e73;
+}
+
+.connect-area .flex-area .form-area form {
+    margin-top: 1.5rem;
+}
+
+.connect-area .flex-area .form-area form .form-control,
+.connect-area .flex-area .form-area form .form-select {
+    border-radius: 5px;
+    height: 50px;
+    border: 0;
+    font-size: 0.854rem;
+}
+
+.connect-area .flex-area .form-area form .form-control:focus,
+.connect-area .flex-area .form-area form .form-select:focus {
+    box-shadow: none;
+}
+
+.connect-area .flex-area .form-area form a {
+    display: flex;
+    background-color: #452e73;
+    color: #fff;
+    text-decoration: none;
+    justify-content: center;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}

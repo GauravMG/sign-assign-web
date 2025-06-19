@@ -5,13 +5,16 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<!-- <div class="subheader-area">
+<div class="subheader-area">
     <div class="container-fluid">
     </div>
-</div> -->
+</div>
 <div class="container-fluid py-5">
     <h3>Learning Center</h3>
     <div class="blog-list-area" id="blogsList">
+    </div>
+    <div class="view-all-btn-area">
+        <a href="<?= base_url('blogs'); ?>" class="btn btn-primary">Load More <i class="fa-solid fa-circle-arrow-down"></i></a>
     </div>
 </div>
 <div class="form-area py-5">

@@ -50,23 +50,17 @@ async function fetchBlogs() {
                     }
 
                     html.push(`<div class="inner-card">
-                        <div class="p-3 m-0">` +
+                        <div class="p-3 m-0 for-icon">` +
                         (isVideo
                             ? `<video class="w-100 rounded" muted="" loop="" playsinline="">
                                      <source src="${mediaUrl}" type="video/mp4">
                                      Your browser does not support the video tag.
                                    </video>`
                             : `<img src="${mediaUrl}" alt="${data[i].title}" class="w-100 rounded">`) +
-                        `</div>
-                        <div class="px-3 mt-0">
+                        `<img src="${'images/play.png'}" alt="" class="play-icon"></div>
+                        <div class="px-3 mt-2">
                             <h6>by signassi | ${formatDateWithoutTime(data[i].createdAt)} | Signage</h6>
-                            <h5>${data[i].title}</h5>
-                            <p>${getTextFromHTML(data[i].description, 60)}</p>
-                            <a href="/learning-center/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                        <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                                    </svg>
-                                </span>
-                            </a>
+                            <h5 class="mb-4">${data[i].title}</h5>
                         </div>
                     </div>`);
                 }

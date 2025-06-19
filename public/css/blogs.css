@@ -43,25 +43,39 @@ h3 {
     margin: 0;
 }
 
+.blog-list-area .inner-card .for-icon {
+    position: relative;
+}
+
+.blog-list-area .inner-card .for-icon .play-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .blog-list-area .inner-card h6 {
     color: #8b8b8b;
     font-weight: 400;
     text-align: left;
+    font-size: 0.854rem;
 }
 
 .blog-list-area .inner-card h5 {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1rem;
     text-align: left;
-    line-height: normal;
+    line-height: 1.5rem;
     margin-block: 0.554rem;
 }
 
-.blog-list-area .inner-card p {
+/* .blog-list-area .inner-card p {
     text-align: left;
-}
+} */
 
-.blog-list-area .inner-card a {
+/* .blog-list-area .inner-card a {
     color: #452e73;
     border: 1px solid #452e736e;
     text-decoration: none;
@@ -76,22 +90,24 @@ h3 {
     cursor: pointer;
     transition: all ease 0.5s;
     color: #ffffff;
-}
+} */
 
-.blog-list-area .view-all-btn-area {
+.view-all-btn-area {
     display: flex;
     justify-content: center;
     margin-block: 30px;
 }
 
 
-.blog-list-area .view-all-btn-area a {
+.view-all-btn-area a {
     text-decoration: none;
     width: max-content;
-    padding: 8px 20px;
+    padding: 10px 30px;
     border-radius: 4px;
-    background-color: #452e73;
+    background-color: #277e30;
     color: #ffffff;
     display: block;
+    font-size: 0.754rem;
+    letter-spacing: 0.5px;
     margin-bottom: 0;
 }

@@ -1,0 +1,200 @@
+h3 {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #452e73;
+}
+
+.subheader-area {
+    background-image: url('https://img.setka.io/clients/D3SuW9_Vtk6NhYeFXfduUy55A4Dromkt/post_images/partners-9-of-the-best-hubspot-blog-templates-for-an-extraordinary-content-experience-cover-1200x630-2022022213055847.png');
+    height: 100%;
+    aspect-ratio: 16/5;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.grid-inner {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.grid-inner .inner {
+    position: relative;
+    border-radius: 5px;
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.grid-inner .inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.grid-inner .inner:hover img {
+    transform: scale(1.1);
+}
+
+.grid-inner .inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(28, 16, 63, 0.9), rgba(28, 16, 63, 0.3));
+    z-index: 1;
+}
+
+.grid-inner .inner h5 {
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.554rem;
+    z-index: 2;
+}
+
+.grid-inner .inner a {
+    background-color: #452e73;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    padding: 10px;
+    color: #fff;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    z-index: 2;
+    letter-spacing: 0.5px;
+    font-size: 0.754rem;
+}
+
+.grid-inner .inner:hover a {
+    background-color: #277e30;
+    cursor: pointer;
+}
+
+.business-growth-area p {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.solutions-list-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.solutions-list-area .inner-card {
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+.solutions-list-area .inner-card img,
+.solutions-list-area .inner-card video {
+    border-radius: 10px;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    margin: 0;
+}
+
+
+.solutions-list-area .inner-card h5 {
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: left;
+    line-height: normal;
+}
+
+.solutions-list-area .inner-card p {
+    text-align: left;
+    max-width: 100%;
+    margin-block: 0.554rem;
+}
+
+.solutions-list-area .inner-card a {
+    color: #ffffff;
+    border: 1px solid #452e736e;
+    text-decoration: none;
+    width: max-content;
+    display: block;
+    padding: 8px 30px;
+    border-radius: 5px;
+    margin-block: 1.5rem;
+    background-color: #452e73;
+}
+
+.solutions-list-area .inner-card:hover a {
+    background-color: #277e30;
+    cursor: pointer;
+    transition: all ease 0.5s;
+    color: #ffffff;
+}
+
+.exceptional-service-area {
+    background-color: #452e73;
+    position: relative;
+    height: 650px;
+}
+
+.exceptional-service-area h3 {
+    color: #ffffff;
+}
+
+.exceptional-service-area p {
+    color: #ffffff;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.exceptional-service-area .flex-area {
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 0.554rem 0.554rem 0 0;
+    margin-top: 3rem;
+}
+
+.exceptional-service-area .flex-area .left-area img {
+    width: 100%;
+    border-radius: 0.554rem;
+}
+
+.exceptional-service-area .flex-area .right-area p {
+    color: inherit;
+    font-size: 0.954rem;
+}
+
+.exceptional-service-area .white-bg-area {
+    padding: 50px;
+    padding-top: 0;
+    background-color: #ffffff;
+}
+
+.exceptional-service-area .white-bg-area p {
+    color: inherit;
+    max-width: 100%;
+}
+
+.form-area {
+    margin-top: 250px;
+    border-top: 1px solid #ccc;
+}

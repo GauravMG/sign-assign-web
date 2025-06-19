@@ -62,6 +62,16 @@ class WebController extends BaseController
         return view('web/contact-us', $data);
     }
 
+    public function services(): string
+    {
+        $data = [
+            'title' => "Services",
+            'page_heading' => "Services"
+        ];
+
+        return view('web/services', $data);
+    }
+
     public function productCategory($categoryName): string
     {
         $categoryNameFormatted = $this->getNameFromLink($categoryName);

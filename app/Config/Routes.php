@@ -66,4 +66,5 @@ $routes->get('/subcategory/(:any)', 'WebController::productSubCategory/$1');
 $routes->get('/category/(:any)', 'WebController::productCategory/$1');
 $routes->get('/about-us', 'WebController::aboutUs');
 $routes->get('/contact-us', 'WebController::contactUs');
+$routes->get('/services', 'WebController::services');
 $routes->get('/', 'WebController::index');

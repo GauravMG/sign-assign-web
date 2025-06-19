@@ -45,7 +45,7 @@
                         <a href="/about-us">About Us</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#">Service</a>
+                        <a href="/services">Service</a>
                         <ul class="dropdown-content">
                             <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
                             <li class="dropdown-lists"><a href="#">Sign Installation</a></li>

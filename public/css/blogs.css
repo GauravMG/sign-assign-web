@@ -102,12 +102,19 @@ h3 {
 .view-all-btn-area a {
     text-decoration: none;
     width: max-content;
-    padding: 10px 30px;
+    padding: 12px 30px;
     border-radius: 4px;
     background-color: #277e30;
     color: #ffffff;
     display: block;
-    font-size: 0.754rem;
+    font-size: 0.854rem;
     letter-spacing: 0.5px;
     margin-bottom: 0;
+    border: 0;
+}
+
+.view-all-btn-area a:hover {
+    background-color: #452e73;
+    color: #ffffff;
+    transition: all ease 0.5s;
 }

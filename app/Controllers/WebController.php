@@ -14,17 +14,19 @@ class WebController extends BaseController
         return view('web/home', $data);
     }
 
-    function getNameFromLink($input) {
+    function getNameFromLink($input)
+    {
         // Replace hyphens with spaces
         $input = str_replace('-', ' ', $input);
-        
+
         // Capitalize the first letter of each word
         $input = ucwords($input);
-        
+
         return $input;
     }
 
-    function getNameAndIdFromLink($input) {
+    function getNameAndIdFromLink($input)
+    {
         // Split the string by dashes
         $parts = explode('-', $input);
 
@@ -33,7 +35,7 @@ class WebController extends BaseController
 
         // Rejoin the remaining parts as the title
         $title = implode('-', $parts);
-        
+
         return [
             'id' => $id,
             'title' => $title
@@ -48,6 +50,16 @@ class WebController extends BaseController
         ];
 
         return view('web/about-us', $data);
+    }
+
+    public function contactUs(): string
+    {
+        $data = [
+            'title' => "Contact Us",
+            'page_heading' => "Contact Us"
+        ];
+
+        return view('web/contact-us', $data);
     }
 
     public function productCategory($categoryName): string

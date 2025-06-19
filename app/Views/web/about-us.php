@@ -117,7 +117,7 @@
                         <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="text-area">
-                        <h4>Experience</h4>
+                        <h4>Quality</h4>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="text-area">
-                        <h4>Experience</h4>
+                        <h4>Customization</h4>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                         <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
                     </div>
                     <div class="text-area">
-                        <h4>Experience</h4>
+                        <h4>Dedication</h4>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
                     </div>
                 </div>
@@ -150,7 +150,25 @@
                 </div>
             </div>
             <div class="right-area">
+                <img src="https://rlv.zcache.com/connect_with_us_social_media_qr_code_black_business_card-r_vc12s7_644.webp" alt="">
+                <h4>Get world class products</h4>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quas.</p>
+                <a href="#">Order Now</a>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="our-story-area">
+    <div class="container-fluid">
+        <div class="flex-area">
+            <div class="left-area">
+                <img src="https://png.pngtree.com/png-vector/20220607/ourmid/pngtree-person-gray-photo-placeholder-man-silhouette-on-white-background-png-image_4853539.png" alt="">
+            </div>
+            <div class="right-area">
+                <h6>Owner Name</h6>
+                <h3>Our Story</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis mollitia delectus saepe repellat repudiandae deleniti nihil totam, explicabo, porro facere hic eius sint corporis accusamus commodi fugiat debitis quis libero architecto similique? Necessitatibus, error aperiam saepe laboriosam nihil voluptates quidem iusto nostrum praesentium, alias deserunt quam nulla voluptatem officiis? Hic sit eum rem, accusantium voluptate, doloremque quos ut quam quas assumenda, ab laudantium maiores nam neque harum nesciunt soluta nostrum id. Consequuntur ullam iusto nesciunt harum nam quia laboriosam minima.</p>
             </div>
         </div>
     </div>

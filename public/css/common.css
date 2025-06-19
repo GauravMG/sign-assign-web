@@ -13,10 +13,15 @@ h4,
 h5,
 h6 {
     font-family: "Plus Jakarta Sans", sans-serif;
+    margin-bottom: 0;
 }
 
 h3 {
     font-size: calc(16px + 1vw);
+}
+
+p {
+    margin-bottom: 0;
 }
 
 input::placeholder {

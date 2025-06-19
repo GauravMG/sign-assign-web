@@ -143,6 +143,7 @@ h3 {
 
 .why-choose-area .flex-inner {
     display: flex;
+    justify-content: space-evenly;
     margin-top: 3rem;
 }
 
@@ -173,11 +174,102 @@ h3 {
 }
 
 .why-choose-area .flex-inner .left-area .inner .text-area h4 {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.254rem;
+    color: #452e73;
 }
 
 .why-choose-area .flex-inner .left-area .inner .text-area p {
     max-width: 100%;
     margin: 0;
+}
+
+.why-choose-area .flex-inner .right-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.why-choose-area .flex-inner .right-area img {
+    border-radius: 0.554rem;
+    /* height: 80%;
+    width: 100%;
+    object-fit: cover; */
+}
+
+.why-choose-area .flex-inner .right-area h4 {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #452e73;
+    margin: 0;
+}
+
+.why-choose-area .flex-inner .right-area p {
+    max-width: 100%;
+    margin: 0;
+}
+
+.why-choose-area .flex-inner .right-area a {
+    text-decoration: none;
+    width: max-content;
+    padding: 10px 25px;
+    border-radius: 4px;
+    background-color: #277e30;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.our-story-area {
+    background-color: #EDEAF2;
+}
+
+.our-story-area .flex-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.our-story-area .flex-area .left-area {
+    flex: 1 1 40%;
+    max-width: 40%;
+}
+
+.our-story-area .flex-area .left-area img {
+    width: 100%;
+}
+
+.our-story-area .flex-area .right-area {
+    flex: 1 1 60%;
+    max-width: 60%;
+}
+
+.our-story-area .flex-area .right-area {
+    flex: 1 1 60%;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.our-story-area .flex-area .right-area h6 {
+    margin: 0;
+    color: #277e30;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.our-story-area .flex-area .right-area h3 {
+    margin-block: 1rem !important;
+    margin: 0;
+}
+
+.our-story-area .flex-area .right-area p {
+    font-size: 16px;
+    color: #585858;
+    line-height: 30px;
 }

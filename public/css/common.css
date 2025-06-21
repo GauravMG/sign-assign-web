@@ -280,17 +280,18 @@ span.text-green {
 }
 
 #chat-box {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 300px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    z-index: 1000;
     display: flex;
     flex-direction: column;
-    max-height: 400px;
+    height: 550px;
+    /* or any desired height */
+    width: 450px;
+    /* optional */
+    border: 1px solid #ccc;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #chat-header {
@@ -298,18 +299,23 @@ span.text-green {
     color: white;
     padding: 10px;
     font-weight: bold;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
 }
 
 #chat-content {
-    padding: 12px;
+    flex: 1;
+    padding: 10px;
     overflow-y: auto;
-    max-height: 400px;
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+}
+
+#chat-input {
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .bot,

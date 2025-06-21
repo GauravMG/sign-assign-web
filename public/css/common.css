@@ -266,3 +266,110 @@ span.text-green {
     align-items: center;
     margin-top: 10px;
 }
+
+#chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #452e73;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#chat-box {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+}
+
+#chat-header {
+    background: #452e73;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#chat-content {
+    padding: 12px;
+    overflow-y: auto;
+    max-height: 400px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bot,
+.user {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.bot {
+    align-self: flex-start;
+    background-color: #f1f0f0;
+    color: #333;
+    border-bottom-left-radius: 0;
+}
+
+.user {
+    align-self: flex-end;
+    background-color: #452e73;
+    color: white;
+    border-bottom-right-radius: 0;
+}
+
+.chat-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-self: flex-start;
+}
+
+.chat-options button {
+    padding: 8px 12px;
+    background: #eeeeee;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.chat-options button:hover {
+    background: #ccc;
+}
+
+.chat-link {
+    display: block;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #452e73;
+    font-weight: 500;
+    align-self: flex-start;
+    margin-top: -4px;
+}
+
+.chat-link:hover {
+    background: #e6f0ff;
+}

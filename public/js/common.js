@@ -575,3 +575,106 @@ async function fetchBusinessClients() {
         })
     })
 }
+
+/**
+ * chatbot
+ */
+// let sessionId = localStorage.getItem('chat_session_id');
+// if (!sessionId) {
+sessionId = crypto.randomUUID();
+localStorage.setItem('chat_session_id', sessionId);
+// }
+const userDataUser = JSON.parse(localStorage.getItem("userDataUser") || "{}");
+
+document.getElementById('chat-icon').onclick = () => {
+    const box = document.getElementById('chat-box');
+    box.style.display = box.style.display === 'none' ? 'flex' : 'none';
+    if (box.style.display === 'flex') initChat();
+};
+
+const chatContent = document.getElementById('chat-content');
+const chatInput = document.getElementById('chat-input');
+
+const appendMessage = (text, sender = 'bot') => {
+    const msg = document.createElement('div');
+    msg.className = sender;
+    msg.textContent = text;
+    chatContent.appendChild(msg);
+    chatContent.scrollTop = chatContent.scrollHeight;
+};
+
+const appendOptions = (options) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'chat-options';
+
+    options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.textContent = opt.label;
+        btn.onclick = () => {
+            appendMessage(opt.label, 'user');
+            wrapper.remove();
+            handleUserInput(opt.value);
+        };
+        wrapper.appendChild(btn);
+    });
+
+    chatContent.appendChild(wrapper);
+    chatContent.scrollTop = chatContent.scrollHeight;
+};
+
+const appendProductLinks = (products) => {
+    products.forEach(p => {
+        const link = document.createElement('a');
+        link.className = 'chat-link';
+        link.href = p.link;
+        link.target = '_blank';
+        link.innerText = p.name;
+        chatContent.appendChild(link);
+    });
+    chatContent.scrollTop = chatContent.scrollHeight;
+};
+
+const initChat = async () => {
+    chatContent.innerHTML = '';
+    appendMessage("Hi there! What would you like to do today?");
+    appendOptions([
+        { label: "Look for Products", value: "look_products" },
+        // { label: "Check my Order", value: "check_order" }
+    ]);
+};
+
+const handleUserInput = async (input) => {
+
+    await postAPICall({
+        endPoint: "/chatbot/chat",
+        payload: JSON.stringify({ input }),
+        additionalHeaders: {
+            chatsessionid: sessionId,
+            chatuserid: userDataUser?.userId
+        },
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response;
+
+            if (success) {
+                if (data.message) appendMessage(data.message);
+                if (data.options) appendOptions(data.options);
+                if (data.products) appendProductLinks(data.products)
+            } else {
+                showAlert({
+                    type: 'error',
+                    title: 'Failed',
+                    text: message || 'Something went wrong. Please try again.'
+                });
+            }
+        }
+    });
+};
+
+chatInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        handleUserInput(chatInput.value);
+        chatInput.value = '';
+    }
+});
+/** chatbot */

@@ -5,6 +5,7 @@ function getJWTToken() {
 async function postAPICall({
     endPoint,
     payload,
+    additionalHeaders,
     callbackBeforeSend,
     callbackComplete,
     callbackSuccess,
@@ -16,6 +17,12 @@ async function postAPICall({
     let headers = {};
     if (jwtToken) {
         headers["Authorization"] = `Bearer ${jwtToken}`;
+    }
+    if (additionalHeaders && Object.keys(additionalHeaders).length) {
+        headers = {
+            ...headers,
+            ...additionalHeaders
+        }
     }
 
     $.ajax({

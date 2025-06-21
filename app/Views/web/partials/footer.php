@@ -408,9 +408,6 @@
     </div>
 </div>
 
-
-
-
 <div class="modal fade right" id="filterModal" tabindex="-1" aria-labelledby="filterModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -546,4 +543,14 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Floating Chat Icon -->
+<div id="chat-icon">💬</div>
+
+<!-- Chat Window -->
+<div id="chat-box" style="display:none;">
+    <div id="chat-header">Support Bot</div>
+    <div id="chat-content"></div>
+    <input type="text" id="chat-input" placeholder="Type here..." />
 </div>

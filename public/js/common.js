@@ -150,12 +150,18 @@ async function fetchProductCategories() {
 
             if (success) {
                 let htmlNavbar = ""
+                let htmlNavbarMobile = ""
                 let htmlFooter = ""
 
                 for (let i = 0; i < data?.length; i++) {
                     htmlNavbar += `
                     <li class="dropdown">
                         <a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a>`
+
+                    htmlNavbarMobile += `<li>
+                        <input id="sub-group-1" type="checkbox" hidden />
+                        <label for="sub-group-1" onclick="window.location.href='/category/${getLinkFromName(data[i].name)}'"> ${data[i].name}</label>
+                    </li>`
 
                     if (data[i].productSubCategories?.length) {
                         htmlNavbarSubcategory = `<ul class="dropdown-content">`
@@ -177,6 +183,7 @@ async function fetchProductCategories() {
                 }
 
                 document.getElementById("navbarCategoryMenuListContainer").innerHTML = htmlNavbar
+                document.getElementById("navbarCategoryMenuListContainerMobile").innerHTML = htmlNavbarMobile
                 document.getElementById("footerCategoryMenuListContainer").innerHTML = htmlFooter
             }
         }

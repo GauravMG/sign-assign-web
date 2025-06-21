@@ -46,13 +46,6 @@
                     </li>
                     <li class="dropdown">
                         <a href="/services">Service</a>
-                        <ul class="dropdown-content">
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                            <li class="dropdown-lists"><a href="#">Sign Installation</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#">Design Lab</a>
@@ -96,88 +89,25 @@
                                     <nav class="nav" role="navigation">
                                         <ul class="nav__list">
                                             <li>
-                                                <a href="#"> About Us</a>
+                                                <a href="/about-us"> About Us</a>
                                             </li>
                                             <li>
-                                                <input id="group-1" type="checkbox" hidden />
-                                                <label for="group-1"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Services</label>
-                                                <ul class="group-list">
-                                                    <li>
-                                                        <input id="sub-group-1" type="checkbox" hidden />
-                                                        <label for="sub-group-1"> Sign Installation</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-2" type="checkbox" hidden />
-                                                        <label for="sub-group-2">Sign Installation</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-3" type="checkbox" hidden />
-                                                        <label for="sub-group-3"> Sign Installation</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-4" type="checkbox" hidden />
-                                                        <label for="sub-group-4"> Sign Installation</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-5" type="checkbox" hidden />
-                                                        <label for="sub-group-5"> Sign Installation </label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-6" type="checkbox" hidden />
-                                                        <label for="sub-group-6"> Sign Installation</label>
-                                                    </li>
-                                                </ul>
+                                                <a href="/services"> Services</a>
                                             </li>
                                             <li>
                                                 <input id="group-2" type="checkbox" hidden />
                                                 <label for="group-2"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span> Products</label>
-                                                <ul class="group-list">
-                                                    <li>
-                                                        <input id="sub-group-1" type="checkbox" hidden />
-                                                        <label for="sub-group-1"> Banner</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-2" type="checkbox" hidden />
-                                                        <label for="sub-group-2">Window Products</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-3" type="checkbox" hidden />
-                                                        <label for="sub-group-3"> Vehicle Products</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-4" type="checkbox" hidden />
-                                                        <label for="sub-group-4"> Marketing Tools</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-5" type="checkbox" hidden />
-                                                        <label for="sub-group-5"> Event Signs</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-6" type="checkbox" hidden />
-                                                        <label for="sub-group-6"> Indoor Signs</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-6" type="checkbox" hidden />
-                                                        <label for="sub-group-6"> Hardwares</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-6" type="checkbox" hidden />
-                                                        <label for="sub-group-6"> Direct Printing on Material</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="sub-group-6" type="checkbox" hidden />
-                                                        <label for="sub-group-6"> Direct Printing on Material</label>
-                                                    </li>
+                                                <ul class="group-list" id="navbarCategoryMenuListContainerMobile">
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href="#"> Design Lab</a>
                                             </li>
                                             <li>
-                                                <a href="#"> Learning Center</a>
+                                                <a href="/learning-center"> Learning Center</a>
                                             </li>
                                             <li>
-                                                <a href="#"> Contact Us</a>
+                                                <a href="/contact-us"> Contact Us</a>
                                             </li>
                                         </ul>
                                     </nav>

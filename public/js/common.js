@@ -581,7 +581,8 @@ async function fetchBusinessClients() {
  */
 // let sessionId = localStorage.getItem('chat_session_id');
 // if (!sessionId) {
-sessionId = (window.crypto?.randomUUID?.() || generateUUID());
+// let sessionId = (window.crypto?.randomUUID?.() || generateUUID());
+let sessionId = generateUUID();
 localStorage.setItem('chat_session_id', sessionId);
 // }
 const userDataUser = JSON.parse(localStorage.getItem("userDataUser") || "{}");

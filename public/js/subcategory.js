@@ -94,7 +94,7 @@ async function fetchProducts() {
                                 </div>
                                 <h6>Starts at: <span class="text-green">${price ? `$${price}` : "-"}</span></h6>
                             </div>
-                            <a href="${BASE_URL_EDITOR}" target="_blank" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
                 }

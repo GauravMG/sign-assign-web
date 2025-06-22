@@ -635,13 +635,18 @@ function handleDesignOption(optionType) {
     }
 
     if (optionType === "upload") {
-        $("#designMethodModal").modal("hide")
-        $("#uploadArtworkModal").modal("show")
+        // $("#designMethodModal").modal("hide")
+        // $("#uploadArtworkModal").modal("show")
+        onSubmitUploadDesign()
 
         return
     }
 
     if (optionType === "online") {
+        // $("#designMethodModal").modal("hide")
+        // $("#uploadArtworkModal").modal("show")
+        onSubmitUploadDesign()
+
         return
     }
 }

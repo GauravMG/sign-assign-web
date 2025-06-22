@@ -267,7 +267,7 @@ async function fetchProducts() {
                                 </div>
                                 <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
                             </div>
-                            <a href="${BASE_URL_EDITOR}" target="_blank" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
 
@@ -279,7 +279,7 @@ async function fetchProducts() {
                             <div class="px-3 mt-0">
                                 <h5>${data[i].name}</h5>
                             </div>
-                            <a href="${BASE_URL_EDITOR}" target="_blank" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
 
@@ -309,7 +309,7 @@ async function fetchProducts() {
                                 <h5>${data[i].name}</h5>
                                 <h4>$ ${price}</h4>
                             </div>
-                            <a href="${BASE_URL_EDITOR}" target="_blank" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
                 }

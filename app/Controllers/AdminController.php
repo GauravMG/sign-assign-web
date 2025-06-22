@@ -399,4 +399,14 @@ class AdminController extends BaseController
 
         return view('view-blog', $data);
     }
+
+    public function templates(): string
+    {
+        $data = [
+            'title' => 'Templates',
+            'page_heading' => 'Templates'
+        ];
+
+        return view('templates', $data);
+    }
 }

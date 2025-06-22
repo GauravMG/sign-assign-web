@@ -9,6 +9,21 @@ if (queryParams?.event === "logout") {
     onClickLogout()
 }
 
+function redirectToUserDashboard() {
+    const token = localStorage.getItem('jwtTokenUser');
+
+    let totalCartItems = 0
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.forEach(item => totalCartItems = Math.round((totalCartItems + item.quantity) * 100) / 100);
+    if (totalCartItems === 0) {
+        totalCartItems = "-"
+    }
+
+    const userDashboardLink = `${BASE_URL_USER_DASHBOARD}?token=${token}&cart-item-count=${totalCartItems}`;
+
+    window.location.href = userDashboardLink
+}
+
 $(document).ready(function () {
     fetchProductCategories()
 
@@ -16,10 +31,7 @@ $(document).ready(function () {
     <a href="#" class="login-button" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>`
 
     if (localStorage.getItem("jwtTokenUser")) {
-        const token = localStorage.getItem('jwtTokenUser');
-        const userDashboardLink = `${BASE_URL_USER_DASHBOARD}?token=${token}`;
-
-        htmlNavbarAuthOptionsContainer = `<a style="cursor: pointer;" href="${userDashboardLink}" class="profile-icon" title="Profile">
+        htmlNavbarAuthOptionsContainer = `<a style="cursor: pointer;" onclick="redirectToUserDashboard()" class="profile-icon" title="Profile">
             <i class="fi fi-rs-user-gear"></i>
         </a>
         <a style="cursor: pointer;" onclick="onClickLogout()" class="logout-icon" title="Logout" onclick="logout()">

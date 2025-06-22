@@ -256,6 +256,10 @@
     background-color: #e7f1ff;
 }
 
+#quantity-controls {
+    justify-content: center;
+}
+
 /* Match the add-to-cart button style */
 .quantity-button {
     display: flex;

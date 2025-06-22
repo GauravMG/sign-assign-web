@@ -148,7 +148,7 @@
                             <span onclick="updateQuantity(-1)" class="qty-btn">−</span>
                             <span id="cart-quantity" class="qty-number">1</span>
                             <span onclick="updateQuantity(1)" class="qty-btn">+</span>
-                            <span style="margin-left: auto;">($<span id="payablePriceSmall"></span>)</span>
+                            <span>($<span id="payablePriceSmall"></span>)</span>
                         </a>
                         <a href="/checkout" class="go-to-card-button">
                             <span><i class="fa-solid fa-cart-plus"></i></span>

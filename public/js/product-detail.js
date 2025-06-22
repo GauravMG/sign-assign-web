@@ -38,6 +38,59 @@ function reloadOwlCarousel($carousel, items) {
     });
 }
 
+function reloadOwlCarouselRelatedProducts($carousel, items) {
+    $carousel.trigger('destroy.owl.carousel').html('');
+
+    items.forEach(item => {
+        $carousel.append(item);
+    });
+
+    $carousel.owlCarousel({
+        loop: false,
+        margin: 15,
+        responsiveClass: true,
+        nav: false,
+        dots: false,
+        onInitialized: updateNavButtons,
+        onChanged: updateNavButtons,
+        responsive: {
+            0: { items: 1 },
+            600: { items: 2 },
+            1000: { items: 4 },
+            1200: { items: 5 }
+        }
+    });
+
+    const $container = $carousel.closest('.container-fluid');
+    $container.find('.owl-prev').off().click(() => $carousel.trigger('prev.owl.carousel'));
+    $container.find('.owl-next').off().click(() => $carousel.trigger('next.owl.carousel'));
+}
+
+function updateNavButtons(event) {
+    var $carousel = $(event.target);
+    var $container = $carousel.closest('.container-fluid');
+    var $prevButton = $container.find('.owl-prev');
+    var $nextButton = $container.find('.owl-next');
+
+    var current = event.item.index; // first visible item index
+    var total = event.item.count;   // total number of items
+    var itemsPerPage = event.page.size; // number of items visible at once
+
+    // Disable prev button if first item is visible
+    if (current === 0) {
+        $prevButton.attr("disabled", true);
+    } else {
+        $prevButton.removeAttr("disabled");
+    }
+
+    // Disable next button if last visible item is at or beyond the last item
+    if (current + itemsPerPage >= total) {
+        $nextButton.attr("disabled", true);
+    } else {
+        $nextButton.removeAttr("disabled");
+    }
+}
+
 function calculatePayablePrice() {
     // Convert all values to cents for precise arithmetic
     const productPriceCents = Math.round(Number(productPrice) * 100);
@@ -254,6 +307,83 @@ async function fetchProducts() {
                 // fetchProductVariants()
                 fetchProductFAQs()
                 fetchProductBulkDiscount()
+
+                fetchRelatedProducts(data.productId, data.productCategoryId, data.productSubCategoryId)
+            }
+        }
+    })
+}
+
+async function fetchRelatedProducts(productId, productCategoryId, productSubCategoryId) {
+    let payloadFilter = {
+        productCategoryId: Number(productCategoryId)
+    }
+    // if (productSubCategoryId) {
+    //     payloadFilter = {
+    //         ...payloadFilter,
+    //         productSubCategoryId: Number(productSubCategoryId)
+    //     }
+    // }
+
+    await postAPICall({
+        endPoint: "/product/list",
+        payload: JSON.stringify({
+            "filter": {
+                ...payloadFilter
+            },
+            "range": {
+                page: 1,
+                pageSize: 10
+            },
+            linkedEntities: true
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            let { success, message, data } = response
+
+            if (success) {
+                data = data.filter((el) => Number(el.productId) !== Number(productId))
+
+                let html = []
+
+                for (let i = 0; i < data?.length; i++) {
+                    let coverImage = null
+                    let price = data[i].price ?? 0
+
+                    for (let k = 0; k < data[i]?.productMedias?.length; k++) {
+                        if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
+                            coverImage = data[i].productMedias[k].mediaUrl
+                            break
+                        }
+                    }
+
+                    if ((coverImage ?? "").trim() === "") {
+                        coverImage = `${BASE_URL}images/no-preview-available.jpg`
+                    }
+
+                    html.push(`<div class="inner-card">
+                        <a href="/product/${getLinkFromName(data[i].name)}">
+                            <div class="p-3 m-0">
+                                <img src="${coverImage}" alt="${data[i].name}">
+                            </div>
+                            <div class="px-3 mt-0">
+                                    <h5>${data[i].name}</h5>
+                                <!-- <h6>Size (W X H): 34” x 84”)</h6> -->
+                                <div class="rating-area">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </div>
+                                <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
+                            </div>
+                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
+                        </a>
+                    </div>`)
+                }
+
+                reloadOwlCarouselRelatedProducts($("#owlRelatedProducts"), html)
             }
         }
     })

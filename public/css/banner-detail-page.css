@@ -79,13 +79,13 @@
 }
 
 
-.detail-page-area .product-detail-area .add-to-cart-area{
+.detail-page-area .product-detail-area .add-to-cart-area {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
 }
 
-.detail-page-area .product-detail-area .add-to-cart-area .flex-area{
+.detail-page-area .product-detail-area .add-to-cart-area .flex-area {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -101,12 +101,12 @@
     border: 1px solid #452e73;
 }
 
-.detail-page-area .product-detail-area .add-to-cart-area .flex-area a.add-to-card-button{
+.detail-page-area .product-detail-area .add-to-cart-area .flex-area a.add-to-card-button {
     background-color: #452e73;
     color: #fff;
 }
 
-.detail-page-area .product-detail-area .add-to-cart-area .flex-area a.go-to-card-button{
+.detail-page-area .product-detail-area .add-to-cart-area .flex-area a.go-to-card-button {
     color: #452e73;
 }
 
@@ -228,4 +228,63 @@
 .specification-area .tab-content {
     border: 1px solid #ccc;
     padding: 50px 70px;
+}
+
+.customer-review-image {
+    width: 70px;
+    height: 70px;
+}
+
+.variant-card {
+    min-width: 120px;
+    padding: 5px;
+}
+
+.variant-image {
+    width: 120px;
+    height: 60px;
+    object-fit: fill;
+}
+
+.detail-page-area .owl-carousel .inner-card img {
+    width: 120px;
+    height: 100px;
+}
+
+.option-card.selected {
+    border-color: #007bff;
+    background-color: #e7f1ff;
+}
+
+/* Match the add-to-cart button style */
+.quantity-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #452e73;
+    color: #fff;
+    border-radius: 0.554rem;
+    width: 100%;
+    border: 1px solid #452e73;
+    text-align: center;
+    gap: 16px;
+}
+
+/* +/- buttons */
+.qty-btn {
+    background: #fff;
+    color: #452e73;
+    padding: 0px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Quantity number */
+.qty-number {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
 }

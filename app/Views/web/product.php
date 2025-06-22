@@ -2,34 +2,6 @@
 
 <?= $this->section('pageStyles'); ?>
 <link rel="stylesheet" href="<?= base_url('css/banner-detail-page.css'); ?>">
-
-<style>
-    .customer-review-image {
-        width: 70px;
-        height: 70px;
-    }
-
-    .variant-card {
-        min-width: 120px;
-        padding: 5px;
-    }
-
-    .variant-image {
-        width: 120px;
-        height: 60px;
-        object-fit: fill;
-    }
-
-    .detail-page-area .owl-carousel .inner-card img {
-        width: 120px;
-        height: 100px;
-    }
-
-    .option-card.selected {
-        border-color: #007bff;
-        background-color: #e7f1ff;
-    }
-</style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -166,11 +138,17 @@
                     </div>
                 </div>
                 <div id="attributesContainer"></div>
-                <div class="add-to-cart-area mt-2">
-                    <div class="flex-area">
-                        <a onclick="addToCart()" class="add-to-card-button" style="cursor: pointer;">
-                            <span><i class=" fa-solid fa-cart-plus"></i></span>
+                <div class="add-to-cart-area mt-2" data-product-id="123">
+                    <div class="flex-area" id="cart-controls">
+                        <a onclick="addToCart()" class="add-to-card-button" style="cursor: pointer;" id="add-to-cart-button">
+                            <span><i class="fa-solid fa-cart-plus"></i></span>
                             Add to cart ($<span id="payablePrice"></span>)
+                        </a>
+                        <a class="add-to-card-button quantity-button" style="display: none;" id="quantity-controls">
+                            <span onclick="updateQuantity(-1)" class="qty-btn">−</span>
+                            <span id="cart-quantity" class="qty-number">1</span>
+                            <span onclick="updateQuantity(1)" class="qty-btn">+</span>
+                            <span style="margin-left: auto;">($<span id="payablePriceSmall"></span>)</span>
                         </a>
                         <a href="/checkout" class="go-to-card-button">
                             <span><i class="fa-solid fa-cart-plus"></i></span>

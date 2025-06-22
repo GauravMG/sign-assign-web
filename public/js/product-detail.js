@@ -4,6 +4,7 @@ let productPrice = 0
 let totalSelectedAttributePrice = 0
 let totalDiscount = 0
 let payablePrice = 0
+let cartQuantity = 1;
 
 $(document).ready(function () {
     $(".detail-page-area .owl-carousel").owlCarousel({
@@ -51,6 +52,13 @@ function calculatePayablePrice() {
 
     // Display with exactly 2 decimal places
     document.getElementById("payablePrice").innerText = payablePrice.toFixed(2);
+
+    let existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    existingCart = existingCart.find(item => item.productId === productId);
+    if (existingCart) {
+        cartQuantity = Number(existingCart.quantity)
+        updateCartUI()
+    }
 }
 
 async function fetchProducts() {
@@ -526,8 +534,8 @@ async function fetchProductBulkDiscount() {
 }
 
 function addToCart() {
-    const quantity = 1
-    const payablePriceByQuantity = Math.round(payablePrice * quantity * 100) / 100
+    cartQuantity = 1
+    const payablePriceByQuantity = Math.round(payablePrice * cartQuantity * 100) / 100
     const payablePriceByQuantityAfterDiscount = Math.round((payablePriceByQuantity - totalDiscount) * 100) / 100
 
     const cartItem = {
@@ -536,7 +544,7 @@ function addToCart() {
         productPrice: productPrice,
         totalSelectedAttributePrice: totalSelectedAttributePrice,
         totalDiscount,
-        quantity,
+        quantity: cartQuantity,
         payablePrice,
         payablePriceByQuantity,
         payablePriceByQuantityAfterDiscount,
@@ -554,7 +562,64 @@ function addToCart() {
     // Save back to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    console.log("Cart updated:", cart);
-
+    updateCartUI();
     showUpdatedCartItemCount()
+}
+
+function updateQuantity(change) {
+    cartQuantity += change;
+    if (cartQuantity < 1) {
+        removeFromCart();
+        return;
+    }
+
+    const payablePriceByQuantity = Math.round(payablePrice * cartQuantity * 100) / 100
+    const payablePriceByQuantityAfterDiscount = Math.round((payablePriceByQuantity - totalDiscount) * 100) / 100
+
+    const cartItem = {
+        productId,
+        selectedAttributes,
+        productPrice,
+        totalSelectedAttributePrice,
+        totalDiscount,
+        quantity: cartQuantity,
+        payablePrice,
+        payablePriceByQuantity,
+        payablePriceByQuantityAfterDiscount,
+    };
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.productId !== productId);
+    cart.push(cartItem);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    updateCartUI();
+    showUpdatedCartItemCount();
+}
+
+function removeFromCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.productId !== productId);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    cartQuantity = 0;
+    updateCartUI();
+    showUpdatedCartItemCount();
+}
+
+function updateCartUI() {
+    const addBtn = document.getElementById('add-to-cart-button');
+    const quantityControls = document.getElementById('quantity-controls');
+    const quantityDisplay = document.getElementById('cart-quantity');
+    const priceDisplay = document.getElementById('payablePriceSmall');
+
+    if (cartQuantity > 0) {
+        addBtn.classList.add("d-none")
+        quantityControls.style.display = 'flex';
+        quantityDisplay.textContent = cartQuantity;
+        priceDisplay.textContent = (payablePrice * cartQuantity).toFixed(2);
+    } else {
+        addBtn.classList.remove("d-none")
+        quantityControls.style.display = 'none';
+    }
 }

@@ -28,6 +28,14 @@
                     </a>
                 </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
+                    <a href="/admin/templates" class="nav-link">
+                        <i class="nav-icon fas fa-th-large"></i>
+                        <p>
+                            Templates
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
                     <a href="/admin/attributes" class="nav-link">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>

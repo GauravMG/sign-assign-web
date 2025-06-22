@@ -5,6 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+$routes->get('/admin/templates', 'AdminController::templates');
 
 $routes->get('/admin/blogs/update/(:any)', 'AdminController::updateBlog/$1');
 $routes->get('/admin/blogs/add', 'AdminController::addBlog');
@@ -57,6 +58,13 @@ $routes->get('/admin/forgot-password', 'AuthController::forgotPassword');
 // $routes->get('/admin/register', 'AuthController::register');
 $routes->get('/admin/login', 'AuthController::login');
 $routes->get('/admin', 'AuthController::login');
+
+// $routes->get('/shared/header', 'SharedController::header');
+// $routes->get('/shared/footer', 'SharedController::footer');
+// $routes->group('shared', ['filter' => 'cors'], function ($routes) {
+//     $routes->get('header', 'SharedController::header');
+//     $routes->get('footer', 'SharedController::footer');
+// });
 
 $routes->get('/learning-center/(:any)', 'WebController::blogDetail/$1');
 $routes->get('/learning-center', 'WebController::blogs');

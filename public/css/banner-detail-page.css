@@ -106,7 +106,8 @@
     color: #fff;
 }
 
-.detail-page-area .product-detail-area .add-to-cart-area .flex-area a.go-to-card-button {
+.detail-page-area .product-detail-area .add-to-cart-area .flex-area a.go-to-card-button,
+.detail-page-area .product-detail-area .add-to-cart-area .flex-area a.select-design-method {
     color: #452e73;
 }
 
@@ -291,4 +292,28 @@
     font-weight: bold;
     min-width: 20px;
     text-align: center;
+}
+
+.option-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-color: #007bff;
+}
+
+.option-card i {
+    transition: color 0.3s;
+}
+
+.option-card:hover i {
+    color: #007bff !important;
+}
+
+.upload-instructions ul li::marker {
+    color: #007bff;
 }

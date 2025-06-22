@@ -612,14 +612,40 @@ function updateCartUI() {
     const quantityControls = document.getElementById('quantity-controls');
     const quantityDisplay = document.getElementById('cart-quantity');
     const priceDisplay = document.getElementById('payablePriceSmall');
+    const selectDesignMethod = document.getElementById('select-design-method');
 
     if (cartQuantity > 0) {
         addBtn.classList.add("d-none")
         quantityControls.style.display = 'flex';
         quantityDisplay.textContent = cartQuantity;
         priceDisplay.textContent = (payablePrice * cartQuantity).toFixed(2);
+        selectDesignMethod.classList.remove("d-none")
     } else {
         addBtn.classList.remove("d-none")
         quantityControls.style.display = 'none';
+        selectDesignMethod.classList.add("d-none")
     }
+}
+
+function handleDesignOption(optionType) {
+    if (optionType === "skip") {
+        $("#designMethodModal").modal("hide")
+
+        return
+    }
+
+    if (optionType === "upload") {
+        $("#designMethodModal").modal("hide")
+        $("#uploadArtworkModal").modal("show")
+
+        return
+    }
+
+    if (optionType === "online") {
+        return
+    }
+}
+
+function onSubmitUploadDesign() {
+    window.location.href = `${BASE_URL_EDITOR}/`
 }

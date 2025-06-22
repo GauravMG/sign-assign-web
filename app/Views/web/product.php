@@ -150,6 +150,10 @@
                             <span onclick="updateQuantity(1)" class="qty-btn">+</span>
                             <span>($<span id="payablePriceSmall"></span>)</span>
                         </a>
+                        <a href="javascript:void(0);" id="select-design-method" class="select-design-method d-none" data-bs-toggle="modal" data-bs-target="#designMethodModal">
+                            <span><i class="fa-solid fa-palette"></i></span>
+                            Select Design Method
+                        </a>
                         <a href="/checkout" class="go-to-card-button">
                             <span><i class="fa-solid fa-cart-plus"></i></span>
                             Go to cart
@@ -556,6 +560,84 @@
 <div class="fixed-cart">
     <div class="container-fluid">
 
+    </div>
+</div>
+
+<div class="modal fade" id="designMethodModal" tabindex="-1" aria-labelledby="designMethodModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                <h4 class="mb-4 fw-bold">Select Design Method</h4>
+                <div class="row g-4 justify-content-center">
+
+                    <!-- Design Online -->
+                    <div class="col-md-4">
+                        <div class="option-card p-4 border rounded shadow-sm h-100" onclick="handleDesignOption('online')">
+                            <i class="fa-solid fa-laptop-code fa-2x mb-3 text-primary"></i>
+                            <h5>Design Online</h5>
+                            <p class="text-muted small">Use our built-in editor to design your product online.</p>
+                        </div>
+                    </div>
+
+                    <!-- Upload Artwork -->
+                    <div class="col-md-4">
+                        <div class="option-card p-4 border rounded shadow-sm h-100" onclick="handleDesignOption('upload')">
+                            <i class="fa-solid fa-upload fa-2x mb-3 text-success"></i>
+                            <h5>Upload Artworks</h5>
+                            <p class="text-muted small">Upload your ready-to-use artwork file directly.</p>
+                        </div>
+                    </div>
+
+                    <!-- Skip -->
+                    <div class="col-md-4">
+                        <div class="option-card p-4 border rounded shadow-sm h-100" onclick="handleDesignOption('skip')">
+                            <i class="fa-solid fa-forward fa-2x mb-3 text-warning"></i>
+                            <h5>Skip for Now</h5>
+                            <p class="text-muted small">Choose design method later during checkout.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="uploadArtworkModal" tabindex="-1" aria-labelledby="uploadArtworkModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <h4 class="mb-4 text-center fw-bold">Upload Your Artwork</h4>
+
+                <form>
+                    <div class="mb-3">
+                        <label for="artworkFile" class="form-label">Choose your design file</label>
+                        <input class="form-control" type="file" id="artworkFile" name="artworkFile" accept=".pdf,.ai,.psd,.svg,.jpg,.png,.tiff,.cdr,.eps,.ps">
+                    </div>
+
+                    <div class="text-end">
+                        <button type="button" class="btn btn-success" onclick="onSubmitUploadDesign()">Upload File</button>
+                    </div>
+                </form>
+
+                <hr class="my-4">
+
+                <!-- Artwork Instructions -->
+                <div class="upload-instructions mt-4 text-start small text-muted">
+                    <h6 class="fw-bold">A Few Things to Know Before You Upload:</h6>
+                    <ul class="ps-3">
+                        <li>If your design just needs printing, feel free to upload formats like <strong>PNG, JPG, AI, PSD, TIFF, CDR, PDF, EPS, or PS</strong>.</li>
+                        <li>Planning something large? Stick with <strong>PDF, PSD, JPG, or TIFF</strong> to ensure crystal-clear quality without pixelation.</li>
+                        <li>Need precision cutting? You'll want to upload a <strong>vector file</strong> — think <strong>SVG, AI, or EPS</strong>.</li>
+                        <li>Want to avoid the guesswork? Download our ready-to-go templates from the product page (note: logo design not included).</li>
+                        <li>Match your artwork size with the product dimensions to keep things aligned.</li>
+                        <li>Leave a 1-inch safe zone around the edges — it's your safety net for clean, bleed-free prints.</li>
+                        <li>Using layered design files? Be sure to embed all assets — or upload them individually.</li>
+                        <li>Convert your fonts to outlines (curves), and don’t forget to include your logo!</li>
+                    </ul>
+                    <p class="mt-3"><strong>Pro tip:</strong> A high-resolution <strong>PDF in CMYK mode with bleed</strong> is your ticket to a flawless print.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?= $this->endSection(); ?>

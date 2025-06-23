@@ -57,11 +57,6 @@
         transform: translateX(26px);
     }
 
-    .list-action-container {
-        display: flex;
-        justify-content: space-around;
-    }
-
     .list-image-container {
         text-align: center;
     }
@@ -95,7 +90,7 @@
                             <th>Type</th>
                             <th>Unit</th>
                             <th>Options</th>
-                            <th>Is Filterable</th>
+                            <th>Is&nbsp;Filterable</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -107,7 +102,7 @@
                             <th>Type</th>
                             <th>Unit</th>
                             <th>Options</th>
-                            <th>Is Filterable</th>
+                            <th>Is&nbsp;Filterable</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
@@ -264,9 +259,17 @@
                                     <span class="slider"></span>
                                 </label>
                             </td>
-                            <td class="list-action-container">
-                                <span onclick="onClickUpdateAttribute(${response.data[i].attributeId})"><i class="fa fa-edit view-icon"></i></span>
-                                <span onclick="onClickDeleteAttribute(${response.data[i].attributeId})"><i class="fa fa-trash view-icon"></i></span>
+                            <td class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickUpdateAttribute(${response.data[i].attributeId})">
+                                    <i class="fas fa-pencil-alt mr-1">
+                                    </i>
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger btn-sm d-flex align-items-center" onclick="onClickDeleteAttribute(${response.data[i].attributeId})">
+                                    <i class="fas fa-trash mr-1">
+                                    </i>
+                                    Delete
+                                </a>
                             </td>
                         </tr>`;
                     }
@@ -297,6 +300,7 @@
 
     async function onClickSubmitAddAttribute() {
         // Get values from form inputs
+        const attributeId = document.getElementById('add_attributeId').value.trim();
         const name = document.getElementById('add_attributeName').value.trim();
         const type = document.getElementById('add_attributeType').value;
         const options = document.getElementById('add_attributeOptions').value.trim();
@@ -355,16 +359,25 @@
             // isFilterable: isFilterable,
         };
 
+        if (attributeId) {
+            payload.attributeId = Number(attributeId);
+        }
+
+        const endPoint = attributeId ? "/attribute/update" : "/attribute/create";
+        const successMessage = attributeId ?
+            "Attribute updated successfully" :
+            "Attribute created successfully";
+
         console.log("Payload to submit:", payload);
 
         await postAPICall({
-            endPoint: "/attribute/create",
+            endPoint,
             payload: JSON.stringify(payload),
             callbackSuccess: (response) => {
                 if (!response.success) {
                     toastr.error(response.message)
                 } else {
-                    toastr.success(`Attribute created successfully`)
+                    toastr.success(successMessage)
                     $('#modal-add-attribute').modal('hide');
                     fetchAttributes()
                 }

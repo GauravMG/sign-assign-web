@@ -1,6 +1,8 @@
 <?= $this->extend('admin_template'); ?>
 
 <?= $this->section('pageStyles'); ?>
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
@@ -57,9 +59,18 @@
         transform: translateX(26px);
     }
 
-    .list-action-container {
-        display: flex;
-        justify-content: space-around;
+    /* For Select2 multi-select selected items (Bootstrap theme or default) */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #343a40;
+        /* Dark background (like .btn-dark) */
+        color: #fff;
+        /* White text */
+        border: 1px solid #343a40;
+    }
+
+    /* Optional: Adjust the appearance of the search field */
+    .select2-container--default .select2-search--inline .select2-search__field {
+        height: 30px;
     }
 </style>
 <?= $this->endSection(); ?>
@@ -84,6 +95,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Status</th>
+                            <th>Manage Tagging</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -93,6 +105,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Status</th>
+                            <th>Manage Tagging</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
@@ -128,9 +141,54 @@
     </div>
 
 </div>
+
+<div class="modal fade" id="modal-manage-reference-tag" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- modal-lg for more width -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Manage Tagging</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="manageReferenceTag_templateId">
+
+                <!-- Section 1: Product Categories -->
+                <div class="mb-4">
+                    <h5 class="mb-2">Tag Product Categories</h5>
+                    <select class="select2" id="manageReferenceTag_productCategories" multiple="multiple" data-placeholder="Select product categories" style="width: 100%;">
+                    </select>
+                </div>
+
+                <!-- Section 2: Product Sub-categories -->
+                <div class="mb-4">
+                    <h5 class="mb-2">Tag Product Sub-categories</h5>
+                    <select class="select2" id="manageReferenceTag_productSubCategories" multiple="multiple" data-placeholder="Select product sub-categories" style="width: 100%;">
+                    </select>
+                </div>
+
+                <!-- Section 3: Products -->
+                <div>
+                    <h5 class="mb-2">Tag Products</h5>
+                    <select class="select2" id="manageReferenceTag_products" multiple="multiple" data-placeholder="Select products" style="width: 100%;">
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" onclick="onClickSubmitReferenceTag()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
@@ -146,14 +204,172 @@
     const previewContainer = document.getElementById("mediaPreviewContainer");
 
     let uploadedFiles = [];
+    let templates = []
 
     $(document).ready(function() {
         fetchTemplates()
+
+        $('#manageReferenceTag_productCategories').select2({
+            placeholder: 'Search and select product categores',
+            multiple: true,
+            minimumInputLength: 1,
+            ajax: {
+                transport: function(params, success, failure) {
+                    const searchTerm = params.data.term;
+
+                    postAPICall({
+                        endPoint: "/product-category/list",
+                        payload: JSON.stringify({
+                            filter: {
+                                search: searchTerm
+                            },
+                            range: {
+                                all: true
+                            },
+                            sort: [{
+                                orderDir: "asc",
+                                orderBy: "name"
+                            }]
+                        }),
+                        callbackSuccess: (response) => {
+                            const {
+                                success: isSuccess,
+                                data
+                            } = response;
+                            if (isSuccess && Array.isArray(data)) {
+                                success({
+                                    results: data.map(el => ({
+                                        id: el.productCategoryId,
+                                        text: el.name
+                                    }))
+                                });
+                            } else {
+                                success({
+                                    results: []
+                                });
+                            }
+                        },
+                    });
+                },
+                processResults: function(data) {
+                    return data;
+                },
+                delay: 300,
+                cache: true
+            }
+        });
+
+        $('#manageReferenceTag_productSubCategories').select2({
+            placeholder: 'Search and select staff members',
+            multiple: true,
+            minimumInputLength: 1,
+            ajax: {
+                transport: function(params, success, failure) {
+                    const searchTerm = params.data.term;
+
+                    postAPICall({
+                        endPoint: "/product-subcategory/list",
+                        payload: JSON.stringify({
+                            filter: {
+                                search: searchTerm
+                            },
+                            range: {
+                                all: true
+                            },
+                            sort: [{
+                                orderDir: "asc",
+                                orderBy: "name"
+                            }]
+                        }),
+                        callbackSuccess: (response) => {
+                            const {
+                                success: isSuccess,
+                                data
+                            } = response;
+                            if (isSuccess && Array.isArray(data)) {
+                                success({
+                                    results: data.map(el => ({
+                                        id: el.productSubCategoryId,
+                                        text: el.name
+                                    }))
+                                });
+                            } else {
+                                success({
+                                    results: []
+                                });
+                            }
+                        },
+                    });
+                },
+                processResults: function(data) {
+                    return data;
+                },
+                delay: 300,
+                cache: true
+            }
+        });
+
+        $('#manageReferenceTag_products').select2({
+            placeholder: 'Search and select staff members',
+            multiple: true,
+            minimumInputLength: 1,
+            ajax: {
+                transport: function(params, success, failure) {
+                    const searchTerm = params.data.term;
+
+                    postAPICall({
+                        endPoint: "/product/list",
+                        payload: JSON.stringify({
+                            filter: {
+                                search: searchTerm
+                            },
+                            range: {
+                                all: true
+                            },
+                            sort: [{
+                                orderDir: "asc",
+                                orderBy: "name"
+                            }]
+                        }),
+                        callbackSuccess: (response) => {
+                            const {
+                                success: isSuccess,
+                                data
+                            } = response;
+                            if (isSuccess && Array.isArray(data)) {
+                                success({
+                                    results: data.map(el => ({
+                                        id: el.productId,
+                                        text: el.name
+                                    }))
+                                });
+                            } else {
+                                success({
+                                    results: []
+                                });
+                            }
+                        },
+                    });
+                },
+                processResults: function(data) {
+                    return data;
+                },
+                delay: 300,
+                cache: true
+            }
+        });
 
         $('#modal-add-media').on('hidden.bs.modal', function() {
             document.getElementById("mediaUploadInput").value = "";
             document.getElementById("mediaPreviewContainer").innerHTML = "";
             uploadedFiles = []
+        });
+
+        $('#modal-manage-reference-tag').on('hidden.bs.modal', function() {
+            document.getElementById("manageReferenceTag_templateId").value = "";
+            $('#manageReferenceTag_productCategories').val(null).trigger('change');
+            $('#manageReferenceTag_productSubCategories').val(null).trigger('change');
+            $('#manageReferenceTag_products').val(null).trigger('change');
         });
     })
 
@@ -251,6 +467,7 @@
                 } = response
 
                 if (success) {
+                    templates = data
                     var html = ""
 
                     for (let i = 0; i < data?.length; i++) {
@@ -262,10 +479,23 @@
                                     <span class="slider"></span>
                                 </label>
                             </td>
-                            <td class="list-action-container">
-                                <!-- <span onclick="onClickUpdateTemplate(${data[i].templateId})"><i class="fa fa-edit view-icon"></i></span> -->
-                                <!-- <span onclick="onClickViewTemplate(${data[i].templateId})"><i class="fa fa-eye view-icon"></i></span> -->
-                                <span onclick="onClickDeleteTemplate(${data[i].templateId})"><i class="fa fa-trash view-icon"></i></span>
+                            <td>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickManageReferenceTag(${data[i].templateId})">
+                                        <i class="fas fa-folder mr-1">
+                                        </i>
+                                        View
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <a class="btn btn-danger btn-sm d-flex align-items-center" onclick="onClickDeleteTemplate(${data[i].templateId})">
+                                        <i class="fas fa-trash mr-1">
+                                        </i>
+                                        Delete
+                                    </a>
+                                </div>
                             </td>
                         </tr>`;
                     }
@@ -309,14 +539,6 @@
                 }
             }
         })
-    }
-
-    function onClickUpdateTemplate(templateId) {
-        window.location.href = `/admin/templates/update/${templateId}`
-    }
-
-    function onClickViewTemplate(templateId) {
-        window.location.href = `/admin/templates/${templateId}`
     }
 
     async function onClickDeleteTemplate(templateId) {
@@ -381,6 +603,120 @@
                 loader.hide()
             }
         })
+    }
+
+    function prepopulateReferenceTagging({
+        categories = [],
+        subCategories = [],
+        products = []
+    }) {
+        // Populate Product Categories
+        categories.forEach(cat => {
+            const option = new Option(cat.name, cat.productCategoryId, true, true);
+            $('#manageReferenceTag_productCategories').append(option).trigger('change');
+        });
+
+        // Populate Product Sub-Categories
+        subCategories.forEach(sub => {
+            const option = new Option(sub.name, sub.productSubCategoryId, true, true);
+            $('#manageReferenceTag_productSubCategories').append(option).trigger('change');
+        });
+
+        // Populate Products
+        products.forEach(prod => {
+            const option = new Option(prod.name, prod.productId, true, true);
+            $('#manageReferenceTag_products').append(option).trigger('change');
+        });
+    }
+
+    function onClickManageReferenceTag(templateId) {
+        document.getElementById('manageReferenceTag_templateId').value = templateId
+
+        $('#modal-manage-reference-tag').modal('show');
+
+        const selectedTemplate = templates.find((template) => Number(template.templateId) === Number(templateId))
+
+        const categories = []
+        const subCategories = []
+        const products = []
+        selectedTemplate.templateTags.forEach((templateTag) => {
+            if (templateTag.referenceType === "product_category") {
+                categories.push({
+                    productCategoryId: Number(templateTag.referenceId),
+                    name: templateTag.referenceData.name
+                })
+            }
+            if (templateTag.referenceType === "product_sub_category") {
+                subCategories.push({
+                    productSubCategoryId: Number(templateTag.referenceId),
+                    name: templateTag.referenceData.name
+                })
+            }
+            if (templateTag.referenceType === "product") {
+                products.push({
+                    productId: Number(templateTag.referenceId),
+                    name: templateTag.referenceData.name
+                })
+            }
+        })
+
+        prepopulateReferenceTagging({
+            categories,
+            subCategories,
+            products
+        })
+    }
+
+    async function onClickSubmitReferenceTag() {
+        // Get values from form inputs
+        let templateId = document.getElementById('manageReferenceTag_templateId').value.trim();
+        templateId = Number(templateId)
+        const selectedProductCategoryIds = $('#manageReferenceTag_productCategories').val();
+        const selectedProductSubCategoryIds = $('#manageReferenceTag_productSubCategories').val();
+        const selectedProductIds = $('#manageReferenceTag_products').val();
+
+        if (!selectedProductCategoryIds?.length && !selectedProductSubCategoryIds?.length && !selectedProductIds?.length) {
+            alert("Please select at least 1 tagging reference!")
+            return
+        }
+        let payload = []
+        for (let el of selectedProductCategoryIds) {
+            payload.push({
+                templateId,
+                referenceType: "product_category",
+                referenceId: Number(el)
+            })
+        }
+        for (let el of selectedProductSubCategoryIds) {
+            payload.push({
+                templateId,
+                referenceType: "product_sub_category",
+                referenceId: Number(el)
+            })
+        }
+        for (let el of selectedProductIds) {
+            payload.push({
+                templateId,
+                referenceType: "product",
+                referenceId: Number(el)
+            })
+        }
+
+        if (confirm("Are you sure you want to update tagging for selected template?")) {
+            await postAPICall({
+                endPoint: "/template-tag/save",
+                payload: JSON.stringify(payload),
+                callbackSuccess: (response) => {
+                    if (!response.success) {
+                        toastr.error(response.message)
+                    } else {
+                        toastr.success(`Template tagging updated successfully`)
+                        $('#modal-manage-reference-tag').modal('hide');
+                    }
+                    fetchTemplates()
+                }
+            })
+        }
     }
 </script>
 <?= $this->endSection(); ?>

@@ -167,22 +167,24 @@
                                     <span class="slider"></span>
                                 </label>
                             </td>
-                            <td class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
-                                <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewBlog(${data[i].blogId})">
-                                    <i class="fas fa-folder mr-1">
-                                    </i>
-                                    View
-                                </a>
-                                <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickUpdateBlog(${data[i].blogId})">
-                                    <i class="fas fa-pencil-alt mr-1">
-                                    </i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger btn-sm d-flex align-items-center" onclick="onClickDeleteBlog(${data[i].blogId})">
-                                    <i class="fas fa-trash mr-1">
-                                    </i>
-                                    Delete
-                                </a>
+                            <td>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewBlog(${data[i].blogId})">
+                                        <i class="fas fa-folder mr-1">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickUpdateBlog(${data[i].blogId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm d-flex align-items-center" onclick="onClickDeleteBlog(${data[i].blogId})">
+                                        <i class="fas fa-trash mr-1">
+                                        </i>
+                                        Delete
+                                    </a>
+                                </div>
                             </td>
                         </tr>`;
                     }

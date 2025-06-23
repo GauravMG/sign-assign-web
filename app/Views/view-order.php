@@ -6,6 +6,22 @@
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
+
+<style>
+    /* For Select2 multi-select selected items (Bootstrap theme or default) */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #343a40;
+        /* Dark background (like .btn-dark) */
+        color: #fff;
+        /* White text */
+        border: 1px solid #343a40;
+    }
+
+    /* Optional: Adjust the appearance of the search field */
+    .select2-container--default .select2-search--inline .select2-search__field {
+        height: 30px;
+    }
+</style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>

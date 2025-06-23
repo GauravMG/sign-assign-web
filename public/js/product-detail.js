@@ -678,6 +678,8 @@ function addToCart() {
         payablePrice,
         payablePriceByQuantity,
         payablePriceByQuantityAfterDiscount,
+        rushHourDelivery: false,
+        rushHourDeliveryAmount: 0
     };
 
     // Optional: fetch existing cart or create new
@@ -716,6 +718,8 @@ function updateQuantity(change) {
         payablePrice,
         payablePriceByQuantity,
         payablePriceByQuantityAfterDiscount,
+        rushHourDelivery: false,
+        rushHourDeliveryAmount: 0
     };
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];

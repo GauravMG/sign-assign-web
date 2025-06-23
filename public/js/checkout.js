@@ -63,6 +63,7 @@ function renderCartItems() {
 
     let subTotalItemCount = 0
     let subTotalPrice = 0
+    let totalRushHourDeliveryAmount = 0
 
     cart.forEach(cartItem => {
         const product = productData.find(p => p.productId === cartItem.productId);
@@ -106,14 +107,21 @@ function renderCartItems() {
             bulkDiscountBodyInnerHtml += `<td>${productBulkDiscount.discount}%</td>`
         })
 
+        let isRushHourRateAvailable = false
+        product.productRushHourRates?.forEach((productRushHourRate) => {
+            if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty)) {
+                isRushHourRateAvailable = true
+            }
+        })
+
         const itemHtml = `<div class="box-inner">
-            <div class="rush-hour-area">
+            ${isRushHourRateAvailable ? `<div class="rush-hour-area">
                 <label class="switch">
                     <input type="checkbox" class="rush-hour-toggle" data-product-id="${product.productId}" ${cartItem.rushHourDelivery ? "checked" : ""}>
                     <span class="slider"></span>
                 </label>
-                <span>Rush Hour Delivery <span>(extra charges apply*)</span></span>
-            </div>
+                <span>Rush Hour Delivery <span>(${Number(cartItem.rushHourDeliveryAmount) > 0 ? `$${cartItem.rushHourDeliveryAmount} ` : ""}extra charges apply*)</span></span>
+            </div>` : ""}
             <div class="inner">
                 <div class="left-area">
                     <img alt="" src="${coverImage}" alt="${product.name}">
@@ -168,7 +176,20 @@ function renderCartItems() {
 
         subTotalItemCount += cartItem.quantity
         subTotalPrice += cartItem.payablePriceByQuantityAfterDiscount
+        totalRushHourDeliveryAmount += Number(cartItem.rushHourDeliveryAmount)
     })
+
+    // Initialize rush hour toggles
+    document.querySelectorAll('.rush-hour-toggle').forEach(toggle => {
+        // Add event listener to each toggle
+        toggle.addEventListener('change', function () {
+            const productId = this.dataset.productId;
+            const isRushHour = this.checked;
+
+            // Store or process the rush hour selection for this product
+            handleRushHourSelection(productId, isRushHour);
+        });
+    });
 
     document.getElementById("shoppingCartitemCount").innerText = `(${subTotalItemCount} Item${subTotalItemCount > 1 ? "s" : ""})`
     document.getElementById("subTotalItemCount").innerText = `${subTotalItemCount} item${subTotalItemCount > 1 ? "s" : ""}`
@@ -177,7 +198,14 @@ function renderCartItems() {
     let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
     document.getElementById("businessDiscountPrice").innerText = `$${businessDiscountPrice}`
 
-    grandTotalPrice = Math.round((subTotalPrice - businessDiscountPrice) * 100) / 100
+    document.getElementById("totalRushHourDeliveryAmount").innerText = `$${totalRushHourDeliveryAmount}`
+    if (Number(totalRushHourDeliveryAmount) > 0) {
+        document.getElementById("totalRushHourDeliveryContainer").classList.remove("d-none")
+    } else {
+        document.getElementById("totalRushHourDeliveryContainer").classList.add("d-none")
+    }
+
+    grandTotalPrice = Math.round(((subTotalPrice - businessDiscountPrice) + totalRushHourDeliveryAmount) * 100) / 100
     document.querySelectorAll(".grandTotalPrice").forEach(element => {
         element.textContent = grandTotalPrice;
     });
@@ -231,6 +259,16 @@ function changeQuantity(productId, changeType) {
                 discountInCents = Math.round((totalPriceInCents * applicableBulkDiscount.discount) / 100);
             }
 
+            cartItem.rushHourDeliveryAmount = 0
+            product.productRushHourRates?.forEach((productRushHourRate) => {
+                if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty) && cartItem.rushHourDelivery) {
+                    cartItem.rushHourDeliveryAmount = Number(productRushHourRate.amount)
+                }
+            })
+            if (cartItem.rushHourDeliveryAmount <= 0) {
+                cartItem.rushHourDelivery = false
+            }
+
             // Update cart item prices (converting back to dollars)
             cartItem.totalDiscount = discountInCents / 100;
             cartItem.payablePriceByQuantity = totalPriceInCents / 100;
@@ -243,31 +281,27 @@ function changeQuantity(productId, changeType) {
     fetchProducts();
 }
 
-// Initialize rush hour toggles
-document.querySelectorAll('.rush-hour-toggle').forEach(toggle => {
-    // Add event listener to each toggle
-    toggle.addEventListener('change', function () {
-        const productId = this.dataset.productId;
-        const isRushHour = this.checked;
-
-        // Store or process the rush hour selection for this product
-        handleRushHourSelection(productId, isRushHour);
-    });
-});
-
 // Function to handle rush hour selection
 function handleRushHourSelection(productId, isSelected) {
-    // Here you can:
-    // 1. Update your cart data structure
-    // 2. Recalculate prices
-    // 3. Update UI
+    cart = cart.map((cartItem) => {
+        if (Number(productId) === Number(cartItem.productId)) {
+            cartItem.rushHourDelivery = isSelected;
 
-    // Example: Update a cart object
-    const cartItem = cart.find(item => item.productId === productId);
-    if (cartItem) {
-        cartItem.rushHourDelivery = isSelected;
-        calculatePayablePrice(); // Recalculate prices
-    }
+            if (!isSelected) {
+                cartItem.rushHourDeliveryAmount = 0
+            } else {
+                const product = productData.find(p => p.productId === cartItem.productId);
+                product.productRushHourRates?.forEach((productRushHourRate) => {
+                    if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty)) {
+                        cartItem.rushHourDeliveryAmount = Number(productRushHourRate.amount)
+                    }
+                })
+            }
+        }
+
+        return { ...cartItem };
+    })
+    renderCartItems()
 }
 
 /**

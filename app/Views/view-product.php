@@ -138,6 +138,11 @@
                             href="#discount-list" role="tab"
                             aria-controls="discount-list" aria-selected="false">Discounts</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="rush-hour-rate-list-tab" data-toggle="pill"
+                            href="#rush-hour-rate-list" role="tab"
+                            aria-controls="rush-hour-rate-list" aria-selected="false">Rush Hour Rate</a>
+                    </li>
                 </ul>
             </div>
             <div class="card-body">
@@ -400,6 +405,42 @@
 
                                 <div class="text-right mt-2">
                                     <button class="btn btn-success" id="saveDiscountsBtn">Save Discounts</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="rush-hour-rate-list" role="tabpanel" aria-labelledby="rush-hour-rate-list-tab">
+                        <div class="overlay-wrapper">
+                            <div id="rush-hour-rate-list-loader" class="overlay">
+                                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                <div class="text-bold pt-2">Loading...</div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="mb-0">Manage Rush Hour Rates</h4>
+                                <button type="button" class="btn btn-success" id="addRushHourRateRow">
+                                    <i class="fas fa-plus"></i> Add Rush Hour Rate
+                                </button>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover text-center align-middle" id="rushHourRateTable">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Min Qty</th>
+                                            <th>Max Qty</th>
+                                            <th>Amount</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rushHourRateTableBody">
+                                        <!-- Existing rows will be added here dynamically -->
+                                    </tbody>
+                                </table>
+
+                                <div class="text-right mt-2">
+                                    <button class="btn btn-success" id="saveRushHourRatesBtn">Save Rush Hour Rates</button>
                                 </div>
                             </div>
                         </div>
@@ -735,6 +776,8 @@
                 //     fetchVariants(targetTabId)
             } else if (targetTabId.replace("#", "") === "discount-list") {
                 fetchProductBulkDiscount(targetTabId)
+            } else if (targetTabId.replace("#", "") === "rush-hour-rate-list") {
+                fetchProductRushHourRate(targetTabId)
             }
         })
 
@@ -1687,7 +1730,6 @@
                 if (success) {
                     if (data[0]?.dataJson) {
                         let dataJson = typeof data[0].dataJson === "string" ? JSON.parse(data[0].dataJson) : data[0].dataJson
-                        console.log(`dataJson`, dataJson)
 
                         dataJson.forEach(d => createDiscountRow(d.minQty, d.maxQty, d.discount))
                     }
@@ -1717,14 +1759,118 @@
             }
         });
 
-        console.log('Saving discounts:', discounts);
-
         if (confirm("Are you sure you want to update bulk discounts?")) {
             await postAPICall({
                 endPoint: "/product-bulk-discount/update",
                 payload: JSON.stringify({
                     productId: Number(productId),
                     dataJson: JSON.stringify(discounts)
+                }),
+                callbackSuccess: (response) => {
+                    if (response.success) {
+                        toastr.success(response.message);
+                    } else if (!response.success) {
+                        toastr.error(response.message);
+                    }
+                }
+            })
+        }
+    });
+
+    const rushHourRateTableBody = document.getElementById('rushHourRateTableBody');
+    const addRushHourRateRowBtn = document.getElementById('addRushHourRateRow');
+    const saveRushHourRatesBtn = document.getElementById('saveRushHourRatesBtn');
+
+    function createRushHourRateRow(minQty = '', maxQty = '', amount = '') {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td><input type="number" class="form-control form-control-sm minQty" value="${minQty}" /></td>
+            <td><input type="number" class="form-control form-control-sm maxQty" value="${maxQty}" /></td>
+            <td><input type="number" class="form-control form-control-sm amount" step="0.01" value="${amount}" /></td>
+            <td>
+                <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+            </td>
+        `;
+
+        row.querySelector('.delete-btn').addEventListener('click', () => {
+            row.remove();
+        });
+
+        rushHourRateTableBody.appendChild(row);
+    }
+
+    // Add new row on button click
+    addRushHourRateRowBtn.addEventListener('click', () => {
+        createRushHourRateRow();
+    });
+
+    async function fetchProductRushHourRate() {
+        await postAPICall({
+            endPoint: "/product-rush-hour-rate/list",
+            payload: JSON.stringify({
+                "filter": {
+                    productId: Number(productId)
+                },
+                "range": {
+                    "all": true
+                },
+                "sort": [{
+                    "orderBy": "createdAt",
+                    "orderDir": "asc"
+                }]
+            }),
+            callbackBeforeSend: function() {
+                $('#rush-hour-rate-list-loader').fadeIn()
+            },
+            callbackComplete: function() {
+                $('#rush-hour-rate-list-loader').fadeOut()
+            },
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    data
+                } = response
+
+                if (success) {
+                    if (data[0]?.dataJson) {
+                        let dataJson = typeof data[0].dataJson === "string" ? JSON.parse(data[0].dataJson) : data[0].dataJson
+
+                        dataJson.forEach(d => createRushHourRateRow(d.minQty, d.maxQty, d.amount))
+                    }
+                }
+
+                loader.hide()
+            }
+        })
+    }
+
+    // Save all rush hour rate data to backend
+    saveRushHourRatesBtn.addEventListener('click', async () => {
+        const allRows = rushHourRateTableBody.querySelectorAll('tr');
+        const rushHourRates = [];
+
+        allRows.forEach(row => {
+            const minQty = row.querySelector('.minQty').value;
+            const maxQty = row.querySelector('.maxQty').value;
+            const amount = row.querySelector('.amount').value;
+
+            if (minQty || maxQty || amount) {
+                rushHourRates.push({
+                    minQty: Number(minQty),
+                    maxQty: Number(maxQty),
+                    amount: parseFloat(amount)
+                });
+            }
+        });
+
+        if (confirm("Are you sure you want to update rush hour rates?")) {
+            await postAPICall({
+                endPoint: "/product-rush-hour-rate/update",
+                payload: JSON.stringify({
+                    productId: Number(productId),
+                    dataJson: JSON.stringify(rushHourRates)
                 }),
                 callbackSuccess: (response) => {
                     if (response.success) {

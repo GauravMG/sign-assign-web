@@ -72,6 +72,15 @@
     .select2-container--default .select2-search--inline .select2-search__field {
         height: 30px;
     }
+
+    .list-image-container {
+        text-align: center;
+    }
+
+    .list-image {
+        width: 80px;
+        height: 80px;
+    }
 </style>
 <?= $this->endSection(); ?>
 
@@ -94,6 +103,7 @@
                     <thead>
                         <tr>
                             <th>Title</th>
+                            <th>Preview</th>
                             <th>Status</th>
                             <th>Manage Tagging</th>
                             <th>Actions</th>
@@ -104,6 +114,7 @@
                     <tfoot>
                         <tr>
                             <th>Title</th>
+                            <th>Preview</th>
                             <th>Status</th>
                             <th>Manage Tagging</th>
                             <th>Actions</th>
@@ -473,6 +484,9 @@
                     for (let i = 0; i < data?.length; i++) {
                         html += `<tr>
                             <td>${data[i].name ?? ""}</td>
+                            <td class="list-image-container">
+                                <img class="list-image" src="${(data[i].previewUrl ?? "").trim() !== "" ? data[i].previewUrl : `${BASE_URL}images/no-preview-available.jpg`}" alt="${data[i].name}" />
+                            </td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="toggle-status" data-template-id="${data[i].templateId}" ${data[i].status ? "checked" : ""}>
@@ -572,14 +586,16 @@
                 mediaType,
                 name,
                 size,
-                url
-            } = await uploadImage(uploadedFiles[i])
+                url,
+                previewUrl
+            } = await uploadPSD(uploadedFiles[i])
 
             payload.push({
                 name,
                 mediaType,
                 mediaUrl: url,
-                size
+                size,
+                previewUrl
             })
         }
 

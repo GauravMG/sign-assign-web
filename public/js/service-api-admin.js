@@ -123,6 +123,25 @@ async function uploadImage(file, keyName = "file") {
     })
 }
 
+async function uploadPSD(file, keyName = "file") {
+    const formData = new FormData();
+    formData.append(keyName, file);
+
+    return await new Promise((resolve, reject) => {
+        postAPICall({
+            endPoint: "/upload/single-psd",
+            payload: formData,
+            callbackSuccess: (response) => {
+                if (response.success) {
+                    resolve(response.data)
+                } else {
+                    reject("")
+                }
+            }
+        })
+    })
+}
+
 async function refreshToken() {
     return new Promise(async (resolve, reject) => {
         await postAPICall({

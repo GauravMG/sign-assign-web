@@ -68,6 +68,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
+        const BASE_URL = '<?= base_url(); ?>'
         const BASE_URL_API = '<?= BASE_URL_API ?>'
     </script>
 

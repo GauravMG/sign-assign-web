@@ -441,7 +441,7 @@
                     </div>
 
                     <div class="text-end">
-                        <button type="button" class="btn btn-success" onclick="redirectToEditor()">Upload File</button>
+                        <button type="button" class="btn btn-success d-none" id="uploadArtworkStartEditing" onclick="redirectToEditorWithUploadedTemplate()">Start Editing</button>
                     </div>
                 </form>
 
@@ -461,6 +461,29 @@
                         <li>Convert your fonts to outlines (curves), and don’t forget to include your logo!</li>
                     </ul>
                     <p class="mt-3"><strong>Pro tip:</strong> A high-resolution <strong>PDF in CMYK mode with bleed</strong> is your ticket to a flawless print.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="selectEditorTemplateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <h4 class="mb-4 fw-bold text-center">Choose a Template to Start Designing</h4>
+                <div class="row">
+                    <!-- Left Section: Template List -->
+                    <div class="col-md-6 border-end" style="max-height: 500px; overflow-y: auto;">
+                        <div id="templateCardList" class="row g-3"></div>
+                    </div>
+
+                    <!-- Right Section: Preview -->
+                    <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <h5 class="mb-3">Preview</h5>
+                        <img id="selectedTemplatePreview" src="" class="img-fluid border rounded mb-3" style="max-height: 300px;" alt="Select a template to preview" />
+                        <button id="startEditingBtn" class="btn btn-success d-none" onclick="redirectToEditorWithTemplate()">Start Editing</button>
+                    </div>
                 </div>
             </div>
         </div>

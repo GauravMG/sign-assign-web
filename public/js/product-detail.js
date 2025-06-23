@@ -767,18 +767,69 @@ function handleDesignOption(optionType) {
     if (optionType === "upload") {
         $("#designMethodModal").modal("hide")
         $("#uploadArtworkModal").modal("show")
-        // redirectToEditor()
 
         return
     }
 
     if (optionType === "online") {
-        // $("#designMethodModal").modal("hide")
-        // $("#uploadArtworkModal").modal("show")
-        redirectToEditor()
+        $("#designMethodModal").modal("hide")
+        $("#selectEditorTemplateModal").modal("show")
+        fetchAndRenderTemplates()
 
         return
     }
+}
+
+let selectedTemplate = null;
+
+function fetchAndRenderTemplates() {
+    // Call your backend to fetch templates
+    postAPICall({
+        endPoint: "/template/list",
+        payload: JSON.stringify({ filter: {}, range: { all: true } }),
+        callbackSuccess: (response) => {
+            if (response.success && Array.isArray(response.data)) {
+                renderTemplateCards(response.data);
+            } else {
+                document.getElementById('templateCardList').innerHTML = '<p class="text-muted">No templates found.</p>';
+            }
+        }
+    });
+}
+
+function renderTemplateCards(templates) {
+    const container = document.getElementById('templateCardList');
+    container.innerHTML = '';
+
+    templates.forEach(template => {
+        const card = document.createElement('div');
+        card.className = 'col-6';
+
+        card.innerHTML = `
+            <div class="card h-100 cursor-pointer template-card" onclick="selectTemplate(${template.templateId}, '${template.mediaUrl}', '${template.previewUrl}')">
+                <img src="${template.previewUrl}" class="card-img-top" alt="${template.name}">
+                <div class="card-body">
+                    <h6 class="card-title text-truncate">${template.name}</h6>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+function selectTemplate(templateId, mediaUrl, previewUrl) {
+    selectedTemplate = { templateId, mediaUrl, previewUrl };
+
+    // Show preview
+    document.getElementById('selectedTemplatePreview').src = previewUrl;
+
+    // Show button
+    document.getElementById('startEditingBtn').classList.remove('d-none');
+
+    // Optional: Highlight selected card (reset all others first)
+    document.querySelectorAll('.template-card').forEach(card => card.classList.remove('border-primary'));
+    event.currentTarget.classList.add('border-primary');
 }
 
 document.getElementById("artworkFile").addEventListener("change", async function (event) {
@@ -825,6 +876,7 @@ let uploadedTemplateResult = null
 function showTemplatePreview(uploadResult) {
     const wrapper = document.getElementById('templatePreviewWrapper');
     const image = document.getElementById('templatePreviewImage');
+    const uploadArtworkStartEditingBtn = document.getElementById('uploadArtworkStartEditing');
 
     if (uploadResult) {
         let {
@@ -843,19 +895,32 @@ function showTemplatePreview(uploadResult) {
         image.src = previewUrl;
         uploadedTemplatePreviewUrl = previewUrl
         wrapper.classList.remove('d-none');
+        uploadArtworkStartEditingBtn.classList.remove("d-none")
 
         return
     }
 
     uploadedTemplateResult = null
     wrapper.classList.add('d-none');
+    uploadArtworkStartEditingBtn.classList.add("d-none")
     image.src = '';
 }
 
-function redirectToEditor() {
+function redirectToEditorWithUploadedTemplate() {
     const token = localStorage.getItem('jwtTokenUser');
 
     const queryParams = `token=${token}&productId=${productId}&uploadedTemplateUrl=${uploadedTemplateResult?.url}&uploadedTemplatePreviewUrl=${uploadedTemplateResult?.previewUrl}`
+
+    // Base64 encode
+    const encoded = btoa(queryParams) // browser-safe base64
+
+    window.location.href = `${BASE_URL_EDITOR}/?data=${encoded}`
+}
+
+function redirectToEditorWithTemplate() {
+    const token = localStorage.getItem('jwtTokenUser');
+
+    const queryParams = `token=${token}&productId=${productId}&selectedTemplateId=${selectedTemplate?.templateId}`
 
     // Base64 encode
     const encoded = btoa(queryParams) // browser-safe base64

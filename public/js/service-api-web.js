@@ -133,7 +133,7 @@ async function uploadPSD(file, keyName = "file") {
                 if (response.success) {
                     resolve(response.data)
                 } else {
-                    reject("")
+                    reject(null)
                 }
             }
         })

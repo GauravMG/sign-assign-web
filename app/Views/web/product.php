@@ -434,8 +434,14 @@
                         <input class="form-control" type="file" id="artworkFile" name="artworkFile" accept=".pdf,.ai,.psd,.svg,.jpg,.png,.tiff,.cdr,.eps,.ps">
                     </div>
 
+                    <!-- Image Preview Placeholder -->
+                    <div id="templatePreviewWrapper" class="mt-3 d-none">
+                        <h6 class="fw-bold">Template Preview:</h6>
+                        <img id="templatePreviewImage" src="" alt="Template Preview" class="img-fluid border rounded" style="max-height: 300px;" />
+                    </div>
+
                     <div class="text-end">
-                        <button type="button" class="btn btn-success" onclick="onSubmitUploadDesign()">Upload File</button>
+                        <button type="button" class="btn btn-success" onclick="redirectToEditor()">Upload File</button>
                     </div>
                 </form>
 

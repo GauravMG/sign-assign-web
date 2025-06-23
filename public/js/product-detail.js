@@ -765,9 +765,9 @@ function handleDesignOption(optionType) {
     }
 
     if (optionType === "upload") {
-        // $("#designMethodModal").modal("hide")
-        // $("#uploadArtworkModal").modal("show")
-        onSubmitUploadDesign()
+        $("#designMethodModal").modal("hide")
+        $("#uploadArtworkModal").modal("show")
+        // redirectToEditor()
 
         return
     }
@@ -775,12 +775,90 @@ function handleDesignOption(optionType) {
     if (optionType === "online") {
         // $("#designMethodModal").modal("hide")
         // $("#uploadArtworkModal").modal("show")
-        onSubmitUploadDesign()
+        redirectToEditor()
 
         return
     }
 }
 
-function onSubmitUploadDesign() {
-    window.location.href = `${BASE_URL_EDITOR}/`
+document.getElementById("artworkFile").addEventListener("change", async function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("artworkFile", file);
+
+    // Show loading state if needed
+    showTemplatePreview(null); // Hide existing preview
+
+    try {
+        const uploadResult = await uploadPSD(file)
+        if (!uploadResult) {
+            throw new Error("Failed to upload artwork file.")
+        }
+
+        if (uploadResult) {
+            showTemplatePreview(uploadResult)
+        } else {
+            showAlert({
+                type: "error",
+                title: "No preview available!",
+                text: "File uploaded but no preview available.",
+                timer: 1500,
+                showConfirmButton: false
+            });
+        }
+    } catch (err) {
+        console.error("Upload error:", err);
+        showAlert({
+            type: "error",
+            title: "Error uploading file!",
+            text: "Failed to upload artwork file.",
+            timer: 1500,
+            showConfirmButton: false
+        });
+    }
+});
+
+let uploadedTemplateResult = null
+
+function showTemplatePreview(uploadResult) {
+    const wrapper = document.getElementById('templatePreviewWrapper');
+    const image = document.getElementById('templatePreviewImage');
+
+    if (uploadResult) {
+        let {
+            mediaType,
+            name,
+            size,
+            url,
+            previewUrl
+        } = uploadResult
+        uploadedTemplateResult = uploadResult
+
+        if ((previewUrl ?? "").trim() === "") {
+            previewUrl = `${BASE_URL}images/no-preview-available.jpg`
+        }
+
+        image.src = previewUrl;
+        uploadedTemplatePreviewUrl = previewUrl
+        wrapper.classList.remove('d-none');
+
+        return
+    }
+
+    uploadedTemplateResult = null
+    wrapper.classList.add('d-none');
+    image.src = '';
+}
+
+function redirectToEditor() {
+    const token = localStorage.getItem('jwtTokenUser');
+
+    const queryParams = `token=${token}&productId=${productId}&uploadedTemplateUrl=${uploadedTemplateResult?.url}&uploadedTemplatePreviewUrl=${uploadedTemplateResult?.previewUrl}`
+
+    // Base64 encode
+    const encoded = btoa(queryParams) // browser-safe base64
+
+    window.location.href = `${BASE_URL_EDITOR}/?data=${encoded}`
 }

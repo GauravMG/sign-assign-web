@@ -774,7 +774,7 @@ document.getElementById('grievance-form').addEventListener('submit', async funct
 
     await postAPICall({
         endPoint: "/chatbot/chat",
-        payload: formData,
+        payload: JSON.stringify({ input }),
         additionalHeaders: {
             chatsessionid: sessionId,
             chatuserid: userDataUser?.userId

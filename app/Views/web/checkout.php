@@ -17,11 +17,11 @@
                 <div class="product-detail-area" id="cartItemsContainer"></div>
             </div>
             <div class="right-inner-area">
-                <!-- <div class="promo-code-area">
+                <div class="promo-code-area">
                     <input type="text" class="form-control" placeholder="Promocode">
                     <button type="button" class="">Apply</button>
                 </div>
-                <a href="#" class="coupon-link">View all coupons <span><i class="fa-solid fa-arrow-right"></i></span></a> -->
+                <!-- <a href="#" class="coupon-link">View all coupons <span><i class="fa-solid fa-arrow-right"></i></span></a> -->
                 <div class="order-summary-area">
                     <h6>Order Summary</h6>
                     <!-- <div class="visible-area">
@@ -38,16 +38,23 @@
                                 <p>Super saver shipping</p>
                                 <p>$0.00</p>
                             </div> -->
+                            <!-- <div class="flex-value mt-2 d-none" id="bulkOrderDiscountContainer">
+                                <p>Bulk order discount</p>
+                                <p><span id="bulkOrderDiscountPrice"></span>
+                            </div> -->
                             <div class="flex-value mt-2 d-none" id="businessDiscountContainer">
                                 <p>Business discount</p>
                                 <p><span id="businessDiscountPrice"></span> (<span id="businessDiscountPercentage"></span>)</p>
+                            </div>
+                            <div class="flex-value mt-2 d-none" id="couponDiscountContainer">
+                                <p>Coupon Discount</p>
+                                <p><span id="couponDiscountPrice"></span>
                             </div>
                             <div class="flex-value mt-2 d-none" id="totalRushHourDeliveryContainer">
                                 <p>Rush Hour Delivery</p>
                                 <p><span id="totalRushHourDeliveryAmount"></span>
                             </div>
-                            <h6 class="mt-3">Estimated delivery Wed,</h6>
-                            <h6>June 15, 2025</h6>
+                            <h6 class="mt-3">Estimated delivery Wed, June 15, 2025</h6>
                         </div>
                         <div class="total-area">
                             <div class="flex-value">

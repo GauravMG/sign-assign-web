@@ -5,6 +5,9 @@ let grandTotalPrice = 0
 let amountDetails = {
     subTotalPrice: 0,
     businessDiscountPrice: 0,
+    totalBulkOrderDiscount: 0,
+    totalDiscount: 0,
+    totalRushHourDeliveryAmount: 0,
     grandTotalPrice: 0
 }
 let userAddresses = []
@@ -20,11 +23,6 @@ async function getSelfData() {
     if (isUserLoggedIn) {
         selfData = await getMe()
         userDiscountPercentage = selfData?.userDiscountPercentage ?? 0
-
-        if (userDiscountPercentage > 0) {
-            document.getElementById("businessDiscountContainer").classList.remove("d-none")
-            document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
-        }
     }
 }
 
@@ -63,6 +61,7 @@ function renderCartItems() {
 
     let subTotalItemCount = 0
     let subTotalPrice = 0
+    let totalBulkOrderDiscount = 0
     let totalRushHourDeliveryAmount = 0
 
     cart.forEach(cartItem => {
@@ -174,6 +173,7 @@ function renderCartItems() {
 
         container.insertAdjacentHTML("beforeend", itemHtml);
 
+        totalBulkOrderDiscount += Number(cartItem.bulkOrderDiscount ?? 0)
         subTotalItemCount += cartItem.quantity
         subTotalPrice += cartItem.payablePriceByQuantityAfterDiscount
         totalRushHourDeliveryAmount += Number(cartItem.rushHourDeliveryAmount)
@@ -196,7 +196,12 @@ function renderCartItems() {
     document.getElementById("subTotalPrice").innerText = subTotalPrice
 
     let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
+    document.getElementById("businessDiscountContainer").classList.remove("d-none")
+    document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
     document.getElementById("businessDiscountPrice").innerText = `$${businessDiscountPrice}`
+
+    // document.getElementById("bulkOrderDiscountContainer").classList.remove("d-none")
+    // document.getElementById("bulkOrderDiscountPrice").innerText = `$${totalBulkOrderDiscount}`
 
     document.getElementById("totalRushHourDeliveryAmount").innerText = `$${totalRushHourDeliveryAmount}`
     if (Number(totalRushHourDeliveryAmount) > 0) {
@@ -205,7 +210,8 @@ function renderCartItems() {
         document.getElementById("totalRushHourDeliveryContainer").classList.add("d-none")
     }
 
-    grandTotalPrice = Math.round(((subTotalPrice - businessDiscountPrice) + totalRushHourDeliveryAmount) * 100) / 100
+    const totalDiscount = businessDiscountPrice
+    grandTotalPrice = Math.round(((subTotalPrice - totalDiscount) + totalRushHourDeliveryAmount) * 100) / 100
     document.querySelectorAll(".grandTotalPrice").forEach(element => {
         element.textContent = grandTotalPrice;
     });
@@ -213,6 +219,9 @@ function renderCartItems() {
     amountDetails = {
         subTotalPrice,
         businessDiscountPrice,
+        totalBulkOrderDiscount,
+        totalDiscount,
+        totalRushHourDeliveryAmount,
         grandTotalPrice
     }
 
@@ -252,11 +261,11 @@ function changeQuantity(productId, changeType) {
                 el => Number(el.minQty) <= quantity && Number(el.maxQty) >= quantity
             );
 
-            let discountInCents = 0;
+            let bulkOrderDiscountInCents = 0;
 
             if (applicableBulkDiscount) {
                 // Calculate discount amount in cents
-                discountInCents = Math.round((totalPriceInCents * applicableBulkDiscount.discount) / 100);
+                bulkOrderDiscountInCents = Math.round((totalPriceInCents * applicableBulkDiscount.discount) / 100);
             }
 
             cartItem.rushHourDeliveryAmount = 0
@@ -270,9 +279,10 @@ function changeQuantity(productId, changeType) {
             }
 
             // Update cart item prices (converting back to dollars)
-            cartItem.totalDiscount = discountInCents / 100;
+            cartItem.bulkOrderDiscount = bulkOrderDiscountInCents / 100;
+            cartItem.totalDiscount = cartItem.bulkOrderDiscount
             cartItem.payablePriceByQuantity = totalPriceInCents / 100;
-            cartItem.payablePriceByQuantityAfterDiscount = (totalPriceInCents - discountInCents) / 100;
+            cartItem.payablePriceByQuantityAfterDiscount = (totalPriceInCents - bulkOrderDiscountInCents) / 100;
         }
 
         return { ...cartItem };

@@ -3,7 +3,7 @@
         <div class="footer-inner">
             <div class="footer-col">
                 <div class="footer-logo">
-                    <img src="<?= base_url('images/footer-logo.png') . '?t=' . time(); ?>" alt="">
+                    <a href="/"><img src="<?= base_url('images/footer-logo.png') . '?t=' . time(); ?>" alt=""></a>
                 </div>
                 <h5><span><i class="fa-solid fa-phone-volume"></i></span><span>972-418-5253</span></h5>
                 <h6><span><i class="fa-solid fa-envelope-open"></i></span><span>orders@signassign.com</span></h6>
@@ -12,21 +12,31 @@
                     <span>702 Shepherd Dr, Garland, TX 75042, United States</span>
                 </h6>
                 <ul>
-                    <li>
-                        <a href="#">
+                    <!-- <li>
+                        <a target="_blank" href="#">
                             <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </li> -->
+                    <li>
+                        <a target="_blank" href="https://x.com/SignAssign">
+                            <i class="fa-brands fa-twitter"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a target="_blank" href="https://www.linkedin.com/company/sign-assign/">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fa-brands fa-square-instagram"></i>
+                        <a target="_blank" href="https://www.facebook.com/people/Sign-Assign/100064671174689/">
+                            <i class="fa-brands fa-facebook"></i>
                         </a>
                     </li>
+                    <!-- <li>
+                        <a target="_blank" href="#">
+                            <i class="fa-brands fa-square-instagram"></i>
+                        </a>
+                    </li> -->
                 </ul>
             </div>
             <div class="footer-col">

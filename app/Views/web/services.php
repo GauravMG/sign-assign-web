@@ -162,7 +162,7 @@
         <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum fugit a exercitationem non rerum distinctio perspiciatis, eligendi accusantium doloribus incidunt voluptates dicta itaque animi, omnis vel nam recusandae, hic soluta. Obcaecati magnam dolor, soluta qui cum ullam iste quia necessitatibus.</p>
         <div class="flex-area">
             <div class="left-area">
-                <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
+                <img src="/images/service-section1-image.png" alt="">
             </div>
             <div class="right-area">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quia corporis eaque voluptatum nemo iusto veniam asperiores recusandae laborum inventore sunt cumque tempora adipisci dignissimos quaerat, unde provident accusamus velit animi obcaecati deserunt aliquid, dolor itaque? Qui aut enim quod vel saepe omnis amet ex?</p>

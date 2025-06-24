@@ -10,6 +10,13 @@ function formatINR(amount) {
     return new Intl.NumberFormat("en-IN").format(amount)
 }
 
+function sliceTextWithEllipses(text, maxLength) {
+    if (maxLength && text.length > maxLength) {
+        return text.slice(0, maxLength).trim() + "...";
+    }
+    return text;
+}
+
 function getTextFromHTML(htmlString, maxLength) {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = htmlString;

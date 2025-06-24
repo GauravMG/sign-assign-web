@@ -383,7 +383,7 @@ async function fetchBlogs() {
                         `</div>
                         <div class="px-3 mt-0">
                             <h6>by signassi | ${formatDateWithoutTime(data[i].createdAt)} | Signage</h6>
-                            <h5>${data[i].title}</h5>
+                            <h5>${sliceTextWithEllipses(data[i].title, 60)}</h5>
                             <p>${getTextFromHTML(data[i].description, 60)}</p>
                             <a href="/learning-center/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
                         </div>

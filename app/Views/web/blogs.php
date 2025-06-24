@@ -13,8 +13,8 @@
     <h3>Learning Center</h3>
     <div class="blog-list-area" id="blogsList">
     </div>
-    <div class="view-all-btn-area">
-        <a href="<?= base_url('blogs'); ?>" class="btn btn-primary">Load More <i class="fa-solid fa-circle-arrow-down"></i></a>
+    <div class="view-all-btn-area d-none" id="load-more-container">
+        <a onclick="loadMore()" class="btn btn-primary">Load More <i class="fa-solid fa-circle-arrow-down"></i></a>
     </div>
 </div>
 <div class="form-area py-5">

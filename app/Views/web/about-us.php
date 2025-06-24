@@ -37,7 +37,7 @@
         <h3 class="text-center">From humble beginnings to big dreams</h3>
         <div class="flex-area">
             <div class="left-area">
-                <img src="https://rlv.zcache.com/connect_with_us_social_media_qr_code_black_business_card-r_vc12s7_644.webp" alt="">
+                <img src="/images/about-us-section1-image.png" alt="">
             </div>
             <div class="right-area">
                 <p>Our journey Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam harum temporibus corporis, voluptas blanditiis impedit unde laboriosam mollitia animi perspiciatis nulla necessitatibus delectus cupiditate ad natus. Ut consequatur possimus vero. Voluptatum ipsum sit doloribus. Modi omnis fuga excepturi impedit expedita similique repellat, ratione sed, incidunt a laboriosam quas reiciendis et mollitia itaque voluptas rerum assumenda iusto dolorem earum reprehenderit ea!</p>
@@ -150,7 +150,7 @@
                 </div>
             </div>
             <div class="right-area">
-                <img src="https://rlv.zcache.com/connect_with_us_social_media_qr_code_black_business_card-r_vc12s7_644.webp" alt="">
+                <img src="/images/about-us-section3-image.png" alt="">
                 <h4>Get world class products</h4>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quas.</p>
                 <a href="#">Order Now</a>

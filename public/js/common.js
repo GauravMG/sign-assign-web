@@ -647,16 +647,80 @@ const appendProductLinks = (products) => {
     chatContent.scrollTop = chatContent.scrollHeight;
 };
 
-const initChat = async () => {
-    chatContent.innerHTML = '';
-    appendMessage("Hi there! What would you like to do today?");
-    appendOptions([
-        { label: "Look for Products", value: "look_products" },
-        // { label: "Check my Order", value: "check_order" }
-    ]);
+// const initChat = async () => {
+//     chatContent.innerHTML = '';
+//     appendMessage("Hi there! What would you like to do today?");
+//     appendOptions([
+//         { label: "Look for Products", value: "look_products" },
+//         // { label: "Check my Order", value: "check_order" }
+//     ]);
+// };
+const initChat = async (resetChat = true) => {
+    if (resetChat) {
+        chatContent.innerHTML = '';
+    }
+    document.getElementById('grievance-form').style.display = 'none';
+    document.getElementById("grievance-form-name").value = ""
+    document.getElementById("grievance-form-email").value = ""
+    document.getElementById("grievance-form-mobile").value = ""
+    document.getElementById("grievance-form-subject").value = ""
+    document.getElementById("grievance-form-message").value = ""
+    chatInput.style.display = 'none';
+
+    setTimeout(() => {
+        appendMessage(resetChat ? "Hi there! What would you like to do today?" : "Anything else I can help with?");
+        appendOptions([
+            { label: "Look for Products", value: "look_products" },
+            // { label: "Ask me anything", value: "ask_anything" },
+            { label: "Grievance", value: "grievance" }
+        ]);
+    }, resetChat ? 0 : 2000)
 };
 
+// const handleUserInput = async (input) => {
+//     await postAPICall({
+//         endPoint: "/chatbot/chat",
+//         payload: JSON.stringify({ input }),
+//         additionalHeaders: {
+//             chatsessionid: sessionId,
+//             chatuserid: userDataUser?.userId
+//         },
+//         callbackComplete: () => { },
+//         callbackSuccess: (response) => {
+//             const { success, message, data } = response;
+
+//             if (success) {
+//                 if (data.message) appendMessage(data.message);
+//                 if (data.options) appendOptions(data.options);
+//                 if (data.products) appendProductLinks(data.products)
+//             } else {
+//                 showAlert({
+//                     type: 'error',
+//                     title: 'Failed',
+//                     text: message || 'Something went wrong. Please try again.'
+//                 });
+//             }
+//         }
+//     });
+// };
 const handleUserInput = async (input) => {
+    // Special handling
+    if (input === "grievance") {
+        document.getElementById('grievance-form').style.display = 'block';
+        chatInput.style.display = 'none';
+        document.getElementById("grievance-form-name").value = userDataUser ? createFullName(userDataUser) : ""
+        document.getElementById("grievance-form-email").value = userDataUser?.email ?? ""
+        document.getElementById("grievance-form-mobile").value = userDataUser?.mobile ?? ""
+        return;
+    } else if (input === "ask_anything") {
+        chatInput.style.display = 'block';
+        document.getElementById('grievance-form').style.display = 'none';
+        appendMessage("You can ask me anything!");
+        return;
+    } else {
+        chatInput.style.display = 'none';
+        document.getElementById('grievance-form').style.display = 'none';
+    }
 
     await postAPICall({
         endPoint: "/chatbot/chat",
@@ -672,7 +736,11 @@ const handleUserInput = async (input) => {
             if (success) {
                 if (data.message) appendMessage(data.message);
                 if (data.options) appendOptions(data.options);
-                if (data.products) appendProductLinks(data.products)
+                if (data.products) {
+                    appendProductLinks(data.products)
+
+                    initChat(false)
+                }
             } else {
                 showAlert({
                     type: 'error',
@@ -689,5 +757,37 @@ chatInput.addEventListener('keypress', function (e) {
         handleUserInput(chatInput.value);
         chatInput.value = '';
     }
+});
+
+document.getElementById('grievance-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    const input = {
+        name: formData.get('grievance-form-name'),
+        email: formData.get('grievance-form-email'),
+        mobile: formData.get('grievance-form-mobile'),
+        subject: formData.get('grievance-form-subject'),
+        message: formData.get('grievance-form-message'),
+        type: 'grievance'
+    };
+
+    await postAPICall({
+        endPoint: "/chatbot/chat",
+        payload: JSON.stringify({ input }),
+        additionalHeaders: {
+            chatsessionid: sessionId,
+            chatuserid: userDataUser?.userId
+        },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response;
+            if (success && data.message) {
+                appendMessage(data.message);
+                initChat(false)
+            } else {
+                appendMessage("Grievance submission failed.");
+            }
+        }
+    });
 });
 /** chatbot */

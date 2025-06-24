@@ -552,5 +552,25 @@
 <div id="chat-box" style="display:none;">
     <div id="chat-header">Support Bot</div>
     <div id="chat-content"></div>
+    <form id="grievance-form" style="display:none;" class="grievance-form">
+        <div class="form-group">
+            <input type="text" name="grievance-form-name" id="grievance-form-name" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+            <input type="email" name="grievance-form-email" id="grievance-form-email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+            <input type="tel" name="grievance-form-mobile" id="grievance-form-mobile" placeholder="Mobile Number" required />
+        </div>
+        <div class="form-group">
+            <input type="text" name="grievance-form-subject" id="grievance-form-subject" placeholder="Subject" required />
+        </div>
+        <div class="form-group">
+            <textarea name="grievance-form-message" id="grievance-form-message" rows="3" placeholder="Your Message" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
     <input type="text" id="chat-input" placeholder="Type here..." />
 </div>

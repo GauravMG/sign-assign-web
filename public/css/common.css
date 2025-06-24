@@ -326,6 +326,7 @@ span.text-green {
     word-wrap: break-word;
     font-size: 14px;
     line-height: 1.4;
+    margin-top: 10px;
 }
 
 .bot {
@@ -347,6 +348,7 @@ span.text-green {
     flex-wrap: wrap;
     gap: 6px;
     align-self: flex-start;
+    margin-top: 5px;
 }
 
 .chat-options button {
@@ -378,4 +380,50 @@ span.text-green {
 
 .chat-link:hover {
     background: #e6f0ff;
+}
+
+.grievance-form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    margin: 10px;
+}
+
+.grievance-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.grievance-form input,
+.grievance-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.grievance-form input:focus,
+.grievance-form textarea:focus {
+    border-color: #452e73;
+}
+
+.grievance-form button {
+    background: #452e73;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.grievance-form button:hover {
+    background: #5d3e8e;
 }

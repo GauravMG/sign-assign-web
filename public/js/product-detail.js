@@ -754,9 +754,11 @@ function updateCartUI() {
         quantityDisplay.textContent = cartQuantity;
         priceDisplay.textContent = (payablePrice * cartQuantity).toFixed(2);
         selectDesignMethod.classList.remove("d-none")
+        selectDesignMethod.classList.add("d-flex")
     } else {
         addBtn.classList.remove("d-none")
         quantityControls.style.display = 'none';
+        selectDesignMethod.classList.remove("d-flex")
         selectDesignMethod.classList.add("d-none")
     }
 }
@@ -919,6 +921,9 @@ function redirectToEditorWithUploadedTemplate() {
     const encoded = btoa(queryParams) // browser-safe base64
 
     window.location.href = `${BASE_URL_EDITOR}/?data=${encoded}`
+}
+
+function addUploadedTemplateToCart() {
 }
 
 function redirectToEditorWithTemplate() {

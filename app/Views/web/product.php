@@ -150,13 +150,13 @@
                             <span onclick="updateQuantity(1)" class="qty-btn">+</span>
                             <span>($<span id="payablePriceSmall"></span>)</span>
                         </a>
-                        <a href="javascript:void(0);" id="select-design-method" class="select-design-method d-none" data-bs-toggle="modal" data-bs-target="#designMethodModal">
-                            <span><i class="fa-solid fa-palette"></i></span>
-                            Select Design Method
+                        <a href="javascript:void(0);" id="select-design-method" class="select-design-method justify-content-center d-none" data-bs-toggle="modal" data-bs-target="#designMethodModal">
+                            <span style="margin-right: 5px;"><i class="fa-solid fa-palette"></i></span>
+                            Select&nbsp;Design&nbsp;Method
                         </a>
-                        <a href="/checkout" class="go-to-card-button">
-                            <span><i class="fa-solid fa-cart-plus"></i></span>
-                            Go to cart
+                        <a href="/checkout" class="go-to-card-button justify-content-center d-flex">
+                            <span style="margin-right: 5px;"><i class="fa-solid fa-cart-plus"></i></span>
+                            Go&nbsp;to&nbsp;cart
                         </a>
                     </div>
                 </div>
@@ -430,18 +430,19 @@
 
                 <form>
                     <div class="mb-3">
-                        <label for="artworkFile" class="form-label">Choose your design file</label>
+                        <label for="artworkFile" class="fw-bold form-label">Choose your design file</label>
                         <input class="form-control" type="file" id="artworkFile" name="artworkFile" accept=".pdf,.ai,.psd,.svg,.jpg,.png,.tiff,.cdr,.eps,.ps">
                     </div>
 
                     <!-- Image Preview Placeholder -->
                     <div id="templatePreviewWrapper" class="mt-3 d-none">
-                        <h6 class="fw-bold">Template Preview:</h6>
+                        <h6 class="fw-bold mb-2">Template Preview:</h6>
                         <img id="templatePreviewImage" src="" alt="Template Preview" class="img-fluid border rounded" style="max-height: 300px;" />
                     </div>
 
-                    <div class="text-end">
+                    <div class="text-center mt-4">
                         <button type="button" class="btn btn-success d-none" id="uploadArtworkStartEditing" onclick="redirectToEditorWithUploadedTemplate()">Start Editing</button>
+                        <!-- <button type="button" class="btn btn-success d-none" id="uploadArtworkStartEditing" onclick="addUploadedTemplateToCart()">Add to cart</button> -->
                     </div>
                 </form>
 
@@ -480,7 +481,7 @@
 
                     <!-- Right Section: Preview -->
                     <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
-                        <h5 class="mb-3">Preview</h5>
+                        <h5 class="mb-3">Template Preview:</h5>
                         <img id="selectedTemplatePreview" src="" class="img-fluid border rounded mb-3" style="max-height: 300px;" alt="Select a template to preview" />
                         <button id="startEditingBtn" class="btn btn-success d-none" onclick="redirectToEditorWithTemplate()">Start Editing</button>
                     </div>

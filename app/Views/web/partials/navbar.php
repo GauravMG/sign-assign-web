@@ -125,8 +125,25 @@
     </div>
 </nav>
 
-<nav class="mega-menu">
+<!-- <nav class="mega-menu">
     <div class="container-fluid">
         <ul id="navbarCategoryMenuListContainer"></ul>
+    </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <div class="container-fluid custom-container">
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav flex-nowrap" id="categoryMenu">
+                <!-- Dynamic categories inserted here -->
+                <li class="nav-item dropdown d-none" id="moreDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="moreDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        More
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="moreDropdownLink" id="moreDropdownMenu">
+                        <!-- Overflow categories go here -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

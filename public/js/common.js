@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const queryParams = {};
+let navbarProductCategories = []
 
 for (const [key, value] of params.entries()) {
     queryParams[key] = value;
@@ -104,7 +105,180 @@ $(document).ready(function () {
         document.getElementById("forgotPasswordRequestContainer").style.display = "block"
         document.getElementById("forgotPasswordVerifyContainer").style.display = "none"
     });
+
+    // Rerender on resize (throttled)
+    window.addEventListener('resize', () => {
+        clearTimeout(window._resizeTimer);
+        window._resizeTimer = setTimeout(renderCategories, 100);
+    });
 });
+
+function createCategoryItem(category) {
+    const li = document.createElement('li');
+    li.classList.add('nav-item', 'dropdown');
+
+    const catId = `cat-${category.productCategoryId}`;
+
+    if (category.productSubCategories && category.productSubCategories.length > 0) {
+        li.innerHTML = `
+            <a class="nav-link dropdown-toggle" href="/category/${getLinkFromName(category.name)}" id="cat-${catId}" role="button" aria-expanded="false">
+                ${category.name}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="cat-${catId}">
+                ${category.productSubCategories.map(sub =>
+            `<li><a class="dropdown-item" href="/subcategory/${getLinkFromName(sub.name)}">${sub.name}</a></li>`
+        ).join('')}
+            </ul>
+        `;
+    } else {
+        li.innerHTML = `
+            <a class="nav-link" href="/category/${getLinkFromName(category.name)}">${category.name}</a>
+        `;
+    }
+
+    return li;
+}
+
+function initializeDropdowns() {
+    // For top-level and More > category > subcategory hover behavior
+    const allDropdowns = document.querySelectorAll('.nav-item.dropdown');
+
+    allDropdowns.forEach(item => {
+        const dropdownToggle = item.querySelector('.dropdown-toggle');
+        const dropdownMenu = item.querySelector('.dropdown-menu');
+
+        item.addEventListener('mouseenter', () => {
+            dropdownMenu?.classList.add('show');
+            dropdownToggle?.setAttribute('aria-expanded', 'true');
+        });
+
+        item.addEventListener('mouseleave', () => {
+            dropdownMenu?.classList.remove('show');
+            dropdownToggle?.setAttribute('aria-expanded', 'false');
+        });
+
+        // For inner categories inside "More" dropdown
+        const innerDropdownItems = item.querySelectorAll('.dropdown-item.dropdown-toggle');
+
+        innerDropdownItems.forEach(innerToggle => {
+            const subMenu = innerToggle.nextElementSibling;
+            const parentItem = innerToggle.closest('.dropdown');
+
+            if (subMenu) {
+                parentItem?.addEventListener('mouseenter', () => {
+                    subMenu.classList.add('show');
+                });
+                parentItem?.addEventListener('mouseleave', () => {
+                    subMenu.classList.remove('show');
+                });
+            }
+        });
+    });
+
+    // Also apply to the #moreDropdown itself
+    const moreDropdown = document.getElementById('moreDropdown');
+    const moreMenu = document.getElementById('moreDropdownMenu');
+    const moreToggle = document.getElementById('moreDropdownLink');
+
+    if (moreDropdown && moreMenu && moreToggle) {
+        moreDropdown.addEventListener('mouseenter', () => {
+            moreMenu.classList.add('show');
+            moreToggle.setAttribute('aria-expanded', 'true');
+        });
+
+        moreDropdown.addEventListener('mouseleave', () => {
+            moreMenu.classList.remove('show');
+            moreToggle.setAttribute('aria-expanded', 'false');
+        });
+    }
+
+    document.querySelectorAll('#moreDropdown .dropdown').forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+            const menu = item.querySelector('.dropdown-menu');
+            if (!menu) return;
+
+            // Default: open to the right
+            menu.style.left = '100%';
+            menu.style.right = 'auto';
+
+            // Flip if overflowing screen
+            const rect = menu.getBoundingClientRect();
+            if (rect.right > window.innerWidth) {
+                menu.style.left = 'auto';
+                menu.style.right = '100%';
+            }
+        });
+    });
+}
+
+function renderCategories() {
+    const container = document.getElementById('categoryMenu');
+    const moreDropdown = document.getElementById('moreDropdown');
+    const moreMenu = document.getElementById('moreDropdownMenu');
+
+    // Clean existing items except "More"
+    Array.from(container.children).forEach(el => {
+        if (el.id !== 'moreDropdown') {
+            container.removeChild(el);
+        }
+    });
+
+    moreMenu.innerHTML = '';
+    moreDropdown.classList.add('d-none');
+
+    const tempItems = navbarProductCategories.map(createCategoryItem);
+
+    // Temporarily make "More" visible to measure its width
+    moreDropdown.classList.remove('d-none');
+    moreDropdown.style.visibility = 'hidden';
+
+    requestAnimationFrame(() => {
+        const containerWidth = container.offsetWidth;
+        const moreWidth = moreDropdown.offsetWidth;
+
+        let usedWidth = 0;
+        let lastFitIndex = -1;
+
+        // Clean container again (in case items were inserted)
+        Array.from(container.children).forEach(el => {
+            if (el.id !== 'moreDropdown') container.removeChild(el);
+        });
+
+        // Insert items one-by-one, measure their width
+        for (let i = 0; i < tempItems.length; i++) {
+            const item = tempItems[i];
+            item.style.visibility = 'hidden';
+            container.insertBefore(item, moreDropdown);
+
+            const itemWidth = item.offsetWidth;
+            usedWidth += itemWidth;
+
+            if (usedWidth + moreWidth < containerWidth) {
+                lastFitIndex = i;
+            } else {
+                container.removeChild(item); // remove from main if won't fit
+                break;
+            }
+        }
+
+        // Final re-render
+        tempItems.forEach((item, index) => {
+            item.style.visibility = 'visible';
+
+            if (index <= lastFitIndex) {
+                container.insertBefore(item, moreDropdown);
+            } else {
+                moreDropdown.classList.remove('d-none');
+                moreMenu.appendChild(item);
+            }
+        });
+
+        // Restore visibility of "More"
+        moreDropdown.style.visibility = 'visible';
+
+        initializeDropdowns();
+    });
+}
 
 function onClickOpenModalSignUp() {
     $("#loginModal").modal("hide");
@@ -214,9 +388,12 @@ async function fetchProductCategories() {
                     </li>`
                 }
 
-                document.getElementById("navbarCategoryMenuListContainer").innerHTML = htmlNavbar
+                // document.getElementById("navbarCategoryMenuListContainer").innerHTML = htmlNavbar
                 document.getElementById("navbarCategoryMenuListContainerMobile").innerHTML = htmlNavbarMobile
                 document.getElementById("footerCategoryMenuListContainer").innerHTML = htmlFooter
+
+                navbarProductCategories = data
+                renderCategories()
             }
         }
     })

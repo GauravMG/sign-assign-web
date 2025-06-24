@@ -263,3 +263,101 @@ header {
 .mega-menu ul li.dropdown .dropdown-content .dropdown-lists:hover a {
     color: #ffffff;
 }
+
+/**
+ * custom navbar for categories
+ */
+.custom-navbar {
+    background-color: #452e73;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1055;
+    transition: all ease 0.5s;
+    /* overflow-x: hidden; */
+    overflow: visible;
+    /* prevents scroll */
+}
+
+.custom-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    /* prevent internal padding overflow */
+}
+
+#categoryMenu {
+    flex-wrap: nowrap;
+    /* ensures categories go in 1 row */
+    /* overflow: hidden; */
+    /* prevent scroll */
+    white-space: nowrap;
+    width: 100%;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    margin-right: 10px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: #d4bfff;
+}
+
+.dropdown-menu {
+    background-color: #fff;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #452e73;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background-color: #f2f2f2;
+    color: #000;
+}
+
+#moreDropdownMenu .nav-link {
+    color: #452e73;
+    margin-right: unset;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+#moreDropdownMenu .nav-link:hover,
+#moreDropdownMenu .nav-link:focus {
+    background-color: #d4bfff;
+}
+
+/* Proper positioning */
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1050;
+}
+
+/* Parent for dropdown must be positioned relatively */
+.navbar-nav .dropdown {
+    position: relative;
+}
+
+#moreDropdown .dropdown {
+    position: relative;
+}
+
+#moreDropdown .dropdown .dropdown-menu {
+    top: 0;
+    left: 100%;
+    right: auto;
+    margin-top: -1px;
+    z-index: 1060;
+    min-width: 200px;
+    white-space: nowrap;
+}

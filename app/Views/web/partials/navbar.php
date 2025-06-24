@@ -36,8 +36,11 @@
             </div>
         </div>
         <div class="right-area">
-            <div class="search-bar">
-                <input type="text" placeholder="Search here..." class="form-control">
+            <div class="search-bar" style="display: flex; align-items: center; gap: 8px;">
+                <input type="text" placeholder="Search here..." id="navbar-search" class="form-control" />
+                <button id="search-button" style="border: none; background: none; cursor: pointer;">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
             <div class="menu-links">
                 <ul>

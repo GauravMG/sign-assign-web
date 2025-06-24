@@ -72,6 +72,7 @@ $routes->get('/checkout', 'WebController::checkout');
 $routes->get('/product/(:any)', 'WebController::productDetail/$1');
 $routes->get('/subcategory/(:any)', 'WebController::productSubCategory/$1');
 $routes->get('/category/(:any)', 'WebController::productCategory/$1');
+$routes->get('/search', 'WebController::search');
 $routes->get('/about-us', 'WebController::aboutUs');
 $routes->get('/contact-us', 'WebController::contactUs');
 $routes->get('/services', 'WebController::services');

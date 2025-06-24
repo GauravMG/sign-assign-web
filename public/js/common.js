@@ -25,6 +25,26 @@ function redirectToUserDashboard() {
 }
 
 $(document).ready(function () {
+    const searchInput = document.getElementById('navbar-search');
+    const searchButton = document.getElementById('search-button');
+
+    function performSearch() {
+        const searchValue = searchInput.value.trim();
+        if (searchValue) {
+            window.location.href = `/search?q=${encodeURIComponent(searchValue)}`;
+        }
+    }
+
+    // Click on search icon
+    searchButton.addEventListener('click', performSearch);
+
+    // Pressing Enter in input field
+    searchInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
     fetchProductCategories()
 
     let htmlNavbarAuthOptionsContainer = `<a href="#" class="signup-button" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a>

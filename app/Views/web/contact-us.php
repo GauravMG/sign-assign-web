@@ -29,7 +29,7 @@
                 </div>
                 <div class="right-area">
                     <p>Phone Number:</p>
-                    <h5>972-418-5253</h5>
+                    <h5><a href="tel:19724185253" style="text-decoration: none; color: unset;">972‐418‐5253</a></h5>
                 </div>
             </div>
             <div class="inner">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="right-area">
                     <p>Email Address:</p>
-                    <h5>order@signasign.com</h5>
+                    <h5><a href="mailto:order@signasign.com" style="text-decoration: none; color: unset;">order@signasign.com</a></h5>
                 </div>
             </div>
             <div class="inner">

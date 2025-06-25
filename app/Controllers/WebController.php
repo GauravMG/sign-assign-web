@@ -42,6 +42,26 @@ class WebController extends BaseController
         ];
     }
 
+    public function privacyPolicy(): string
+    {
+        $data = [
+            'title' => "Privacy Policy",
+            'page_heading' => "Privacy Policy"
+        ];
+
+        return view('web/privacy-policy', $data);
+    }
+
+    public function termsOfUse(): string
+    {
+        $data = [
+            'title' => "Terms of Use",
+            'page_heading' => "Terms of Use"
+        ];
+
+        return view('web/terms-of-use', $data);
+    }
+
     public function aboutUs(): string
     {
         $data = [

@@ -5,8 +5,8 @@
                 <div class="footer-logo">
                     <a href="/"><img src="<?= base_url('images/footer-logo.png') . '?t=' . time(); ?>" alt=""></a>
                 </div>
-                <h5><span><i class="fa-solid fa-phone-volume"></i></span><span>972-418-5253</span></h5>
-                <h6><span><i class="fa-solid fa-envelope-open"></i></span><span>orders@signassign.com</span></h6>
+                <h5><span><i class="fa-solid fa-phone-volume"></i></span><span><a href="tel:19724185253" style="text-decoration: none; color: unset;">972‐418‐5253</a></span></h5>
+                <h6><span><i class="fa-solid fa-envelope-open"></i></span><span><a href="mailto:order@signasign.com" style="text-decoration: none; color: unset;">order@signasign.com</a></span></h6>
                 <h6>
                     <span><i class="fa-solid fa-location-dot"></i></span>
                     <span>702 Shepherd Dr, Garland, TX 75042, United States</span>
@@ -97,37 +97,37 @@
                 <h5>Customer Service</h5>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="/about-us">
                             <i class="fa-solid fa-arrow-right"></i><span>About Us</span>
                         </a>
                     <li>
-                        <a href="#">
+                        <a href="/contact-us">
                             <i class="fa-solid fa-arrow-right"></i><span>Contact Us</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/privacy-policy">
                             <i class="fa-solid fa-arrow-right"></i><span>Privacy Policy</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="terms-of-use">
                             <i class="fa-solid fa-arrow-right"></i><span>Terms of Use</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#">
                             <i class="fa-solid fa-arrow-right"></i><span>Affiliate Program</span>
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <a href="#">
                             <i class="fa-solid fa-arrow-right"></i><span>Areas of Service</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
-            <div class="footer-col">
+            <!-- <div class="footer-col">
                 <h5>Help Station</h5>
                 <ul>
                     <li>
@@ -171,7 +171,7 @@
                     </li>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
 </footer>

@@ -15,12 +15,12 @@
         </div>
         <div class="contact-area">
             <div class="phone">
-                <a href="#">
+                <a href="tel:19724185253" style="text-decoration: none; color: unset;">
                     <i class="fa-solid fa-phone-flip"></i>
                     972-418-5253</a>
             </div>
             <div class="email">
-                <a href="#">
+                <a href="mailto:order@signasign.com" style="text-decoration: none; color: unset;">
                     <i class="fa-solid fa-envelope"></i>
                     orders@signassign.com
                 </a>
@@ -50,12 +50,12 @@
                     <li class="dropdown">
                         <a href="/services">Service</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#">Design Lab</a>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <a href="/learning-center">Learning Center</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="/contact-us">Contact Us</a>
                     </li>
@@ -104,10 +104,10 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="#"> Design Lab</a>
+                                                <!-- <a href="#"> Design Lab</a> -->
                                             </li>
                                             <li>
-                                                <a href="/learning-center"> Learning Center</a>
+                                                <!-- <a href="/learning-center"> Learning Center</a> -->
                                             </li>
                                             <li>
                                                 <a href="/contact-us"> Contact Us</a>

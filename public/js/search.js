@@ -91,7 +91,16 @@ async function fetchProducts() {
         callbackSuccess: (response) => {
             const { success, message, data } = response
 
-            if (success) {
+            if (!success || !data?.length) {
+                document.getElementById("dataList").innerHTML = `
+                    <div class="no-results d-flex flex-column justify-content-center align-items-center w-100 my-5">
+                        <h4 class="text-muted mb-3">No Products Found</h4>
+                        <p class="text-secondary text-center">Try adjusting your search or filter to find what you're looking for.</p>
+                    </div>
+                `
+            }
+
+            if (success && data?.length) {
                 let html = []
 
                 for (let i = 0; i < data?.length; i++) {

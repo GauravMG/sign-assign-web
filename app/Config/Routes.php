@@ -76,4 +76,6 @@ $routes->get('/search', 'WebController::search');
 $routes->get('/about-us', 'WebController::aboutUs');
 $routes->get('/contact-us', 'WebController::contactUs');
 $routes->get('/services', 'WebController::services');
+$routes->get('/terms-of-use', 'WebController::termsOfUse');
+$routes->get('/privacy-policy', 'WebController::privacyPolicy');
 $routes->get('/', 'WebController::index');

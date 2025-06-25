@@ -1,0 +1,24 @@
+.policy-section {
+    background-color: #f9f9f9;
+    padding: 60px 15px;
+}
+
+.policy-section h2 {
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #452e73;
+}
+
+.policy-section h4 {
+    margin-top: 40px;
+    font-weight: 600;
+    color: #452e73;
+}
+
+.policy-section p {
+    line-height: 1.7;
+    font-size: 15px;
+    margin-block: 1.5rem;
+    color: #000;
+    text-align: justify;
+}

@@ -1,0 +1,37 @@
+html {
+    scroll-padding-top: 100px;
+    /* Adjust to match your header height */
+    scroll-behavior: smooth;
+}
+
+.terms-of-use-section {
+    background-color: #f9f9f9;
+    padding: 60px 15px;
+}
+
+.terms-of-use-section h2 {
+    font-weight: 700;
+    color: #452e73;
+}
+
+.terms-of-use-section h4,
+.terms-of-use-section h5 {
+    font-weight: 600;
+    color: #452e73;
+}
+
+.terms-of-use-section p {
+    line-height: 1.7;
+    font-size: 15px;
+    margin-block: 1.5rem;
+    color: #000;
+    text-align: justify;
+}
+
+.terms-of-use-section li {
+    line-height: 1.7;
+    font-size: 15px;
+    margin-block: 0.5rem;
+    color: #000;
+    text-align: justify;
+}

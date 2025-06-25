@@ -930,10 +930,6 @@ const handleUserInput = async (input) => {
         } else if (ongoingChatType === "ask_anything") {
             chatInput.style.display = 'block';
             appendMessage(input, 'user');
-
-            aiChatRestartTimeout = setTimeout(() => {
-                initChat(false)
-            }, 20000)
         }
     }
 
@@ -949,6 +945,11 @@ const handleUserInput = async (input) => {
             const { success, message, data } = response;
 
             if (success) {
+                if (ongoingChatType === "ask_anything") {
+                    aiChatRestartTimeout = setTimeout(() => {
+                        initChat(false)
+                    }, 20000)
+                }
                 if (data.message) appendMessage(data.message);
                 if (data.options) appendOptions(data.options);
                 if (data.products) {

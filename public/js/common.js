@@ -804,6 +804,8 @@ document.getElementById('chat-icon').onclick = () => {
 
 const chatContent = document.getElementById('chat-content');
 const chatInput = document.getElementById('chat-input');
+let ongoingChatType = ""
+let aiChatRestartTimeout = null
 
 const appendMessage = (text, sender = 'bot') => {
     const msg = document.createElement('div');
@@ -853,6 +855,7 @@ const appendProductLinks = (products) => {
 //     ]);
 // };
 const initChat = async (resetChat = true) => {
+    ongoingChatType = ""
     if (resetChat) {
         chatContent.innerHTML = '';
     }
@@ -868,7 +871,7 @@ const initChat = async (resetChat = true) => {
         appendMessage(resetChat ? "Hi there! What would you like to do today?" : "Anything else I can help with?");
         appendOptions([
             { label: "Look for Products", value: "look_products" },
-            // { label: "Ask me anything", value: "ask_anything" },
+            { label: "Ask me anything", value: "ask_anything" },
             { label: "Grievance", value: "grievance" }
         ]);
     }, resetChat ? 0 : 2000)
@@ -901,8 +904,10 @@ const initChat = async (resetChat = true) => {
 //     });
 // };
 const handleUserInput = async (input) => {
+    clearTimeout(aiChatRestartTimeout)
     // Special handling
     if (input === "grievance") {
+        ongoingChatType = "grievance"
         document.getElementById('grievance-form').style.display = 'block';
         chatInput.style.display = 'none';
         document.getElementById("grievance-form-name").value = userDataUser ? createFullName(userDataUser) : ""
@@ -910,13 +915,26 @@ const handleUserInput = async (input) => {
         document.getElementById("grievance-form-mobile").value = userDataUser?.mobile ?? ""
         return;
     } else if (input === "ask_anything") {
+        ongoingChatType = "ask_anything"
         chatInput.style.display = 'block';
         document.getElementById('grievance-form').style.display = 'none';
         appendMessage("You can ask me anything!");
         return;
+    } else if (input === "look_products") {
+        ongoingChatType = "look_products"
     } else {
-        chatInput.style.display = 'none';
         document.getElementById('grievance-form').style.display = 'none';
+        chatInput.style.display = 'none';
+
+        if (ongoingChatType === "look_products") {
+        } else if (ongoingChatType === "ask_anything") {
+            chatInput.style.display = 'block';
+            appendMessage(input, 'user');
+
+            aiChatRestartTimeout = setTimeout(() => {
+                initChat(false)
+            }, 20000)
+        }
     }
 
     await postAPICall({

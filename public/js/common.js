@@ -381,9 +381,9 @@ async function fetchProductCategories() {
 
                     htmlNavbar += `</li>`
 
-                    htmlFooter += `<li>
-                        <a href="/category/${getLinkFromName(data[i].name)}">
-                            <i class="fa-solid fa-arrow-right-long"></i><span>${data[i].name}</span>
+                    htmlFooter += `<li class="footer-item mb-2">
+                        <a href="/category/${getLinkFromName(data[i].name)}" class="d-flex align-items-center">
+                            <i class="fa-solid fa-arrow-right-long"></i><span class="ms-2">${data[i].name}</span>
                         </a>
                     </li>`
                 }

@@ -123,9 +123,9 @@ function renderCartItems() {
             </div>` : ""}
             <div class="inner">
                 <div class="left-area">
-                    <img alt="" src="${coverImage}" alt="${product.name}">
+                    <img alt="" src="${coverImage}" alt="${product.name}" style="cursor: pointer;" data-product-name="${product.name}" data-product-id="${product.productId}" onclick="redirectToProduct(this)">
                     <div>
-                        <h5>${product.name}</h5>
+                        <h5 data-product-name="${product.name}" style="cursor: pointer;" data-product-id="${product.productId}" onclick="redirectToProduct(this)">${product.name}</h5>
                         <p>${attributesHtml}</p>
                     </div>
                 </div>
@@ -193,7 +193,7 @@ function renderCartItems() {
 
     document.getElementById("shoppingCartitemCount").innerText = `(${subTotalItemCount} Item${subTotalItemCount > 1 ? "s" : ""})`
     document.getElementById("subTotalItemCount").innerText = `${subTotalItemCount} item${subTotalItemCount > 1 ? "s" : ""}`
-    document.getElementById("subTotalPrice").innerText = subTotalPrice
+    document.getElementById("subTotalPrice").innerText = subTotalPrice.toFixed(2)
 
     let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
     document.getElementById("businessDiscountContainer").classList.remove("d-none")
@@ -226,6 +226,13 @@ function renderCartItems() {
     }
 
     showUpdatedCartItemCount()
+}
+
+function redirectToProduct(element) {
+    const productId = element.dataset.productId
+    const productName = element.dataset.productName
+
+    window.location.href = `/product/${getLinkFromName(productName)}?pid=${productId}`
 }
 
 function changeQuantity(productId, changeType) {

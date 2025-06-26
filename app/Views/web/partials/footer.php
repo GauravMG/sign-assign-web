@@ -567,7 +567,7 @@
 
 <!-- Chat Window -->
 <div id="chat-box" style="display:none;">
-    <div id="chat-header">Support Bot</div>
+    <div id="chat-header">Signie</div>
     <div id="chat-content"></div>
     <form id="grievance-form" style="display:none;" class="grievance-form">
         <div class="form-group">

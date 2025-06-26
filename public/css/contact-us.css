@@ -27,6 +27,8 @@ h3 {
 
 .contact-area .flex-area {
     display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
     width: 100%;
     justify-content: space-between;
     box-shadow: 0px 5px 10px 0px #d9d9d9;
@@ -60,7 +62,12 @@ h3 {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 3rem;
+    gap: 2rem;
+}
+
+.connect-area .map-area{
+    flex: 1 1 60%;
+    max-width: 60%;
 }
 
 .connect-area .flex-area .form-area {
@@ -71,6 +78,9 @@ h3 {
     flex-direction: column;
     justify-content: center;
     padding: 30px;
+    flex: 1 1 40%;
+    max-width: 40%;
+    margin: 0;
 }
 
 .connect-area .flex-area .form-area h4 {

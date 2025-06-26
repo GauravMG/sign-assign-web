@@ -58,7 +58,7 @@
     <div class="container-fluid">
         <div class="flex-area">
             <div class="map-area">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55973.49628588048!2d77.08445298517653!3d28.739158955030646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d00d4b3ffffff%3A0xd3e6b2fd692c9caf!2sA-Sign%20INSTITUTE!5e0!3m2!1sen!2sin!4v1750315322291!5m2!1sen!2sin" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55973.49628588048!2d77.08445298517653!3d28.739158955030646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d00d4b3ffffff%3A0xd3e6b2fd692c9caf!2sA-Sign%20INSTITUTE!5e0!3m2!1sen!2sin!4v1750315322291!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="form-area">
                 <h4>Let's Connect</h4>

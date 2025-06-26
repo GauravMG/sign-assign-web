@@ -336,6 +336,16 @@
     .solutions-list-area {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .testimonial-area .owl-carousel .testimonial-card {
+        padding: 30px 20px 30px 20px;
+    }
+
+    .testimonial-area .owl-carousel .testimonial-card::after {
+        left: 10px;
+        opacity: 0.4;
+        top: 0px;
+    }
 }
 
 @media (max-width: 480px){

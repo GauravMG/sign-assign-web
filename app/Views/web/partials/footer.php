@@ -1,7 +1,7 @@
 <footer>
     <div class="container-fluid">
         <div class="footer-inner">
-            <div class="footer-col">
+            <div class="footer-col" style="max-width: 40rem;">
                 <div class="footer-logo">
                     <a href="/"><img src="<?= base_url('images/footer-logo.png') . '?t=' . time(); ?>" alt=""></a>
                 </div>
@@ -39,13 +39,13 @@
                     </li> -->
                 </ul>
             </div>
-            <div class="footer-col" style="max-width: 40rem;">
+            <!-- <div class="footer-col" style="max-width: 40rem;">
                 <h5>Choose from</h5>
                 <ul id="footerCategoryMenuListContainer" class="footer-list d-flex flex-wrap p-0 m-0 list-unstyled">
                 </ul>
-            </div>
-            <!-- <div class="footer-col">
-                <h5>Information</h5>
+            </div> -->
+            <div class="footer-col">
+                <h5>Find What You Need, Faster</h5>
                 <ul>
                     <li>
                         <a href="#">
@@ -92,43 +92,10 @@
                         </a>
                     </li>
                 </ul>
-            </div> -->
-            <div class="footer-col">
-                <h5>Customer Service</h5>
-                <ul>
-                    <li>
-                        <a href="/about-us">
-                            <i class="fa-solid fa-arrow-right"></i><span>About Us</span>
-                        </a>
-                    <li>
-                        <a href="/contact-us">
-                            <i class="fa-solid fa-arrow-right"></i><span>Contact Us</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/privacy-policy">
-                            <i class="fa-solid fa-arrow-right"></i><span>Privacy Policy</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="terms-of-use">
-                            <i class="fa-solid fa-arrow-right"></i><span>Terms of Use</span>
-                        </a>
-                    </li>
-                    <!-- <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Affiliate Program</span>
-                        </a>
-                    </li> -->
-                    <!-- <li>
-                        <a href="#">
-                            <i class="fa-solid fa-arrow-right"></i><span>Areas of Service</span>
-                        </a>
-                    </li> -->
-                </ul>
             </div>
-            <!-- <div class="footer-col">
-                <h5>Help Station</h5>
+            
+            <div class="footer-col">
+                <!-- <h5>Find What You Need, Faster</h5> -->
                 <ul>
                     <li>
                         <a href="#">
@@ -171,7 +138,42 @@
                     </li>
                     </li>
                 </ul>
-            </div> -->
+            </div>
+
+            <div class="footer-col">
+                <h5>Customer Service</h5>
+                <ul>
+                    <li>
+                        <a href="/about-us">
+                            <i class="fa-solid fa-arrow-right"></i><span>About Us</span>
+                        </a>
+                    <li>
+                        <a href="/contact-us">
+                            <i class="fa-solid fa-arrow-right"></i><span>Contact Us</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/privacy-policy">
+                            <i class="fa-solid fa-arrow-right"></i><span>Privacy Policy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="terms-of-use">
+                            <i class="fa-solid fa-arrow-right"></i><span>Terms of Use</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="#">
+                            <i class="fa-solid fa-arrow-right"></i><span>Affiliate Program</span>
+                        </a>
+                    </li> -->
+                    <!-- <li>
+                        <a href="#">
+                            <i class="fa-solid fa-arrow-right"></i><span>Areas of Service</span>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
         </div>
     </div>
 </footer>

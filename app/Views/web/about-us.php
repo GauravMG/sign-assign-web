@@ -5,7 +5,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<div class="subheader-area">
+<div class="subheader-area" onclick="window.location.href = '/services'">
     <div class="container-fluid">
     </div>
 </div>
@@ -40,43 +40,34 @@
                 <img src="/images/about-us-section1-image.png" alt="">
             </div>
             <div class="right-area">
-                <p>Our journey Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam harum temporibus corporis, voluptas blanditiis impedit unde laboriosam mollitia animi perspiciatis nulla necessitatibus delectus cupiditate ad natus. Ut consequatur possimus vero. Voluptatum ipsum sit doloribus. Modi omnis fuga excepturi impedit expedita similique repellat, ratione sed, incidunt a laboriosam quas reiciendis et mollitia itaque voluptas rerum assumenda iusto dolorem earum reprehenderit ea!</p>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam nemo voluptatum labore eum maiores exercitationem vel tenetur aliquam quas commodi?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis nam veritatis explicabo necessitatibus excepturi distinctio quisquam ipsum sit soluta et delectus, voluptatum tenetur recusandae voluptates illum! Optio cumque molestias porro odit suscipit maxime alias laborum.</p>
+                <p>Our journey began in 2003, when Tahir and Mubaraka, a passionate duo, embarked on an entrepreneurial adventure. Back then, it was a mailing and shipping business in California. But their ambition had bigger plans. Fast forward to 2011, and Sign Assign was born in Texas, driven by a commitment to exceptional service and unparalleled craftsmanship.</p>
+                <p>Today, we stand tall in a 9,000 sq. ft. facility in Garland, Texas, equipped with state-of-the-art technology and a team of dedicated artisans. We’re not just another sign company; we’re a family bound by a shared passion: to bring your vision to life, exceeding expectations at every turn.</p>
             </div>
         </div>
         <div class="grid-area">
             <div class="inner">
                 <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
+                <p>Countless Product Choices</p>
             </div>
             <div class="inner">
                 <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
+                <p>Easy-To-Use Design Tool</p>
             </div>
             <div class="inner">
                 <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
+                <p>Customized to Perfection</p>
             </div>
             <div class="inner">
                 <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
+                <p>Cutting Edge Printing Process</p>
             </div>
             <div class="inner">
                 <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
+                <p>High Quality Inks</p>
             </div>
             <div class="inner">
                 <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
-            </div>
-            <div class="inner">
-                <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
-            </div>
-            <div class="inner">
-                <img src="<?= base_url('images/check.png') . '?t=' . time(); ?>" alt="">
-                <p>Countless product choice</p>
+                <p>Highest Quality Guaranteed</p>
             </div>
         </div>
     </div>
@@ -87,8 +78,8 @@
         <div class="flex-inner">
             <div class="left-area">
                 <h2>Beyond the sign</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur officia alias odio quibusdam nihil autem tempore corrupti molestiae veritatis expedita quaerat, nam beatae excepturi assumenda fugit repellendus inventore, nemo exercitationem reiciendis voluptatibus perferendis at hic magni? Aperiam quae ipsa ipsam!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, laudantium quam deserunt sit velit optio, perferendis at hic magni? Aperiam quae ipsa ipsam!</p>
+                <p>We offer a comprehensive suite of signage solutions, from eye-catching channel letters and dazzling LED signs to bold banners and captivating vehicle wraps. Whether you need a monumental entrance sign that commands attention or a retractable banner for your next event, we have the expertise and creativity to deliver.</p>
+                <p>But it’s not just about the products. It’s about the partnership. We take the time to understand your unique needs, brand identity, and target audience. We collaborate closely, ensuring every detail resonates and tells your story authentically.</p>
             </div>
             <div class="right-area">
                 <img src="<?= base_url('images/billboard.png') . '?t=' . time(); ?>" alt="">
@@ -100,7 +91,7 @@
 <div class="why-choose-area py-5 my-5">
     <div class="container-fluid">
         <h3 class="text-center mb-2">Why choose sign assign?</h3>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, quod! Non nostrum, nemo dolores provident soluta dignissimos ratione repellendus eius perferendis quas sint est quisquam repellat aut totam earum suscipit excepturi cumque nulla illum explicabo ad facere. Nobis, accusamus dolorum!</p>
+        <p class="text-center">At Sign Assign, we make it easy to bring your vision to life. With our user-friendly online design tool, you can create custom signs in just<br>minutes - no design experience needed! We combine top-quality materials, fast turnaround times, and competitive pricing to<br>deliver signs that make an impact.</p>
         <div class="flex-inner">
             <div class="left-area">
                 <div class="inner">
@@ -109,7 +100,7 @@
                     </div>
                     <div class="text-area">
                         <h4>Experience</h4>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
+                        <p>Over a decade of crafting impactful signage for businesses of all sizes.</p>
                     </div>
                 </div>
                 <div class="inner">
@@ -118,7 +109,7 @@
                     </div>
                     <div class="text-area">
                         <h4>Quality</h4>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
+                        <p>Unwavering commitment to using the finest materials and cutting-edge technology.</p>
                     </div>
                 </div>
                 <div class="inner">
@@ -127,7 +118,7 @@
                     </div>
                     <div class="text-area">
                         <h4>Customization</h4>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
+                        <p>Bespoke solutions tailored to your specific needs and brand identity.</p>
                     </div>
                 </div>
                 <div class="inner">
@@ -136,7 +127,7 @@
                     </div>
                     <div class="text-area">
                         <h4>Dedication</h4>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
+                        <p>A team passionate about exceeding your expectations and building lasting relationships</p>
                     </div>
                 </div>
                 <div class="inner">
@@ -145,21 +136,21 @@
                     </div>
                     <div class="text-area">
                         <h4>Experience</h4>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam debitis, facilis non accusantium architecto officia?</p>
+                        <p>Proudly supporting the local community and championing small businesses.</p>
                     </div>
                 </div>
             </div>
             <div class="right-area">
                 <img src="/images/about-us-section3-image.png" alt="">
                 <h4>Get world class products</h4>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, quas.</p>
-                <a href="#">Order Now</a>
+                <p>Our impeccable product range has everything you need. Check it out today!</p>
+                <!-- <a href="#">Order Now</a> -->
             </div>
         </div>
     </div>
 </div>
 
-<div class="our-story-area">
+<!-- <div class="our-story-area">
     <div class="container-fluid">
         <div class="flex-area">
             <div class="left-area">
@@ -172,7 +163,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <?= $this->endSection(); ?>
 

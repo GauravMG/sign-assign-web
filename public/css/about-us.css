@@ -14,6 +14,7 @@ h3 {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 .counter-area {
@@ -72,8 +73,9 @@ h3 {
 }
 
 .journey-area .grid-area {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(8, 1fr); */
+    display: flex;
     text-align: center;
     gap: 1rem;
     margin-top: 1rem;

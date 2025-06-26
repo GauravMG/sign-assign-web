@@ -11,152 +11,16 @@
 </div>
 
 <div class="container-fluid py-5">
-    <div class="grid-inner">
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="inner">
-            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
-            <h5>Sign services & Installations</h5>
-            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
+    <div class="grid-inner" id="blogContainer">
     </div>
 </div>
 
 <div class="business-growth-area py-5">
     <div class="container-fluid">
         <h3 class="text-center mb-3">Display solutions for business growth</h3>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum fugit a exercitationem non rerum distinctio perspiciatis, eligendi accusantium doloribus incidunt voluptates dicta itaque animi, omnis vel nam recusandae, hic soluta. Obcaecati magnam dolor, soluta qui cum ullam iste quia necessitatibus.</p>
+        <p class="text-center">Effective displays do more than just look good - they serve as powerful tools to connect with your audience and support your business goals.<br>From retail environments to trade shows and corporate spaces, the right display can increase visibility, reinforce your brand, and influence purchasing decisions.</p>
 
-        <div class="solutions-list-area">
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="inner-card">
-                <div class="p-3 m-0"><img src="http://3.109.198.252/api/uploads/slide-image-jpg-1748865683855-963202567.jpg" alt="Your Brand, Your Design: How Sign Assign Empowers Businesses to Create Impactful Signage with Ease" class="w-100 rounded"></div>
-                <div class="px-3 mt-0">
-                    <h5>Banner Stand</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quisquam magnam accusamus illum aut iure!</p>
-                    <a href="/learning-center/your-brand-your-design-how-sign-assign-empowers-businesses-to-create-impactful-signage-with-ease-1">Read More <span><svg class="svg-inline--fa fa-arrow-right-long" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right-long" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
+        <div class="solutions-list-area" id="catContainer">
         </div>
     </div>
 </div>
@@ -164,21 +28,21 @@
 <div class="exceptional-service-area py-5">
     <div class="container-fluid">
         <h3 class="text-center mb-3">Get Exceptional Sign Service</h3>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum fugit a exercitationem non rerum distinctio perspiciatis, eligendi accusantium doloribus incidunt voluptates dicta itaque animi, omnis vel nam recusandae, hic soluta. Obcaecati magnam dolor, soluta qui cum ullam iste quia necessitatibus.</p>
+        <p class="text-center">As you may know that signage is crucial for your business promotion and advertisement. Custom channel letters, signs and banners from Sign Assign can help you convey your message to your audience. Let us help you with all your signage needs so that you can focus on improving the other aspects of your business.</p>
         <div class="flex-area">
             <div class="left-area">
                 <img src="/images/service-section1-image.png" alt="">
             </div>
             <div class="right-area">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quia corporis eaque voluptatum nemo iusto veniam asperiores recusandae laborum inventore sunt cumque tempora adipisci dignissimos quaerat, unde provident accusamus velit animi obcaecati deserunt aliquid, dolor itaque? Qui aut enim quod vel saepe omnis amet ex?</p>
+                <p>All businesses require a unique set of signage that can help them build a credible brand. Customized and personalized signs are the way to go, as a one-size-fits-all strategy won’t work. This is where Sign Assign can provide you with high-quality, customized, and impactful signage to help you achieve your goals. Our custom signs are ideal for various industries.</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, dignissimos. Minima vitae molestiae quod itaque consequuntur. Pariatur vero laborum, ratione voluptatibus repellat veritatis explicabo vel corrupti voluptatem suscipit ipsum possimus accusamus quasi praesentium, doloremque natus!</p>
+                <p>In saying that, you can get all the signs you want, but you need a helping hand in fixing those signs at appropriate places to get maximum exposure. The improper fitting can take the shine out of your signs. You need someone who can provide you with robust sign installation services. Sign Assign is the answer to your problems!</p>
             </div>
         </div>
         <div class="white-bg-area">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quia corporis eaque voluptatum nemo iusto veniam asperiores recusandae laborum inventore sunt cumque tempora adipisci dignissimos quaerat, unde provident accusamus velit animi obcaecati deserunt aliquid, dolor itaque? Qui aut enim quod vel saepe omnis amet ex?</p>
+            <p>We can provide you with various services such as turnkey project management, sign installation, permitting, code review and compliance, sign engineering, sign service & repairs, and sign removal. All you need to do is get in touch with us, tell us what you need, and we will be there for you at every step!</p>
             <br>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, dignissimos. Minima vitae molestiae quod itaque consequuntur. Pariatur vero laborum, ratione voluptatibus repellat veritatis explicabo vel corrupti voluptatem suscipit ipsum possimus accusamus quasi praesentium, doloremque natus!</p>
+            <p>Sign Assign is one of the best companies in Texas, specializing in creating custom banners, car signs, outdoor signs, business banners, car banners, and much more. We aim to go above and beyond in helping our customers with the very best personalized banners and signs. We operate all over the United States.</p>
         </div>
     </div>
 </div>
@@ -216,5 +80,5 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
-<script src="<?= base_url('js/about-us.js') . '?t=' . time(); ?>"></script>
+<script src="<?= base_url('js/services.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

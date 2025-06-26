@@ -911,7 +911,6 @@ const handleUserInput = async (input) => {
         chatInput.style.display = 'none';
 
         if (ongoingChatType === "look_products") {
-            // product logic if needed
         } else if (ongoingChatType === "track_my_order") {
             appendMessage(input, 'user');
             input = {

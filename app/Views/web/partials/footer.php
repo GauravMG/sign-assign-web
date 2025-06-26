@@ -39,12 +39,12 @@
                     </li> -->
                 </ul>
             </div>
-            <div class="footer-col" style="max-width: 40rem;">
+            <div class="footer-col">
                 <h5>Choose from</h5>
                 <ul id="footerCategoryMenuListContainer1">
                 </ul>
             </div>
-            <div class="footer-col" style="max-width: 40rem;">
+            <div class="footer-col">
                 <h5>&nbsp;</h5>
                 <ul id="footerCategoryMenuListContainer2">
                 </ul>

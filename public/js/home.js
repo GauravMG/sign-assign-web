@@ -197,7 +197,7 @@ async function fetchCuratedBestsellers() {
 
                 for (let i = 0; i < data?.length; i++) {
                     html += `<div class="product-card">
-                        <a href="/subcategory/${getLinkFromName(data[i].name)}">
+                        <a href="/subcategory/${getLinkFromName(data[i].name)}?subcatid=${data[i].productSubCategoryId}">
                             <img src="${data[i].image}" alt="${data[i].name}">
                             <h5>${data[i].name}</h5>
                         </a>
@@ -252,7 +252,7 @@ async function fetchProducts() {
                     }
 
                     htmlSection1.push(`<div class="inner-card">
-                        <a href="/product/${getLinkFromName(data[i].name)}">
+                        <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>
@@ -267,19 +267,19 @@ async function fetchProducts() {
                                 </div>
                                 <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
                             </div>
-                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
 
                     htmlSection2.push(`<div class="inner-card">
-                        <a href="/product/${getLinkFromName(data[i].name)}">
+                        <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>
                             <div class="px-3 mt-0">
                                 <h5>${data[i].name}</h5>
                             </div>
-                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
 
@@ -301,7 +301,7 @@ async function fetchProducts() {
                     </div>`)
 
                     htmlSection5.push(`<div class="inner-card">
-                        <a href="/product/${getLinkFromName(data[i].name)}">
+                        <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>
@@ -309,7 +309,7 @@ async function fetchProducts() {
                                 <h5>${data[i].name}</h5>
                                 <h4>$ ${price}</h4>
                             </div>
-                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
                 }
@@ -385,7 +385,7 @@ async function fetchBlogs() {
                             <h6>by signassi | ${formatDateWithoutTime(data[i].createdAt)} | Signage</h6>
                             <h5>${sliceTextWithEllipses(data[i].title, 60)}</h5>
                             <p>${getTextFromHTML(data[i].description, 60)}</p>
-                            <a href="/learning-center/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                            <a href="/learning-center/${getLinkFromName(data[i].title)}?lcid=${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
                         </div>
                     </div>`);
                 }

@@ -119,7 +119,7 @@ async function fetchProducts() {
                     }
 
                     html.push(`<div class="inner-card">
-                        <a href="/product/${getLinkFromName(data[i].name)}">
+                        <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>
@@ -135,7 +135,7 @@ async function fetchProducts() {
                                 </div>
                                 <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
                             </div>
-                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
                 }

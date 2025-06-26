@@ -494,7 +494,7 @@
 
 <?= $this->section('pageScripts'); ?>
 <script>
-    const productName = '<?= $data['productName']; ?>'
+    const productId = Number('<?= $data['productId']; ?>')
 </script>
 <script src="<?= base_url('js/product-detail.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

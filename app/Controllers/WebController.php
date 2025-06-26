@@ -105,12 +105,14 @@ class WebController extends BaseController
     public function productCategory($categoryName): string
     {
         $categoryNameFormatted = $this->getNameFromLink($categoryName);
+        $productCategoryId = $this->request->getGet('catid');
 
         $data = [
             'title' => $categoryNameFormatted,
             'page_heading' => $categoryNameFormatted,
             'data' => [
-                'categoryName' => $categoryNameFormatted
+                'categoryName' => $categoryNameFormatted,
+                'productCategoryId' => $productCategoryId
             ]
         ];
 
@@ -120,12 +122,14 @@ class WebController extends BaseController
     public function productSubCategory($subCategoryName): string
     {
         $subCategoryNameFormatted = $this->getNameFromLink($subCategoryName);
+        $productSubCategoryId = $this->request->getGet('subcatid');
 
         $data = [
             'title' => $subCategoryNameFormatted,
             'page_heading' => $subCategoryNameFormatted,
             'data' => [
-                'subCategoryName' => $subCategoryNameFormatted
+                'subCategoryName' => $subCategoryNameFormatted,
+                'productSubCategoryId' => $productSubCategoryId
             ]
         ];
 
@@ -135,12 +139,14 @@ class WebController extends BaseController
     public function productDetail($productName): string
     {
         $productNameFormatted = $this->getNameFromLink($productName);
+        $productId = $this->request->getGet('pid');
 
         $data = [
             'title' => $productNameFormatted,
             'page_heading' => $productNameFormatted,
             'data' => [
-                'productName' => $productNameFormatted
+                'productName' => $productNameFormatted,
+                'productId' => $productId
             ]
         ];
 
@@ -167,16 +173,17 @@ class WebController extends BaseController
         return view('web/blogs', $data);
     }
 
-    public function blogDetail($blogNameWithId): string
+    public function blogDetail($blogName): string
     {
-        $blogURLSplit = $this->getNameAndIdFromLink($blogNameWithId);
+        $blogName = $this->getNameFromLink($blogName);
+        $blogId = $this->request->getGet('lcid');
 
         $data = [
-            'title' => $blogURLSplit['title'],
-            'page_heading' => $blogURLSplit['title'],
+            'title' => $blogName,
+            'page_heading' => $blogName,
             'data' => [
-                'blogId' => $blogURLSplit['id'],
-                'title' => $blogURLSplit['title']
+                'title' => $blogName,
+                'blogId' => $blogId
             ]
         ];
 

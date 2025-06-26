@@ -8,7 +8,8 @@ async function fetchAllCategories() {
         endPoint: "/product-category/list",
         payload: JSON.stringify({
             "range": {
-                all: true
+                page: 1,
+                pageSize: 8
             },
             linkedEntities: true
         }),

@@ -41,7 +41,12 @@
             </div>
             <div class="footer-col" style="max-width: 40rem;">
                 <h5>Choose from</h5>
-                <ul id="footerCategoryMenuListContainer" class="footer-list d-flex flex-wrap p-0 m-0 list-unstyled">
+                <ul id="footerCategoryMenuListContainer1">
+                </ul>
+            </div>
+            <div class="footer-col" style="max-width: 40rem;">
+                <h5>&nbsp;</h5>
+                <ul id="footerCategoryMenuListContainer2">
                 </ul>
             </div>
             <!-- <div class="footer-col">

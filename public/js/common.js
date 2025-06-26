@@ -355,9 +355,12 @@ async function fetchProductCategories() {
             const { success, message, data } = response
 
             if (success) {
+                const halfLength = Math.ceil(data.length / 2);
+
                 let htmlNavbar = ""
                 let htmlNavbarMobile = ""
-                let htmlFooter = ""
+                let htmlFooter1 = ""
+                let htmlFooter2 = ""
 
                 for (let i = 0; i < data?.length; i++) {
                     htmlNavbar += `
@@ -381,16 +384,23 @@ async function fetchProductCategories() {
 
                     htmlNavbar += `</li>`
 
-                    htmlFooter += `<li class="footer-item mb-2">
+                    let htmlFooter = `<li class="footer-item mb-2">
                         <a href="/category/${getLinkFromName(data[i].name)}?catid=${data[i].productCategoryId}" class="d-flex align-items-center">
                             <i class="fa-solid fa-arrow-right-long"></i><span class="ms-2">${data[i].name}</span>
                         </a>
                     </li>`
+
+                    if (i < halfLength) {
+                        htmlFooter1 += htmlFooter;
+                    } else {
+                        htmlFooter2 += htmlFooter;
+                    }
                 }
 
                 // document.getElementById("navbarCategoryMenuListContainer").innerHTML = htmlNavbar
                 document.getElementById("navbarCategoryMenuListContainerMobile").innerHTML = htmlNavbarMobile
-                document.getElementById("footerCategoryMenuListContainer").innerHTML = htmlFooter
+                document.getElementById("footerCategoryMenuListContainer1").innerHTML = htmlFooter1
+                document.getElementById("footerCategoryMenuListContainer2").innerHTML = htmlFooter2
 
                 navbarProductCategories = data
                 renderCategories()

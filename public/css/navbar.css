@@ -315,24 +315,28 @@ header {
 
 .dropdown-item {
     color: #452e73;
+    font-size: 0.854rem;
     font-weight: 500;
+    padding: 10px;
 }
 
 .dropdown-item:hover {
-    background-color: #f2f2f2;
-    color: #000;
+    background-color: #452e73;
+    color: #ffffff;
 }
 
 #moreDropdownMenu .nav-link {
     color: #452e73;
-    margin-right: unset;
+    font-size: 0.854rem;
     font-weight: 500;
     transition: color 0.3s ease;
+    margin: 0;
 }
 
 #moreDropdownMenu .nav-link:hover,
 #moreDropdownMenu .nav-link:focus {
-    background-color: #d4bfff;
+    background-color: #452e73;
+    color: #fff;
 }
 
 /* Proper positioning */

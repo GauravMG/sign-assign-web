@@ -47,6 +47,11 @@
             <h5>Sign services & Installations</h5>
             <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+        <div class="inner">
+            <img src="http://3.109.198.252/api/uploads/Anniversary-Banners-jpg-1747651802040-547141067.jpg" alt="">
+            <h5>Sign services & Installations</h5>
+            <a href="http://3.109.198.252/editor" target="_blank" class="customized-button">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
     </div>
 </div>
 

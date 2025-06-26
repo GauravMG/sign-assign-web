@@ -39,12 +39,17 @@
                     </li> -->
                 </ul>
             </div>
-            <!-- <div class="footer-col" style="max-width: 40rem;">
-                <h5>Choose from</h5>
-                <ul id="footerCategoryMenuListContainer" class="footer-list d-flex flex-wrap p-0 m-0 list-unstyled">
+            <div class="footer-col">
+                <h5>Find What You Need, Faster</h5>
+                <ul id="footerCategoryMenuListContainer1">
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>&nbsp;</h5>
+                <ul id="footerCategoryMenuListContainer2">
                 </ul>
             </div> -->
-            <div class="footer-col">
+            <!-- <div class="footer-col">
                 <h5>Find What You Need, Faster</h5>
                 <ul>
                     <li>
@@ -92,10 +97,10 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
             
-            <div class="footer-col">
-                <!-- <h5>Find What You Need, Faster</h5> -->
+            <!-- <div class="footer-col">
+                <h5>Find What You Need, Faster</h5>
                 <ul>
                     <li>
                         <a href="#">
@@ -138,7 +143,7 @@
                     </li>
                     </li>
                 </ul>
-            </div>
+            </div> -->
 
             <div class="footer-col">
                 <h5>Customer Service</h5>

@@ -101,21 +101,3 @@ footer .footer-inner .footer-col:nth-child(5) ul li a svg {
     color: #ffffff;
     font-size: 0.854rem;
 }
-
-#footerCategoryMenuListContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 1rem;
-    /* 16px by default */
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-#footerCategoryMenuListContainer li {
-    width: calc(50% - 0.5rem);
-    /* subtract half the gap */
-    margin: 0;
-    /* ensure no extra margin */
-}

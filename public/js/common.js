@@ -955,7 +955,13 @@ const handleUserInput = async (input) => {
                     }, 20000);
                 }
 
-                if (data.message) appendMessage(data.message);
+                if (data.message) {
+                    appendMessage(data.message)
+
+                    if (ongoingChatType === "look_products" & data.message.includes("No matching products found")) {
+                        initChat(false);
+                    }
+                }
                 if (data.options) appendOptions(data.options);
                 if (data.products) {
                     appendProductLinks(data.products);

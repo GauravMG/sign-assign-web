@@ -80,7 +80,7 @@ async function fetchBlogs() {
                         <div class="px-3 mt-2">
                             <h6>by signassi | ${formatDateWithoutTime(data[i].createdAt)} | Signage</h6>
                             <h5 class="mb-4">${sliceTextWithEllipses(data[i].title, 60)}</h5>
-                            <a href="/learning-center/${getLinkFromName(data[i].title)}-${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                            <a href="/learning-center/${getLinkFromName(data[i].title)}?lcid=${data[i].blogId}">Read More <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
                         </div>
                     </div>`);
                 }

@@ -121,18 +121,18 @@ function createCategoryItem(category) {
 
     if (category.productSubCategories && category.productSubCategories.length > 0) {
         li.innerHTML = `
-            <a class="nav-link dropdown-toggle" href="/category/${getLinkFromName(category.name)}" id="cat-${catId}" role="button" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/category/${getLinkFromName(category.name)}?catid=${category.productCategoryId}" id="cat-${catId}" role="button" aria-expanded="false">
                 ${category.name}
             </a>
             <ul class="dropdown-menu" aria-labelledby="cat-${catId}">
                 ${category.productSubCategories.map(sub =>
-            `<li><a class="dropdown-item" href="/subcategory/${getLinkFromName(sub.name)}">${sub.name}</a></li>`
+            `<li><a class="dropdown-item" href="/subcategory/${getLinkFromName(sub.name)}?subcatid=${sub.productSubCategoryId}">${sub.name}</a></li>`
         ).join('')}
             </ul>
         `;
     } else {
         li.innerHTML = `
-            <a class="nav-link" href="/category/${getLinkFromName(category.name)}">${category.name}</a>
+            <a class="nav-link" href="/category/${getLinkFromName(category.name)}?catid=${category.productCategoryId}">${category.name}</a>
         `;
     }
 
@@ -362,17 +362,17 @@ async function fetchProductCategories() {
                 for (let i = 0; i < data?.length; i++) {
                     htmlNavbar += `
                     <li class="dropdown">
-                        <a href="/category/${getLinkFromName(data[i].name)}">${data[i].name}</a>`
+                        <a href="/category/${getLinkFromName(data[i].name)}?catid=${data[i].productCategoryId}">${data[i].name}</a>`
 
                     htmlNavbarMobile += `<li>
                         <input id="sub-group-1" type="checkbox" hidden />
-                        <label for="sub-group-1" onclick="window.location.href='/category/${getLinkFromName(data[i].name)}'"> ${data[i].name}</label>
+                        <label for="sub-group-1" onclick="window.location.href='/category/${getLinkFromName(data[i].name)}?catid=${data[i].productCategoryId}'"> ${data[i].name}</label>
                     </li>`
 
                     if (data[i].productSubCategories?.length) {
                         htmlNavbarSubcategory = `<ul class="dropdown-content">`
                         for (let j = 0; j < data[i].productSubCategories?.length; j++) {
-                            htmlNavbarSubcategory += `<li class="dropdown-lists"><a href="/subcategory/${getLinkFromName(data[i].productSubCategories[j].name)}">${data[i].productSubCategories[j].name}</a></li>`
+                            htmlNavbarSubcategory += `<li class="dropdown-lists"><a href="/subcategory/${getLinkFromName(data[i].productSubCategories[j].name)}?subcatid=${data[i].productSubCategoryId}">${data[i].productSubCategories[j].name}</a></li>`
                         }
                         htmlNavbarSubcategory += `</ul>`
 
@@ -382,7 +382,7 @@ async function fetchProductCategories() {
                     htmlNavbar += `</li>`
 
                     htmlFooter += `<li class="footer-item mb-2">
-                        <a href="/category/${getLinkFromName(data[i].name)}" class="d-flex align-items-center">
+                        <a href="/category/${getLinkFromName(data[i].name)}?catid=${data[i].productCategoryId}" class="d-flex align-items-center">
                             <i class="fa-solid fa-arrow-right-long"></i><span class="ms-2">${data[i].name}</span>
                         </a>
                     </li>`

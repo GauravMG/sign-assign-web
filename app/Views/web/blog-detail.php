@@ -48,7 +48,7 @@
 
 <?= $this->section('pageScripts'); ?>
 <script>
-    const blogId = '<?= $data["blogId"]; ?>'
+    const blogId = Number('<?= $data["blogId"]; ?>')
 </script>
 <script src="<?= base_url('js/blog-detail.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

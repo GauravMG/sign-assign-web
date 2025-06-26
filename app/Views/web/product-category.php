@@ -163,7 +163,7 @@
 
 <?= $this->section('pageScripts'); ?>
 <script>
-    const categoryName = '<?= $data['categoryName']; ?>'
+    const productCategoryId = Number('<?= $data['productCategoryId']; ?>')
 </script>
 <script src="<?= base_url('js/category.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

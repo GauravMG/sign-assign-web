@@ -1,4 +1,3 @@
-let productId = null
 let selectedAttributes = []
 let productPrice = 0
 let totalSelectedAttributePrice = 0
@@ -119,7 +118,7 @@ async function fetchProducts() {
         endPoint: "/product/list",
         payload: JSON.stringify({
             "filter": {
-                name: productName
+                productId: Number(productId)
             },
             "range": {
                 all: true
@@ -137,7 +136,6 @@ async function fetchProducts() {
             if (success) {
                 const data = allData[0]
 
-                productId = data.productId
                 productPrice = Number(data.price ?? 0)
                 calculatePayablePrice()
 
@@ -362,7 +360,7 @@ async function fetchRelatedProducts(productId, productCategoryId, productSubCate
                     }
 
                     html.push(`<div class="inner-card">
-                        <a href="/product/${getLinkFromName(data[i].name)}">
+                        <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
                             <div class="p-3 m-0">
                                 <img src="${coverImage}" alt="${data[i].name}">
                             </div>
@@ -378,7 +376,7 @@ async function fetchRelatedProducts(productId, productCategoryId, productSubCate
                                 </div>
                                 <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
                             </div>
-                            <a href="/product/${getLinkFromName(data[i].name)}" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">Customize</a>
                         </a>
                     </div>`)
                 }

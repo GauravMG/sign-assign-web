@@ -147,7 +147,7 @@
 
 <?= $this->section('pageScripts'); ?>
 <script>
-    const subCategoryName = '<?= $data['subCategoryName']; ?>'
+    const productSubCategoryId = Number('<?= $data['productSubCategoryId']; ?>')
 </script>
 <script src="<?= base_url('js/subcategory.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

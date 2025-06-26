@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Most Loved Brand Visionaries</h3>
+                <h3 class="mb-0">Bold Banners, Brilliant Designs</h3>
             </div>
             <div class="right">
                 <div class="owl-nav">
@@ -31,7 +31,29 @@
                 </div>
             </div>
         </div>
-        <div id="owlSection1" class="owl-carousel owl-theme">
+        <div id="owlSectionCatBanner" class="owl-carousel owl-theme">
+        </div>
+    </div>
+</div>
+
+<div class="container-slide-area pt-5">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Window Designs That Inspire</h3>
+            </div>
+            <div class="right">
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="owlSectionCatWindow" class="owl-carousel owl-theme">
         </div>
     </div>
 </div>
@@ -44,107 +66,76 @@
     </div>
 </div>
 
-<div class="container-slide-area py-5">
+<div class="container-slide-area pt-5">
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Get Exceptional Sign Services</h3>
+                <h3 class="mb-0">Style on Wheels – Design Solutions</h3>
             </div>
             <div class="right">
                 <div class="owl-nav">
-                    <button type="button" role="presentation" class="owl-prev"><i
-                            class="fa-solid fa-arrow-left-long"></i></button>
-                    <button type="button" role="presentation" class="owl-next"><i
-                            class="fa-solid fa-arrow-right-long"></i></button>
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        <div id="owlSection2" class="owl-carousel owl-theme">
+        <div id="owlSectionCatVehicle" class="owl-carousel owl-theme">
         </div>
     </div>
 </div>
 
-<div class="off-slider-area py-5 bg-gray">
+<div class="container-slide-area pt-5">
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Get Exceptional Sign Services</h3>
+                <h3 class="mb-0">Event Signage That Speaks Loud & Clear</h3>
             </div>
             <div class="right">
-                <a href="#">View All <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid//">
-        <div id="owlSection3" class="owl-carousel owl-theme">
+        <div id="owlSectionCatEvent" class="owl-carousel owl-theme">
         </div>
     </div>
 </div>
 
-<div class="container-slide-area py-5">
+<div class="container-slide-area pt-5">
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Transform Your Business with the Right Display Solutions</h3>
-            </div>
-            <div class="right">
-                <a href="#">View All <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
-                <div class="owl-nav">
-                    <button type="button" role="presentation" class="owl-prev"><i
-                            class="fa-solid fa-arrow-left-long"></i></button>
-                    <button type="button" role="presentation" class="owl-next"><i
-                            class="fa-solid fa-arrow-right-long"></i></button>
-                </div>
-            </div>
-        </div>
-        <div id="owlSection4" class="owl-carousel owl-theme">
-        </div>
-    </div>
-</div>
-
-<div class="container-slide-area py-5 bg-gray">
-    <div class="container-fluid">
-        <div class="view-all-area">
-            <div class="left">
-                <h3 class="mb-0">Elevate Your Brand with Our Latest Collections</h3>
+                <h3 class="mb-0">Tools That Sell, Designs That Convert</h3>
             </div>
             <div class="right">
                 <div class="owl-nav">
-                    <button type="button" role="presentation" class="owl-prev"><i
-                            class="fa-solid fa-arrow-left-long"></i></button>
-                    <button type="button" role="presentation" class="owl-next"><i
-                            class="fa-solid fa-arrow-right-long"></i></button>
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        <div id="owlSection5" class="owl-carousel owl-theme">
+        <div id="owlSectionCatMarketingTool" class="owl-carousel owl-theme">
         </div>
     </div>
 </div>
 
 <div class="order-area py-5">
     <div class="container-fluid">
-        <div class="inner-area">
-            <div class="card-area">
-                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>High-Quality Traffic & Safety Signs</h5>
-                <a href="#">Order Now</a>
-            </div>
-            <div class="card-area">
-                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>High-Quality Traffic & Safety Signs</h5>
-                <a href="#">Order Now</a>
-            </div>
-            <div class="card-area">
-                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>High-Quality Traffic & Safety Signs</h5>
-                <a href="#">Order Now</a>
-            </div>
-            <div class="card-area">
-                <img src="<?= base_url('images/sign-board.jpg') . '?t=' . time(); ?>" alt="">
-                <h5>High-Quality Traffic & Safety Signs</h5>
-                <a href="#">Order Now</a>
-            </div>
+        <h3>Designed for Safety. Built for Compliance</h3>
+        <div class="inner-area" id="catRegulatorySign">
         </div>
     </div>
 </div>

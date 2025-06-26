@@ -234,7 +234,7 @@
     align-items: center;
 }
 
-.rush-hour-area slider, .checkout-page-area .product-detail-area .box-inner .rush-hour-area .slider:before {border-radius:20px;}
+.rush-hour-area slider, .checkout-page-area .product-detail-area .box-inner .rush-hour-area .slider:before {border-radius:20px!important;}
 
 .checkout-page-area .product-detail-area .box-inner .inner {
     display: flex;

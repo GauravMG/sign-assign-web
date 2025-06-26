@@ -846,14 +846,6 @@ const appendProductLinks = (products) => {
     chatContent.scrollTop = chatContent.scrollHeight;
 };
 
-// const initChat = async () => {
-//     chatContent.innerHTML = '';
-//     appendMessage("Hi there! What would you like to do today?");
-//     appendOptions([
-//         { label: "Look for Products", value: "look_products" },
-//         // { label: "Check my Order", value: "check_order" }
-//     ]);
-// };
 const initChat = async (resetChat = true) => {
     ongoingChatType = ""
     if (resetChat) {
@@ -871,67 +863,66 @@ const initChat = async (resetChat = true) => {
         appendMessage(resetChat ? "Hi there! What would you like to do today?" : "Anything else I can help with?");
         appendOptions([
             { label: "Look for Products", value: "look_products" },
+            { label: "Track My Order", value: "track_my_order" },
             { label: "Ask me anything", value: "ask_anything" },
             { label: "Grievance", value: "grievance" }
         ]);
     }, resetChat ? 0 : 2000)
 };
 
-// const handleUserInput = async (input) => {
-//     await postAPICall({
-//         endPoint: "/chatbot/chat",
-//         payload: JSON.stringify({ input }),
-//         additionalHeaders: {
-//             chatsessionid: sessionId,
-//             chatuserid: userDataUser?.userId
-//         },
-//         callbackComplete: () => { },
-//         callbackSuccess: (response) => {
-//             const { success, message, data } = response;
-
-//             if (success) {
-//                 if (data.message) appendMessage(data.message);
-//                 if (data.options) appendOptions(data.options);
-//                 if (data.products) appendProductLinks(data.products)
-//             } else {
-//                 showAlert({
-//                     type: 'error',
-//                     title: 'Failed',
-//                     text: message || 'Something went wrong. Please try again.'
-//                 });
-//             }
-//         }
-//     });
-// };
 const handleUserInput = async (input) => {
-    clearTimeout(aiChatRestartTimeout)
-    // Special handling
+    clearTimeout(aiChatRestartTimeout);
+
+    // Handle special input
     if (input === "grievance") {
-        ongoingChatType = "grievance"
+        ongoingChatType = "grievance";
         document.getElementById('grievance-form').style.display = 'block';
         chatInput.style.display = 'none';
-        document.getElementById("grievance-form-name").value = userDataUser ? createFullName(userDataUser) : ""
-        document.getElementById("grievance-form-email").value = userDataUser?.email ?? ""
-        document.getElementById("grievance-form-mobile").value = userDataUser?.mobile ?? ""
+        document.getElementById("grievance-form-name").value = userDataUser ? createFullName(userDataUser) : "";
+        document.getElementById("grievance-form-email").value = userDataUser?.email ?? "";
+        document.getElementById("grievance-form-mobile").value = userDataUser?.mobile ?? "";
         return;
     } else if (input === "ask_anything") {
-        ongoingChatType = "ask_anything"
+        ongoingChatType = "ask_anything";
         chatInput.style.display = 'block';
         document.getElementById('grievance-form').style.display = 'none';
         appendMessage("You can ask me anything!");
         return;
     } else if (input === "look_products") {
-        ongoingChatType = "look_products"
+        ongoingChatType = "look_products";
+    } else if (input === "track_my_order") {
+        ongoingChatType = "track_my_order";
+        chatInput.style.display = 'block';
+        document.getElementById('grievance-form').style.display = 'none';
+        appendMessage("Please enter your order ID");
+        return;
     } else {
         document.getElementById('grievance-form').style.display = 'none';
         chatInput.style.display = 'none';
 
         if (ongoingChatType === "look_products") {
+            // product logic if needed
+        } else if (ongoingChatType === "track_my_order") {
+            appendMessage(input, 'user');
+            input = {
+                type: "track_my_order",
+                input
+            }
         } else if (ongoingChatType === "ask_anything") {
             chatInput.style.display = 'block';
             appendMessage(input, 'user');
         }
     }
+
+    // Add typing indicator
+    const typingIndicator = document.createElement('div');
+    typingIndicator.classList.add('bot');
+    typingIndicator.setAttribute('id', 'typing-indicator');
+    typingIndicator.innerHTML = `<div class="typing-dots">
+        <span>.</span><span>.</span><span>.</span>
+    </div>`;
+    document.getElementById('chat-content').appendChild(typingIndicator);
+    document.getElementById('chat-content').scrollTop = document.getElementById('chat-content').scrollHeight;
 
     await postAPICall({
         endPoint: "/chatbot/chat",
@@ -942,20 +933,24 @@ const handleUserInput = async (input) => {
         },
         callbackComplete: () => { },
         callbackSuccess: (response) => {
+            // Remove typing indicator
+            const typingElem = document.getElementById('typing-indicator');
+            if (typingElem) typingElem.remove();
+
             const { success, message, data } = response;
 
             if (success) {
                 if (ongoingChatType === "ask_anything") {
                     aiChatRestartTimeout = setTimeout(() => {
-                        initChat(false)
-                    }, 20000)
+                        initChat(false);
+                    }, 20000);
                 }
+
                 if (data.message) appendMessage(data.message);
                 if (data.options) appendOptions(data.options);
                 if (data.products) {
-                    appendProductLinks(data.products)
-
-                    initChat(false)
+                    appendProductLinks(data.products);
+                    initChat(false);
                 }
             } else {
                 showAlert({

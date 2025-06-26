@@ -238,6 +238,9 @@
     border-radius: 20px !important;
 }
 
+.checkout-page-area .product-detail-area .box-inner .rush-hour-area .slider {
+    border-radius: 20px !important;}
+
 .checkout-page-area .product-detail-area .box-inner .inner {
     display: flex;
     align-items: center;

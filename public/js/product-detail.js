@@ -959,7 +959,7 @@ function showTemplatePreview(uploadResult) {
         } else if (isPDF) {
             // PDF preview using Google Docs Viewer
             const iframe = document.createElement('iframe');
-            iframe.src = `https://docs.google.com/gview?url=${encodeURIComponent(url)}&embedded=true`;
+            iframe.src = url;
             iframe.width = "100%";
             iframe.height = "300";
             iframe.frameBorder = "0";

@@ -18,7 +18,7 @@
 <div class="business-growth-area py-5">
     <div class="container-fluid">
         <h3 class="text-center mb-3">Display solutions for business growth</h3>
-        <p class="text-center">Effective displays do more than just look good - they serve as powerful tools to connect with your audience and support your business goals.<br>From retail environments to trade shows and corporate spaces, the right display can increase visibility, reinforce your brand, and influence purchasing decisions.</p>
+        <p class="text-center">Effective displays do more than just look good - they serve as powerful tools to connect with your audience and support your business goals. From retail environments to trade shows and corporate spaces, the right display can increase visibility, reinforce your brand, and influence purchasing decisions.</p>
 
         <div class="solutions-list-area" id="catContainer">
         </div>

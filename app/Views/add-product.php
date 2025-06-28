@@ -2,6 +2,59 @@
 
 <?= $this->section('pageStyles'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/summernote/summernote-bs4.min.css'); ?>">
+
+<style>
+    /* Switch container */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    /* Hide default checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* Slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+    }
+
+    /* Circle inside the slider */
+    .slider::before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+
+    /* Checked state */
+    input:checked+.slider {
+        background-color: #28a745;
+        /* Green */
+    }
+
+    input:checked+.slider::before {
+        transform: translateX(26px);
+    }
+</style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -18,11 +71,20 @@
                         <input type="text" class="form-control" id="name" placeholder="Enter name">
                     </div>
                     <div class="row">
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-4 form-group">
+                            <label for="isEditorEnabled">Enable Editor</label>
+                            <div class="input-group">
+                                <label class="switch">
+                                    <input type="checkbox" class="toggle-status" id="isEditorEnabled">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group">
                             <label for="sku">SKU</label>
                             <input type="text" class="form-control" id="sku" placeholder="Enter sku">
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-4 form-group">
                             <label for="price">Price</label>
                             <div class="input-group">
                                 <span class="input-group-text">$</span>
@@ -213,6 +275,8 @@
                         document.getElementById("sku").value = product.sku;
                         document.getElementById("price").value = product.price;
 
+                        document.getElementById("isEditorEnabled").checked = product.isEditorEnabled ? true : false
+
                         $('#shortDescription').summernote('code', product.shortDescription);
 
                         // document.getElementById("section1Title").value = product.section1Title
@@ -237,6 +301,8 @@
             const name = document.getElementById("name").value.trim();
             const sku = document.getElementById("sku").value.trim();
             const price = document.getElementById("price").value.trim();
+
+            const isEditorEnabled = document.getElementById("isEditorEnabled").checked
 
             const shortDescription = $('#shortDescription').summernote('code');
 
@@ -283,6 +349,7 @@
                 name,
                 sku,
                 price,
+                isEditorEnabled,
                 shortDescription,
                 // section1Title,
                 // section1Description,

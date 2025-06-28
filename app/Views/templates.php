@@ -104,6 +104,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Preview</th>
+                            <th>File Type</th>
                             <th>Status</th>
                             <th>Manage Tagging</th>
                             <th>Actions</th>
@@ -115,6 +116,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Preview</th>
+                            <th>File Type</th>
                             <th>Status</th>
                             <th>Manage Tagging</th>
                             <th>Actions</th>
@@ -487,6 +489,7 @@
                             <td class="list-image-container">
                                 <img class="list-image" src="${(data[i].previewUrl ?? "").trim() !== "" ? data[i].previewUrl : `${BASE_URL}images/no-preview-available.jpg`}" alt="${data[i].name}" />
                             </td>
+                            <td>${data[i].mediaType ?? ""}</td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="toggle-status" data-template-id="${data[i].templateId}" ${data[i].status ? "checked" : ""}>
@@ -588,7 +591,7 @@
                 size,
                 url,
                 previewUrl
-            } = await uploadPSD(uploadedFiles[i])
+            } = await uploadArtwork(uploadedFiles[i])
 
             payload.push({
                 name,

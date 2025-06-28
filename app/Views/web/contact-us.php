@@ -14,8 +14,8 @@
 <div class="custom-banner-area py-5">
     <div class="container-fluid">
         <h3 class="text-center mb-3">Build your own custom banner and sign online</h3>
-        <p class="text-center">Need Custom Banners, Car Signs, Outdoor Signs, Business Banners, Car Banners, Channel Letters, Frames & Signs, Monument & Pylon Signs, Printed Banners,<br>Wide Format Printin, Vehicle Graphics, Window Graphics, or Safety Signs to meet your erquirements?</p>
-        <p class="text-center">Please send ys your details requirement through our request a free quote and we will reploy with any further question or your quotation asap. Including<br>your estimated quote and payment details.</p>
+        <p class="text-center">Need Custom Banners, Car Signs, Outdoor Signs, Business Banners, Car Banners, Channel Letters, Frames & Signs, Monument & Pylon Signs, Printed Banners, Wide Format Printin, Vehicle Graphics, Window Graphics, or Safety Signs to meet your erquirements?</p>
+        <p class="text-center">Please send ys your details requirement through our request a free quote and we will reploy with any further question or your quotation asap. Including your estimated quote and payment details.</p>
     </div>
 </div>
 

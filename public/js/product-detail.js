@@ -4,6 +4,7 @@ let totalSelectedAttributePrice = 0
 let totalDiscount = 0
 let payablePrice = 0
 let cartQuantity = 1;
+let product = null
 
 $(document).ready(function () {
     $(".detail-page-area .owl-carousel").owlCarousel({
@@ -135,6 +136,7 @@ async function fetchProducts() {
 
             if (success) {
                 const data = allData[0]
+                product = data
 
                 productPrice = Number(data.price ?? 0)
                 calculatePayablePrice()
@@ -376,7 +378,7 @@ async function fetchRelatedProducts(productId, productCategoryId, productSubCate
                                 </div>
                                 <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
                             </div>
-                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">Customize</a>
+                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">${data[i].isEditorEnabled ? "Customize" : "Order Now"}</a>
                         </a>
                     </div>`)
                 }
@@ -751,8 +753,10 @@ function updateCartUI() {
         quantityControls.style.display = 'flex';
         quantityDisplay.textContent = cartQuantity;
         priceDisplay.textContent = (payablePrice * cartQuantity).toFixed(2);
-        selectDesignMethod.classList.remove("d-none")
-        selectDesignMethod.classList.add("d-flex")
+        if (product.isEditorEnabled) {
+            selectDesignMethod.classList.remove("d-none")
+            selectDesignMethod.classList.add("d-flex")
+        }
     } else {
         addBtn.classList.remove("d-none")
         quantityControls.style.display = 'none';
@@ -847,7 +851,7 @@ document.getElementById("artworkFile").addEventListener("change", async function
     showTemplatePreview(null); // Hide existing preview
 
     try {
-        const uploadResult = await uploadPSD(file)
+        const uploadResult = await uploadArtwork(file)
         if (!uploadResult) {
             throw new Error("Failed to upload artwork file.")
         }
@@ -877,36 +881,117 @@ document.getElementById("artworkFile").addEventListener("change", async function
 
 let uploadedTemplateResult = null
 
+// function showTemplatePreview(uploadResult) {
+//     const wrapper = document.getElementById('templatePreviewWrapper');
+//     const image = document.getElementById('templatePreviewImage');
+//     const uploadArtworkStartEditingBtn = document.getElementById('uploadArtworkStartEditing');
+
+//     if (uploadResult) {
+//         let {
+//             mediaType,
+//             name,
+//             size,
+//             url,
+//             previewUrl
+//         } = uploadResult
+//         uploadedTemplateResult = uploadResult
+
+//         if ((previewUrl ?? "").trim() === "") {
+//             previewUrl = `${BASE_URL}images/no-preview-available.jpg`
+//         }
+
+//         image.src = previewUrl;
+//         uploadedTemplatePreviewUrl = previewUrl
+//         wrapper.classList.remove('d-none');
+//         uploadArtworkStartEditingBtn.classList.remove("d-none")
+
+//         return
+//     }
+
+//     uploadedTemplateResult = null
+//     wrapper.classList.add('d-none');
+//     uploadArtworkStartEditingBtn.classList.add("d-none")
+//     image.src = '';
+// }
 function showTemplatePreview(uploadResult) {
     const wrapper = document.getElementById('templatePreviewWrapper');
     const image = document.getElementById('templatePreviewImage');
     const uploadArtworkStartEditingBtn = document.getElementById('uploadArtworkStartEditing');
 
     if (uploadResult) {
-        let {
-            mediaType,
-            name,
-            size,
-            url,
-            previewUrl
-        } = uploadResult
-        uploadedTemplateResult = uploadResult
+        const { mediaType, url, previewUrl } = uploadResult;
+        uploadedTemplateResult = uploadResult;
 
-        if ((previewUrl ?? "").trim() === "") {
-            previewUrl = `${BASE_URL}images/no-preview-available.jpg`
+        let displayPreviewUrl = previewUrl || `${BASE_URL}images/no-preview-available.jpg`;
+
+        const isImage =
+            mediaType.startsWith("image/") &&
+            ![
+                "image/vnd.adobe.photoshop",
+                "image/x-eps",
+                "image/x-coreldraw"
+            ].includes(mediaType);
+
+        const isVideo = mediaType.startsWith("video/");
+        const isPDF = mediaType === "application/pdf";
+
+        // Clean previous preview
+        wrapper.innerHTML = '';
+
+        if (isImage) {
+            // Image preview
+            const img = document.createElement('img');
+            img.src = displayPreviewUrl;
+            img.alt = "Template Preview";
+            img.className = "img-fluid border rounded";
+            img.style.maxHeight = "300px";
+            wrapper.appendChild(img);
+
+        } else if (isVideo) {
+            // Video preview
+            const video = document.createElement('video');
+            video.src = url;
+            video.controls = true;
+            video.className = "img-fluid border rounded";
+            video.style.maxHeight = "300px";
+            wrapper.appendChild(video);
+
+        } else if (isPDF) {
+            // PDF preview using Google Docs Viewer
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://docs.google.com/gview?url=${encodeURIComponent(url)}&embedded=true`;
+            iframe.width = "100%";
+            iframe.height = "300";
+            iframe.frameBorder = "0";
+            wrapper.appendChild(iframe);
+
+        } else if (previewUrl && previewUrl !== `${BASE_URL}images/no-preview-available.jpg`) {
+            // For design files converted to preview PNG by backend
+            const img = document.createElement('img');
+            img.src = displayPreviewUrl;
+            img.alt = "Template Preview";
+            img.className = "img-fluid border rounded";
+            img.style.maxHeight = "300px";
+            wrapper.appendChild(img);
+
+        } else {
+            // Fallback image
+            const img = document.createElement('img');
+            img.src = `${BASE_URL}images/no-preview-available.jpg`;
+            img.alt = "Template Preview";
+            img.className = "img-fluid border rounded";
+            img.style.maxHeight = "300px";
+            wrapper.appendChild(img);
         }
 
-        image.src = previewUrl;
-        uploadedTemplatePreviewUrl = previewUrl
         wrapper.classList.remove('d-none');
-        uploadArtworkStartEditingBtn.classList.remove("d-none")
-
-        return
+        uploadArtworkStartEditingBtn?.classList?.remove("d-none");
+        return;
     }
 
-    uploadedTemplateResult = null
+    uploadedTemplateResult = null;
     wrapper.classList.add('d-none');
-    uploadArtworkStartEditingBtn.classList.add("d-none")
+    uploadArtworkStartEditingBtn?.classList?.add("d-none");
     image.src = '';
 }
 

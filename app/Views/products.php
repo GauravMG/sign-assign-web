@@ -56,11 +56,6 @@
     input:checked+.slider::before {
         transform: translateX(26px);
     }
-
-    .list-action-container {
-        display: flex;
-        justify-content: space-around;
-    }
 </style>
 <?= $this->endSection(); ?>
 
@@ -83,6 +78,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Use Editor</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -92,6 +88,7 @@
                     <tfoot>
                         <tr>
                             <th>Name</th>
+                            <th>Use Editor</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -168,20 +165,52 @@
                             <td>${data[i].name ?? ""}</td>
                             <td>
                                 <label class="switch">
+                                    <input type="checkbox" class="toggle-editor-flag" data-product-id="${data[i].productId}" ${data[i].isEditorEnabled ? "checked" : ""}>
+                                    <span class="slider"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="switch">
                                     <input type="checkbox" class="toggle-status" data-product-id="${data[i].productId}" ${data[i].status ? "checked" : ""}>
                                     <span class="slider"></span>
                                 </label>
                             </td>
                             <td class="list-action-container">
-                                <span onclick="onClickUpdateProduct(${data[i].productId})"><i class="fa fa-edit view-icon"></i></span>
-                                <span onclick="onClickViewProduct(${data[i].productId})"><i class="fa fa-eye view-icon"></i></span>
-                                <span onclick="onClickDeleteProduct(${data[i].productId})"><i class="fa fa-trash view-icon"></i></span>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewProduct(${data[i].productId})">
+                                        <i class="fas fa-folder mr-1">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickUpdateProduct(${data[i].productId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm d-flex align-items-center" onclick="onClickDeleteProduct(${data[i].productId})">
+                                        <i class="fas fa-trash mr-1">
+                                        </i>
+                                        Delete
+                                    </a>
+                                </div>
                             </td>
                         </tr>`;
                     }
 
                     // Insert the generated table rows
                     document.getElementById("dataList").innerHTML = html;
+
+                    // Add event listeners to all toggle switches after rendering
+                    document.querySelectorAll(".toggle-editor-flag").forEach((toggle) => {
+                        toggle.addEventListener("change", function() {
+                            let productId = this.getAttribute("data-product-id");
+                            let newStatus = this.checked ? "active" : "inactive";
+
+                            console.log(`Product ID: ${productId}, New editor flag: ${newStatus}`);
+
+                            updateProductEditorFlag(productId, newStatus);
+                        });
+                    });
 
                     // Add event listeners to all toggle switches after rendering
                     document.querySelectorAll(".toggle-status").forEach((toggle) => {
@@ -195,10 +224,27 @@
                         });
                     });
 
-
                     initializeDTProductsList()
                 }
                 loader.hide()
+            }
+        })
+    }
+
+    async function updateProductEditorFlag(productId, isEditorEnabled) {
+        await postAPICall({
+            endPoint: "/product/update",
+            payload: JSON.stringify({
+                productId: Number(productId),
+                isEditorEnabled: isEditorEnabled === "inactive" ? false : true
+            }),
+            callbackSuccess: (response) => {
+                if (!response.success) {
+                    toastr.error(response.message)
+                    fetchProducts()
+                } else {
+                    toastr.success(`Editor ${isEditorEnabled === "inactive" ? "disabled" : "enabled"} for product successfully`)
+                }
             }
         })
     }

@@ -91,7 +91,7 @@
 <div class="why-choose-area py-5 my-5">
     <div class="container-fluid">
         <h3 class="text-center mb-2">Why choose sign assign?</h3>
-        <p class="text-center">At Sign Assign, we make it easy to bring your vision to life. With our user-friendly online design tool, you can create custom signs in just<br>minutes - no design experience needed! We combine top-quality materials, fast turnaround times, and competitive pricing to<br>deliver signs that make an impact.</p>
+        <p class="text-center">At Sign Assign, we make it easy to bring your vision to life. With our user-friendly online design tool, you can create custom signs in just >minutes - no design experience needed! We combine top-quality materials, fast turnaround times, and competitive pricing to deliver signs that make an impact.</p>
         <div class="flex-inner">
             <div class="left-area">
                 <div class="inner">

@@ -74,14 +74,14 @@
 
 .detail-page-area .product-detail-area .main-desc {
     background-color: #fff;
-    padding: 30px 50px;
+    padding: 20px;
     border-radius: 10px;
 }
 
 
 .detail-page-area .product-detail-area .add-to-cart-area {
     background-color: #fff;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
 }
 
@@ -126,7 +126,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-block: 2rem;
+    margin-block: 10px;
 }
 
 .detail-page-area .product-detail-area .main-desc .sku-details .review-area {

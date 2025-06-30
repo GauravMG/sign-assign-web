@@ -7,6 +7,34 @@ let cartQuantity = 1;
 let product = null
 
 $(document).ready(function () {
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get("data");
+
+    if (encoded) {
+        const decodedStr = atob(encoded);
+        const decodedParams = new URLSearchParams(decodedStr);
+
+        const selectedTemplateId = decodedParams.get("selectedTemplateId");
+        let dataObject = decodedParams.get("dataObject");
+        dataObject = typeof dataObject === "string" ? JSON.parse(dataObject) : dataObject
+
+        if (dataObject && Object.keys(dataObject).length) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            let cartItem = cart.find(item => item.productId === productId);
+            cartItem = {
+                ...cartItem,
+                templateId: selectedTemplateId,
+                design: { ...dataObject }
+            }
+
+            cart = cart.filter(item => item.productId !== productId);
+
+            cart.push(cartItem);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }
+
     $(".detail-page-area .owl-carousel").owlCarousel({
         loop: false,
         margin: 15,
@@ -719,7 +747,9 @@ function updateQuantity(change) {
         payablePriceByQuantity,
         payablePriceByQuantityAfterDiscount,
         rushHourDelivery: false,
-        rushHourDeliveryAmount: 0
+        rushHourDeliveryAmount: 0,
+        selectedTemplateId: null,
+        design: null
     };
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -881,38 +911,6 @@ document.getElementById("artworkFile").addEventListener("change", async function
 
 let uploadedTemplateResult = null
 
-// function showTemplatePreview(uploadResult) {
-//     const wrapper = document.getElementById('templatePreviewWrapper');
-//     const image = document.getElementById('templatePreviewImage');
-//     const uploadArtworkStartEditingBtn = document.getElementById('uploadArtworkStartEditing');
-
-//     if (uploadResult) {
-//         let {
-//             mediaType,
-//             name,
-//             size,
-//             url,
-//             previewUrl
-//         } = uploadResult
-//         uploadedTemplateResult = uploadResult
-
-//         if ((previewUrl ?? "").trim() === "") {
-//             previewUrl = `${BASE_URL}images/no-preview-available.jpg`
-//         }
-
-//         image.src = previewUrl;
-//         uploadedTemplatePreviewUrl = previewUrl
-//         wrapper.classList.remove('d-none');
-//         uploadArtworkStartEditingBtn.classList.remove("d-none")
-
-//         return
-//     }
-
-//     uploadedTemplateResult = null
-//     wrapper.classList.add('d-none');
-//     uploadArtworkStartEditingBtn.classList.add("d-none")
-//     image.src = '';
-// }
 function showTemplatePreview(uploadResult) {
     const wrapper = document.getElementById('templatePreviewWrapper');
     const image = document.getElementById('templatePreviewImage');
@@ -995,24 +993,39 @@ function showTemplatePreview(uploadResult) {
     image.src = '';
 }
 
-function redirectToEditorWithUploadedTemplate() {
-    const token = localStorage.getItem('jwtTokenUser');
+// function redirectToEditorWithUploadedTemplate() {
+//     const token = localStorage.getItem('jwtTokenUser');
 
-    const queryParams = `token=${token}&productId=${productId}&uploadedTemplateUrl=${uploadedTemplateResult?.url}&uploadedTemplatePreviewUrl=${uploadedTemplateResult?.previewUrl}`
+//     const queryParams = `token=${token}&productId=${productId}&uploadedTemplateUrl=${uploadedTemplateResult?.url}&uploadedTemplatePreviewUrl=${uploadedTemplateResult?.previewUrl}`
 
-    // Base64 encode
-    const encoded = btoa(queryParams) // browser-safe base64
+//     // Base64 encode
+//     const encoded = btoa(queryParams) // browser-safe base64
 
-    window.location.href = `${BASE_URL_EDITOR}/?data=${encoded}`
-}
+//     window.location.href = `${BASE_URL_EDITOR}/?data=${encoded}`
+// }
 
 function addUploadedTemplateToCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let cartItem = cart.find(item => item.productId === productId);
+    cartItem = {
+        ...cartItem,
+        templateId: null,
+        design: { ...uploadedTemplateResult }
+    }
+
+    cart = cart.filter(item => item.productId !== productId);
+
+    cart.push(cartItem);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    $("#uploadArtworkModal").modal("hide")
 }
 
 function redirectToEditorWithTemplate() {
     const token = localStorage.getItem('jwtTokenUser');
 
-    const queryParams = `token=${token}&productId=${productId}&selectedTemplateId=${selectedTemplate?.templateId}`
+    const queryParams = `token=${token}&productId=${productId}&selectedTemplateId=${selectedTemplate?.templateId}&returnUrl=${window.location.href}`
 
     // Base64 encode
     const encoded = btoa(queryParams) // browser-safe base64

@@ -441,8 +441,8 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <button type="button" class="btn btn-success d-none" id="uploadArtworkStartEditing" onclick="redirectToEditorWithUploadedTemplate()">Start Editing</button>
-                        <!-- <button type="button" class="btn btn-success d-none" id="uploadArtworkStartEditing" onclick="addUploadedTemplateToCart()">Add to cart</button> -->
+                        <!-- <button type="button" class="btn btn-success d-none" id="uploadArtworkStartEditing" onclick="redirectToEditorWithUploadedTemplate()">Start Editing</button> -->
+                        <button type="button" class="btn btn-success d-none" id="uploadArtworkStartEditing" onclick="addUploadedTemplateToCart()">Add to cart</button>
                     </div>
                 </form>
 

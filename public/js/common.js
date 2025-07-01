@@ -26,6 +26,15 @@ function redirectToUserDashboard() {
 }
 
 $(document).ready(function () {
+    if (!getCookie("cookiesAccepted")) {
+        document.getElementById("cookieConsent").classList.add("show");
+    }
+
+    document.getElementById("acceptCookies").addEventListener("click", function () {
+        setCookie("cookiesAccepted", "true", 365);
+        document.getElementById("cookieConsent").classList.remove("show");
+    });
+
     const searchInput = document.getElementById('navbar-search');
     const searchButton = document.getElementById('search-button');
 
@@ -112,6 +121,20 @@ $(document).ready(function () {
         window._resizeTimer = setTimeout(renderCategories, 100);
     });
 });
+
+// Helper to set cookie
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
+}
+
+// Helper to get cookie
+function getCookie(name) {
+    return document.cookie.split("; ").reduce((r, v) => {
+        const parts = v.split("=");
+        return parts[0] === name ? decodeURIComponent(parts[1]) : r
+    }, "");
+}
 
 function createCategoryItem(category) {
     const li = document.createElement('li');

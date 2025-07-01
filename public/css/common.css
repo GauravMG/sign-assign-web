@@ -680,3 +680,54 @@ span.text-green {
         border-radius: 0;
     }
 }
+
+.cookie-consent {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: #452e73;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    max-width: 600px;
+    margin: auto;
+}
+
+.cookie-consent.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cookie-consent p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.cookie-consent a {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+.cookie-consent button {
+    background: #ffd700;
+    color: #452e73;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cookie-consent button:hover {
+    background: #fff;
+    color: #452e73;
+}

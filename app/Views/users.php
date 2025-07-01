@@ -56,17 +56,12 @@
     input:checked+.slider::before {
         transform: translateX(26px);
     }
-
-    .list-action-container {
-        display: flex;
-        justify-content: space-around;
-    }
 </style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('headerButtons'); ?>
 <!-- <div class="col-md-5 offset-md-7" id="addUserButtonContainer">
-    <a href="/admin/users/add"><button type="button" class="btn btn-dark">Add New User</button></a>
+    <a href="/admin/customers/add"><button type="button" class="btn btn-dark">Add New Customer</button></a>
 </div> -->
 <?= $this->endSection(); ?>
 
@@ -75,7 +70,7 @@
     <div class="col-12">
         <div class="card card-dark">
             <div class="card-header">
-                <h3 class="card-title">All Users</h3>
+                <h3 class="card-title">All Customers</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -163,23 +158,35 @@
             }),
             callbackComplete: () => {},
             callbackSuccess: (response) => {
-                if (response.success) {
+                const {success, message, data} = response
+
+                if (success) {
                     var html = ""
 
-                    for (let i = 0; i < response.data?.length; i++) {
+                    for (let user of data) {
                         html += `<tr>
-                            <td>${response.data[i].fullName ?? ""}</td>
-                            <td>${response.data[i].email}</td>
-                            <td>${formatDate(response.data[i].createdAt)}</td>
+                            <td>${user.fullName ?? ""}</td>
+                            <td>${user.email}</td>
+                            <td>${formatDate(user.createdAt)}</td>
                             <td>
                                 <label class="switch">
-                                    <input type="checkbox" class="toggle-status" data-user-id="${response.data[i].userId}" ${response.data[i].status ? "checked" : ""}>
+                                    <input type="checkbox" class="toggle-status" data-user-id="${user.userId}" ${user.status ? "checked" : ""}>
                                     <span class="slider"></span>
                                 </label>
                             </td>
-                            <td class="list-action-container">
-                                <span onclick="onClickUpdateUser(${response.data[i].userId})"><i class="fa fa-edit view-icon"></i></span>
-                                <span onclick="onClickViewUser(${response.data[i].userId})"><i class="fa fa-eye view-icon"></i></span>
+                            <td>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewUser(${user.userId})">
+                                        <i class="fas fa-folder mr-1">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickUpdateUser(${user.userId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Edit
+                                    </a>
+                                </div>
                             </td>
                         </tr>`;
                     }
@@ -226,11 +233,11 @@
     }
 
     function onClickUpdateUser(userId) {
-        window.location.href = `/admin/users/update/${userId}`
+        window.location.href = `/admin/customers/update/${userId}`
     }
 
     function onClickViewUser(userId) {
-        window.location.href = `/admin/users/${userId}`
+        window.location.href = `/admin/customers/${userId}`
     }
 </script>
 <?= $this->endSection(); ?>

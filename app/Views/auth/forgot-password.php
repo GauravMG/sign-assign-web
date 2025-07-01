@@ -167,7 +167,7 @@
             }
             setTimeout(() => {
                 if ([1, 5].indexOf(parseInt(userData.roleId)) >= 0) {
-                    window.location.href = "/admin/users"
+                    window.location.href = "/admin/orders"
                 }
             }, [1000])
         }

@@ -40,3 +40,40 @@ function validateDecimal(input) {
         input.value = value.slice(0, -1);
     }
 }
+
+function parseSize(sizeStr) {
+    // Normalize smart quotes and remove extra details
+    sizeStr = sizeStr
+        .replace(/[”"]/g, '"')
+        .replace(/[’']/g, "'")
+        .split(",")[0] // only consider the first part if there is extra text
+        .trim();
+
+    const inchRegex = /(\d+)\s*["]\s*[xX]\s*(\d+)\s*["]/;
+    const footRegex = /(\d+)\s*[']\s*[xX]\s*(\d+)\s*[']/;
+    const genericRegex = /(\d+)\s*[xX]\s*(\d+)/;
+
+    let match;
+    if ((match = sizeStr.match(inchRegex))) {
+        return {
+            width: parseInt(match[1], 10),
+            height: parseInt(match[2], 10),
+            unit: "in"
+        };
+    } else if ((match = sizeStr.match(footRegex))) {
+        return {
+            width: parseInt(match[1], 10),
+            height: parseInt(match[2], 10),
+            unit: "ft"
+        };
+    } else if ((match = sizeStr.match(genericRegex))) {
+        // If no units are provided, assume inches
+        return {
+            width: parseInt(match[1], 10),
+            height: parseInt(match[2], 10),
+            unit: "in"
+        };
+    } else {
+        return null; // invalid or unrecognized format
+    }
+}  

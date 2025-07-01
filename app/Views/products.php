@@ -175,7 +175,7 @@
                                     <span class="slider"></span>
                                 </label>
                             </td>
-                            <td class="list-action-container">
+                            <td>
                                 <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
                                     <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewProduct(${data[i].productId})">
                                         <i class="fas fa-folder mr-1">

@@ -5,6 +5,7 @@ let totalDiscount = 0
 let payablePrice = 0
 let cartQuantity = 1;
 let product = null
+let selectedSize = null
 
 $(document).ready(function () {
     const params = new URLSearchParams(window.location.search);
@@ -46,6 +47,56 @@ $(document).ready(function () {
     });
 
     fetchProducts()
+
+    const uploadModal = document.getElementById('uploadArtworkModal');
+
+    uploadModal.addEventListener('hidden.bs.modal', function () {
+        // Clear file input
+        const fileInput = document.getElementById('artworkFile');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+
+        // Hide preview wrapper
+        const previewWrapper = document.getElementById('templatePreviewWrapper');
+        if (previewWrapper) {
+            previewWrapper.classList.add('d-none');
+        }
+
+        // Clear preview image
+        const previewImage = document.getElementById('templatePreviewImage');
+        if (previewImage) {
+            previewImage.src = '';
+        }
+
+        // Hide "Add to cart" button
+        const addToCartBtn = document.getElementById('uploadArtworkStartEditing');
+        if (addToCartBtn) {
+            addToCartBtn.classList.add('d-none');
+        }
+    });
+
+    const selectTemplateModal = document.getElementById('selectEditorTemplateModal');
+
+    selectTemplateModal.addEventListener('hidden.bs.modal', function () {
+        // Clear preview image
+        const previewImage = document.getElementById('selectedTemplatePreview');
+        if (previewImage) {
+            previewImage.src = '';
+        }
+
+        // Hide Start Editing button
+        const startEditingBtn = document.getElementById('startEditingBtn');
+        if (startEditingBtn) {
+            startEditingBtn.classList.add('d-none');
+        }
+
+        // Optionally clear the template list
+        const templateList = document.getElementById('templateCardList');
+        if (templateList) {
+            templateList.innerHTML = '';
+        }
+    });
 })
 
 function reloadOwlCarousel($carousel, items) {
@@ -241,17 +292,14 @@ async function fetchProducts() {
 
                 Object.entries(groupedAttributes).forEach(([groupName, items]) => {
                     const groupDiv = document.createElement('div');
-                    groupDiv.classList.add('attribute-group');
-                    groupDiv.classList.add('main-desc');
-                    groupDiv.classList.add('mt-2');
-                    groupDiv.classList.add('p-4');
+                    groupDiv.classList.add('attribute-group', 'main-desc', 'mt-2', 'p-4');
 
                     // Header
                     const header = document.createElement('h5');
                     header.textContent = groupName;
                     groupDiv.appendChild(header);
 
-                    // Option cards
+                    // Option cards container
                     const optionWrapper = document.createElement('div');
                     optionWrapper.classList.add('option-wrapper');
                     optionWrapper.style.display = 'flex';
@@ -270,51 +318,71 @@ async function fetchProducts() {
                         card.style.marginRight = '10px';
                         card.style.minWidth = '100px';
                         card.style.textAlign = 'center';
+                        card.style.display = 'flex';
+                        card.style.flexDirection = 'column';
+                        card.style.alignItems = 'center';
 
-                        // Value
-                        const valueEl = document.createElement('div');
+                        if (groupName.toLowerCase() === "color") {
+                            // Create color swatch
+                            const swatch = document.createElement('div');
+                            swatch.style.width = '30px';
+                            swatch.style.height = '30px';
+                            swatch.style.borderRadius = '50%';
+                            swatch.style.backgroundColor = item.value;
+                            swatch.style.border = '1px solid #999';
+                            swatch.style.marginBottom = '6px';
 
-                        let displayValue = item.value;
-                        try {
-                            const parsedValue = JSON.parse(item.value);
-                            if (typeof parsedValue === 'object' && parsedValue !== null) {
-                                const parts = [];
-                                if (parsedValue.width) parts.push(`Width: ${parsedValue.width}`);
-                                if (parsedValue.height) parts.push(`Height: ${parsedValue.height}`);
-                                displayValue = parts.join(', ');
+                            card.appendChild(swatch);
+
+                            // Color name as label under swatch
+                            const label = document.createElement('div');
+                            label.textContent = item.value;
+                            label.style.fontSize = '12px';
+                            label.style.color = '#333';
+                            card.appendChild(label);
+
+                        } else {
+                            // Value
+                            const valueEl = document.createElement('div');
+
+                            let displayValue = item.value;
+                            try {
+                                const parsedValue = JSON.parse(item.value);
+                                if (typeof parsedValue === 'object' && parsedValue !== null) {
+                                    const parts = [];
+                                    if (parsedValue.width) parts.push(`Width: ${parsedValue.width}`);
+                                    if (parsedValue.height) parts.push(`Height: ${parsedValue.height}`);
+                                    displayValue = parts.join(', ');
+                                }
+                            } catch (e) {
+                                displayValue = item.value;
                             }
-                        } catch (e) {
-                            // fallback: show as is if parsing fails
-                            displayValue = item.value;
+                            valueEl.textContent = displayValue;
+                            valueEl.style.fontWeight = 'bold';
+                            card.appendChild(valueEl);
                         }
-                        valueEl.textContent = displayValue;
 
-                        valueEl.style.fontWeight = 'bold';
-
-                        // Additional price
+                        // Additional price (applies to all attributes)
                         const priceEl = document.createElement('div');
                         priceEl.textContent = item.additionalPrice && item.additionalPrice !== "0" ? `+ $${item.additionalPrice}` : '';
                         priceEl.style.fontSize = '12px';
                         priceEl.style.color = '#777';
 
-                        card.appendChild(valueEl);
                         card.appendChild(priceEl);
 
                         card.addEventListener('click', () => {
-                            // 1. Visual selection update
                             optionWrapper.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
                             card.classList.add('selected');
 
-                            // 2. Remove previous selection from this group in selectedAttributes
                             selectedAttributes = selectedAttributes.filter(attr => attr.productAttributeId !== item.productAttributeId);
-
-                            // 3. Add newly selected item
                             selectedAttributes.push(item);
 
-                            // 4. Recalculate totalSelectedAttributePrice
+                            if (item.attribute?.name?.toLowerCase() === "size") {
+                                selectedSize = parseSize(item.value)
+                            }
+
                             totalSelectedAttributePrice = selectedAttributes.reduce((sum, attr) => {
                                 const price = parseFloat(attr.additionalPrice) || 0;
-                                // Convert to cents, sum, then convert back to dollars
                                 return sum + Math.round(price * 100);
                             }, 0) / 100;
                             calculatePayablePrice()
@@ -326,6 +394,98 @@ async function fetchProducts() {
                     groupDiv.appendChild(optionWrapper);
                     container.appendChild(groupDiv);
                 });
+
+                // Object.entries(groupedAttributes).forEach(([groupName, items]) => {
+                //     const groupDiv = document.createElement('div');
+                //     groupDiv.classList.add('attribute-group');
+                //     groupDiv.classList.add('main-desc');
+                //     groupDiv.classList.add('mt-2');
+                //     groupDiv.classList.add('p-4');
+
+                //     // Header
+                //     const header = document.createElement('h5');
+                //     header.textContent = groupName;
+                //     groupDiv.appendChild(header);
+
+                //     // Option cards
+                //     const optionWrapper = document.createElement('div');
+                //     optionWrapper.classList.add('option-wrapper');
+                //     optionWrapper.style.display = 'flex';
+                //     optionWrapper.style.flexWrap = 'wrap';
+                //     optionWrapper.style.gap = '10px';
+
+                //     items.forEach((item) => {
+                //         const card = document.createElement('div');
+                //         card.classList.add('option-card');
+                //         card.style.border = '1px solid #ccc';
+                //         card.style.borderRadius = '6px';
+                //         card.style.padding = '8px 12px';
+                //         card.style.cursor = 'pointer';
+                //         card.style.userSelect = 'none';
+                //         card.style.transition = 'all 0.3s';
+                //         card.style.marginRight = '10px';
+                //         card.style.minWidth = '100px';
+                //         card.style.textAlign = 'center';
+
+                //         // Value
+                //         const valueEl = document.createElement('div');
+
+                //         let displayValue = item.value;
+                //         try {
+                //             const parsedValue = JSON.parse(item.value);
+                //             if (typeof parsedValue === 'object' && parsedValue !== null) {
+                //                 const parts = [];
+                //                 if (parsedValue.width) parts.push(`Width: ${parsedValue.width}`);
+                //                 if (parsedValue.height) parts.push(`Height: ${parsedValue.height}`);
+                //                 displayValue = parts.join(', ');
+                //             }
+                //         } catch (e) {
+                //             // fallback: show as is if parsing fails
+                //             displayValue = item.value;
+                //         }
+                //         valueEl.textContent = displayValue;
+
+                //         valueEl.style.fontWeight = 'bold';
+
+                //         // Additional price
+                //         const priceEl = document.createElement('div');
+                //         priceEl.textContent = item.additionalPrice && item.additionalPrice !== "0" ? `+ $${item.additionalPrice}` : '';
+                //         priceEl.style.fontSize = '12px';
+                //         priceEl.style.color = '#777';
+
+                //         card.appendChild(valueEl);
+                //         card.appendChild(priceEl);
+
+                //         card.addEventListener('click', () => {
+                //             // 1. Visual selection update
+                //             optionWrapper.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+                //             card.classList.add('selected');
+
+                //             // 2. Remove previous selection from this group in selectedAttributes
+                //             selectedAttributes = selectedAttributes.filter(attr => attr.productAttributeId !== item.productAttributeId);
+
+                //             // 3. Add newly selected item
+                //             selectedAttributes.push(item);
+
+                //             if (item.attribute?.name?.toLowerCase() === "size") {
+                //                 selectedSize = parseSize(item.value)
+                //             }
+
+                //             // 4. Recalculate totalSelectedAttributePrice
+                //             totalSelectedAttributePrice = selectedAttributes.reduce((sum, attr) => {
+                //                 const price = parseFloat(attr.additionalPrice) || 0;
+                //                 // Convert to cents, sum, then convert back to dollars
+                //                 return sum + Math.round(price * 100);
+                //             }, 0) / 100;
+                //             calculatePayablePrice()
+                //         });
+
+                //         optionWrapper.appendChild(card);
+                //     });
+
+                //     groupDiv.appendChild(optionWrapper);
+                //     container.appendChild(groupDiv);
+                // });
 
                 // Insert container after .main-desc
                 // mainDesc.parentNode.insertBefore(container, mainDesc.nextSibling);
@@ -871,6 +1031,29 @@ function selectTemplate(templateId, mediaUrl, previewUrl) {
 }
 
 document.getElementById("artworkFile").addEventListener("change", async function (event) {
+    if (!selectedSize) {
+        showAlert({
+            type: 'info',
+            title: 'Please select a size',
+            text: 'Please select a size for product before uploading your artwork.',
+            showCancel: true,
+            onConfirm: () => $("#uploadArtworkModal").modal("hide"),
+        });
+        return;
+    }
+
+    if (!Object.keys(selectedSize).length) {
+        showAlert({
+            type: 'info',
+            title: 'Please select a size',
+            text: 'Please select a size for product before uploading your artwork.',
+            showCancel: true,
+            confirmText: 'Ok',
+            onConfirm: () => $("#uploadArtworkModal").modal("hide"),
+        });
+        return;
+    }
+
     const file = event.target.files[0];
     if (!file) return;
 
@@ -1023,12 +1206,39 @@ function addUploadedTemplateToCart() {
 }
 
 function redirectToEditorWithTemplate() {
+    if (!selectedSize) {
+        showAlert({
+            type: 'info',
+            title: 'Please select a size',
+            text: 'Please select a size for product to start editing. This will help us customize the editor accordingly for best performance.',
+            showCancel: true,
+            onConfirm: () => $("#selectEditorTemplateModal").modal("hide"),
+        });
+        return;
+    }
+
+    if (!Object.keys(selectedSize).length) {
+        showAlert({
+            type: 'info',
+            title: 'Please select a size',
+            text: 'Please select a size for product to start editing. This will help us customize the editor accordingly for best performance.',
+            showCancel: true,
+            confirmText: 'Ok',
+            onConfirm: () => $("#selectEditorTemplateModal").modal("hide"),
+        });
+        return;
+    }
+
     const token = localStorage.getItem('jwtTokenUser');
 
-    const queryParams = `token=${token}&productId=${productId}&selectedTemplateId=${selectedTemplate?.templateId}&returnUrl=${window.location.href}`
+    const params = new URLSearchParams();
+    params.set("token", token);
+    params.set("productId", productId);
+    params.set("selectedTemplateId", selectedTemplate?.templateId);
+    params.set("selectedSize", JSON.stringify(selectedSize));
+    params.set("returnUrl", window.location.href);
 
-    // Base64 encode
-    const encoded = btoa(queryParams) // browser-safe base64
+    const encoded = btoa(params.toString());
 
     window.location.href = `${BASE_URL_EDITOR}/?data=${encoded}`
 }

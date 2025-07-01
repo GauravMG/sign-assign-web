@@ -12,9 +12,9 @@
         <div class="card card-dark">
             <div class="card-header">
                 <h3 class="card-title"><?php if (isset($data["userId"])) {
-                                            echo "Edit User";
+                                            echo "Edit Customer";
                                         } else {
-                                            echo "Add New User";
+                                            echo "Add New Customer";
                                         } ?></h3>
             </div>
             <!-- /.card-header -->
@@ -45,7 +45,7 @@
                                                                                         echo "Update";
                                                                                     } else {
                                                                                         echo "Create";
-                                                                                    } ?> User</button>
+                                                                                    } ?> Customer</button>
                                     </div>
                                 </form>
                             </div>
@@ -161,7 +161,7 @@
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/admin/users";
+                                window.location.href = "/admin/customers";
                             }
                         }
                     })
@@ -176,7 +176,7 @@
                         callbackSuccess: (response) => {
                             if (response.success) {
                                 toastr.success(response.message);
-                                window.location.href = "/admin/users";
+                                window.location.href = "/admin/customers";
                             }
                         }
                     })

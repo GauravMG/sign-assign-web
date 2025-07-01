@@ -138,11 +138,11 @@
                             href="#discount-list" role="tab"
                             aria-controls="discount-list" aria-selected="false">Discounts</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="rush-hour-rate-list-tab" data-toggle="pill"
                             href="#rush-hour-rate-list" role="tab"
                             aria-controls="rush-hour-rate-list" aria-selected="false">Rush Hour Rate</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="card-body">
@@ -1574,7 +1574,7 @@
                             console.log(`FAQ ID: ${faqId}, New Status: ${newStatus}`);
 
                             // Call API to update status
-                            updateVariantStatus(faqId, newStatus);
+                            updateFAQStatus(faqId, newStatus);
                         });
                     });
 

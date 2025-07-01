@@ -6,7 +6,7 @@ class AdminController extends BaseController
 {
     public function index(): string
     {
-        return $this->users();
+        return $this->orders();
     }
 
     public function staff(): string
@@ -55,31 +55,31 @@ class AdminController extends BaseController
         return view('view-staff', $data);
     }
 
-    public function users(): string
+    public function customers(): string
     {
         $data = [
-            'title' => 'Users',
-            'page_heading' => 'Users'
+            'title' => 'Customers',
+            'page_heading' => 'Customers'
         ];
 
         return view('users', $data);
     }
 
-    public function addUser(): string
+    public function addCustomer(): string
     {
         $data = [
-            'title' => 'Add User',
-            'page_heading' => 'Add User'
+            'title' => 'Add Customer',
+            'page_heading' => 'Add Customer'
         ];
 
         return view('add-user', $data);
     }
 
-    public function updateUser($userId): string
+    public function updateCustomer($userId): string
     {
         $data = [
-            'title' => 'Update User',
-            'page_heading' => 'Update User',
+            'title' => 'Update Customer',
+            'page_heading' => 'Update Customer',
             'data' => [
                 'userId' => $userId
             ]
@@ -88,11 +88,11 @@ class AdminController extends BaseController
         return view('add-user', $data);
     }
 
-    public function viewUser($userId): string
+    public function viewCustomer($userId): string
     {
         $data = [
-            'title' => 'User Details',
-            'page_heading' => 'User Details',
+            'title' => 'Customer Details',
+            'page_heading' => 'Customer Details',
             'data' => [
                 'userId' => $userId
             ]

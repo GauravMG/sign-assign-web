@@ -12,10 +12,10 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
-                    <a href="/admin/users" class="nav-link">
+                    <a href="/admin/customers" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Users
+                            Customers
                         </p>
                     </a>
                 </li>

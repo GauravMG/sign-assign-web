@@ -49,10 +49,10 @@ $routes->get('/admin/staff/add', 'AdminController::addStaff');
 $routes->get('/admin/staff/(:any)', 'AdminController::viewStaff/$1');
 $routes->get('/admin/staff', 'AdminController::staff');
 
-$routes->get('/admin/users/update/(:any)', 'AdminController::updateUser/$1');
-$routes->get('/admin/users/add', 'AdminController::addUser');
-$routes->get('/admin/users/(:any)', 'AdminController::viewUser/$1');
-$routes->get('/admin/users', 'AdminController::users');
+$routes->get('/admin/customers/update/(:any)', 'AdminController::updateCustomer/$1');
+$routes->get('/admin/customers/add', 'AdminController::addCustomer');
+$routes->get('/admin/customers/(:any)', 'AdminController::viewCustomer/$1');
+$routes->get('/admin/customers', 'AdminController::customers');
 
 $routes->get('/admin/forgot-password', 'AuthController::forgotPassword');
 // $routes->get('/admin/register', 'AuthController::register');

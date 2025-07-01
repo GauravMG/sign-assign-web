@@ -143,7 +143,7 @@
             }
             setTimeout(() => {
                 if ([1, 5].indexOf(parseInt(userData.roleId)) >= 0) {
-                    window.location.href = "/admin/users"
+                    window.location.href = "/admin/orders"
                 }
             }, [1000])
         }
@@ -205,7 +205,7 @@
 
                             setTimeout(() => {
                                 if ([1, 5].indexOf(parseInt(data.roleId)) >= 0) {
-                                    window.location.href = "/admin/users"
+                                    window.location.href = "/admin/orders"
                                 } else {
                                     window.location.href = "/"
                                 }

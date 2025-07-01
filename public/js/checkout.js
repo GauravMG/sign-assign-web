@@ -119,7 +119,7 @@ function renderCartItems() {
                     <input type="checkbox" class="rush-hour-toggle" data-product-id="${product.productId}" ${cartItem.rushHourDelivery ? "checked" : ""}>
                     <span class="slider"></span>
                 </label>
-                <span>Rush Hour Delivery <span>(${Number(cartItem.rushHourDeliveryAmount) > 0 ? `$${cartItem.rushHourDeliveryAmount} ` : ""}extra charges apply*)</span></span>
+                <span>Rush Charge <span>(${Number(cartItem.rushHourDeliveryAmount) > 0 ? `$${cartItem.rushHourDeliveryAmount} ` : ""}extra charges apply*)</span></span>
             </div>` : ""}
             <div class="inner">
                 <div class="left-area">
@@ -179,14 +179,14 @@ function renderCartItems() {
         totalRushHourDeliveryAmount += Number(cartItem.rushHourDeliveryAmount)
     })
 
-    // Initialize rush hour toggles
+    // Initialize rush charge toggles
     document.querySelectorAll('.rush-hour-toggle').forEach(toggle => {
         // Add event listener to each toggle
         toggle.addEventListener('change', function () {
             const productId = this.dataset.productId;
             const isRushHour = this.checked;
 
-            // Store or process the rush hour selection for this product
+            // Store or process the rush charge selection for this product
             handleRushHourSelection(productId, isRushHour);
         });
     });
@@ -298,7 +298,7 @@ function changeQuantity(productId, changeType) {
     fetchProducts();
 }
 
-// Function to handle rush hour selection
+// Function to handle rush charge selection
 function handleRushHourSelection(productId, isSelected) {
     cart = cart.map((cartItem) => {
         if (Number(productId) === Number(cartItem.productId)) {

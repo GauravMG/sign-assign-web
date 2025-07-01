@@ -126,9 +126,9 @@
                         </div>
                         <div>|</div> -->
                         <p>SKU: <span id="productSku"></span></p>
-                        <div>
+                        <!-- <div>
                             <span><i class="fa-solid fa-share-nodes"></i></span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="change-address-area">
                         <p>

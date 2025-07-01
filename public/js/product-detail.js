@@ -292,7 +292,7 @@ async function fetchProducts() {
 
                 Object.entries(groupedAttributes).forEach(([groupName, items]) => {
                     const groupDiv = document.createElement('div');
-                    groupDiv.classList.add('attribute-group', 'main-desc', 'mt-2', 'p-4');
+                    groupDiv.classList.add('attribute-group', 'main-desc', 'mt-2');
 
                     // Header
                     const header = document.createElement('h5');
@@ -302,9 +302,9 @@ async function fetchProducts() {
                     // Option cards container
                     const optionWrapper = document.createElement('div');
                     optionWrapper.classList.add('option-wrapper');
-                    optionWrapper.style.display = 'flex';
-                    optionWrapper.style.flexWrap = 'wrap';
-                    optionWrapper.style.gap = '10px';
+                    // optionWrapper.style.display = 'flex';
+                    // optionWrapper.style.flexWrap = 'wrap';
+                    // optionWrapper.style.gap = '0px';
 
                     items.forEach((item) => {
                         const card = document.createElement('div');
@@ -324,13 +324,17 @@ async function fetchProducts() {
 
                         if (groupName.toLowerCase() === "color") {
                             // Create color swatch
+                            // const swatch = document.createElement('div');
+                            // swatch.style.width = '30px';
+                            // swatch.style.height = '30px';
+                            // swatch.style.borderRadius = '50%';
+                            // swatch.style.backgroundColor = item.value;
+                            // swatch.style.border = '1px solid #999';
+                            // swatch.style.marginBottom = '6px';
                             const swatch = document.createElement('div');
-                            swatch.style.width = '30px';
-                            swatch.style.height = '30px';
-                            swatch.style.borderRadius = '50%';
+                            swatch.classList.add('color-swatch');
                             swatch.style.backgroundColor = item.value;
-                            swatch.style.border = '1px solid #999';
-                            swatch.style.marginBottom = '6px';
+                            card.appendChild(swatch);
 
                             card.appendChild(swatch);
 

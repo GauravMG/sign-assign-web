@@ -98,7 +98,7 @@
                     </li>
                 </ul>
             </div> -->
-            
+
             <!-- <div class="footer-col">
                 <h5>Find What You Need, Faster</h5>
                 <ul>
@@ -203,6 +203,10 @@
                     </div>
 
                     <div class="right-area" id="registerFormContainer">
+                        <img
+                            src="<?= base_url(); ?>images/logo.png?t=1751405902"
+                            alt="Brand Logo"
+                            class="signup-logo mb-3" />
                         <form>
                             <div class="form-group">
                                 <div class="flex-inner">
@@ -264,6 +268,12 @@
                                     Email. You can opt out anytime you wish to.
                                 </label>
                             </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="policyAgreement" name="policyAgreement">
+                                <label class="agreement-check-label" for="policyAgreement">
+                                    I agree to the <a href="/terms-of-use" target="_blank">Terms of Use</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+                                </label>
+                            </div>
                             <div class="form-group mt-3">
                                 <a onclick="register()" class="submit-btn">Create Account</a>
                             </div>
@@ -288,7 +298,6 @@
                         </div> -->
 
                         <p>Already have an account? <a onclick="onClickOpenModalLogin()">Log in</a></p>
-                        <p>Read Our <a href="#">Terms And Conditions</a> And <a href="#">Privacy Policy</a></p>
                     </div>
 
                     <div class="right-area" id="verifyAndSetPasswordContainer" style="display: none;">
@@ -329,6 +338,10 @@
                         </p>
                     </div>
                     <div class="right-area">
+                        <img
+                            src="<?= base_url(); ?>images/logo.png?t=1751405902"
+                            alt="Brand Logo"
+                            class="login-logo mb-3" />
                         <form onsubmit="return false;">
                             <div class="form-group">
                                 <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Email Address">
@@ -388,6 +401,10 @@
                     </div>
 
                     <div class="right-area" id="forgotPasswordRequestContainer">
+                        <img
+                            src="<?= base_url(); ?>images/logo.png?t=1751405902"
+                            alt="Brand Logo"
+                            class="auth-logo mb-3" />
                         <form>
                             <div class="form-group">
                                 <input type="email" class="form-control" id="forgotEmail" name="forgotEmail" placeholder="Enter your Email">
@@ -400,6 +417,10 @@
                     </div>
 
                     <div class="right-area" id="forgotPasswordVerifyContainer" style="display: none;">
+                        <img
+                            src="<?= base_url(); ?>images/logo.png?t=1751405902"
+                            alt="Brand Logo"
+                            class="auth-logo mb-3" />
                         <form>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="forgotOTP" name="forgotOTP" placeholder="Enter OTP">
@@ -567,7 +588,10 @@
 
 <!-- Chat Window -->
 <div id="chat-box" style="display:none;">
-    <div id="chat-header">Signie</div>
+    <div id="chat-header">
+        <img src="<?= base_url(); ?>images/cropped-sign-assign_icon-32x32.jpg" alt="Signie Logo" class="chat-logo" />
+        <span>Signie</span>
+    </div>
     <div id="chat-content"></div>
     <form id="grievance-form" style="display:none;" class="grievance-form">
         <div class="form-group">

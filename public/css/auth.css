@@ -56,7 +56,8 @@
     margin-top: 1rem;
 }
 
-.auth-inner .right-area p a {
+.auth-inner .right-area p a,
+.agreement-check-label a {
     text-decoration: none;
     color: #df9229;
     /* font-weight: 700; */

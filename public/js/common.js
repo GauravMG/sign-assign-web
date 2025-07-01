@@ -551,6 +551,15 @@ async function register() {
         business.name = businessName;
     }
 
+    if (!document.getElementById("policyAgreement").checked) {
+        showAlert({
+            type: 'error',
+            title: 'Agreement Required',
+            text: 'Please agree to the Terms of Use and Privacy Policy to proceed with account creation.'
+        });
+        return;
+    }
+
     await postAPICall({
         endPoint: "/auth/register",
         payload: JSON.stringify({
@@ -872,10 +881,10 @@ const initChat = async (resetChat = true) => {
     setTimeout(() => {
         appendMessage(resetChat ? "Hi there! What would you like to do today?" : "Anything else I can help with?");
         appendOptions([
-            { label: "Look for Products", value: "look_products" },
+            { label: "Lookup Products", value: "look_products" },
             { label: "Track My Order", value: "track_my_order" },
             { label: "Ask me anything", value: "ask_anything" },
-            { label: "Grievance", value: "grievance" }
+            { label: "Support", value: "grievance" }
         ]);
     }, resetChat ? 0 : 2000)
 };

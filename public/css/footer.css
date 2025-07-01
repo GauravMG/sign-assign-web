@@ -101,3 +101,24 @@ footer .footer-inner .footer-col:nth-child(5) ul li a svg {
     color: #ffffff;
     font-size: 0.854rem;
 }
+
+.signup-logo {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.login-logo {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.auth-logo {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}

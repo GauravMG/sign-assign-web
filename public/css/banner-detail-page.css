@@ -252,10 +252,105 @@
     height: 100px;
 }
 
-.option-card.selected {
-    border-color: #007bff;
-    background-color: #e7f1ff;
+/* .option-card.selected {
+    /* border-color: #007bff;
+    background-color: #e7f1ff; *
+    border-color: #452e73 !important;
+    background-color: #277e30;
+    color: #fff !important;
 }
+
+.option-card.selected div {
+    color: #fff !important;
+} */
+
+/* Overall group styling */
+.attribute-group {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px 20px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.attribute-group h5 {
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Wrapper of cards */
+.option-wrapper {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0px;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.option-wrapper::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Edge */
+}
+
+/* Individual option card */
+.option-card {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    min-width: 80px;
+    /* max-width: 120px; */
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-card:hover {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Selected state */
+.option-card.selected {
+    border-color: #452e73;
+    background-color: #277e30;
+    color: #fff !important;
+}
+
+.option-card.selected div {
+    color: #fff !important;
+}
+
+/* Color swatches */
+.option-card .color-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #999;
+    margin-bottom: 4px;
+}
+
+/* Value text */
+.option-card div.value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.3;
+}
+
+/* Price text */
+.option-card div.price {
+    font-size: 11px;
+    color: #777;
+}
+
 
 #quantity-controls {
     justify-content: center;
@@ -294,7 +389,7 @@
     text-align: center;
 }
 
-.option-card {
+/* .option-card {
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #fff;
@@ -312,7 +407,7 @@
 
 .option-card:hover i {
     color: #007bff !important;
-}
+} */
 
 .upload-instructions ul li::marker {
     color: #007bff;

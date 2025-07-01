@@ -51,7 +51,7 @@
                                 <p><span id="couponDiscountPrice"></span>
                             </div>
                             <div class="flex-value mt-2 d-none" id="totalRushHourDeliveryContainer">
-                                <p>Rush Hour Delivery</p>
+                                <p>Rush Charge</p>
                                 <p><span id="totalRushHourDeliveryAmount"></span>
                             </div>
                             <h6 class="mt-3">Estimated delivery Wed, June 15, 2025</h6>

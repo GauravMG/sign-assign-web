@@ -141,7 +141,7 @@
                     <!-- <li class="nav-item">
                         <a class="nav-link" id="rush-hour-rate-list-tab" data-toggle="pill"
                             href="#rush-hour-rate-list" role="tab"
-                            aria-controls="rush-hour-rate-list" aria-selected="false">Rush Hour Rate</a>
+                            aria-controls="rush-hour-rate-list" aria-selected="false">Rush Charge Rate</a>
                     </li> -->
                 </ul>
             </div>
@@ -418,9 +418,9 @@
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">Manage Rush Hour Rates</h4>
+                                <h4 class="mb-0">Manage Rush Charge Rates</h4>
                                 <button type="button" class="btn btn-success" id="addRushHourRateRow">
-                                    <i class="fas fa-plus"></i> Add Rush Hour Rate
+                                    <i class="fas fa-plus"></i> Add Rush Charge Rate
                                 </button>
                             </div>
 
@@ -440,7 +440,7 @@
                                 </table>
 
                                 <div class="text-right mt-2">
-                                    <button class="btn btn-success" id="saveRushHourRatesBtn">Save Rush Hour Rates</button>
+                                    <button class="btn btn-success" id="saveRushHourRatesBtn">Save Rush Charge Rates</button>
                                 </div>
                             </div>
                         </div>
@@ -1846,7 +1846,7 @@
         })
     }
 
-    // Save all rush hour rate data to backend
+    // Save all rush charge rate data to backend
     saveRushHourRatesBtn.addEventListener('click', async () => {
         const allRows = rushHourRateTableBody.querySelectorAll('tr');
         const rushHourRates = [];
@@ -1865,7 +1865,7 @@
             }
         });
 
-        if (confirm("Are you sure you want to update rush hour rates?")) {
+        if (confirm("Are you sure you want to update rush charge rates?")) {
             await postAPICall({
                 endPoint: "/product-rush-hour-rate/update",
                 payload: JSON.stringify({

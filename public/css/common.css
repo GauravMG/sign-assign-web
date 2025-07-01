@@ -490,12 +490,28 @@ span.text-green {
 }
 
 #chat-header {
-    background: #452e73;
+    /* background: #452e73;
     color: white;
     padding: 14px 20px;
     font-size: 16px;
     font-weight: bold;
-    border-bottom: 1px solid #3a2561;
+    border-bottom: 1px solid #3a2561; */
+    display: flex;
+    align-items: center;
+    background-color: #452e73;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#chat-header img.chat-logo {
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+    border-radius: 50%;
 }
 
 #chat-content {

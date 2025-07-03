@@ -443,29 +443,29 @@ async function fetchProducts() {
 }
 
 // Add scroll button logic
-function updateScrollButtons() {
-    if (optionWrapper.scrollWidth > optionWrapper.clientWidth) {
-        leftBtn.style.display = optionWrapper.scrollLeft > 0 ? 'flex' : 'none';
-        rightBtn.style.display = (optionWrapper.scrollLeft + optionWrapper.clientWidth < optionWrapper.scrollWidth) ? 'flex' : 'none';
-    } else {
-        leftBtn.style.display = 'none';
-        rightBtn.style.display = 'none';
-    }
-}
+// function updateScrollButtons() {
+//     if (optionWrapper.scrollWidth > optionWrapper.clientWidth) {
+//         leftBtn.style.display = optionWrapper.scrollLeft > 0 ? 'flex' : 'none';
+//         rightBtn.style.display = (optionWrapper.scrollLeft + optionWrapper.clientWidth < optionWrapper.scrollWidth) ? 'flex' : 'none';
+//     } else {
+//         leftBtn.style.display = 'none';
+//         rightBtn.style.display = 'none';
+//     }
+// }
 
-leftBtn.addEventListener('click', () => {
-    optionWrapper.scrollBy({ left: -150, behavior: 'smooth' });
-});
+// leftBtn.addEventListener('click', () => {
+//     optionWrapper.scrollBy({ left: -150, behavior: 'smooth' });
+// });
 
-rightBtn.addEventListener('click', () => {
-    optionWrapper.scrollBy({ left: 150, behavior: 'smooth' });
-});
+// rightBtn.addEventListener('click', () => {
+//     optionWrapper.scrollBy({ left: 150, behavior: 'smooth' });
+// });
 
-optionWrapper.addEventListener('scroll', updateScrollButtons);
-window.addEventListener('resize', updateScrollButtons);
+// optionWrapper.addEventListener('scroll', updateScrollButtons);
+// window.addEventListener('resize', updateScrollButtons);
 
 // Run initially after inserting options
-setTimeout(updateScrollButtons, 100);
+// setTimeout(updateScrollButtons, 100);
 
 async function fetchRelatedProducts(productId, productCategoryId, productSubCategoryId) {
     let payloadFilter = {

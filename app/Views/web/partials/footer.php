@@ -588,9 +588,16 @@
 
 <!-- Chat Window -->
 <div id="chat-box" style="display:none;">
-    <div id="chat-header">
+    <!-- <div id="chat-header">
         <img src="<?= base_url(); ?>images/cropped-sign-assign_icon-32x32.jpg" alt="Signie Logo" class="chat-logo" />
         <span>Signie</span>
+    </div> -->
+    <div id="chat-header">
+        <img src="<?= base_url(); ?>images/cropped-sign-assign_icon-32x32.jpg" alt="Signie Logo" class="chat-logo" />
+        <span style="margin-right: auto;">Signie</span>
+        <button id="minimize-chat" title="Minimize" style="float:right; background:none; border:none; font-size:16px; cursor:pointer; color: #fff;">
+            <i class="fas fa-minus"></i>
+        </button>
     </div>
     <div id="chat-content"></div>
     <form id="grievance-form" style="display:none;" class="grievance-form">

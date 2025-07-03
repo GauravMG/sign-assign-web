@@ -831,6 +831,7 @@ async function fetchBusinessClients() {
  * chatbot
  */
 // let sessionId = localStorage.getItem('chat_session_id');
+let chatInit = false
 // if (!sessionId) {
 // let sessionId = (window.crypto?.randomUUID?.() || generateUUID());
 let sessionId = generateUUID();
@@ -838,14 +839,31 @@ localStorage.setItem('chat_session_id', sessionId);
 // }
 const userDataUser = JSON.parse(localStorage.getItem("userDataUser") || "{}");
 
-document.getElementById('chat-icon').onclick = () => {
-    const box = document.getElementById('chat-box');
-    box.style.display = box.style.display === 'none' ? 'flex' : 'none';
-    if (box.style.display === 'flex') initChat();
-};
-
 const chatContent = document.getElementById('chat-content');
 const chatInput = document.getElementById('chat-input');
+const chatIcon = document.getElementById("chat-icon");
+const chatBox = document.getElementById("chat-box");
+const minimizeBtn = document.getElementById("minimize-chat");
+
+// document.getElementById('chat-icon').onclick = () => {
+//     const box = document.getElementById('chat-box');
+//     box.style.display = box.style.display === 'none' ? 'flex' : 'none';
+//     if (box.style.display === 'flex') initChat();
+// };
+chatIcon.addEventListener("click", () => {
+    chatBox.style.display = "flex";
+    chatIcon.style.display = "none";
+
+    if (!chatInit) {
+        initChat()
+    }
+});
+
+minimizeBtn.addEventListener("click", () => {
+    chatBox.style.display = "none";
+    chatIcon.style.display = "block";
+});
+
 let ongoingChatType = ""
 let aiChatRestartTimeout = null
 
@@ -889,6 +907,10 @@ const appendProductLinks = (products) => {
 };
 
 const initChat = async (resetChat = true) => {
+    if (!chatInit) {
+        chatInit = true
+    }
+
     ongoingChatType = ""
     if (resetChat) {
         chatContent.innerHTML = '';

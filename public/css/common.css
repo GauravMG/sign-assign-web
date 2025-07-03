@@ -581,7 +581,7 @@ span.text-green {
     background: #dcdcdc;
 }
 
-.chat-link {
+/* .chat-link {
     display: inline-block;
     margin-top: 6px;
     padding: 8px 14px;
@@ -596,7 +596,36 @@ span.text-green {
 
 .chat-link:hover {
     background: #e0eeff;
+} */
+
+.chat-link {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 8px 14px;
+    background: #f0f6ff;
+    border: 1px solid #d0e3ff;
+    color: #452e73;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
 }
+
+.chat-link:hover {
+    background: #d0e3ff;
+}
+
+.chat-link-arrow {
+    margin-left: 8px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.chat-link:hover .chat-link-arrow {
+    transform: translateX(4px);
+}
+
 
 .grievance-form {
     padding: 12px;

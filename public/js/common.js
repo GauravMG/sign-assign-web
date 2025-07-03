@@ -895,14 +895,20 @@ const appendOptions = (options) => {
 };
 
 const appendProductLinks = (products) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'chat-options';
+
     products.forEach(p => {
         const link = document.createElement('a');
         link.className = 'chat-link';
         link.href = p.link;
         link.target = '_blank';
-        link.innerText = p.name;
-        chatContent.appendChild(link);
+        link.innerHTML = `${p.name} <i class="fas fa-arrow-right"></i>`;
+        // chatContent.appendChild(link);
+        wrapper.appendChild(link);
     });
+
+    chatContent.appendChild(wrapper);
     chatContent.scrollTop = chatContent.scrollHeight;
 };
 

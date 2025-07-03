@@ -17,7 +17,7 @@ function sliceTextWithEllipses(text, maxLength) {
     return text;
 }
 
-function getTextFromHTML(htmlString, maxLength) {
+function getTextFromHTML(htmlString, maxLength = null) {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = htmlString;
     const text = tempDiv.textContent || tempDiv.innerText || "";

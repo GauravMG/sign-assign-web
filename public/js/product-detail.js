@@ -299,38 +299,59 @@ async function fetchProducts() {
                     header.textContent = groupName;
                     groupDiv.appendChild(header);
 
-                    // Option cards container
+                    // Create scroll container div
+                    const scrollContainer = document.createElement('div');
+                    scrollContainer.classList.add('option-scroll-container');
+                    scrollContainer.style.display = 'flex';
+                    scrollContainer.style.alignItems = 'center';
+                    scrollContainer.style.overflow = 'hidden';
+                    scrollContainer.style.width = '100%';
+
+                    // Create left arrow button
+                    const leftBtn = document.createElement('button');
+                    leftBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    leftBtn.classList.add('scroll-btn', 'left-btn');
+                    leftBtn.style.display = 'none';
+                    leftBtn.style.background = 'rgba(0,0,0,0.5)';
+                    leftBtn.style.border = 'none';
+                    leftBtn.style.color = '#fff';
+                    leftBtn.style.fontSize = '16px';
+                    leftBtn.style.cursor = 'pointer';
+                    leftBtn.style.width = '32px';
+                    leftBtn.style.height = '32px';
+                    leftBtn.style.borderRadius = '50%';
+                    leftBtn.style.marginRight = '8px';
+
+                    // Create right arrow button
+                    const rightBtn = document.createElement('button');
+                    rightBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    rightBtn.classList.add('scroll-btn', 'right-btn');
+                    rightBtn.style.display = 'none';
+                    rightBtn.style.background = 'rgba(0,0,0,0.5)';
+                    rightBtn.style.border = 'none';
+                    rightBtn.style.color = '#fff';
+                    rightBtn.style.fontSize = '16px';
+                    rightBtn.style.cursor = 'pointer';
+                    rightBtn.style.width = '32px';
+                    rightBtn.style.height = '32px';
+                    rightBtn.style.borderRadius = '50%';
+                    rightBtn.style.marginLeft = '8px';
+
+                    // Create the option wrapper (scrollable div)
                     const optionWrapper = document.createElement('div');
                     optionWrapper.classList.add('option-wrapper');
-                    // optionWrapper.style.display = 'flex';
-                    // optionWrapper.style.flexWrap = 'wrap';
-                    // optionWrapper.style.gap = '0px';
+                    optionWrapper.style.display = 'flex';
+                    optionWrapper.style.overflowX = 'auto';
+                    optionWrapper.style.scrollBehavior = 'smooth';
+                    optionWrapper.style.flex = '1';  // Take remaining space
 
                     items.forEach((item) => {
                         const card = document.createElement('div');
                         card.classList.add('option-card');
-                        card.style.border = '1px solid #ccc';
-                        card.style.borderRadius = '6px';
-                        card.style.padding = '8px 12px';
-                        card.style.cursor = 'pointer';
-                        card.style.userSelect = 'none';
-                        card.style.transition = 'all 0.3s';
-                        card.style.marginRight = '10px';
-                        card.style.minWidth = '100px';
-                        card.style.textAlign = 'center';
-                        card.style.display = 'flex';
-                        card.style.flexDirection = 'column';
-                        card.style.alignItems = 'center';
 
                         if (groupName.toLowerCase() === "color") {
-                            // Create color swatch
-                            // const swatch = document.createElement('div');
-                            // swatch.style.width = '30px';
-                            // swatch.style.height = '30px';
-                            // swatch.style.borderRadius = '50%';
-                            // swatch.style.backgroundColor = item.value;
-                            // swatch.style.border = '1px solid #999';
-                            // swatch.style.marginBottom = '6px';
+                            card.classList.add('option-card-attribute-color');
+
                             const swatch = document.createElement('div');
                             swatch.classList.add('color-swatch');
                             swatch.style.backgroundColor = item.value;
@@ -346,6 +367,8 @@ async function fetchProducts() {
                             card.appendChild(label);
 
                         } else {
+                            card.classList.add('option-card-attribute');
+
                             // Value
                             const valueEl = document.createElement('div');
 
@@ -395,101 +418,14 @@ async function fetchProducts() {
                         optionWrapper.appendChild(card);
                     });
 
-                    groupDiv.appendChild(optionWrapper);
+                    scrollContainer.appendChild(leftBtn);
+                    scrollContainer.appendChild(optionWrapper);
+                    scrollContainer.appendChild(rightBtn);
+
+                    // groupDiv.appendChild(optionWrapper);
+                    groupDiv.appendChild(scrollContainer);
                     container.appendChild(groupDiv);
                 });
-
-                // Object.entries(groupedAttributes).forEach(([groupName, items]) => {
-                //     const groupDiv = document.createElement('div');
-                //     groupDiv.classList.add('attribute-group');
-                //     groupDiv.classList.add('main-desc');
-                //     groupDiv.classList.add('mt-2');
-                //     groupDiv.classList.add('p-4');
-
-                //     // Header
-                //     const header = document.createElement('h5');
-                //     header.textContent = groupName;
-                //     groupDiv.appendChild(header);
-
-                //     // Option cards
-                //     const optionWrapper = document.createElement('div');
-                //     optionWrapper.classList.add('option-wrapper');
-                //     optionWrapper.style.display = 'flex';
-                //     optionWrapper.style.flexWrap = 'wrap';
-                //     optionWrapper.style.gap = '10px';
-
-                //     items.forEach((item) => {
-                //         const card = document.createElement('div');
-                //         card.classList.add('option-card');
-                //         card.style.border = '1px solid #ccc';
-                //         card.style.borderRadius = '6px';
-                //         card.style.padding = '8px 12px';
-                //         card.style.cursor = 'pointer';
-                //         card.style.userSelect = 'none';
-                //         card.style.transition = 'all 0.3s';
-                //         card.style.marginRight = '10px';
-                //         card.style.minWidth = '100px';
-                //         card.style.textAlign = 'center';
-
-                //         // Value
-                //         const valueEl = document.createElement('div');
-
-                //         let displayValue = item.value;
-                //         try {
-                //             const parsedValue = JSON.parse(item.value);
-                //             if (typeof parsedValue === 'object' && parsedValue !== null) {
-                //                 const parts = [];
-                //                 if (parsedValue.width) parts.push(`Width: ${parsedValue.width}`);
-                //                 if (parsedValue.height) parts.push(`Height: ${parsedValue.height}`);
-                //                 displayValue = parts.join(', ');
-                //             }
-                //         } catch (e) {
-                //             // fallback: show as is if parsing fails
-                //             displayValue = item.value;
-                //         }
-                //         valueEl.textContent = displayValue;
-
-                //         valueEl.style.fontWeight = 'bold';
-
-                //         // Additional price
-                //         const priceEl = document.createElement('div');
-                //         priceEl.textContent = item.additionalPrice && item.additionalPrice !== "0" ? `+ $${item.additionalPrice}` : '';
-                //         priceEl.style.fontSize = '12px';
-                //         priceEl.style.color = '#777';
-
-                //         card.appendChild(valueEl);
-                //         card.appendChild(priceEl);
-
-                //         card.addEventListener('click', () => {
-                //             // 1. Visual selection update
-                //             optionWrapper.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
-                //             card.classList.add('selected');
-
-                //             // 2. Remove previous selection from this group in selectedAttributes
-                //             selectedAttributes = selectedAttributes.filter(attr => attr.productAttributeId !== item.productAttributeId);
-
-                //             // 3. Add newly selected item
-                //             selectedAttributes.push(item);
-
-                //             if (item.attribute?.name?.toLowerCase() === "size") {
-                //                 selectedSize = parseSize(item.value)
-                //             }
-
-                //             // 4. Recalculate totalSelectedAttributePrice
-                //             totalSelectedAttributePrice = selectedAttributes.reduce((sum, attr) => {
-                //                 const price = parseFloat(attr.additionalPrice) || 0;
-                //                 // Convert to cents, sum, then convert back to dollars
-                //                 return sum + Math.round(price * 100);
-                //             }, 0) / 100;
-                //             calculatePayablePrice()
-                //         });
-
-                //         optionWrapper.appendChild(card);
-                //     });
-
-                //     groupDiv.appendChild(optionWrapper);
-                //     container.appendChild(groupDiv);
-                // });
 
                 // Insert container after .main-desc
                 // mainDesc.parentNode.insertBefore(container, mainDesc.nextSibling);
@@ -505,6 +441,31 @@ async function fetchProducts() {
         }
     })
 }
+
+// Add scroll button logic
+function updateScrollButtons() {
+    if (optionWrapper.scrollWidth > optionWrapper.clientWidth) {
+        leftBtn.style.display = optionWrapper.scrollLeft > 0 ? 'flex' : 'none';
+        rightBtn.style.display = (optionWrapper.scrollLeft + optionWrapper.clientWidth < optionWrapper.scrollWidth) ? 'flex' : 'none';
+    } else {
+        leftBtn.style.display = 'none';
+        rightBtn.style.display = 'none';
+    }
+}
+
+leftBtn.addEventListener('click', () => {
+    optionWrapper.scrollBy({ left: -150, behavior: 'smooth' });
+});
+
+rightBtn.addEventListener('click', () => {
+    optionWrapper.scrollBy({ left: 150, behavior: 'smooth' });
+});
+
+optionWrapper.addEventListener('scroll', updateScrollButtons);
+window.addEventListener('resize', updateScrollButtons);
+
+// Run initially after inserting options
+setTimeout(updateScrollButtons, 100);
 
 async function fetchRelatedProducts(productId, productCategoryId, productSubCategoryId) {
     let payloadFilter = {

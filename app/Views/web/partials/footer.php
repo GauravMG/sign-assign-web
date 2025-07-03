@@ -595,9 +595,16 @@
     <div id="chat-header">
         <img src="<?= base_url(); ?>images/cropped-sign-assign_icon-32x32.jpg" alt="Signie Logo" class="chat-logo" />
         <span style="margin-right: auto;">Signie</span>
-        <button id="minimize-chat" title="Minimize" style="float:right; background:none; border:none; font-size:16px; cursor:pointer; color: #fff;">
+
+        <!-- Minimize Button -->
+        <button id="minimize-chat" title="Minimize" style="background:none; border:none; font-size:16px; cursor:pointer; color: #fff; margin-left: 8px;">
             <i class="fas fa-minus"></i>
         </button>
+
+        <!-- Close Button -->
+        <!-- <button id="close-chat" title="Close" style="background:none; border:none; font-size:16px; cursor:pointer; color: #fff; margin-left: 8px;">
+            <i class="fas fa-times"></i>
+        </button> -->
     </div>
     <div id="chat-content"></div>
     <form id="grievance-form" style="display:none;" class="grievance-form">

@@ -295,6 +295,58 @@ class AdminController extends BaseController
         return view('view-product', $data);
     }
 
+    public function manageProductMedia($productId): string
+    {
+        $data = [
+            'title' => 'Product Media',
+            'page_heading' => 'Product Media',
+            'data' => [
+                'productId' => $productId
+            ]
+        ];
+
+        return view('manage-product-media', $data);
+    }
+
+    public function manageProductAttribute($productId): string
+    {
+        $data = [
+            'title' => 'Product Atribute',
+            'page_heading' => 'Product Atribute',
+            'data' => [
+                'productId' => $productId
+            ]
+        ];
+
+        return view('manage-product-attribute', $data);
+    }
+
+    public function manageProductFAQ($productId): string
+    {
+        $data = [
+            'title' => 'Product FAQ',
+            'page_heading' => 'Product FAQ',
+            'data' => [
+                'productId' => $productId
+            ]
+        ];
+
+        return view('manage-product-faq', $data);
+    }
+
+    public function manageProductDiscount($productId): string
+    {
+        $data = [
+            'title' => 'Product Discount',
+            'page_heading' => 'Product Discount',
+            'data' => [
+                'productId' => $productId
+            ]
+        ];
+
+        return view('manage-product-discount', $data);
+    }
+
     // public function viewVariant($variantId): string
     // {
     //     $data = [

@@ -93,6 +93,8 @@
                             <th>Category</th>
                             <th>Use Editor</th>
                             <th>Status</th>
+                            <th>Preview</th>
+                            <th>Manage Data</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -104,6 +106,8 @@
                             <th>Category</th>
                             <th>Use Editor</th>
                             <th>Status</th>
+                            <th>Preview</th>
+                            <th>Manage Data</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
@@ -242,16 +246,49 @@
                             </td>
                             <td>
                                 <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
-                                    <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewProduct(${data[i].productId})">
-                                        <i class="fas fa-folder mr-1">
+                                    <a class="btn btn-primary btn-sm d-flex align-items-center" target="_blank" href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
+                                        <i class="fas fa-eye mr-1">
                                         </i>
-                                        View
+                                        Preview
                                     </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
                                     <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickUpdateProduct(${data[i].productId})">
                                         <i class="fas fa-pencil-alt mr-1">
                                         </i>
-                                        Edit
+                                        Edit Details
                                     </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickManageProductMedia(${data[i].productId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Manage Media
+                                    </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickManageProductAttribute(${data[i].productId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Manage Atributes
+                                    </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickManageProductFAQ(${data[i].productId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Manage FAQ
+                                    </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickManageProductDiscount(${data[i].productId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Manage Discounts
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <!-- <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewProduct(${data[i].productId})">
+                                        <i class="fas fa-folder mr-1">
+                                        </i>
+                                        View
+                                    </a> -->
                                     <a class="btn btn-danger btn-sm d-flex align-items-center" onclick="onClickDeleteProduct(${data[i].productId})">
                                         <i class="fas fa-trash mr-1">
                                         </i>
@@ -338,6 +375,22 @@
 
     function onClickViewProduct(productId) {
         window.location.href = `/admin/products/${productId}`
+    }
+
+    function onClickManageProductMedia(productId) {
+        window.location.href = `/admin/products/${productId}/manage-media`
+    }
+
+    function onClickManageProductAttribute(productId) {
+        window.location.href = `/admin/products/${productId}/manage-attribute`
+    }
+
+    function onClickManageProductFAQ(productId) {
+        window.location.href = `/admin/products/${productId}/manage-faq`
+    }
+
+    function onClickManageProductDiscount(productId) {
+        window.location.href = `/admin/products/${productId}/manage-discount`
     }
 
     async function onClickDeleteProduct(productId) {

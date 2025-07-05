@@ -24,6 +24,10 @@ $routes->get('/admin/orders', 'AdminController::orders');
 
 $routes->get('/admin/products/update/(:any)', 'AdminController::updateProduct/$1');
 $routes->get('/admin/products/add', 'AdminController::addProduct');
+$routes->get('/admin/products/(:any)/manage-discount', 'AdminController::manageProductDiscount/$1');
+$routes->get('/admin/products/(:any)/manage-faq', 'AdminController::manageProductFAQ/$1');
+$routes->get('/admin/products/(:any)/manage-attribute', 'AdminController::manageProductAttribute/$1');
+$routes->get('/admin/products/(:any)/manage-media', 'AdminController::manageProductMedia/$1');
 $routes->get('/admin/products/(:any)', 'AdminController::viewProduct/$1');
 $routes->get('/admin/products', 'AdminController::products');
 

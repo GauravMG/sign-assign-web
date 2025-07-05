@@ -8,12 +8,14 @@ let amountDetails = {
     totalBulkOrderDiscount: 0,
     totalDiscount: 0,
     totalRushHourDeliveryAmount: 0,
-    grandTotalPrice: 0
+    grandTotalPrice: 0,
+    couponData: null
 }
 let userAddresses = []
 let businessClients = []
 let selectedShippingAddressId = null
 let selectedBusinessClientId = null
+let selfData = null
 
 getSelfData()
 fetchProducts()
@@ -195,6 +197,10 @@ function renderCartItems() {
     document.getElementById("subTotalItemCount").innerText = `${subTotalItemCount} item${subTotalItemCount > 1 ? "s" : ""}`
     document.getElementById("subTotalPrice").innerText = subTotalPrice.toFixed(2)
 
+    /**
+     * 
+     * handle business discount
+     */
     let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
     document.getElementById("businessDiscountContainer").classList.remove("d-none")
     document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
@@ -203,6 +209,43 @@ function renderCartItems() {
     // document.getElementById("bulkOrderDiscountContainer").classList.remove("d-none")
     // document.getElementById("bulkOrderDiscountPrice").innerText = `$${totalBulkOrderDiscount}`
 
+    /**
+     * 
+     * handle coupon discount
+     */
+    let couponDiscountPrice = 0;
+    const couponData = amountDetails.couponData;
+    if (couponData) {
+        const discountType = couponData.discountType;
+        const discountValue = Number(couponData.discount);
+
+        if (discountType === "amount") {
+            couponDiscountPrice = discountValue;
+        } else if (discountType === "percentage") {
+            couponDiscountPrice = (subTotalPrice * discountValue) / 100;
+        }
+
+        // Ensure discount is not negative
+        if (couponDiscountPrice < 0) {
+            couponDiscountPrice = 0;
+        }
+
+        // Cap discount so it does not exceed subtotal
+        if (couponDiscountPrice > subTotalPrice) {
+            couponDiscountPrice = subTotalPrice;
+        }
+
+        // Round to two decimal places
+        couponDiscountPrice = Math.round(couponDiscountPrice * 100) / 100;
+
+        document.getElementById("couponDiscountPrice").innerText = `$${couponDiscountPrice}${discountType === "amount" ? ` (flat)` : discountType === "percentage" ? ` (${discountValue}%)` : ""
+            }`
+    }
+
+    /**
+     * 
+     * handle rush charges
+     */
     document.getElementById("totalRushHourDeliveryAmount").innerText = `$${totalRushHourDeliveryAmount}`
     if (Number(totalRushHourDeliveryAmount) > 0) {
         document.getElementById("totalRushHourDeliveryContainer").classList.remove("d-none")
@@ -210,7 +253,11 @@ function renderCartItems() {
         document.getElementById("totalRushHourDeliveryContainer").classList.add("d-none")
     }
 
-    const totalDiscount = businessDiscountPrice
+    /**
+     * 
+     * total calcuations
+     */
+    const totalDiscount = businessDiscountPrice + couponDiscountPrice
     grandTotalPrice = Math.round(((subTotalPrice - totalDiscount) + totalRushHourDeliveryAmount) * 100) / 100
     document.querySelectorAll(".grandTotalPrice").forEach(element => {
         element.textContent = grandTotalPrice;
@@ -222,7 +269,8 @@ function renderCartItems() {
         totalBulkOrderDiscount,
         totalDiscount,
         totalRushHourDeliveryAmount,
-        grandTotalPrice
+        grandTotalPrice,
+        couponData
     }
 
     showUpdatedCartItemCount()
@@ -318,6 +366,88 @@ function handleRushHourSelection(productId, isSelected) {
 
         return { ...cartItem };
     })
+    renderCartItems()
+}
+
+/**
+ * 
+ * handle coupon code
+ */
+async function applyCoupon() {
+    const couponCode = document.getElementById("couponCode").value
+
+    await postAPICall({
+        endPoint: "/coupon/list",
+        payload: JSON.stringify({
+            "filter": {
+                couponCode,
+                userId: selfData?.userId ?? undefined
+            },
+            "range": {
+                all: true
+            },
+            linkedEntities: true
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response
+
+            if (!success || !data?.length) {
+                showAlert({
+                    type: 'error',
+                    title: 'Invalid Coupon',
+                    text: 'The coupon code you entered is either invalid or has expired. Please check your code and try again.',
+                    confirmText: 'OK'
+                });
+                return;
+            }
+
+            const couponData = {
+                couponId: data[0].couponId,
+                couponCode: data[0].couponCode,
+                discountType: data[0].discountType,
+                discount: data[0].discount,
+                couponQuantityType: data[0].couponQuantityType,
+                couponQuantity: data[0].couponQuantity,
+                userId: data[0].userId,
+                isAvailable: data[0].isAvailable
+            }
+
+            if (!couponData.isAvailable) {
+                showAlert({
+                    type: 'error',
+                    title: 'Invalid Coupon',
+                    text: 'The coupon code you entered is either invalid or has expired. Please check your code and try again.',
+                    confirmText: 'OK'
+                });
+                return;
+            }
+
+            amountDetails = {
+                ...amountDetails,
+                couponData
+            }
+
+            document.getElementById("couponCode").value = ""
+            document.getElementById("couponDiscountContainer").classList.remove("d-none")
+            document.getElementById("couponDiscountPrice").innerText = ""
+            document.getElementById("promo-code-area").classList.add("d-none")
+
+            renderCartItems()
+        }
+    })
+}
+
+function removeCoupon() {
+    amountDetails = {
+        ...amountDetails,
+        couponData: null
+    }
+
+    document.getElementById("couponDiscountContainer").classList.add("d-none")
+    document.getElementById("couponDiscountPrice").innerText = ""
+    document.getElementById("promo-code-area").classList.remove("d-none")
+
     renderCartItems()
 }
 

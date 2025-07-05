@@ -17,9 +17,9 @@
                 <div class="product-detail-area" id="cartItemsContainer"></div>
             </div>
             <div class="right-inner-area">
-                <div class="promo-code-area">
-                    <input type="text" class="form-control" placeholder="Promocode">
-                    <button type="button" class="">Apply</button>
+                <div class="promo-code-area" id="promo-code-area">
+                    <input type="text" class="form-control" id="couponCode" placeholder="Promocode">
+                    <button type="button" class="" onclick="applyCoupon()">Apply</button>
                 </div>
                 <!-- <a href="#" class="coupon-link">View all coupons <span><i class="fa-solid fa-arrow-right"></i></span></a> -->
                 <div class="order-summary-area">
@@ -48,7 +48,10 @@
                             </div>
                             <div class="flex-value mt-2 d-none" id="couponDiscountContainer">
                                 <p>Coupon Discount</p>
-                                <p><span id="couponDiscountPrice"></span>
+                                <p><span id="couponDiscountPrice"></span></p>
+                                <button id="removeCouponBtn" class="btn btn-sm btn-link text-danger p-0 ml-2" title="Remove Coupon" onclick="removeCoupon()">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
                             <div class="flex-value mt-2 d-none" id="totalRushHourDeliveryContainer">
                                 <p>Rush Charge</p>

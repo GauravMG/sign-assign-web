@@ -25,6 +25,9 @@ async function getSelfData() {
     if (isUserLoggedIn) {
         selfData = await getMe()
         userDiscountPercentage = selfData?.userDiscountPercentage ?? 0
+        if (Number(userDiscountPercentage) > 0) {
+            renderCartItems()
+        }
     }
 }
 
@@ -202,9 +205,12 @@ function renderCartItems() {
      * handle business discount
      */
     let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
-    document.getElementById("businessDiscountContainer").classList.remove("d-none")
-    document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
-    document.getElementById("businessDiscountPrice").innerText = `$${businessDiscountPrice}`
+    if (Number(userDiscountPercentage) > 0) {
+        businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
+        document.getElementById("businessDiscountContainer").classList.remove("d-none")
+        document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
+        document.getElementById("businessDiscountPrice").innerText = `$${businessDiscountPrice}`
+    }
 
     // document.getElementById("bulkOrderDiscountContainer").classList.remove("d-none")
     // document.getElementById("bulkOrderDiscountPrice").innerText = `$${totalBulkOrderDiscount}`
@@ -257,7 +263,22 @@ function renderCartItems() {
      * 
      * total calcuations
      */
-    const totalDiscount = businessDiscountPrice + couponDiscountPrice
+    let totalDiscount = 0
+    let businessDiscountApplicable = false
+    let couponDiscountApplicable = false
+
+    if (businessDiscountPrice > couponDiscountPrice) {
+        businessDiscountApplicable = true
+        document.getElementById("businessDiscountContainer").classList.remove("discount-strikethrough")
+        document.getElementById("couponDiscountContainer").classList.add("discount-strikethrough")
+        totalDiscount = businessDiscountPrice
+    }
+    if (couponDiscountPrice > businessDiscountPrice) {
+        couponDiscountApplicable = true
+        document.getElementById("couponDiscountContainer").classList.remove("discount-strikethrough")
+        document.getElementById("businessDiscountContainer").classList.add("discount-strikethrough")
+        totalDiscount = couponDiscountPrice
+    }
     grandTotalPrice = Math.round(((subTotalPrice - totalDiscount) + totalRushHourDeliveryAmount) * 100) / 100
     document.querySelectorAll(".grandTotalPrice").forEach(element => {
         element.textContent = grandTotalPrice;
@@ -265,12 +286,12 @@ function renderCartItems() {
 
     amountDetails = {
         subTotalPrice,
-        businessDiscountPrice,
+        businessDiscountPrice: businessDiscountApplicable ? businessDiscountPrice : null,
         totalBulkOrderDiscount,
         totalDiscount,
         totalRushHourDeliveryAmount,
         grandTotalPrice,
-        couponData
+        couponData: couponDiscountApplicable ? couponData : null
     }
 
     showUpdatedCartItemCount()

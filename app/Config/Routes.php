@@ -54,6 +54,8 @@ $routes->get('/admin/customers/add', 'AdminController::addCustomer');
 $routes->get('/admin/customers/(:any)', 'AdminController::viewCustomer/$1');
 $routes->get('/admin/customers', 'AdminController::customers');
 
+$routes->get('/admin/coupons', 'AdminController::coupons');
+
 $routes->get('/admin/forgot-password', 'AuthController::forgotPassword');
 // $routes->get('/admin/register', 'AuthController::register');
 $routes->get('/admin/login', 'AuthController::login');

@@ -55,6 +55,16 @@ class AdminController extends BaseController
         return view('view-staff', $data);
     }
 
+    public function coupons(): string
+    {
+        $data = [
+            'title' => 'Coupons',
+            'page_heading' => 'Coupons'
+        ];
+
+        return view('coupons', $data);
+    }
+
     public function customers(): string
     {
         $data = [

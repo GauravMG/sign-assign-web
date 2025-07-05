@@ -19,6 +19,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
+                    <a href="/admin/coupons" class="nav-link">
+                        <i class="nav-icon fas fa-ticket-alt"></i>
+                        <p>
+                            Coupons
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin">
                     <a href="/admin/staff" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>

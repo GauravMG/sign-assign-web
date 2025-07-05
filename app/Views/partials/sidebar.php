@@ -67,6 +67,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-staff">
+                    <a href="/admin/rush-charges" class="nav-link">
+                        <i class="nav-icon fas fa-bolt"></i>
+                        <p>
+                            Manage Rush Charges
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
                     <a href="/admin/orders" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>

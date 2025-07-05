@@ -22,6 +22,8 @@ $routes->get('/admin/orders', 'AdminController::orders');
 
 // $routes->get('/admin/variants/view/(:any)', 'AdminController::viewVariant/$1');
 
+$routes->get('/admin/rush-charges', 'AdminController::rushCharges');
+
 $routes->get('/admin/products/update/(:any)', 'AdminController::updateProduct/$1');
 $routes->get('/admin/products/add', 'AdminController::addProduct');
 $routes->get('/admin/products/(:any)/manage-discount', 'AdminController::manageProductDiscount/$1');

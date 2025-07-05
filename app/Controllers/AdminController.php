@@ -65,6 +65,16 @@ class AdminController extends BaseController
         return view('coupons', $data);
     }
 
+    public function rushCharges(): string
+    {
+        $data = [
+            'title' => 'Rush Charges',
+            'page_heading' => 'Rush Charges'
+        ];
+
+        return view('rush-charge', $data);
+    }
+
     public function customers(): string
     {
         $data = [

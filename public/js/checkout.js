@@ -1,5 +1,6 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let productData = []
+let rushChargesData = []
 let userDiscountPercentage = 0
 let grandTotalPrice = 0
 let amountDetails = {
@@ -19,6 +20,7 @@ let selfData = null
 
 getSelfData()
 fetchProducts()
+fetchRushCharges()
 
 async function getSelfData() {
     const isUserLoggedIn = checkIfUserLoggedIn()
@@ -51,6 +53,27 @@ async function fetchProducts() {
 
             if (success) {
                 productData = allData
+
+                renderCartItems()
+            }
+        }
+    })
+}
+
+async function fetchRushCharges() {
+    await postAPICall({
+        endPoint: "/rush-hour-rate/list",
+        payload: JSON.stringify({
+            "range": {
+                all: true
+            }
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data: allData } = response
+
+            if (success) {
+                rushChargesData = allData
 
                 renderCartItems()
             }
@@ -111,20 +134,43 @@ function renderCartItems() {
             bulkDiscountBodyInnerHtml += `<td>${productBulkDiscount.discount}%</td>`
         })
 
-        let isRushHourRateAvailable = false
-        product.productRushHourRates?.forEach((productRushHourRate) => {
-            if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty)) {
-                isRushHourRateAvailable = true
+        // let isRushHourRateAvailable = false
+        // product.productRushHourRates?.forEach((productRushHourRate) => {
+        //     if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty)) {
+        //         isRushHourRateAvailable = true
+        //     }
+        // })
+
+        let rushChargeAmount = 0;
+
+        for (const rate of rushChargesData) {
+            const inRange =
+                Number(product.price) >= Number(rate.minPrice) &&
+                (rate.maxPrice === null || Number(product.price) <= Number(rate.maxPrice));
+
+            if (inRange) {
+                rushChargeAmount =
+                    rate.chargeType === 'flat'
+                        ? Number(rate.amount)
+                        : (Number(product.price) * Number(rate.amount)) / 100;
+
+                break;
             }
-        })
+        }
+
+        rushChargeAmount = rushChargeAmount * cartItem.quantity;
+
+        // Round to 2 decimals
+        rushChargeAmount = Math.round(rushChargeAmount * 100) / 100;
+        cartItem.rushHourDeliveryAmount = rushChargeAmount
 
         const itemHtml = `<div class="box-inner">
-            ${isRushHourRateAvailable ? `<div class="rush-hour-area">
+            ${rushChargesData?.length ? `<div class="rush-hour-area">
                 <label class="switch">
                     <input type="checkbox" class="rush-hour-toggle" data-product-id="${product.productId}" ${cartItem.rushHourDelivery ? "checked" : ""}>
                     <span class="slider"></span>
                 </label>
-                <span>Rush Charge <span>(${Number(cartItem.rushHourDeliveryAmount) > 0 ? `$${cartItem.rushHourDeliveryAmount} ` : ""}extra charges apply*)</span></span>
+                <span>Rush Charges <span>($${rushChargeAmount} extra charges apply*)</span></span>
             </div>` : ""}
             <div class="inner">
                 <div class="left-area">
@@ -181,7 +227,9 @@ function renderCartItems() {
         totalBulkOrderDiscount += Number(cartItem.bulkOrderDiscount ?? 0)
         subTotalItemCount += cartItem.quantity
         subTotalPrice += cartItem.payablePriceByQuantityAfterDiscount
-        totalRushHourDeliveryAmount += Number(cartItem.rushHourDeliveryAmount)
+        if (cartItem.rushHourDelivery) {
+            totalRushHourDeliveryAmount += Number(rushChargeAmount)
+        }
     })
 
     // Initialize rush charge toggles
@@ -344,14 +392,40 @@ function changeQuantity(productId, changeType) {
                 bulkOrderDiscountInCents = Math.round((totalPriceInCents * applicableBulkDiscount.discount) / 100);
             }
 
-            cartItem.rushHourDeliveryAmount = 0
-            product.productRushHourRates?.forEach((productRushHourRate) => {
-                if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty) && cartItem.rushHourDelivery) {
-                    cartItem.rushHourDeliveryAmount = Number(productRushHourRate.amount)
+            // cartItem.rushHourDeliveryAmount = 0
+            // product.productRushHourRates?.forEach((productRushHourRate) => {
+            //     if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty) && cartItem.rushHourDelivery) {
+            //         cartItem.rushHourDeliveryAmount = Number(productRushHourRate.amount)
+            //     }
+            // })
+            // if (cartItem.rushHourDeliveryAmount <= 0) {
+            //     cartItem.rushHourDelivery = false
+            // }
+
+            if (cartItem.rushHourDelivery) {
+                let rushChargeAmount = 0;
+
+                for (const rate of rushChargesData) {
+                    const inRange =
+                        Number(product.price) >= Number(rate.minPrice) &&
+                        (rate.maxPrice === null || Number(product.price) <= Number(rate.maxPrice));
+
+                    if (inRange) {
+                        rushChargeAmount =
+                            rate.chargeType === 'flat'
+                                ? Number(rate.amount)
+                                : (Number(product.price) * Number(rate.amount)) / 100;
+
+                        break;
+                    }
                 }
-            })
-            if (cartItem.rushHourDeliveryAmount <= 0) {
-                cartItem.rushHourDelivery = false
+
+                rushChargeAmount = rushChargeAmount * cartItem.quantity;
+
+                // Round to 2 decimals
+                rushChargeAmount = Math.round(rushChargeAmount * 100) / 100;
+                cartItem.rushHourDeliveryAmount = rushChargeAmount
+
             }
 
             // Update cart item prices (converting back to dollars)
@@ -377,11 +451,34 @@ function handleRushHourSelection(productId, isSelected) {
                 cartItem.rushHourDeliveryAmount = 0
             } else {
                 const product = productData.find(p => p.productId === cartItem.productId);
-                product.productRushHourRates?.forEach((productRushHourRate) => {
-                    if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty)) {
-                        cartItem.rushHourDeliveryAmount = Number(productRushHourRate.amount)
+                // product.productRushHourRates?.forEach((productRushHourRate) => {
+                //     if (Number(cartItem.quantity) >= Number(productRushHourRate.minQty) && Number(cartItem.quantity) <= Number(productRushHourRate.maxQty)) {
+                //         cartItem.rushHourDeliveryAmount = Number(productRushHourRate.amount)
+                //     }
+                // })
+                let rushChargeAmount = 0;
+
+                for (const rate of rushChargesData) {
+                    const inRange =
+                        Number(product.price) >= Number(rate.minPrice) &&
+                        (rate.maxPrice === null || Number(product.price) <= Number(rate.maxPrice));
+
+                    if (inRange) {
+                        rushChargeAmount =
+                            rate.chargeType === 'flat'
+                                ? Number(rate.amount)
+                                : (Number(product.price) * Number(rate.amount)) / 100;
+
+                        break;
                     }
-                })
+                }
+
+                rushChargeAmount = rushChargeAmount * cartItem.quantity;
+
+                // Round to 2 decimals
+                rushChargeAmount = Math.round(rushChargeAmount * 100) / 100;
+                cartItem.rushHourDeliveryAmount = rushChargeAmount
+
             }
         }
 

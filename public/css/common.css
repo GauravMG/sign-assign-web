@@ -548,8 +548,8 @@ span.text-green {
 
 .bot {
     align-self: flex-start;
-    background-color: #eeeeee;
-    color: #333;
+    background-color: #277e30;
+    color: #fff;
     border-bottom-left-radius: 4px;
 }
 
@@ -564,7 +564,7 @@ span.text-green {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 8px;
+    margin-bottom: 20px;
 }
 
 .chat-options button {

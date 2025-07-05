@@ -20,7 +20,7 @@
                     972-418-5253</a>
             </div>
             <div class="email">
-                <a href="mailto:order@signasign.com" style="text-decoration: none; color: unset;">
+                <a href="mailto:orders@signassign.com" style="text-decoration: none; color: unset;">
                     <i class="fa-solid fa-envelope"></i>
                     orders@signassign.com
                 </a>

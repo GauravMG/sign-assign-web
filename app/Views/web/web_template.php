@@ -60,6 +60,7 @@
 
     <!-- Content Wrapper -->
     <?= $this->renderSection('content'); ?>
+    <?= $this->include('web/partials/trade-partner-form'); ?>
 
     <!-- Footer -->
     <?= $this->include('web/partials/footer'); ?>

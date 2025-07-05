@@ -48,7 +48,7 @@
                 <h5>&nbsp;</h5>
                 <ul id="footerCategoryMenuListContainer2">
                 </ul>
-            </div> -->
+            </div>
             <!-- <div class="footer-col">
                 <h5>Find What You Need, Faster</h5>
                 <ul>

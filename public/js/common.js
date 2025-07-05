@@ -35,6 +35,8 @@ $(document).ready(function () {
         document.getElementById("cookieConsent").classList.remove("show");
     });
 
+    getSelfData()
+
     const searchInput = document.getElementById('navbar-search');
     const searchButton = document.getElementById('search-button');
 
@@ -121,6 +123,16 @@ $(document).ready(function () {
         window._resizeTimer = setTimeout(renderCategories, 100);
     });
 });
+
+async function getSelfData() {
+    const isUserLoggedIn = checkIfUserLoggedIn()
+    if (isUserLoggedIn) {
+        const selfData = await getMe()
+        if (selfData?.roleId && Number(selfData?.roleId) === 2) {
+            document.getElementById("tradePartnerForm").classList.remove("d-none")
+        }
+    }
+}
 
 // Helper to set cookie
 function setCookie(name, value, days) {
@@ -912,6 +924,15 @@ const appendProductLinks = (products) => {
     chatContent.scrollTop = chatContent.scrollHeight;
 };
 
+function hideGrievanceChatForm() {
+    document.getElementById('grievance-form').style.display = 'none';
+    document.getElementById("grievance-form-name").value = ""
+    document.getElementById("grievance-form-email").value = ""
+    document.getElementById("grievance-form-mobile").value = ""
+    document.getElementById("grievance-form-subject").value = ""
+    document.getElementById("grievance-form-message").value = ""
+}
+
 const initChat = async (resetChat = true) => {
     if (!chatInit) {
         chatInit = true
@@ -921,12 +942,7 @@ const initChat = async (resetChat = true) => {
     if (resetChat) {
         chatContent.innerHTML = '';
     }
-    document.getElementById('grievance-form').style.display = 'none';
-    document.getElementById("grievance-form-name").value = ""
-    document.getElementById("grievance-form-email").value = ""
-    document.getElementById("grievance-form-mobile").value = ""
-    document.getElementById("grievance-form-subject").value = ""
-    document.getElementById("grievance-form-message").value = ""
+    hideGrievanceChatForm()
     chatInput.style.display = 'none';
 
     setTimeout(() => {
@@ -1015,17 +1031,60 @@ const handleUserInput = async (input) => {
                     }, 20000);
                 }
 
-                if (data.message) {
-                    appendMessage(data.message)
+                // if (data.message) {
+                //     appendMessage(data.message)
 
-                    if (ongoingChatType === "look_products" & data.message.includes("No matching products found")) {
-                        initChat(false);
-                    }
+                //     if (ongoingChatType === "look_products" & data.message.includes("No matching products found")) {
+                //         initChat(false);
+                //     }
+                // }
+                // if (data.message) {
+                //     appendMessage(data.message);
+
+                //     if (data.endSession) {
+                //         // show the goodbye message briefly, then clear + close chat
+                //         setTimeout(() => {
+                //             chatContent.innerHTML = '';
+                //             chatBox.style.display = 'none';
+                //             chatIcon.style.display = 'block';
+                //         }, 1500);
+                //         return;
+                //     }
+                // }
+                // if (data.options) appendOptions(data.options);
+                // if (data.products) {
+                //     appendProductLinks(data.products);
+                //     // initChat(false);
+                // }
+
+                if (data.message) {
+                    appendMessage(data.message);
                 }
-                if (data.options) appendOptions(data.options);
-                if (data.products) {
+
+                if (data.products && data.products.length > 0) {
                     appendProductLinks(data.products);
-                    initChat(false);
+                }
+
+                if (data.options) {
+                    appendOptions(data.options);
+                }
+
+                if (data.delayNext) {
+                    setTimeout(() => {
+                        appendMessage(data.delayNext.message);
+                        if (data.delayNext.options) {
+                            appendOptions(data.delayNext.options);
+                        }
+                    }, 2000);
+                }
+
+                if (data.endSession) {
+                    setTimeout(() => {
+                        chatInit = false
+                        chatContent.innerHTML = '';
+                        chatBox.style.display = 'none';
+                        chatIcon.style.display = 'block';
+                    }, 1500);
                 }
             } else {
                 showAlert({
@@ -1068,8 +1127,15 @@ document.getElementById('grievance-form').addEventListener('submit', async funct
         callbackSuccess: (response) => {
             const { success, message, data } = response;
             if (success && data.message) {
+                hideGrievanceChatForm()
                 appendMessage(data.message);
-                initChat(false)
+                // initChat(false)
+                setTimeout(() => {
+                    chatInit = false
+                    chatContent.innerHTML = '';
+                    chatBox.style.display = 'none';
+                    chatIcon.style.display = 'block';
+                }, 2000);
             } else {
                 appendMessage("Grievance submission failed.");
             }

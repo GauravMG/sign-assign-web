@@ -86,7 +86,8 @@
 
 <?= $this->section('headerButtons'); ?>
 <div class="col-md-5 offset-md-7">
-    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-media">Add New Template</button>
+    <!-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-media">Add New Template</button> -->
+    <button type="button" class="btn btn-dark" onclick="addNewTemplate()">Add New Template</button>
 </div>
 <?= $this->endSection(); ?>
 
@@ -575,6 +576,18 @@
                 }
             })
         }
+    }
+
+    function addNewTemplate() {
+        const token = localStorage.getItem('jwtToken');
+
+        const params = new URLSearchParams();
+        params.set("token", token);
+        params.set("returnUrl", window.location.href);
+
+        const encoded = btoa(params.toString());
+
+        window.location.href = `${BASE_URL_EDITOR}/?data=${encoded}`
     }
 
     async function onClickSubmitAddTemplate() {

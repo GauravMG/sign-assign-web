@@ -74,10 +74,23 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="filterCategoryId">Filter by Category</label>
+                        <select id="filterCategoryId" class="form-control">
+                            <option value="">All</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button class="btn btn-dark" id="applyFiltersBtn" onclick="filterList()">Apply Filters</button>
+                    </div>
+                </div>
+
                 <table id="dtProductsList" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Category</th>
                             <th>Use Editor</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -88,6 +101,7 @@
                     <tfoot>
                         <tr>
                             <th>Name</th>
+                            <th>Category</th>
                             <th>Use Editor</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -117,6 +131,7 @@
 <script>
     $(document).ready(function() {
         fetchProducts()
+        fetchProductCategories()
     })
 
     function initializeDTProductsList() {
@@ -131,7 +146,54 @@
         })
     }
 
-    async function fetchProducts() {
+    async function fetchProductCategories() {
+        await postAPICall({
+            endPoint: "/product-category/list",
+            payload: JSON.stringify({
+                filter: {},
+                range: {
+                    all: true
+                },
+                sort: [{
+                    orderBy: "name",
+                    orderDir: "asc"
+                }],
+                linkedEntities: true
+            }),
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    data
+                } = response;
+
+                if (success) {
+                    let html = `<option value="">All</option>`
+
+                    for (let category of data) {
+                        html += `<option value="${category.productCategoryId}">${category.name}</option>`
+                    }
+
+                    document.getElementById("filterCategoryId").innerHTML = html
+                }
+            }
+        });
+    }
+
+    function filterList() {
+        let additionalFilters = {}
+
+        const filterCategoryId = document.getElementById("filterCategoryId").value
+        if (filterCategoryId) {
+            additionalFilters = {
+                ...additionalFilters,
+                productCategoryId: Number(filterCategoryId)
+            }
+        }
+
+        fetchProducts(additionalFilters)
+    }
+
+    async function fetchProducts(additionalFilters = {}) {
         if ($.fn.DataTable.isDataTable("#dtProductsList")) {
             $('#dtProductsList').DataTable().destroy()
         }
@@ -139,7 +201,9 @@
         await postAPICall({
             endPoint: "/product/list",
             payload: JSON.stringify({
-                "filter": {},
+                "filter": {
+                    ...additionalFilters
+                },
                 "range": {
                     "all": true
                 },
@@ -163,6 +227,7 @@
                     for (let i = 0; i < data?.length; i++) {
                         html += `<tr>
                             <td>${data[i].name ?? ""}</td>
+                            <td>${data[i].productCategory.name ?? ""}</td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="toggle-editor-flag" data-product-id="${data[i].productId}" ${data[i].isEditorEnabled ? "checked" : ""}>

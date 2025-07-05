@@ -70,6 +70,7 @@
     <script>
         const BASE_URL = '<?= base_url(); ?>'
         const BASE_URL_API = '<?= BASE_URL_API ?>'
+        const BASE_URL_EDITOR = '<?= BASE_URL_EDITOR ?>'
     </script>
 
     <script src="<?= base_url('js/service-api-admin.js') . '?t=' . time(); ?>"></script>

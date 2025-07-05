@@ -74,11 +74,26 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label for="filterRoleId">Filter by Customer Type</label>
+                        <select id="filterRoleId" class="form-control">
+                            <option value="">All</option>
+                            <option value="2">Individual</option>
+                            <option value="3">B2B</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button class="btn btn-dark" id="applyFiltersBtn" onclick="filterList()">Apply Filters</button>
+                    </div>
+                </div>
+
                 <table id="dtUsersList" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Full Name</th>
                             <th>Email</th>
+                            <th>Customer Type</th>
                             <th>Resgistration Date</th>
                             <th>Account Status</th>
                             <th>Actions</th>
@@ -90,6 +105,7 @@
                         <tr>
                             <th>Full Name</th>
                             <th>Email</th>
+                            <th>Customer Type</th>
                             <th>Resgistration Date</th>
                             <th>Account Status</th>
                             <th>Actions</th>
@@ -137,7 +153,21 @@
         })
     }
 
-    async function fetchUsers() {
+    function filterList() {
+        let additionalFilters = {}
+
+        const filterRoleId = document.getElementById("filterRoleId").value
+        if (filterRoleId) {
+            additionalFilters = {
+                ...additionalFilters,
+                roleId: Number(filterRoleId)
+            }
+        }
+
+        fetchUsers(additionalFilters)
+    }
+
+    async function fetchUsers(additionalFilters = {}) {
         if ($.fn.DataTable.isDataTable("#dtUsersList")) {
             $('#dtUsersList').DataTable().destroy()
         }
@@ -146,7 +176,8 @@
             endPoint: "/user/list",
             payload: JSON.stringify({
                 "filter": {
-                    "roleId": [2, 3, 4]
+                    "roleId": [2, 3, 4],
+                    ...additionalFilters
                 },
                 "range": {
                     "all": true
@@ -158,7 +189,11 @@
             }),
             callbackComplete: () => {},
             callbackSuccess: (response) => {
-                const {success, message, data} = response
+                const {
+                    success,
+                    message,
+                    data
+                } = response
 
                 if (success) {
                     var html = ""
@@ -167,6 +202,7 @@
                         html += `<tr>
                             <td>${user.fullName ?? ""}</td>
                             <td>${user.email}</td>
+                            <td>${user.role.name === "Business Admin" ? "B2B" : "Individual"}</td>
                             <td>${formatDate(user.createdAt)}</td>
                             <td>
                                 <label class="switch">

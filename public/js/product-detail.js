@@ -115,6 +115,12 @@ function reloadOwlCarousel($carousel, items) {
         nav: true,
         items: 4,
     });
+
+    $carousel.find('.inner-card img').off('click').on('click', function () {
+        const src = $(this).attr('src');
+        $("#coverImageLink").attr("href", src);
+        $("#productCoverImage").attr('src', src);
+    });
 }
 
 function reloadOwlCarouselRelatedProducts($carousel, items) {
@@ -259,6 +265,7 @@ async function fetchProducts() {
                     </div>`)
                 }
 
+                $("#coverImageLink").attr("href", firstImage?.mediaUrl ?? `${BASE_URL}images/no-preview-available.jpg`);
                 $("#productCoverImage").attr("src", firstImage?.mediaUrl ?? `${BASE_URL}images/no-preview-available.jpg`)
 
                 reloadOwlCarousel($("#owl-example"), htmlImagesSlider)

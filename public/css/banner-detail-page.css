@@ -31,6 +31,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    pointer-events: none;
 }
 
 .detail-page-area .detail-flex-inner .slider-area .owl-carousel .owl-nav button {
@@ -39,6 +40,7 @@
     height: 50px;
     border-radius: 50px;
     border: 0;
+    pointer-events: all;
 }
 
 .detail-page-area .detail-flex-inner .slider-area .owl-carousel .owl-nav button.owl-prev {

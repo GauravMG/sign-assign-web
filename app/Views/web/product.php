@@ -1,6 +1,7 @@
 <?= $this->extend('web/web_template'); ?>
 
 <?= $this->section('pageStyles'); ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
 <link rel="stylesheet" href="<?= base_url('css/banner-detail-page.css'); ?>">
 <?= $this->endSection(); ?>
 
@@ -9,7 +10,9 @@
     <div class="container-fluid">
         <div class="detail-flex-inner">
             <div class="slider-area">
-                <img id="productCoverImage" src="" alt="">
+                <a data-fancybox="gallery" id="coverImageLink">
+                    <img id="productCoverImage" src="" alt="">
+                </a>
                 <div id="owl-example" class="owl-carousel owl-theme">
                 </div>
             </div>
@@ -406,5 +409,6 @@
 <script>
     const productId = Number('<?= $data['productId']; ?>')
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 <script src="<?= base_url('js/product-detail.js') . '?t=' . time(); ?>"></script>
 <?= $this->endSection(); ?>

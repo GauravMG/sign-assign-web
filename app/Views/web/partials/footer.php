@@ -6,7 +6,7 @@
                     <a href="/"><img src="<?= base_url('images/footer-logo.png') . '?t=' . time(); ?>" alt=""></a>
                 </div>
                 <h5><span><i class="fa-solid fa-phone-volume"></i></span><span><a href="tel:19724185253" style="text-decoration: none; color: unset;">972‐418‐5253</a></span></h5>
-                <h6><span><i class="fa-solid fa-envelope-open"></i></span><span><a href="mailto:order@signasign.com" style="text-decoration: none; color: unset;">order@signasign.com</a></span></h6>
+                <h6><span><i class="fa-solid fa-envelope-open"></i></span><span><a href="mailto:orders@signassign.com" style="text-decoration: none; color: unset;">orders@signassign.com</a></span></h6>
                 <h6>
                     <span><i class="fa-solid fa-location-dot"></i></span>
                     <span>702 Shepherd Dr, Garland, TX 75042, United States</span>

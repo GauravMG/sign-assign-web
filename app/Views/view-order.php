@@ -36,10 +36,15 @@
                             href="#order-details" role="tab"
                             aria-controls="order-details" aria-selected="true">Order Details</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="checklist-tab" data-toggle="pill"
                             href="#checklist" role="tab"
                             aria-controls="checklist" aria-selected="false">Assigned Staff & Checklist</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="invoice-list-tab" data-toggle="pill"
+                            href="#invoice-list" role="tab"
+                            aria-controls="invoice-list" aria-selected="false">Invoices</a>
                     </li>
                 </ul>
             </div>
@@ -146,6 +151,38 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="invoice-list"
+                        role="tabpanel" aria-labelledby="invoice-list-tab">
+                        <div class="overlay-wrapper">
+                            <div id="invoice-list-loader" class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                                <div class="text-bold pt-2">Loading...</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Invoices</h4>
+                                </div>
+                            </div>
+
+                            <table id="dtInvoiceList" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice Number</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataInvoiceList">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Invoice Number</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -284,6 +321,8 @@
                 fetchOrder(targetTabId)
             } else if (targetTabId.replace("#", "") === "checklist") {
                 fetchOrderStaffMapping(targetTabId)
+            } else if (targetTabId.replace("#", "") === "invoice-list") {
+                fetchInvoices(targetTabId)
             }
         })
 
@@ -438,6 +477,18 @@
 
     function initializeDTTasksList() {
         $("#dtTasksList").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        })
+    }
+
+    function initializeDTInvoiceList() {
+        $("#dtInvoiceList").DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -893,6 +944,70 @@
                 }
             })
         }
+    }
+
+    async function fetchInvoices() {
+        await postAPICall({
+            endPoint: "/invoice/list",
+            payload: JSON.stringify({
+                "filter": {
+                    orderId: Number(orderId)
+                },
+                "range": {
+                    "all": true
+                },
+                "sort": [{
+                    "orderBy": "createdAt",
+                    "orderDir": "desc"
+                }]
+            }),
+            callbackBeforeSend: function() {
+                $('#invoice-list-loader').fadeIn()
+                if ($.fn.DataTable.isDataTable("#dtInvoiceList")) {
+                    $('#dtInvoiceList').DataTable().destroy()
+                }
+            },
+            callbackComplete: function() {
+                $('#invoice-list-loader').fadeOut()
+            },
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    data
+                } = response
+
+                if (success) {
+                    var html = ""
+
+                    for (let el of data) {
+                        html += `<tr>
+                            <td>${el.invoiceNumber ?? ""}</td>
+                            <td>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewInvoice(${el.invoiceId})">
+                                        <i class="fas fa-folder mr-1">
+                                        </i>
+                                        View
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>`;
+                    }
+
+                    // Insert the generated table rows
+                    document.getElementById("dataInvoiceList").innerHTML = html;
+
+                    initializeDTInvoiceList()
+                }
+
+                loader.hide()
+            }
+        })
+    }
+
+    function onClickViewInvoice(invoiceId) {
+        window.location.href = `/admin/invoices/${invoiceId}`
     }
 </script>
 <?= $this->endSection(); ?>

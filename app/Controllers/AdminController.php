@@ -406,14 +406,17 @@ class AdminController extends BaseController
         return view('view-order', $data);
     }
 
-    public function invoices(): string
+    public function viewInvoice($invoiceId): string
     {
         $data = [
             'title' => 'Invoices',
-            'page_heading' => 'Invoices'
+            'page_heading' => 'Invoices',
+            'data' => [
+                'invoiceId' => $invoiceId
+            ]
         ];
 
-        return view('invoices', $data);
+        return view('view-invoice', $data);
     }
 
     public function invoicePrint(): string

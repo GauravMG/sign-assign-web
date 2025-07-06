@@ -12,8 +12,8 @@ $routes->get('/admin/blogs/add', 'AdminController::addBlog');
 $routes->get('/admin/blogs/(:any)', 'AdminController::viewBlog/$1');
 $routes->get('/admin/blogs', 'AdminController::blogs');
 
-$routes->get('/admin/invoices/print', 'AdminController::invoicePrint');
-$routes->get('/admin/invoices', 'AdminController::invoices');
+// $routes->get('/admin/invoices/print', 'AdminController::invoicePrint');
+$routes->get('/admin/invoices/(:any)', 'AdminController::viewInvoice/$1');
 
 $routes->get('/admin/orders/(:any)', 'AdminController::viewOrder/$1');
 $routes->get('/admin/orders', 'AdminController::orders');

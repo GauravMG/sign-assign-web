@@ -17,6 +17,7 @@ let businessClients = []
 let selectedShippingAddressId = null
 let selectedBusinessClientId = null
 let selfData = null
+let isGuestCheckout = false
 
 getSelfData()
 fetchProducts()
@@ -579,21 +580,55 @@ async function openShippingAddressModal() {
     if (!isUserLoggedIn) {
         showAlert({
             type: 'info',
-            title: 'Login Required to Continue',
-            text: 'To select a shipping address and proceed with your order, please log in to your account.',
+            title: 'Proceed to Checkout',
+            text: 'To proceed, you can either log in for a faster experience and access to your account, or continue as a guest.',
             showCancel: true,
-            confirmText: 'Login Now',
-            cancelText: 'Go Back',
-            onConfirm: () => $("#loginModal").modal("show"),
+            confirmText: 'Login / Signup',
+            cancelText: 'Continue as Guest',
+            onConfirm: () => {
+                $("#loginModal").modal("show");
+            },
+            onCancel: () => {
+                // User chooses Guest Checkout
+                proceedAsGuest();
+            }
         });
         return;
     }
 
-    resetShippingModalState(); // reset before showing
+    proceedToShippingModal();
+}
+
+function proceedAsGuest() {
+    isGuestCheckout = true;
+
+    proceedToShippingModal();
+}
+
+// function proceedToShippingModal() {
+//     resetShippingModalState(); // reset before showing
+//     document.getElementById('shippingSelectionModal').style.display = 'block';
+
+//     const selectedOrderType = document.querySelector('input[name="orderType"]:checked')?.value || 'self';
+//     toggleOrderType(selectedOrderType);
+// }
+function proceedToShippingModal() {
+    resetShippingModalState();
+
+    if (isGuestCheckout) {
+        document.getElementById('guestPersonalInfoContainer').classList.remove('d-none');
+        document.getElementById("shippingAddressModalHeading").innerText = "Guest Checkout Details"
+        document.getElementById("shippingAddressModalAddNewAddressHeading").innerText = "Shipping Address Details"
+    } else {
+        document.getElementById('guestPersonalInfoContainer').classList.add('d-none');
+        document.getElementById("shippingAddressModalHeading").innerText = "Select Shipping Options"
+        document.getElementById("shippingAddressModalAddNewAddressHeading").innerText = "Add New Shipping Address"
+    }
+
     document.getElementById('shippingSelectionModal').style.display = 'block';
 
     const selectedOrderType = document.querySelector('input[name="orderType"]:checked')?.value || 'self';
-    await toggleOrderType(selectedOrderType);
+    toggleOrderType(selectedOrderType);
 }
 
 function closeShippingModal() {
@@ -622,8 +657,89 @@ function resetShippingModalState() {
     });
 }
 
-function continueToPayment() {
-    selectedShippingAddressId = document.getElementById("shippingAddress")?.value ?? null;
+// function continueToPayment() {
+//     selectedShippingAddressId = document.getElementById("shippingAddress")?.value ?? null;
+
+//     closeShippingModal();
+//     openCloverModal(); // your existing Clover flow
+// }
+async function continueToPayment() {
+    let tempUserIdUser = selfData?.userId ?? null
+
+    // capture guest personal details if guest checkout
+    if (isGuestCheckout) {
+        const guestDetails = {
+            firstName: document.getElementById('guestFirstName').value.trim(),
+            lastName: document.getElementById('guestLastName').value.trim(),
+            email: document.getElementById('guestEmail').value.trim(),
+            mobile: document.getElementById('guestMobile').value.trim(),
+            roleId: 2
+        };
+
+        await postAPICall({
+            endPoint: "/user/create",
+            payload: JSON.stringify(guestDetails),
+            callbackComplete: () => { },
+            callbackSuccess: async (response) => {
+                const { success, message, data, jwtToken } = response
+
+                if (success) {
+                    localStorage.setItem("jwtTokenUser", jwtToken)
+                    tempUserIdUser = data[0].userId
+                    await continueToPaymentPart2(tempUserIdUser)
+                }
+            }
+        })
+    } else {
+        await continueToPaymentPart2(tempUserIdUser)
+    }
+}
+
+async function continueToPaymentPart2(tempUserIdUser) {
+    if (document.getElementById('shippingAddress')?.value) {
+        await continueToPaymentPart3()
+    } else if (document.getElementById('newFirstName')?.value) {
+        // always capture new address fields (even for logged-in users adding new address)
+        const newAddress = {
+            firstName: document.getElementById('newFirstName').value.trim(),
+            lastName: document.getElementById('newLastName').value.trim(),
+            phoneNumber: document.getElementById('newCellPhone').value.trim(),
+            streetAddress: document.getElementById('newStreetAddress').value.trim(),
+            postal: document.getElementById('newZipCode').value.trim(),
+            city: document.getElementById('newCity').value.trim(),
+            state: document.getElementById('newState').value.trim(),
+            country: document.getElementById('newCountry').value.trim(),
+            userId: tempUserIdUser
+        };
+
+        await postAPICall({
+            endPoint: "/user-address/create",
+            payload: JSON.stringify(newAddress),
+            callbackComplete: () => { },
+            callbackSuccess: async (response) => {
+                const { success, message, data } = response
+
+                if (success) {
+                    newShippingAddressId = data[0].userAddressId
+                    userAddresses = data
+
+                    await continueToPaymentPart3(newShippingAddressId)
+                }
+            }
+        })
+    } else {
+        showAlert({
+            type: 'info',
+            title: 'No shipping address selected!',
+            text: 'Please select a shipping address or add a new shipping address.',
+            confirmText: 'OK'
+        });
+    }
+}
+
+async function continueToPaymentPart3(newShippingAddressId = null) {
+    // capture selected existing address if any
+    selectedShippingAddressId = newShippingAddressId ?? document.getElementById('shippingAddress')?.value ?? null;
 
     closeShippingModal();
     openCloverModal(); // your existing Clover flow
@@ -654,41 +770,43 @@ async function toggleOrderType(value) {
         businessContainer.classList.add("d-none");
     }
 
-    if (value === 'self') {
-        // Hide client-related fields
-        clientArea.classList.add('d-none');
-        addressArea.classList.remove('d-none');
+    if (!isGuestCheckout) {
+        if (value === 'self') {
+            // Hide client-related fields
+            clientArea.classList.add('d-none');
+            addressArea.classList.remove('d-none');
 
-        // Load user's own addresses
-        if (!userAddresses || userAddresses.length === 0) {
-            userAddresses = await fetchUserAddresses();
+            // Load user's own addresses
+            if (!userAddresses || userAddresses.length === 0) {
+                userAddresses = await fetchUserAddresses();
+            }
+
+            let html = `<label for="shippingAddress">Select Shipping Address:</label>`;
+            html += `<select id="shippingAddress" class="form-control">`;
+            for (const addr of userAddresses) {
+                html += `<option value="${addr.userAddressId}">${createFullName(addr)} - ${formatAddress(addr)}</option>`;
+            }
+            html += `</select>`;
+
+            addressArea.innerHTML = html;
+
+        } else if (value === 'client') {
+            // Show client dropdown, hide own address list
+            clientArea.classList.remove('d-none');
+            addressArea.classList.add('d-none');
+            addressArea.innerHTML = '';
+
+            if (!businessClients || businessClients.length === 0) {
+                businessClients = await fetchBusinessClients();
+            }
+
+            let options = `<option value="">-- Select Client --</option>`;
+            for (const client of businessClients) {
+                options += `<option value="${client.businessClientId}">${createFullName(client)}</option>`;
+            }
+
+            document.getElementById('clientSelect').innerHTML = options;
         }
-
-        let html = `<label for="shippingAddress">Select Shipping Address:</label>`;
-        html += `<select id="shippingAddress" class="form-control">`;
-        for (const addr of userAddresses) {
-            html += `<option value="${addr.userAddressId}">${createFullName(addr)} - ${formatAddress(addr)}</option>`;
-        }
-        html += `</select>`;
-
-        addressArea.innerHTML = html;
-
-    } else if (value === 'client') {
-        // Show client dropdown, hide own address list
-        clientArea.classList.remove('d-none');
-        addressArea.classList.add('d-none');
-        addressArea.innerHTML = '';
-
-        if (!businessClients || businessClients.length === 0) {
-            businessClients = await fetchBusinessClients();
-        }
-
-        let options = `<option value="">-- Select Client --</option>`;
-        for (const client of businessClients) {
-            options += `<option value="${client.businessClientId}">${createFullName(client)}</option>`;
-        }
-
-        document.getElementById('clientSelect').innerHTML = options;
     }
 }
 
@@ -849,6 +967,10 @@ document.getElementById('cloverPaymentForm').addEventListener('submit', async fu
                                 window.location.href = `${BASE_URL_USER_DASHBOARD}/orders`;
                             }
                         });
+
+                        if (isGuestCheckout) {
+                            localStorage.removeItem("jwtTokenUser")
+                        }
 
                         closeCloverModal();
                         clearCart()

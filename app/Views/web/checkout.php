@@ -74,14 +74,14 @@
 </div>
 
 <!-- Shipping Selection Modal -->
-<div id="shippingSelectionModal" class="shipping-modal">
+<!-- <div id="shippingSelectionModal" class="shipping-modal">
     <div class="shipping-modal-content">
         <span class="shipping-modal-close" onclick="closeShippingModal()">&times;</span>
 
         <div id="shippingSelectionArea">
             <h4>Select Shipping Options</h4>
 
-            <!-- Show only for business user -->
+            <!-- Show only for business user --
             <div id="shippingSelectionBusinessContainer" class="d-none">
                 <div class="form-group mb-3">
                     <label><input type="radio" name="orderType" value="self" checked onchange="toggleOrderType(this.value)"> Order for Myself</label>
@@ -100,6 +100,105 @@
                 <label for="shippingAddress">Select Shipping Address:</label>
                 <select id="shippingAddress" class="form-control">
                 </select>
+            </div>
+        </div>
+
+        <div class="text-end">
+            <button class="btn btn-success" onclick="continueToPayment()">Continue to Payment</button>
+        </div>
+    </div>
+</div> -->
+
+<!-- Shipping Selection Modal -->
+<div id="shippingSelectionModal" class="shipping-modal">
+    <div class="shipping-modal-content">
+        <span class="shipping-modal-close" onclick="closeShippingModal()">&times;</span>
+
+        <div id="shippingSelectionArea">
+            <h4 id="shippingAddressModalHeading">Select Shipping Options</h4>
+
+            <!-- Guest Personal Info Section -->
+            <div id="guestPersonalInfoContainer" class="mb-6 d-none">
+                <h5>Personal Details</h5>
+                <div class="row mt-2">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="guestFirstName" placeholder="First Name *" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="guestLastName" placeholder="Last Name *" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="email" class="form-control" id="guestEmail" placeholder="Email Address *" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="tel" class="form-control" id="guestMobile" placeholder="Cell Phone Number *" />
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+            <!-- Business user radio -->
+            <div id="shippingSelectionBusinessContainer" class="d-none">
+                <div class="form-group mb-3">
+                    <label><input type="radio" name="orderType" value="self" checked onchange="toggleOrderType(this.value)"> Order for Myself</label>
+                    <label><input type="radio" name="orderType" value="client" onchange="toggleOrderType(this.value)"> Order for Client</label>
+                </div>
+
+                <div id="clientSelectionArea" class="form-group mb-3 d-none">
+                    <label for="clientSelect">Select Client:</label>
+                    <select id="clientSelect" class="form-control" onchange="loadClientAddress(this.value)">
+                        <option value="">-- Select Client --</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Existing address selection -->
+            <div id="addressSelectionArea" class="form-group mb-3">
+                <label for="shippingAddress">Select Shipping Address:</label>
+                <select id="shippingAddress" class="form-control">
+                    <!-- dynamically filled -->
+                </select>
+            </div>
+
+            <!-- Add New Address Section -->
+            <div id="newAddressContainer" class="form-group mb-3">
+                <h5 id="shippingAddressModalAddNewAddressHeading">Add New Shipping Address</h5>
+                <div class="row mt-2">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control me-2" id="newFirstName" placeholder="First Name *" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="newLastName" placeholder="Last Name *" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="tel" class="form-control" id="newCellPhone" placeholder="Cell Phone Number *" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" id="newStreetAddress" placeholder="Street Address *" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="newCity" placeholder="City *" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="newState" placeholder="State *" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="newCountry" placeholder="Country *" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="newZipCode" placeholder="Zip/Postal Code *" />
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -58,7 +58,10 @@
                             </div>
 
                             <div class="mb-4">
-                                <h5><strong>Purchased Products</strong></h5>
+                                <div style="display: flex; justify-content: center; align-items: center;" class="mb-2">
+                                    <h5 style="margin-right: auto;"><strong>Purchased Products</strong></h5>
+                                    <a onclick="onClickEditOrder()"><button type="button" class="btn btn-dark">Edit Order</button></a>
+                                </div>
                                 <ul class="list-group" id="productList"></ul>
                             </div>
 
@@ -522,7 +525,8 @@
                 } = response
 
                 if (success) {
-                    const order = data[0]
+                    let order = data[0]
+                    order.amountDetails = typeof order.amountDetails === "string" ? JSON.parse(order.amountDetails) : order.amountDetails
 
                     // Products
                     const productList = document.getElementById("productList");
@@ -1008,6 +1012,26 @@
 
     function onClickViewInvoice(invoiceId) {
         window.location.href = `/admin/invoices/${invoiceId}`
+    }
+
+    async function onClickEditOrder() {
+        await postAPICall({
+            endPoint: `/order/user-token-by-order`,
+            payload: JSON.stringify({
+                orderId: Number(orderId)
+            }),
+            callbackSuccess: (response) => {
+                const {
+                    success,
+                    message,
+                    jwtToken
+                } = response
+
+                if (success) {
+                    window.location.href = `/checkout-update?orderId=${orderId}&userToken=${jwtToken}`
+                }
+            }
+        })
     }
 </script>
 <?= $this->endSection(); ?>

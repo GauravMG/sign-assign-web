@@ -257,6 +257,22 @@ We pride ourselves on providing our customers with prompt, efficient, and reliab
         return view('web/checkout', $data);
     }
 
+    public function checkoutUpdate(): string
+    {
+        $data = [
+            'title' => "Checkout",
+            'page_heading' => "Checkout"
+        ];
+
+        return view('web/checkout-update', $data);
+    }
+
+    public function paymentSuccess()
+    {
+        echo "<pre>";
+        print_r($_REQUEST);
+    }
+
     public function blogs(): string
     {
         $data = [

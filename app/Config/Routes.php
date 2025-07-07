@@ -74,8 +74,10 @@ $routes->get('/admin', 'AuthController::login');
 //     $routes->get('footer', 'SharedController::footer');
 // });
 
+$routes->get('/payment-success', 'WebController::paymentSuccess');
 $routes->get('/learning-center/(:any)', 'WebController::blogDetail/$1');
 $routes->get('/learning-center', 'WebController::blogs');
+$routes->get('/checkout-update', 'WebController::checkoutUpdate');
 $routes->get('/checkout', 'WebController::checkout');
 $routes->get('/product/(:any)', 'WebController::productDetail/$1');
 $routes->get('/subcategory/(:any)', 'WebController::productSubCategory/$1');

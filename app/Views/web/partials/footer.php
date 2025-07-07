@@ -163,7 +163,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="terms-of-use">
+                        <a href="/terms-of-use">
                             <i class="fa-solid fa-arrow-right"></i><span>Terms of Use</span>
                         </a>
                     </li>

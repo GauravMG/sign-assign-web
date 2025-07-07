@@ -250,7 +250,7 @@
                         orderProductListHtml += `<td>${product.sku}</td>`
                         orderProductListHtml += `<td>${(el.dataJson.totalDiscount ?? 0) > 0 ? `$${el.dataJson.totalDiscount}` : "-"}</td>`
                         orderProductListHtml += `<td>$${el.dataJson.payablePriceByQuantityAfterDiscount ?? 0}</td>`
-                        orderProductListHtml += `<td>${(el.dataJson.rushHourDeliveryAmount ?? 0) > 0 ? `$${el.dataJson.rushHourDeliveryAmount}` : "-"}</td>`
+                        orderProductListHtml += `<td>${el.dataJson.rushHourDelivery && (el.dataJson.rushHourDeliveryAmount ?? 0) > 0 ? `$${el.dataJson.rushHourDeliveryAmount}` : "-"}</td>`
                         orderProductListHtml += `</tr>`
                     }
 

@@ -32,6 +32,13 @@ async function getSelfData() {
     const isUserLoggedIn = checkIfUserLoggedIn()
     if (isUserLoggedIn) {
         selfData = await getMe()
+
+        if (Number(selfData.roleId) === 2) {
+            document.getElementById("promo-code-area").classList.remove("d-none")
+        } else {
+            document.getElementById("promo-code-area").classList.add("d-none")
+        }
+
         userDiscountPercentage = selfData?.userDiscountPercentage ?? 0
         if (Number(userDiscountPercentage) > 0) {
             renderCartItems()
@@ -259,7 +266,7 @@ function renderCartItems() {
      * handle business discount
      */
     let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
-    if (Number(userDiscountPercentage) > 0) {
+    if (Number(userDiscountPercentage) > 0 && [3, 4].indexOf(Number(selfData.roleId)) >= 0) {
         businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
         document.getElementById("businessDiscountContainer").classList.remove("d-none")
         document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`

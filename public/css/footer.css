@@ -122,3 +122,17 @@ footer .footer-inner .footer-col:nth-child(5) ul li a svg {
     display: block;
     margin: 0 auto 20px auto;
 }
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+}

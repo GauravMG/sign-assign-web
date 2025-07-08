@@ -73,7 +73,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="facility-grid mt-2">
+                <!-- <div class="facility-grid mt-2">
                     <div class="facility-card">
                         <span>
                             <i class="fa-solid fa-truck-fast"></i>
@@ -92,13 +92,13 @@
                         </span>
                         <p>Free Design Proof</p>
                     </div>
-                    <!-- <div class="facility-card">
+                    !-- <div class="facility-card">
                         <span>
                             <i class="fa-solid fa-user-secret"></i>
                         </span>
                         <p>Hire a Designer</p>
-                    </div> -->
-                </div>
+                    </div> --
+                </div> -->
                 <div class="accordion mt-2 d-none" id="accordionBulkDiscountContainer">
                     <div class="accordion-item mt-2" id="bulkDiscountContainer">
                         <h2 class="accordion-header">

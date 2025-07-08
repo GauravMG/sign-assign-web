@@ -17,7 +17,7 @@
                 <div class="product-detail-area" id="cartItemsContainer"></div>
             </div>
             <div class="right-inner-area">
-                <div class="promo-code-area" id="promo-code-area">
+                <div class="promo-code-area d-none" id="promo-code-area">
                     <input type="text" class="form-control" id="couponCode" placeholder="Promocode">
                     <button type="button" class="" onclick="applyCoupon()">Apply</button>
                 </div>

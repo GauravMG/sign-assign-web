@@ -51,6 +51,10 @@
                 transform: rotate(360deg);
             }
         }
+
+        .toggle-password {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -86,7 +90,8 @@
                         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <!-- <span class="fas fa-lock"></span> -->
+                                <span class="fas fa-eye toggle-password" onclick="togglePasswordVisibility(this, 'password')"></span>
                             </div>
                         </div>
                     </div>
@@ -157,6 +162,19 @@
             }
         };
 
+        function togglePasswordVisibility(el, inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                el.classList.remove("fa-eye");
+                el.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                el.classList.remove("fa-eye-slash");
+                el.classList.add("fa-eye");
+            }
+        }
+
         $(document).ready(() => {
             $("#loginForm").on("submit", (e) => {
                 e.preventDefault()
@@ -186,7 +204,12 @@
                     },
                     complete: function() {},
                     success: function(response) {
-                        const {success, message, jwtToken, data} = response
+                        const {
+                            success,
+                            message,
+                            jwtToken,
+                            data
+                        } = response
 
                         if (success) {
                             loader.hide()

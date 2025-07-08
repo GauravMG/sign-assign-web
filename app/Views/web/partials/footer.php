@@ -305,11 +305,19 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" id="otp" name="otp" placeholder="OTP">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                            </div> -->
+                            <div class="form-group password-wrapper">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                <i class="fa fa-eye toggle-password" onclick="togglePasswordVisibility('password', this)"></i>
+                            </div>
+                            <div class="form-group password-wrapper">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                                <i class="fa fa-eye toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)"></i>
                             </div>
                             <div class="form-group mt-3">
                                 <a onclick="resendOTP('registration')" class="submit-btn">Resend OTP</a>
@@ -346,8 +354,17 @@
                             <div class="form-group">
                                 <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Email Address">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Password">
+                            </div> -->
+                            <div class="form-group password-wrapper">
+                                <input
+                                    type="password"
+                                    id="loginPassword"
+                                    name="loginPassword"
+                                    class="form-control"
+                                    placeholder="Password">
+                                <i class="fa fa-eye toggle-password" onclick="togglePasswordVisibility('loginPassword', this)"></i>
                             </div>
                             <div class="form-group mt-3">
                                 <div class="flex-inner">
@@ -425,11 +442,19 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" id="forgotOTP" name="forgotOTP" placeholder="Enter OTP">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New Password">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password">
+                            </div> -->
+                            <div class="form-group password-wrapper">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New Password">
+                                <i class="fa fa-eye toggle-password" onclick="togglePasswordVisibility('newPassword', this)"></i>
+                            </div>
+                            <div class="form-group password-wrapper">
+                                <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password">
+                                <i class="fa fa-eye toggle-password" onclick="togglePasswordVisibility('confirmNewPassword', this)"></i>
                             </div>
                             <div class="form-group mt-3">
                                 <a onclick="resendOTP('forgot_password')" class="submit-btn">Resend OTP</a>

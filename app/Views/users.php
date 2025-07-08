@@ -215,7 +215,7 @@
                                     <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewUser(${user.userId})">
                                         <i class="fas fa-folder mr-1">
                                         </i>
-                                        View
+                                        Discounts & Promos
                                     </a>
                                     <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickUpdateUser(${user.userId})">
                                         <i class="fas fa-pencil-alt mr-1">

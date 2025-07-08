@@ -83,14 +83,6 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
-                    <a href="/admin/invoices" class="nav-link">
-                        <i class="nav-icon fas fa-receipt"></i>
-                        <p>
-                            Invoices
-                        </p>
-                    </a>
-                </li>
                 <!-- <li class="nav-item sidebar-nav-item sidebar-nav-item-superadmin sidebar-nav-item-brokeradmin sidebar-nav-item-staff">
                     <a href="/admin/payments" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>

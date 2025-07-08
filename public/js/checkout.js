@@ -265,7 +265,7 @@ function renderCartItems() {
      * 
      * handle business discount
      */
-    let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
+    let businessDiscountPrice = [3, 4].indexOf(Number(selfData.roleId)) >= 0 ? Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100 : 0
     if (Number(userDiscountPercentage) > 0 && [3, 4].indexOf(Number(selfData.roleId)) >= 0) {
         businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
         document.getElementById("businessDiscountContainer").classList.remove("d-none")

@@ -119,6 +119,13 @@ async function getSelfData() {
     const isUserLoggedIn = checkIfUserLoggedIn()
     if (isUserLoggedIn) {
         selfData = await getMe()
+
+        if (Number(selfData.roleId) === 2) {
+            document.getElementById("promo-code-area").classList.remove("d-none")
+        } else {
+            document.getElementById("promo-code-area").classList.add("d-none")
+        }
+
         userDiscountPercentage = selfData?.userDiscountPercentage ?? 0
         if (Number(userDiscountPercentage) > 0) {
             renderCartItems()
@@ -344,8 +351,8 @@ function renderCartItems() {
      * 
      * handle business discount
      */
-    let businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
-    if (Number(userDiscountPercentage) > 0) {
+    let businessDiscountPrice = [3, 4].indexOf(Number(selfData.roleId)) >= 0 ? Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100 : 0
+    if (Number(userDiscountPercentage) > 0 && [3, 4].indexOf(Number(selfData.roleId)) >= 0) {
         businessDiscountPrice = Math.round(((subTotalPrice * userDiscountPercentage) / 100) * 100) / 100
         document.getElementById("businessDiscountContainer").classList.remove("d-none")
         document.getElementById("businessDiscountPercentage").innerText = `${userDiscountPercentage}%`
@@ -666,9 +673,6 @@ function removeCoupon() {
  * verify payment amount on update order
  */
 async function verifyPaymentAmount() {
-    console.log(`amountDetailsOriginal ===`, amountDetailsOriginal)
-    console.log(`amountDetails ===`, amountDetails)
-
     const newPaymentAmountToPay = amountDetailsOriginal.grandTotalPrice < amountDetails.grandTotalPrice
         ? Math.round((amountDetails.grandTotalPrice - amountDetailsOriginal.grandTotalPrice) * 100) / 100
         : null;
@@ -676,8 +680,6 @@ async function verifyPaymentAmount() {
     const newPaymentAmountToRefund = amountDetailsOriginal.grandTotalPrice > amountDetails.grandTotalPrice
         ? Math.round((amountDetailsOriginal.grandTotalPrice - amountDetails.grandTotalPrice) * 100) / 100
         : null;
-    console.log(`newPaymentAmountToPay ===`, newPaymentAmountToPay)
-    console.log(`newPaymentAmountToRefund ===`, newPaymentAmountToRefund)
 
     await postAPICall({
         endPoint: "/order/update-by-admin",
@@ -694,7 +696,16 @@ async function verifyPaymentAmount() {
             const { success, message, data } = response
 
             if (success) {
-                console.log(`data ===`, data)
+                showAlert({
+                    type: 'success',
+                    title: 'Order updated!',
+                    text: `Customer's order updated successfully.`,
+                    confirmText: 'OK'
+                });
+
+                setTimeout(() => {
+                    window.location.href = `/admin/orders/${orderId}`
+                }, 1500)
             }
         }
     })

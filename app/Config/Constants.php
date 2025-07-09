@@ -98,7 +98,7 @@ define('EVENT_PRIORITY_HIGH', 10);
  */
 define("BASE_URL_API", "http://3.109.198.252/api");
 define("BASE_URL_USER_DASHBOARD", "http://3.109.198.252/user-dashboard");
-define("BASE_URL_EDITOR", "http://3.109.198.252/editor");
+define("BASE_URL_EDITOR", "http://3.109.198.252/editor/vue-fabric-editor");
 
 /**
  * clover payment gateway

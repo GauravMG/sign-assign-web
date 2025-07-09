@@ -86,8 +86,8 @@
 
 <?= $this->section('headerButtons'); ?>
 <div class="col-md-5 offset-md-7">
-    <!-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-media">Add New Template</button> -->
-    <button type="button" class="btn btn-dark" onclick="addNewTemplate()">Add New Template</button>
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-media">Add New Template</button>
+    <!-- <button type="button" class="btn btn-dark" onclick="addNewTemplate()">Add New Template</button> -->
 </div>
 <?= $this->endSection(); ?>
 

@@ -6,6 +6,7 @@ let payablePrice = 0
 let cartQuantity = 1;
 let product = null
 let selectedSize = null
+let isDesignUploaded = false
 
 $(document).ready(function () {
     const params = new URLSearchParams(window.location.search);
@@ -20,6 +21,9 @@ $(document).ready(function () {
         dataObject = typeof dataObject === "string" ? JSON.parse(dataObject) : dataObject
 
         if (dataObject && Object.keys(dataObject).length) {
+            document.getElementById("select-design-method").classList.add("d-none")
+            isDesignUploaded = true
+
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
             let cartItem = cart.find(item => item.productId === productId);
@@ -915,7 +919,7 @@ function updateCartUI() {
         quantityControls.style.display = 'flex';
         quantityDisplay.textContent = cartQuantity;
         priceDisplay.textContent = (payablePrice * cartQuantity).toFixed(2);
-        if (product.isEditorEnabled) {
+        if (product.isEditorEnabled && !isDesignUploaded) {
             selectDesignMethod.classList.remove("d-none")
             selectDesignMethod.classList.add("d-flex")
         }

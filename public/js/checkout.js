@@ -219,6 +219,12 @@ function renderCartItems() {
                     <h6>Web, June 15, 2025</h6>
                 </div>
             </div>
+            ${cartItem.design?.previewUrl ? `
+                <div class="mt-2">
+                    <h5>Uploaded Design</h5>
+                    <img class="mt-2" style="width: 150px; border: 1px solid;" src="${cartItem.design?.previewUrl}" alt="Design" />
+                </div>
+            ` : ""}
             ${(product.productBulkDiscounts ?? []).length ? `<div class="bulk-qty-inner">
                 <div class="left-area">
                     <p>Bulk Quantity Discount</p>

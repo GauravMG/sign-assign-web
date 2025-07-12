@@ -115,6 +115,18 @@
         flex: 1 1 100%;
         max-width: 100%;
     }
+
+    .subheader-area {
+        background: #430067;
+    }
+
+    .subheader-area .caption-area {
+        max-width: 90%;
+    }
+
+    .subheader-area .caption-area h3 {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 840px) {
@@ -245,6 +257,10 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .grid-inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     footer .footer-inner {
         flex-wrap: wrap;
     }
@@ -292,10 +308,6 @@
 
     .beyond-area .flex-inner .right-area {
         display: none;
-    }
-
-    .grid-inner {
-        grid-template-columns: repeat(2, 1fr);
     }
 
     .business-growth-area p {
@@ -368,5 +380,11 @@
 
     .form-area .form-inner-area {
         padding: 30px;
+    }
+}
+
+@media (max-width: 380px) {
+    .grid-inner {
+        grid-template-columns: repeat(1, 1fr);
     }
 }

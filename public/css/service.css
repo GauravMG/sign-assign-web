@@ -5,12 +5,33 @@ h3 {
 }
 
 .subheader-area {
-    background-image: url('/images/service-banner.png');
+    background-image: url('/images/service-subheader-image.jpg');
     height: 100%;
     aspect-ratio: 16/5;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    position: relative;
+}
+
+.subheader-area .caption-area {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
+    max-width: 40%;
+}
+
+.subheader-area .caption-area h3 {
+    color: #ffffff;
+    margin-bottom: 0.554rem;
+    font-size: 2.554rem;
+}
+
+.subheader-area .caption-area p {
+    color: #ffffff;
+    font-size: 0.954rem;
+    line-height: 1.5rem;
 }
 
 .grid-inner {
@@ -21,13 +42,33 @@ h3 {
 
 .grid-inner .inner {
     position: relative;
-    border-radius: 5px;
-    height: 100px;
+    height: 150px;
     width: 100%;
     overflow: hidden;
     cursor: pointer;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #257d2e;
+    border-radius: 0.554rem;
+    gap: 0.554rem;
+}
+
+.grid-inner .inner .icon {
+    background-color: #ffffff24;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-inner .inner .icon i {
+    font-size: 2rem;
+    color: #fff;
+    display: flex;
 }
 
 .grid-inner .inner img {
@@ -42,7 +83,7 @@ h3 {
     transform: scale(1.1);
 }
 
-.grid-inner .inner::before {
+/* .grid-inner .inner::before {
     content: '';
     position: absolute;
     top: 0;
@@ -51,12 +92,12 @@ h3 {
     height: 100%;
     background-image: linear-gradient(to top, rgba(28, 16, 63, 0.9), rgba(28, 16, 63, 0.3));
     z-index: 1;
-}
+} */
 
 .grid-inner .inner h5 {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
     color: #fff;
     text-align: center;
     font-weight: 600;
@@ -129,6 +170,11 @@ h3 {
     text-align: left;
     max-width: 100%;
     margin-block: 0.554rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .solutions-list-area .inner-card a {
@@ -153,7 +199,7 @@ h3 {
 .exceptional-service-area {
     background-color: #452e73;
     position: relative;
-    height: 650px;
+    /* height: 650px; */
 }
 
 .exceptional-service-area h3 {
@@ -166,7 +212,11 @@ h3 {
     margin: 0 auto;
 }
 
-.exceptional-service-area .flex-area {
+.exceptional-service-area .border-div {
+    box-shadow: 0px 0px 5px 0px #9f9f9f;
+}
+
+.exceptional-service-area .border-div .flex-area {
     display: flex;
     align-items: center;
     padding: 50px;
@@ -175,34 +225,34 @@ h3 {
     margin-top: 3rem;
 }
 
-.exceptional-service-area .flex-area .left-area img {
+.exceptional-service-area .border-div .flex-area .left-area img {
     width: 100%;
     border-radius: 0.554rem;
 }
 
-.exceptional-service-area .flex-area .right-area p {
+.exceptional-service-area .border-div .flex-area .right-area p {
     color: inherit;
     font-size: 0.954rem;
 }
 
-.exceptional-service-area .white-bg-area {
+.exceptional-service-area .border-div .white-bg-area {
     padding: 50px;
     padding-top: 0;
     background-color: #ffffff;
 }
 
-.exceptional-service-area .white-bg-area p {
+.exceptional-service-area .border-div .white-bg-area p {
     color: inherit;
     max-width: 100%;
     font-size: 0.954rem;
 }
 
-.form-area {
+/* .form-area {
     margin-top: 100px;
     border-top: 1px solid #ccc;
-}
+} */
 
-@media (max-width: 1199px){
+/* @media (max-width: 1199px) {
     .form-area {
         margin-top: 120px;
     }
@@ -214,7 +264,7 @@ h3 {
     }
 }
 
-@media (max-width: 840px){
+@media (max-width: 840px) {
     .form-area {
         margin-top: 750px;
     }
@@ -226,8 +276,8 @@ h3 {
     }
 }
 
-@media (max-width: 480px){
+@media (max-width: 480px) {
     .form-area {
         margin-top: 800px;
     }
-}
+} */

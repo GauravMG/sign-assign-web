@@ -1211,6 +1211,7 @@ function redirectToEditorWithTemplate() {
     params.set("token", token);
     params.set("productId", productId);
     params.set("selectedTemplateId", selectedTemplate?.templateId);
+    params.set("selectedTemplateMediaUrl", selectedTemplate?.mediaUrl);
     params.set("selectedSize", JSON.stringify(selectedSize));
     params.set("returnUrl", window.location.href);
 

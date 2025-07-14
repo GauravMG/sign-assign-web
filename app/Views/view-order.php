@@ -139,18 +139,6 @@
                                         </thead>
                                         <tbody id="dataList">
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Staff Member</th>
-                                                <th>Task</th>
-                                                <th>Created On</th>
-                                                <th>Completed On</th>
-                                                <th>Time Taken</th>
-                                                <th>Number of Members Required</th>
-                                                <th>Status</th>
-                                                <th></th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -179,12 +167,6 @@
                                 </thead>
                                 <tbody id="dataInvoiceList">
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Invoice Number</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -481,7 +463,8 @@
     function initializeDTTasksList() {
         $("#dtTasksList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,
@@ -493,7 +476,8 @@
     function initializeDTInvoiceList() {
         $("#dtInvoiceList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

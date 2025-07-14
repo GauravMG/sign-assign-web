@@ -84,13 +84,6 @@
                     </thead>
                     <tbody id="dataList">
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -120,7 +113,8 @@
     function initializeDTBlogsList() {
         $("#dtBlogsList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

@@ -142,14 +142,6 @@
                                 </thead>
                                 <tbody id="dataFAQList">
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Question</th>
-                                        <th>Answer</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -216,7 +208,8 @@
     function initializeDTFAQList() {
         $("#dtFAQList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

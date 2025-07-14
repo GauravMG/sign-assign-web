@@ -276,14 +276,6 @@
                                 </thead>
                                 <tbody id="dataProductAttributeList">
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Value</th>
-                                        <th>Additional Price</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -318,14 +310,6 @@
                                 </thead>
                                 <tbody id="dataFAQList">
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Question</th>
-                                        <th>Answer</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -361,15 +345,6 @@
                                 </thead>
                                 <tbody id="dataVariantList">
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Image</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -655,7 +630,8 @@
     function initializeDTProductAttributeList() {
         $("#dtProductAttributeList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,
@@ -667,7 +643,8 @@
     // function initializeDTVariantList() {
     //     $("#dtVariantList").DataTable({
     //         "paging": true,
-    //         "lengthChange": false,
+            // "lengthChange": true,
+            // "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
     //         "searching": true,
     //         "ordering": true,
     //         "info": true,
@@ -679,7 +656,8 @@
     function initializeDTFAQList() {
         $("#dtFAQList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

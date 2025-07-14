@@ -88,15 +88,6 @@
                     </thead>
                     <tbody id="dataCouponList">
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Coupon Code</th>
-                            <th>For User<br>(if applicable)</th>
-                            <th>Discount</th>
-                            <th>Distribution Quantity</th>
-                            <th>Status</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -178,7 +169,8 @@
     function initializeDTCouponList() {
         $("#dtCouponList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

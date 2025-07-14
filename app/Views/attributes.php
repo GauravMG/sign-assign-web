@@ -96,16 +96,6 @@
                     </thead>
                     <tbody id="dataList">
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Unit</th>
-                            <th>Options</th>
-                            <th>Is&nbsp;Filterable</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -200,7 +190,8 @@
     function initializeDTAttributesList() {
         $("#dtAttributesList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

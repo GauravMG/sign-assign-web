@@ -100,17 +100,6 @@
                     </thead>
                     <tbody id="dataList">
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Use Editor</th>
-                            <th>Status</th>
-                            <th>Preview</th>
-                            <th>Manage Data</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -141,7 +130,8 @@
     function initializeDTProductsList() {
         $("#dtProductsList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

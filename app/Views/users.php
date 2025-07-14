@@ -101,16 +101,6 @@
                     </thead>
                     <tbody id="dataList">
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Customer Type</th>
-                            <th>Resgistration Date</th>
-                            <th>Account Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -144,7 +134,8 @@
     function initializeDTUsersList() {
         $("#dtUsersList").DataTable({
             "paging": true,
-            "lengthChange": false,
+            "lengthChange": true,
+            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
             "searching": true,
             "ordering": true,
             "info": true,

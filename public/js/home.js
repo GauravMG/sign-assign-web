@@ -373,7 +373,6 @@ async function fetchCategoryProducts(owlCarouselEl, productCategoryId) {
 
                 for (let i = 0; i < data?.length; i++) {
                     let coverImage = null
-                    let price = data[i].price ?? 0
 
                     for (let k = 0; k < data[i]?.productMedias?.length; k++) {
                         if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
@@ -384,6 +383,13 @@ async function fetchCategoryProducts(owlCarouselEl, productCategoryId) {
 
                     if ((coverImage ?? "").trim() === "") {
                         coverImage = `${BASE_URL}images/no-preview-available.jpg`
+                    }
+
+                    const productRegularPrice = Number(data[i].price ?? 0)
+                    const productOfferPrice = Number(data[i].offerPrice ?? 0)
+                    let price = productRegularPrice
+                    if (productOfferPrice >= 0 && productOfferPrice !== productRegularPrice) {
+                        price = productOfferPrice
                     }
 
                     htmlSection.push(`<div class="inner-card">
@@ -435,7 +441,6 @@ async function fetchCategoryProductsRegulatorySign(productCategoryId) {
 
                 for (let i = 0; i < data?.length; i++) {
                     let coverImage = null
-                    let price = data[i].price ?? 0
 
                     for (let k = 0; k < data[i]?.productMedias?.length; k++) {
                         if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
@@ -446,6 +451,13 @@ async function fetchCategoryProductsRegulatorySign(productCategoryId) {
 
                     if ((coverImage ?? "").trim() === "") {
                         coverImage = `${BASE_URL}images/no-preview-available.jpg`
+                    }
+
+                    const productRegularPrice = Number(data.price ?? 0)
+                    const productOfferPrice = Number(data.offerPrice ?? 0)
+                    let price = productRegularPrice
+                    if (productOfferPrice >= 0 && productOfferPrice !== productRegularPrice) {
+                        price = productOfferPrice
                     }
 
                     htmlSection.push(`<div class="card-area">

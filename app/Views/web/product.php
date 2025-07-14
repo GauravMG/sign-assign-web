@@ -23,7 +23,7 @@
                     </div>
                     <div class="price-area my-2">
                         <h5 class="text-success">
-                            $ <span id="productPrice"></span>
+                            <span class="price-strikethrough" id="productPriceStriked"></span>$ <span id="productPrice"></span>
                         </h5>
                     </div>
                     <div class="sku-details">

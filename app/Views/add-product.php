@@ -84,6 +84,8 @@
                             <label for="sku">SKU</label>
                             <input type="text" class="form-control" id="sku" placeholder="Enter sku">
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="price">Price</label>
                             <div class="input-group">
@@ -93,6 +95,18 @@
                                     class="form-control"
                                     id="price"
                                     placeholder="Enter price"
+                                    oninput="validateDecimal(this)">
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label for="offerPrice">Offer Price</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="offerPrice"
+                                    placeholder="Enter offer price"
                                     oninput="validateDecimal(this)">
                             </div>
                         </div>
@@ -274,6 +288,7 @@
                         document.getElementById("name").value = product.name;
                         document.getElementById("sku").value = product.sku;
                         document.getElementById("price").value = product.price;
+                        document.getElementById("offerPrice").value = product.offerPrice;
 
                         document.getElementById("isEditorEnabled").checked = product.isEditorEnabled ? true : false
 
@@ -301,6 +316,7 @@
             const name = document.getElementById("name").value.trim();
             const sku = document.getElementById("sku").value.trim();
             const price = document.getElementById("price").value.trim();
+            const offerPrice = document.getElementById("offerPrice").value.trim();
 
             const isEditorEnabled = document.getElementById("isEditorEnabled").checked
 
@@ -326,6 +342,8 @@
 
             if (!price) return toastr.error("Please enter a valid price!");
 
+            if (!offerPrice) return toastr.error("Please enter a valid offer price!");
+
             if ((shortDescription ?? "").trim() === "") return toastr.error("Please enter a valid short description!");
 
             // if ((section1Title ?? "").trim() === "") return toastr.error("Please enter a valid section 1 title!");
@@ -349,6 +367,7 @@
                 name,
                 sku,
                 price,
+                offerPrice,
                 isEditorEnabled,
                 shortDescription,
                 // section1Title,

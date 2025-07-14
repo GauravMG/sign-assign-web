@@ -767,3 +767,9 @@ span.text-green {
   background-color: #452e7330;
   font-size: 13px;
 }
+
+.price-strikethrough {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+}

@@ -94,7 +94,7 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Customer Type</th>
-                            <th>Resgistration Date</th>
+                            <th>Registration Date</th>
                             <th>Account Status</th>
                             <th>Actions</th>
                         </tr>

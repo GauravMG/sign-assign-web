@@ -760,3 +760,10 @@ span.text-green {
     background: #fff;
     color: #452e73;
 }
+
+.product-list-sku {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: #452e7330;
+  font-size: 13px;
+}

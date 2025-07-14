@@ -23,7 +23,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Add Staff',
-            'page_heading' => 'Add Staff'
+            'page_heading' => 'Add Staff',
+            'back_url' => '/admin/staff'
         ];
 
         return view('add-staff', $data);
@@ -34,6 +35,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Update Staff',
             'page_heading' => 'Update Staff',
+            'back_url' => '/admin/staff',
             'data' => [
                 'userId' => $userId
             ]
@@ -47,6 +49,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Staff Details',
             'page_heading' => 'Staff Details',
+            'back_url' => '/admin/staff',
             'data' => [
                 'userId' => $userId
             ]
@@ -89,7 +92,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Add Customer',
-            'page_heading' => 'Add Customer'
+            'page_heading' => 'Add Customer',
+            'back_url' => '/admin/customers'
         ];
 
         return view('add-user', $data);
@@ -100,6 +104,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Update Customer',
             'page_heading' => 'Update Customer',
+            'back_url' => '/admin/customers',
             'data' => [
                 'userId' => $userId
             ]
@@ -113,6 +118,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Customer Details',
             'page_heading' => 'Customer Details',
+            'back_url' => '/admin/customers',
             'data' => [
                 'userId' => $userId
             ]
@@ -136,6 +142,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Support Ticket Details',
             'page_heading' => 'Support Ticket Details',
+            'back_url' => '/admin/support-tickets',
             'data' => [
                 'supportTicketId' => $supportTicketId
             ]
@@ -158,7 +165,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Add Banner',
-            'page_heading' => 'Add Banner'
+            'page_heading' => 'Add Banner',
+            'back_url' => '/admin/banners'
         ];
 
         return view('add-banner', $data);
@@ -188,7 +196,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Add Product Category',
-            'page_heading' => 'Add Product Category'
+            'page_heading' => 'Add Product Category',
+            'back_url' => '/admin/product-categories'
         ];
 
         return view('add-product-category', $data);
@@ -199,6 +208,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Update Product Category',
             'page_heading' => 'Update Product Category',
+            'back_url' => '/admin/product-categories',
             'data' => [
                 'productCategoryId' => $productCategoryId
             ]
@@ -212,6 +222,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Product Category Details',
             'page_heading' => 'Product Category Details',
+            'back_url' => '/admin/product-categories',
             'data' => [
                 'productCategoryId' => $productCategoryId
             ]
@@ -225,6 +236,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Add Product Sub-category',
             'page_heading' => 'Add Product Sub-category',
+            'back_url' => '/admin/product-categories/view/' . $productCategoryId,
             'data' => [
                 'productCategoryId' => $productCategoryId
             ]
@@ -238,6 +250,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Update Product Sub-category',
             'page_heading' => 'Update Product Sub-category',
+            'back_url' => previous_url(),
             'data' => [
                 'productSubCategoryId' => $productSubCategoryId
             ]
@@ -251,6 +264,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Product Sub-category Details',
             'page_heading' => 'Product Sub-category Details',
+            'back_url' => previous_url(),
             'data' => [
                 'productSubCategoryId' => $productSubCategoryId
             ]
@@ -273,7 +287,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Add Product',
-            'page_heading' => 'Add Product'
+            'page_heading' => 'Add Product',
+            'back_url' => '/admin/products'
         ];
 
         return view('add-product', $data);
@@ -284,6 +299,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Update Product',
             'page_heading' => 'Update Product',
+            'back_url' => '/admin/products',
             'data' => [
                 'productId' => $productId
             ]
@@ -297,6 +313,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Product Details',
             'page_heading' => 'Product Details',
+            'back_url' => '/admin/products',
             'data' => [
                 'productId' => $productId
             ]
@@ -310,6 +327,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Product Media',
             'page_heading' => 'Product Media',
+            'back_url' => '/admin/products',
             'data' => [
                 'productId' => $productId
             ]
@@ -323,6 +341,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Product Atribute',
             'page_heading' => 'Product Atribute',
+            'back_url' => '/admin/products',
             'data' => [
                 'productId' => $productId
             ]
@@ -336,6 +355,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Product FAQ',
             'page_heading' => 'Product FAQ',
+            'back_url' => '/admin/products',
             'data' => [
                 'productId' => $productId
             ]
@@ -349,6 +369,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Product Discount',
             'page_heading' => 'Product Discount',
+            'back_url' => '/admin/products',
             'data' => [
                 'productId' => $productId
             ]
@@ -398,6 +419,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Order Details',
             'page_heading' => 'Order Details',
+            'back_url' => '/admin/orders',
             'data' => [
                 'orderId' => $orderId
             ]
@@ -411,6 +433,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Invoices',
             'page_heading' => 'Invoices',
+            'back_url' => previous_url(),
             'data' => [
                 'invoiceId' => $invoiceId
             ]
@@ -443,7 +466,8 @@ class AdminController extends BaseController
     {
         $data = [
             'title' => 'Add Blog',
-            'page_heading' => 'Add Blog'
+            'page_heading' => 'Add Blog',
+            'back_url' => '/admin/blogs'
         ];
 
         return view('add-blog', $data);
@@ -454,6 +478,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Update Blog',
             'page_heading' => 'Update Blog',
+            'back_url' => '/admin/blogs',
             'data' => [
                 'blogId' => $blogId
             ]
@@ -467,6 +492,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Blog Details',
             'page_heading' => 'Blog Details',
+            'back_url' => '/admin/blogs',
             'data' => [
                 'blogId' => $blogId
             ]

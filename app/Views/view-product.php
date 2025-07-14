@@ -111,7 +111,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="medias-tab" data-toggle="pill"
                             href="#medias" role="tab"
-                            aria-controls="medias" aria-selected="false">Medias</a>
+                            aria-controls="medias" aria-selected="false">Media</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="attribute-list-tab" data-toggle="pill"
@@ -227,12 +227,12 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>All Medias</h4>
+                                    <h4>All Media</h4>
                                 </div>
 
                                 <div class="col-md-6 mb-4 text-right">
                                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-media">
-                                        Add New Medias
+                                        Add New Media
                                     </button>
                                 </div>
                             </div>

@@ -36,6 +36,14 @@
             <!-- Content Header -->
             <div class="content-header">
                 <div class="container-fluid">
+                    <?php if (isset($back_url) && !empty($back_url)) { ?><div class="row mb-2">
+                        <div class="col-12">
+                            <a href="<?= $back_url; ?>" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </a>
+                        </div>
+                    </div>
+                    <?php } ?>
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0"><?= $page_heading ?? 'Dashboard' ?></h1>

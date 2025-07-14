@@ -499,10 +499,10 @@
                             </td>
                             <td>
                                 <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
-                                    <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickManageReferenceTag(${data[i].templateId})">
-                                        <i class="fas fa-folder mr-1">
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickManageReferenceTag(${data[i].templateId})">
+                                        <i class="fas fa-pencil-alt mr-1">
                                         </i>
-                                        View
+                                        Manage Tagging
                                     </a>
                                 </div>
                             </td>

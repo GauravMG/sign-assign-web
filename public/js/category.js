@@ -136,7 +136,7 @@ async function fetchProducts() {
                     const productRegularPrice = Number(data[i].price ?? 0)
                     const productOfferPrice = Number(data[i].offerPrice ?? 0)
                     let price = productRegularPrice
-                    if (productOfferPrice >= 0 && productOfferPrice !== productRegularPrice) {
+                    if (productOfferPrice > 0 && productOfferPrice !== productRegularPrice) {
                         price = productOfferPrice
                     }
 

@@ -447,7 +447,8 @@ async function fetchProducts() {
                 fetchProductFAQs()
                 fetchProductBulkDiscount()
 
-                fetchRelatedProducts(data.productId, data.productCategoryId, data.productSubCategoryId)
+                // fetchRelatedProducts(data.productId, data.productCategoryId, data.productSubCategoryId)
+                fetchRelatedProducts(data.relatedProducts?.map((relatedProduct) => relatedProduct.referenceData))
             }
         }
     })
@@ -478,79 +479,121 @@ async function fetchProducts() {
 // Run initially after inserting options
 // setTimeout(updateScrollButtons, 100);
 
-async function fetchRelatedProducts(productId, productCategoryId, productSubCategoryId) {
-    let payloadFilter = {
-        productCategoryId: Number(productCategoryId)
-    }
-    // if (productSubCategoryId) {
-    //     payloadFilter = {
-    //         ...payloadFilter,
-    //         productSubCategoryId: Number(productSubCategoryId)
-    //     }
-    // }
+// async function fetchRelatedProducts(productId, productCategoryId, productSubCategoryId) {
+//     let payloadFilter = {
+//         productCategoryId: Number(productCategoryId)
+//     }
+//     // if (productSubCategoryId) {
+//     //     payloadFilter = {
+//     //         ...payloadFilter,
+//     //         productSubCategoryId: Number(productSubCategoryId)
+//     //     }
+//     // }
 
-    await postAPICall({
-        endPoint: "/product/list",
-        payload: JSON.stringify({
-            "filter": {
-                ...payloadFilter
-            },
-            "range": {
-                page: 1,
-                pageSize: 10
-            },
-            linkedEntities: true
-        }),
-        callbackComplete: () => { },
-        callbackSuccess: (response) => {
-            let { success, message, data } = response
+//     await postAPICall({
+//         endPoint: "/product/list",
+//         payload: JSON.stringify({
+//             "filter": {
+//                 ...payloadFilter
+//             },
+//             "range": {
+//                 page: 1,
+//                 pageSize: 10
+//             },
+//             linkedEntities: true
+//         }),
+//         callbackComplete: () => { },
+//         callbackSuccess: (response) => {
+//             let { success, message, data } = response
 
-            if (success) {
-                data = data.filter((el) => Number(el.productId) !== Number(productId))
+//             if (success) {
+//                 data = data.filter((el) => Number(el.productId) !== Number(productId))
 
-                let html = []
+//                 let html = []
 
-                for (let i = 0; i < data?.length; i++) {
-                    let coverImage = null
-                    let price = data[i].price ?? 0
+//                 for (let i = 0; i < data?.length; i++) {
+//                     let coverImage = null
+//                     let price = data[i].price ?? 0
 
-                    for (let k = 0; k < data[i]?.productMedias?.length; k++) {
-                        if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
-                            coverImage = data[i].productMedias[k].mediaUrl
-                            break
-                        }
-                    }
+//                     for (let k = 0; k < data[i]?.productMedias?.length; k++) {
+//                         if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
+//                             coverImage = data[i].productMedias[k].mediaUrl
+//                             break
+//                         }
+//                     }
 
-                    if ((coverImage ?? "").trim() === "") {
-                        coverImage = `${BASE_URL}images/no-preview-available.jpg`
-                    }
+//                     if ((coverImage ?? "").trim() === "") {
+//                         coverImage = `${BASE_URL}images/no-preview-available.jpg`
+//                     }
 
-                    html.push(`<div class="inner-card">
-                        <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
-                            <div class="p-3 m-0">
-                                <img src="${coverImage}" alt="${data[i].name}">
-                            </div>
-                            <div class="px-3 mt-0">
-                                    <h5>${data[i].name}</h5>
-                                <!-- <h6>Size (W X H): 34” x 84”)</h6> -->
-                                <div class="rating-area">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
-                            </div>
-                            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">${data[i].isEditorEnabled ? "Customize" : "Order Now"}</a>
-                        </a>
-                    </div>`)
-                }
+//                     html.push(`<div class="inner-card">
+//                         <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
+//                             <div class="p-3 m-0">
+//                                 <img src="${coverImage}" alt="${data[i].name}">
+//                             </div>
+//                             <div class="px-3 mt-0">
+//                                     <h5>${data[i].name}</h5>
+//                                 <!-- <h6>Size (W X H): 34” x 84”)</h6> -->
+//                                 <div class="rating-area">
+//                                     <span class="fa fa-star checked"></span>
+//                                     <span class="fa fa-star checked"></span>
+//                                     <span class="fa fa-star checked"></span>
+//                                     <span class="fa fa-star checked"></span>
+//                                     <span class="fa fa-star checked"></span>
+//                                 </div>
+//                                 <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
+//                             </div>
+//                             <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">${data[i].isEditorEnabled ? "Customize" : "Order Now"}</a>
+//                         </a>
+//                     </div>`)
+//                 }
 
-                reloadOwlCarouselRelatedProducts($("#owlRelatedProducts"), html)
+//                 reloadOwlCarouselRelatedProducts($("#owlRelatedProducts"), html)
+//             }
+//         }
+//     })
+// }
+async function fetchRelatedProducts(data) {
+    let html = []
+
+    for (let i = 0; i < data?.length; i++) {
+        let coverImage = null
+        let price = data[i].price ?? 0
+
+        for (let k = 0; k < data[i]?.productMedias?.length; k++) {
+            if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
+                coverImage = data[i].productMedias[k].mediaUrl
+                break
             }
         }
-    })
+
+        if ((coverImage ?? "").trim() === "") {
+            coverImage = `${BASE_URL}images/no-preview-available.jpg`
+        }
+
+        html.push(`<div class="inner-card">
+            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
+                <div class="p-3 m-0">
+                    <img src="${coverImage}" alt="${data[i].name}">
+                </div>
+                <div class="px-3 mt-0">
+                        <h5>${data[i].name}</h5>
+                    <!-- <h6>Size (W X H): 34” x 84”)</h6> -->
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
+                </div>
+                <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">${data[i].isEditorEnabled ? "Customize" : "Order Now"}</a>
+            </a>
+        </div>`)
+    }
+
+    reloadOwlCarouselRelatedProducts($("#owlRelatedProducts"), html)
 }
 
 // async function fetchProductVariants() {

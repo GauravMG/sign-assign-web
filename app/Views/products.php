@@ -1,6 +1,8 @@
 <?= $this->extend('admin_template'); ?>
 
 <?= $this->section('pageStyles'); ?>
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
@@ -56,6 +58,20 @@
     input:checked+.slider::before {
         transform: translateX(26px);
     }
+
+    /* For Select2 multi-select selected items (Bootstrap theme or default) */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #343a40;
+        /* Dark background (like .btn-dark) */
+        color: #fff;
+        /* White text */
+        border: 1px solid #343a40;
+    }
+
+    /* Optional: Adjust the appearance of the search field */
+    .select2-container--default .select2-search--inline .select2-search__field {
+        height: 30px;
+    }
 </style>
 <?= $this->endSection(); ?>
 
@@ -109,9 +125,39 @@
     </div>
     <!-- /.col -->
 </div>
+
+<div class="modal fade" id="modal-manage-related-products" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- modal-lg for more width -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Manage Related Products</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="manageRelatedProducts_productId">
+
+                <div>
+                    <h5 class="mb-2">Tag Products</h5>
+                    <select class="select2" id="manageRelatedProducts_products" multiple="multiple" data-placeholder="Select products" style="width: 100%;">
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" onclick="onClickSubmitRelatedProducts()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
@@ -123,16 +169,76 @@
 <script src="<?= base_url('assets/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
 
 <script>
+    let products = []
+
     $(document).ready(function() {
         fetchProducts()
         fetchProductCategories()
+
+        $('#manageRelatedProducts_products').select2({
+            placeholder: 'Search and select products',
+            multiple: true,
+            minimumInputLength: 1,
+            ajax: {
+                transport: function(params, success, failure) {
+                    const searchTerm = params.data.term;
+
+                    postAPICall({
+                        endPoint: "/product/list",
+                        payload: JSON.stringify({
+                            filter: {
+                                search: searchTerm
+                            },
+                            range: {
+                                all: true
+                            },
+                            sort: [{
+                                orderDir: "asc",
+                                orderBy: "name"
+                            }]
+                        }),
+                        callbackSuccess: (response) => {
+                            const {
+                                success: isSuccess,
+                                data
+                            } = response;
+                            if (isSuccess && Array.isArray(data)) {
+                                success({
+                                    results: data.map(el => ({
+                                        id: el.productId,
+                                        text: el.name
+                                    }))
+                                });
+                            } else {
+                                success({
+                                    results: []
+                                });
+                            }
+                        },
+                    });
+                },
+                processResults: function(data) {
+                    return data;
+                },
+                delay: 300,
+                cache: true
+            }
+        });
+
+        $('#modal-manage-related-products').on('hidden.bs.modal', function() {
+            document.getElementById("manageRelatedProducts_productId").value = "";
+            $('#manageRelatedProducts_products').val(null).trigger('change');
+        });
     })
 
     function initializeDTProductsList() {
         $("#dtProductsList").DataTable({
             "paging": true,
             "lengthChange": true,
-            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
             "searching": true,
             "ordering": true,
             "info": true,
@@ -217,6 +323,7 @@
                 } = response
 
                 if (success) {
+                    products = data
                     var html = ""
 
                     for (let i = 0; i < data?.length; i++) {
@@ -271,6 +378,11 @@
                                         <i class="fas fa-pencil-alt mr-1">
                                         </i>
                                         Manage Discounts
+                                    </a>
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickManageRelatedProducts(${data[i].productId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Manage Related Products
                                     </a>
                                 </div>
                             </td>
@@ -397,6 +509,74 @@
                         toastr.error(response.message)
                     } else {
                         toastr.success(`Product deleted successfully`)
+                    }
+                    fetchProducts()
+                }
+            })
+        }
+    }
+
+    function prepopulateRelatedProducts({
+        products = []
+    }) {
+        // Populate Products
+        products.forEach(prod => {
+            const option = new Option(prod.name, prod.productId, true, true);
+            $('#manageRelatedProduct_products').append(option).trigger('change');
+        });
+    }
+
+    function onClickManageRelatedProducts(productId) {
+        document.getElementById('manageRelatedProducts_productId').value = productId
+
+        $('#modal-manage-related-products').modal('show');
+
+        const selectedProduct = products.find((product) => Number(product.productId) === Number(productId))
+
+        const relatedProducts = []
+        selectedProduct.relatedProducts.forEach((productTag) => {
+            if (productTag.referenceType === "product") {
+                relatedProducts.push({
+                    productId: Number(productTag.referenceId),
+                    name: productTag.referenceData.name
+                })
+            }
+        })
+
+        prepopulateRelatedProducts({
+            products: relatedProducts
+        })
+    }
+
+    async function onClickSubmitRelatedProducts() {
+        // Get values from form inputs
+        let productId = document.getElementById('manageRelatedProducts_productId').value.trim();
+        productId = Number(productId)
+        const selectedProductIds = $('#manageRelatedProducts_products').val();
+
+        if (!selectedProductIds?.length) {
+            alert("Please select at least 1 related product!")
+            return
+        }
+        let payload = []
+        for (let el of selectedProductIds) {
+            payload.push({
+                productId,
+                referenceType: "product",
+                referenceId: Number(el)
+            })
+        }
+
+        if (confirm("Are you sure you want to update related products for selected product?")) {
+            await postAPICall({
+                endPoint: "/related-product/save",
+                payload: JSON.stringify(payload),
+                callbackSuccess: (response) => {
+                    if (!response.success) {
+                        toastr.error(response.message)
+                    } else {
+                        toastr.success(`Related products updated successfully`)
+                        $('#modal-manage-related-products').modal('hide');
                     }
                     fetchProducts()
                 }

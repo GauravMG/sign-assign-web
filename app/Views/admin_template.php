@@ -74,6 +74,7 @@
     <script src="<?= base_url('assets/adminlte/plugins/toastr/toastr.min.js'); ?>"></script>
     <script src="<?= base_url('assets/adminlte/dist/js/adminlte.min.js'); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         const BASE_URL = '<?= base_url(); ?>'
@@ -81,6 +82,7 @@
         const BASE_URL_EDITOR = '<?= BASE_URL_EDITOR ?>'
     </script>
 
+    <script src="<?= base_url('js/utils/alert.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/service-api-admin.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/common-admin.js') . '?t=' . time(); ?>"></script>
     <script src="<?= base_url('js/helper-file.js') . '?t=' . time(); ?>"></script>

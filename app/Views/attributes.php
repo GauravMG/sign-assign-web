@@ -361,8 +361,6 @@
             "Attribute updated successfully" :
             "Attribute created successfully";
 
-        console.log("Payload to submit:", payload);
-
         await postAPICall({
             endPoint,
             payload: JSON.stringify(payload),

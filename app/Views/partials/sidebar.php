@@ -111,7 +111,7 @@
                     <a href="/admin/banners" class="nav-link">
                         <i class="nav-icon fas fa-images"></i>
                         <p>
-                            Banners
+                            Landing Page Banners
                         </p>
                     </a>
                 </li>

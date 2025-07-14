@@ -974,9 +974,9 @@
                             <td>
                                 <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
                                     <a class="btn btn-primary btn-sm d-flex align-items-center" onclick="onClickViewInvoice(${el.invoiceId})">
-                                        <i class="fas fa-folder mr-1">
+                                        <i class="fas fa-print mr-1">
                                         </i>
-                                        View
+                                        Download / Print
                                     </a>
                                 </div>
                             </td>

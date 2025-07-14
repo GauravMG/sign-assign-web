@@ -154,8 +154,8 @@ class AdminController extends BaseController
     public function banners(): string
     {
         $data = [
-            'title' => 'Banners',
-            'page_heading' => 'Banners'
+            'title' => 'Landing Page Banners',
+            'page_heading' => 'Landing Page Banners'
         ];
 
         return view('banners', $data);
@@ -164,8 +164,8 @@ class AdminController extends BaseController
     public function addBanner(): string
     {
         $data = [
-            'title' => 'Add Banner',
-            'page_heading' => 'Add Banner',
+            'title' => 'Add Landing Page Banner',
+            'page_heading' => 'Add Landing Page Banner',
             'back_url' => '/admin/banners'
         ];
 

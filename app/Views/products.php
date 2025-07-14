@@ -90,6 +90,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Sku</th>
                             <th>Category</th>
                             <th>Use Editor</th>
                             <th>Status</th>
@@ -221,6 +222,7 @@
                     for (let i = 0; i < data?.length; i++) {
                         html += `<tr>
                             <td>${data[i].name ?? ""}</td>
+                            <td>${data[i].sku ?? ""}</td>
                             <td>${data[i].productCategory?.name ?? ""}</td>
                             <td>
                                 <label class="switch">

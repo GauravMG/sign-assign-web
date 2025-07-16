@@ -6,15 +6,46 @@ h3 {
     margin: 0 auto 3rem;
 }
 
-
 .subheader-area {
-    background-image: url('/images/about-us-banner.png');
+    background-image: url('/images/aboutus-subheader-image.jpg');
     height: 100%;
     aspect-ratio: 16/5;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    cursor: pointer;
+    position: relative;
+}
+
+.subheader-area .caption-area {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
+    max-width: 40%;
+}
+
+.subheader-area .caption-area h3 {
+    color: #ffffff;
+    margin-bottom: 0.554rem;
+    font-size: 2.554rem;
+    max-width: 100%;
+}
+
+.subheader-area .caption-area p {
+    color: #ffffff;
+    font-size: 0.954rem;
+    line-height: 1.5rem;
+    margin-bottom: 0.554rem;
+}
+
+.subheader-area .caption-area a {
+    background-color: #008c2d;
+    color: #fff;
+    padding: 10px 15px;
+    display: inline-flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .counter-area {

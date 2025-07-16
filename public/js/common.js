@@ -873,7 +873,7 @@ chatIcon.addEventListener("click", () => {
 
 minimizeBtn.addEventListener("click", () => {
     chatBox.style.display = "none";
-    chatIcon.style.display = "block";
+    chatIcon.style.display = "flex";
 });
 
 let ongoingChatType = ""

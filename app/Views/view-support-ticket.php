@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
 
 <style>
+    #ticketDetailsContainer .info-box {
+        margin-bottom: unset !important;
+    }
+
     .ticket-info-card {
         display: inline-block;
     }
@@ -40,64 +44,13 @@
 <div class="row">
     <div class="col-md-8">
         <div class="card card-dark card-tabs">
-            <div class="card-body">
+            <div class="card-body" style="min-height: 550px;">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 id="subject"></h3>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 p-0">
-                        <div class="info-box shadow-none col-md-3 p-0 ticket-info-card">
-                            <div class="info-box-content">
-                                <span class="info-box-text">Requested By:</span>
-                                <span class="info-box-number" id="createdByUserFullName"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="info-box shadow-none col-md-3 p-0 ticket-info-card">
-                            <div class="info-box-content">
-                                <span class="info-box-text">Created Date:</span>
-                                <span class="info-box-number" id="createdDate"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="info-box shadow-none col-md-3 p-0 ticket-info-card">
-                            <div class="info-box-content">
-                                <span class="info-box-text">Updated Date:</span>
-                                <span class="info-box-number" id="updatedDate"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="info-box shadow-none col-md-3 p-0 ticket-info-card">
-                            <div class="info-box-content">
-                                <span class="info-box-text">Status:</span>
-                                <span class="info-box-number">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info" id="ticketStatusText_<?= $data['supportTicketId']; ?>"></button>
-                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" id="ticketStatusDropdown_<?= $data['supportTicketId']; ?>"
-                                            data-toggle="dropdown">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" onclick="onClickUpdateTicketStatus(<?= $data['supportTicketId']; ?>, 'open')">Open</a>
-                                            <a class="dropdown-item" onclick="onClickUpdateTicketStatus(<?= $data['supportTicketId']; ?>, 'pending')">Pending</a>
-                                            <a class="dropdown-item" onclick="onClickUpdateTicketStatus(<?= $data['supportTicketId']; ?>, 'closed')">Closed</a>
-                                        </div>
-                                    </div>
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Overview :</h3>
-                    </div>
+                <div class="row mt-3">
                     <div class="col-md-12">
                         <div id="description"></div>
                     </div>
@@ -111,6 +64,80 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <h3>Ticket Details</h3>
+                    </div>
+                </div>
+                <div class="row" id="ticketDetailsContainer">
+                    <div class="info-box shadow-none p-0">
+                        <div class="info-box-content">
+                            <span class="info-box-text">Requested By:</span>
+                            <span class="info-box-number" id="createdByUserFullName"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-box shadow-none p-0">
+                        <div class="info-box-content">
+                            <span class="info-box-text">Email:</span>
+                            <span class="info-box-number" id="createdByUserEmail"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-box shadow-none p-0">
+                        <div class="info-box-content">
+                            <span class="info-box-text">Mobile:</span>
+                            <span class="info-box-number" id="createdByUserMobile"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-box shadow-none p-0">
+                        <div class="info-box-content">
+                            <span class="info-box-text">Created Date:</span>
+                            <span class="info-box-number" id="createdDate"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-box shadow-none p-0">
+                        <div class="info-box-content">
+                            <span class="info-box-text">Updated Date:</span>
+                            <span class="info-box-number" id="updatedDate"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-box shadow-none p-0">
+                        <div class="info-box-content" style="overflow: visible !important; position: relative; z-index: 1;">
+                            <span class="info-box-text">Status:</span>
+                            <span class="info-box-number">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info" id="ticketStatusText_<?= $data['supportTicketId']; ?>"></button>
+                                    <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" id="ticketStatusDropdown_<?= $data['supportTicketId']; ?>"
+                                        data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(<?= $data['supportTicketId']; ?>, 'open')">Open</a>
+                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(<?= $data['supportTicketId']; ?>, 'interview')">Interview</a>
+                                        <a class="dropdown-item" onclick="onClickUpdateTicketStatus(<?= $data['supportTicketId']; ?>, 'closed')">Closed</a>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col-md-4">
+        <div class="card card-dark card-tabs">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
                         <h3>File Attachment</h3>
                     </div>
                 </div>
@@ -118,7 +145,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <?= $this->endSection(); ?>
 
@@ -169,10 +196,14 @@
                         data
                     } = response
 
-                    const ticketStatusBtnType = data[0].ticketStatus === "closed" ? "success" : data[0].ticketStatus === "pending" ? "warning" : "info"
+                    const ticketStatusBtnType = data[0].ticketStatus === "closed" ? "success" : data[0].ticketStatus === "interview" ? "warning" : "info"
 
                     document.getElementById("subject").innerText = data[0]?.subject ?? "-"
-                    document.getElementById("createdByUserFullName").innerText = data[0]?.createdByUser?.fullName ?? "-"
+
+                    document.getElementById("createdByUserFullName").innerText = data[0]?.createdByUser?.fullName ?? data[0]?.userName
+                    document.getElementById("createdByUserEmail").innerText = data[0]?.createdByUser?.email ?? data[0]?.userEmail
+                    document.getElementById("createdByUserMobile").innerText = data[0]?.createdByUser?.mobile ?? data[0]?.userMobile
+
                     document.getElementById("createdDate").innerText = data[0]?.createdAt ? formatDate(data[0].createdAt) : "-"
                     document.getElementById("updatedDate").innerText = data[0]?.updatedAt ? formatDate(data[0].updatedAt) : "-"
 
@@ -207,7 +238,9 @@
                         </div>`
                     }
 
-                    document.getElementById("attachmentContainer").innerHTML = attachmentHtml
+                    if (document.getElementById("attachmentContainer")) {
+                        document.getElementById("attachmentContainer").innerHTML = attachmentHtml
+                    }
                 }
                 loader.hide()
             }
@@ -229,7 +262,7 @@
                     } else {
                         toastr.success(`Support ticket status updated successfully`)
 
-                        const ticketStatusBtnType = ticketStatus === "closed" ? "success" : ticketStatus === "pending" ? "warning" : "info"
+                        const ticketStatusBtnType = ticketStatus === "closed" ? "success" : ticketStatus === "interview" ? "warning" : "info"
 
                         let ticketStatusTextEl = document.getElementById(`ticketStatusText_${supportTicketId}`)
                         ticketStatusTextEl.innerText = capitalizeFirstLetter(ticketStatus)

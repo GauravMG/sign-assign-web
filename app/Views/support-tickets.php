@@ -170,7 +170,7 @@
 
                             html += `<tr>
                                 <td>#${i + 1}</td>
-                                <td>${data[i].createdByUser?.fullName ?? "-"}</td>
+                                <td>${data[i].createdByUser?.fullName ?? data[i].userName ?? "-"}</td>
                                 <td>${data[i].subject}</td>
                                 <td>
                                     <div class="btn-group">

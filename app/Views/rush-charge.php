@@ -89,7 +89,7 @@
                                     <th>Min Price</th>
                                     <th>Max Price</th>
                                     <th>Charge Type</th>
-                                    <th>Amount</th>
+                                    <th>Amount / Percentage</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>

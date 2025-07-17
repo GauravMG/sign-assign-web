@@ -1,6 +1,8 @@
 <?= $this->extend('admin_template'); ?>
 
 <?= $this->section('pageStyles'); ?>
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
@@ -48,6 +50,20 @@
         border-radius: 50%;
     }
 
+    /* For Select2 multi-select selected items (Bootstrap theme or default) */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #343a40;
+        /* Dark background (like .btn-dark) */
+        color: #fff;
+        /* White text */
+        border: 1px solid #343a40;
+    }
+
+    /* Optional: Adjust the appearance of the search field */
+    .select2-container--default .select2-search--inline .select2-search__field {
+        height: 30px;
+    }
+
     /* Checked state */
     input:checked+.slider {
         background-color: #28a745;
@@ -86,6 +102,7 @@
                             <th>Distribution Quantity</th>
                             <th>Expiry Date</th>
                             <th>Status</th>
+                            <th>Manage Tagging</th>
                         </tr>
                     </thead>
                     <tbody id="dataCouponList">
@@ -155,9 +172,54 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal-manage-reference-tag" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- modal-lg for more width -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Manage Tagging</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="manageReferenceTag_couponId">
+
+                <!-- Section 1: Product Categories -->
+                <div class="mb-4">
+                    <h5 class="mb-2">Tag Product Categories</h5>
+                    <select class="select2" id="manageReferenceTag_productCategories" multiple="multiple" data-placeholder="Select product categories" style="width: 100%;">
+                    </select>
+                </div>
+
+                <!-- Section 2: Product Sub-categories -->
+                <div class="mb-4">
+                    <h5 class="mb-2">Tag Product Sub-categories</h5>
+                    <select class="select2" id="manageReferenceTag_productSubCategories" multiple="multiple" data-placeholder="Select product sub-categories" style="width: 100%;">
+                    </select>
+                </div>
+
+                <!-- Section 3: Products -->
+                <div>
+                    <h5 class="mb-2">Tag Products</h5>
+                    <select class="select2" id="manageReferenceTag_products" multiple="multiple" data-placeholder="Select products" style="width: 100%;">
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" onclick="onClickSubmitReferenceTag()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js'); ?>"></script>
 <script src="<?= base_url('assets/adminlte/plugins/datatables-fixedheader/js/fixedHeader.bootstrap4.min.js'); ?>"></script>
@@ -173,6 +235,156 @@
 <script>
     $(document).ready(function() {
         fetchCoupons()
+
+        $('#manageReferenceTag_productCategories').select2({
+            placeholder: 'Search and select product categores',
+            multiple: true,
+            minimumInputLength: 1,
+            ajax: {
+                transport: function(params, success, failure) {
+                    const searchTerm = params.data.term;
+
+                    postAPICall({
+                        endPoint: "/product-category/list",
+                        payload: JSON.stringify({
+                            filter: {
+                                search: searchTerm
+                            },
+                            range: {
+                                all: true
+                            },
+                            sort: [{
+                                orderDir: "asc",
+                                orderBy: "name"
+                            }]
+                        }),
+                        callbackSuccess: (response) => {
+                            const {
+                                success: isSuccess,
+                                data
+                            } = response;
+                            if (isSuccess && Array.isArray(data)) {
+                                success({
+                                    results: data.map(el => ({
+                                        id: el.productCategoryId,
+                                        text: el.name
+                                    }))
+                                });
+                            } else {
+                                success({
+                                    results: []
+                                });
+                            }
+                        },
+                    });
+                },
+                processResults: function(data) {
+                    return data;
+                },
+                delay: 300,
+                cache: true
+            }
+        });
+
+        $('#manageReferenceTag_productSubCategories').select2({
+            placeholder: 'Search and select staff members',
+            multiple: true,
+            minimumInputLength: 1,
+            ajax: {
+                transport: function(params, success, failure) {
+                    const searchTerm = params.data.term;
+
+                    postAPICall({
+                        endPoint: "/product-subcategory/list",
+                        payload: JSON.stringify({
+                            filter: {
+                                search: searchTerm
+                            },
+                            range: {
+                                all: true
+                            },
+                            sort: [{
+                                orderDir: "asc",
+                                orderBy: "name"
+                            }]
+                        }),
+                        callbackSuccess: (response) => {
+                            const {
+                                success: isSuccess,
+                                data
+                            } = response;
+                            if (isSuccess && Array.isArray(data)) {
+                                success({
+                                    results: data.map(el => ({
+                                        id: el.productSubCategoryId,
+                                        text: el.name
+                                    }))
+                                });
+                            } else {
+                                success({
+                                    results: []
+                                });
+                            }
+                        },
+                    });
+                },
+                processResults: function(data) {
+                    return data;
+                },
+                delay: 300,
+                cache: true
+            }
+        });
+
+        $('#manageReferenceTag_products').select2({
+            placeholder: 'Search and select staff members',
+            multiple: true,
+            minimumInputLength: 1,
+            ajax: {
+                transport: function(params, success, failure) {
+                    const searchTerm = params.data.term;
+
+                    postAPICall({
+                        endPoint: "/product/list",
+                        payload: JSON.stringify({
+                            filter: {
+                                search: searchTerm
+                            },
+                            range: {
+                                all: true
+                            },
+                            sort: [{
+                                orderDir: "asc",
+                                orderBy: "name"
+                            }]
+                        }),
+                        callbackSuccess: (response) => {
+                            const {
+                                success: isSuccess,
+                                data
+                            } = response;
+                            if (isSuccess && Array.isArray(data)) {
+                                success({
+                                    results: data.map(el => ({
+                                        id: el.productId,
+                                        text: el.name
+                                    }))
+                                });
+                            } else {
+                                success({
+                                    results: []
+                                });
+                            }
+                        },
+                    });
+                },
+                processResults: function(data) {
+                    return data;
+                },
+                delay: 300,
+                cache: true
+            }
+        });
 
         $('#modal-add-coupon').on('hidden.bs.modal', function() {
             $('#add_couponId').val('');
@@ -197,6 +409,13 @@
                     this.value = ""; // Clear invalid input
                 }
             });
+        });
+
+        $('#modal-manage-reference-tag').on('hidden.bs.modal', function() {
+            document.getElementById("manageReferenceTag_couponId").value = "";
+            $('#manageReferenceTag_productCategories').val(null).trigger('change');
+            $('#manageReferenceTag_productSubCategories').val(null).trigger('change');
+            $('#manageReferenceTag_products').val(null).trigger('change');
         });
     })
 
@@ -263,6 +482,15 @@
                                     <input type="checkbox" class="toggle-status" data-coupon-id="${coupon.couponId}" ${coupon.status ? "checked" : ""}>
                                     <span class="slider"></span>
                                 </label>
+                            </td>
+                            <td>
+                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                    <a class="btn btn-info btn-sm d-flex align-items-center" onclick="onClickManageReferenceTag(${coupon.couponId})">
+                                        <i class="fas fa-pencil-alt mr-1">
+                                        </i>
+                                        Manage Tagging
+                                    </a>
+                                </div>
                             </td>
                         </tr>`;
                     }
@@ -360,6 +588,120 @@
                 }
             }
         })
+    }
+
+    function prepopulateReferenceTagging({
+        categories = [],
+        subCategories = [],
+        products = []
+    }) {
+        // Populate Product Categories
+        categories.forEach(cat => {
+            const option = new Option(cat.name, cat.productCategoryId, true, true);
+            $('#manageReferenceTag_productCategories').append(option).trigger('change');
+        });
+
+        // Populate Product Sub-Categories
+        subCategories.forEach(sub => {
+            const option = new Option(sub.name, sub.productSubCategoryId, true, true);
+            $('#manageReferenceTag_productSubCategories').append(option).trigger('change');
+        });
+
+        // Populate Products
+        products.forEach(prod => {
+            const option = new Option(prod.name, prod.productId, true, true);
+            $('#manageReferenceTag_products').append(option).trigger('change');
+        });
+    }
+
+    function onClickManageReferenceTag(couponId) {
+        document.getElementById('manageReferenceTag_couponId').value = couponId
+
+        $('#modal-manage-reference-tag').modal('show');
+
+        const selectedCoupon = coupons.find((coupon) => Number(coupon.couponId) === Number(couponId))
+
+        const categories = []
+        const subCategories = []
+        const products = []
+        selectedCoupon.couponTags.forEach((couponTag) => {
+            if (couponTag.referenceType === "product_category") {
+                categories.push({
+                    productCategoryId: Number(couponTag.referenceId),
+                    name: couponTag.referenceData.name
+                })
+            }
+            if (couponTag.referenceType === "product_sub_category") {
+                subCategories.push({
+                    productSubCategoryId: Number(couponTag.referenceId),
+                    name: couponTag.referenceData.name
+                })
+            }
+            if (couponTag.referenceType === "product") {
+                products.push({
+                    productId: Number(couponTag.referenceId),
+                    name: couponTag.referenceData.name
+                })
+            }
+        })
+
+        prepopulateReferenceTagging({
+            categories,
+            subCategories,
+            products
+        })
+    }
+
+    async function onClickSubmitReferenceTag() {
+        // Get values from form inputs
+        let couponId = document.getElementById('manageReferenceTag_couponId').value.trim();
+        couponId = Number(couponId)
+        const selectedProductCategoryIds = $('#manageReferenceTag_productCategories').val();
+        const selectedProductSubCategoryIds = $('#manageReferenceTag_productSubCategories').val();
+        const selectedProductIds = $('#manageReferenceTag_products').val();
+
+        if (!selectedProductCategoryIds?.length && !selectedProductSubCategoryIds?.length && !selectedProductIds?.length) {
+            alert("Please select at least 1 tagging reference!")
+            return
+        }
+        let payload = []
+        for (let el of selectedProductCategoryIds) {
+            payload.push({
+                couponId,
+                referenceType: "product_category",
+                referenceId: Number(el)
+            })
+        }
+        for (let el of selectedProductSubCategoryIds) {
+            payload.push({
+                couponId,
+                referenceType: "product_sub_category",
+                referenceId: Number(el)
+            })
+        }
+        for (let el of selectedProductIds) {
+            payload.push({
+                couponId,
+                referenceType: "product",
+                referenceId: Number(el)
+            })
+        }
+
+        if (confirm("Are you sure you want to update tagging for selected coupon?")) {
+            await postAPICall({
+                endPoint: "/coupon-tag/save",
+                payload: JSON.stringify(payload),
+                callbackSuccess: (response) => {
+                    if (!response.success) {
+                        toastr.error(response.message)
+                    } else {
+                        toastr.success(`Coupon tagging updated successfully`)
+                        $('#modal-manage-reference-tag').modal('hide');
+                    }
+                    fetchCoupons()
+                }
+            })
+        }
     }
 </script>
 <?= $this->endSection(); ?>

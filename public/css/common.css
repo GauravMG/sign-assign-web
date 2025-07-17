@@ -456,15 +456,17 @@ span.text-green {
     right: 20px;
     background: #452e73;
     color: white;
-    padding: 16px;
-    font-size: 20px;
+    font-size: 30px;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     transition: background 0.3s ease;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #chat-icon:hover {
@@ -762,10 +764,10 @@ span.text-green {
 }
 
 .product-list-sku {
-  padding: 2px 5px;
-  border-radius: 5px;
-  background-color: #452e7330;
-  font-size: 13px;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background-color: #452e7330;
+    font-size: 13px;
 }
 
 .price-strikethrough {

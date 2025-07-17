@@ -5,8 +5,17 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<div class="subheader-area" onclick="window.location.href = '/services'">
+<!-- <div class="subheader-area" onclick="window.location.href = '/services'">
     <div class="container-fluid">
+    </div>
+</div> -->
+<div class="subheader-area">
+    <div class="container-fluid">
+        <div class="caption-area">
+            <h3>More Than Signs, We Tell Your Story</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consequatur vel repellat, ab, dolor ipsa nulla consequuntur ullam numquam facere totam quaerat, libero repudiandae praesentium? Nemo suscipit tempora dolorem neque.</p>
+            <a href="#">Explore our services</a>
+        </div>
     </div>
 </div>
 <div class="counter-area">

@@ -133,11 +133,39 @@ async function fetchProducts() {
                         coverImage = `${BASE_URL}images/no-preview-available.jpg`
                     }
 
-                    const productRegularPrice = Number(data[i].price ?? 0)
-                    const productOfferPrice = Number(data[i].offerPrice ?? 0)
-                    let price = productRegularPrice
-                    if (productOfferPrice > 0 && productOfferPrice !== productRegularPrice) {
-                        price = productOfferPrice
+                    const regularPrice = Number(data[i].price ?? 0)
+                    const offerPrice = Number(data[i].offerPrice ?? 0)
+                    const offerType = data[i].offerPriceType
+
+                    let showDiscount = false
+                    let finalPrice = regularPrice
+                    let discountPercentage = 0
+
+                    if (offerType === "amount" && offerPrice > 0 && offerPrice < regularPrice) {
+                        showDiscount = true
+                        finalPrice = offerPrice
+                        discountPercentage = Math.round(((regularPrice - offerPrice) / regularPrice) * 100)
+                    } else if (offerType === "percentage" && offerPrice > 0 && offerPrice < 100) {
+                        showDiscount = true
+                        discountPercentage = Math.round(offerPrice)
+                        finalPrice = Math.round(regularPrice * (1 - (discountPercentage / 100)))
+                    }
+
+                    let priceHtml = ''
+                    if (showDiscount) {
+                        priceHtml = `
+                            <div class="price-area" style="height: 40px;">
+                                <div class="d-flex" style="justify-content: center; align-items: center;">
+                                    <span class="text-danger fw-bold" style="margin-right: 5px;">${discountPercentage}% Off</span><br>
+                                    <h6 class="fw-bold">$${finalPrice}</h6>
+                                </div>
+                                <small class="text-muted text-decoration-line-through">$${regularPrice}</small>
+                            </div>`
+                    } else {
+                        priceHtml = `
+                            <div class="price-area" style="height: 40px;">
+                                <h6 class="fw-bold">$${regularPrice}</h6>
+                            </div>`
                     }
 
                     html.push(`<div class="inner-card">
@@ -155,7 +183,7 @@ async function fetchProducts() {
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                 </div>
-                                <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
+                                ${priceHtml}
                             </div>
                             <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">${data[i].isEditorEnabled ? "Customize" : "Order Now"}</a>
                         </a>

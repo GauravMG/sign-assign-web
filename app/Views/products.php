@@ -107,7 +107,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Sku</th>
+                            <th>SKU</th>
                             <th>Category</th>
                             <th>Use Editor</th>
                             <th>Status</th>

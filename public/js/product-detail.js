@@ -203,6 +203,58 @@ function calculatePayablePrice() {
     }
 }
 
+function renderPriceDisplay(price, offerPrice, offerPriceType) {
+    const originalPriceElem = document.getElementById('productPriceOriginal');
+    const originalWrapper = document.getElementById('originalPriceWrapper');
+    const finalPriceElem = document.getElementById('productPriceFinal');
+    const discountPercentElem = document.getElementById('productDiscountPercent');
+
+    // Reset display
+    originalWrapper.classList.add('d-none');
+    discountPercentElem.classList.add('d-none');
+
+    // If no offerPriceType, show only original price (no strike, no discount)
+    if (!offerPriceType) {
+        finalPriceElem.textContent = price.toFixed(2);
+        productPrice = price
+        return;
+    }
+
+    // If offerPriceType is "amount"
+    if (offerPriceType === "amount" && offerPrice != null) {
+        const discount = price - offerPrice;
+        const discountPercent = Math.round((discount / price) * 100);
+
+        finalPriceElem.textContent = offerPrice.toFixed(2);
+        productPrice = offerPrice.toFixed(2)
+        originalPriceElem.textContent = price.toFixed(2);
+        discountPercentElem.textContent = `${discountPercent}% off`;
+
+        originalWrapper.classList.remove('d-none');
+        discountPercentElem.classList.remove('d-none');
+    }
+
+    // If offerPriceType is "percentage"
+    else if (offerPriceType === "percentage" && offerPrice != null) {
+        const discountAmount = price * (offerPrice / 100);
+        const discountedPrice = price - discountAmount;
+
+        finalPriceElem.textContent = discountedPrice.toFixed(2);
+        productPrice = discountedPrice.toFixed(2)
+        originalPriceElem.textContent = price.toFixed(2);
+        discountPercentElem.textContent = `${Math.round(offerPrice)}% off`;
+
+        originalWrapper.classList.remove('d-none');
+        discountPercentElem.classList.remove('d-none');
+    }
+
+    // Fallback to just showing the original price
+    else {
+        finalPriceElem.textContent = price.toFixed(2);
+        productPrice = price
+    }
+}
+
 async function fetchProducts() {
     await postAPICall({
         endPoint: "/product/list",
@@ -229,19 +281,12 @@ async function fetchProducts() {
 
                 const productRegularPrice = Number(data.price ?? 0)
                 const productOfferPrice = Number(data.offerPrice ?? 0)
-
-                productPrice = productRegularPrice
-
-                if (productOfferPrice > 0 && productOfferPrice !== productRegularPrice) {
-                    productPrice = productOfferPrice
-                    document.getElementById("productPriceStriked").innerText = `$ ${productRegularPrice}`
-                }
+                renderPriceDisplay(productRegularPrice, productOfferPrice, data.offerPriceType)
 
                 calculatePayablePrice()
 
                 document.getElementById("productName").innerText = data.name
                 document.getElementById("productSku").innerText = data.sku ?? "-"
-                document.getElementById("productPrice").innerText = productPrice ?? 0
 
                 document.getElementById("shortDescription").innerHTML = data.shortDescription
 
@@ -579,11 +624,39 @@ async function fetchRelatedProducts(data) {
             coverImage = `${BASE_URL}images/no-preview-available.jpg`
         }
 
-        const productRegularPrice = Number(data[i].price ?? 0)
-        const productOfferPrice = Number(data[i].offerPrice ?? 0)
-        let price = productRegularPrice
-        if (productOfferPrice > 0 && productOfferPrice !== productRegularPrice) {
-            price = productOfferPrice
+        const regularPrice = Number(data[i].price ?? 0)
+        const offerPrice = Number(data[i].offerPrice ?? 0)
+        const offerType = data[i].offerPriceType
+
+        let showDiscount = false
+        let finalPrice = regularPrice
+        let discountPercentage = 0
+
+        if (offerType === "amount" && offerPrice > 0 && offerPrice < regularPrice) {
+            showDiscount = true
+            finalPrice = offerPrice
+            discountPercentage = Math.round(((regularPrice - offerPrice) / regularPrice) * 100)
+        } else if (offerType === "percentage" && offerPrice > 0 && offerPrice < 100) {
+            showDiscount = true
+            discountPercentage = Math.round(offerPrice)
+            finalPrice = Math.round(regularPrice * (1 - (discountPercentage / 100)))
+        }
+
+        let priceHtml = ''
+        if (showDiscount) {
+            priceHtml = `
+                <div class="price-area" style="height: 40px;">
+                    <div class="d-flex" style="justify-content: center; align-items: center;">
+                        <span class="text-danger fw-bold" style="margin-right: 5px;">${discountPercentage}% Off</span><br>
+                        <h6 class="fw-bold">$${finalPrice}</h6>
+                    </div>
+                    <small class="text-muted text-decoration-line-through">$${regularPrice}</small>
+                </div>`
+        } else {
+            priceHtml = `
+                <div class="price-area" style="height: 40px;">
+                    <h6 class="fw-bold">$${regularPrice}</h6>
+                </div>`
         }
 
         html.push(`<div class="inner-card">
@@ -601,7 +674,7 @@ async function fetchRelatedProducts(data) {
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                     </div>
-                    <h6>Starts at: <span class="text-green">$ ${price}</span></h6>
+                    ${priceHtml}
                 </div>
                 <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">${data[i].isEditorEnabled ? "Customize" : "Order Now"}</a>
             </a>

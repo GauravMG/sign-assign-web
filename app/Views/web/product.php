@@ -21,11 +21,17 @@
                     <h4 id="productName"></h4>
                     <div id="shortDescription">
                     </div>
+
                     <div class="price-area my-2">
-                        <h5 class="text-success">
-                            <span class="price-strikethrough" id="productPriceStriked"></span>$ <span id="productPrice"></span>
+                        <h5 class="mb-1 text-danger fw-bold">
+                            $<span id="productPriceFinal"></span>
+                            <span class="badge bg-success ms-2 d-none" id="productDiscountPercent"></span>
                         </h5>
+                        <div class="text-muted d-none" id="originalPriceWrapper">
+                            <small><s>$<span id="productPriceOriginal"></span></s></small>
+                        </div>
                     </div>
+
                     <div class="sku-details">
                         <!-- <div class="review-area">
                             <div class="rating-area">

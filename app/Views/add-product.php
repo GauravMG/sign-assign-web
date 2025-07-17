@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="sku">SKU</label>
-                            <input type="text" class="form-control" id="sku" placeholder="Enter sku">
+                            <input type="text" class="form-control" id="sku" placeholder="Enter SKU">
                         </div>
                     </div>
                     <div class="row">
@@ -99,8 +99,22 @@
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="offerPrice">Offer Price</label>
-                            <div class="input-group">
+                            <label for="offerPriceType">Offer Type</label>
+                            <select class="form-control" id="offerPriceType">
+                                <option value="">-- Select --</option>
+                                <option value="amount">Amount</option>
+                                <option value="percentage">Percentage</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label for="offerPrice">Offer Price / Discount Percentage</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="offerPrice"
+                                placeholder="Enter offer price"
+                                oninput="validateDecimal(this)">
+                            <!-- <div class="input-group">
                                 <span class="input-group-text">$</span>
                                 <input
                                     type="text"
@@ -108,7 +122,7 @@
                                     id="offerPrice"
                                     placeholder="Enter offer price"
                                     oninput="validateDecimal(this)">
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="row">
@@ -288,6 +302,9 @@
                         document.getElementById("name").value = product.name;
                         document.getElementById("sku").value = product.sku;
                         document.getElementById("price").value = product.price;
+                        if (product.offerPriceType) {
+                            document.getElementById("offerPriceType").value = product.offerPriceType;
+                        }
                         document.getElementById("offerPrice").value = product.offerPrice;
 
                         document.getElementById("isEditorEnabled").checked = product.isEditorEnabled ? true : false
@@ -316,6 +333,7 @@
             const name = document.getElementById("name").value.trim();
             const sku = document.getElementById("sku").value.trim();
             const price = document.getElementById("price").value.trim();
+            const offerPriceType = document.getElementById("offerPriceType").value.trim();
             const offerPrice = document.getElementById("offerPrice").value.trim();
 
             const isEditorEnabled = document.getElementById("isEditorEnabled").checked
@@ -338,11 +356,9 @@
 
             if (!name) return toastr.error("Please enter a valid name!");
 
-            if (!sku) return toastr.error("Please enter a valid sku!");
+            if (!sku) return toastr.error("Please enter a valid SKU!");
 
             if (!price) return toastr.error("Please enter a valid price!");
-
-            if (!offerPrice) return toastr.error("Please enter a valid offer price!");
 
             if ((shortDescription ?? "").trim() === "") return toastr.error("Please enter a valid short description!");
 
@@ -367,7 +383,8 @@
                 name,
                 sku,
                 price,
-                offerPrice,
+                offerPriceType,
+                offerPrice: offerPrice ? Number(offerPrice) : null,
                 isEditorEnabled,
                 shortDescription,
                 // section1Title,

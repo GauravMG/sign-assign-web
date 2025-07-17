@@ -40,7 +40,7 @@ $(document).ready(function () {
     Promise.all([
         fetchBanners(),
         fetchBlogs(),
-        fetchCuratedBestsellers(),
+        // fetchCuratedBestsellers(),
         // fetchProducts(),
         fetchAllCategories(),
     ])
@@ -325,6 +325,82 @@ async function fetchCuratedBestsellers() {
 //     })
 // }
 
+const productSequence = {
+    "owlSectionCatBanner": [
+        "Vinyl Banners",
+        "Mesh Banners",
+        "Fabric Banners",
+        "Backlit Banners",
+        "Banner Stands",
+    ],
+    "owlSectionCatVehicle": [
+        "Truck and Car Decals",
+        "Truck and Car Graphics",
+        "Truck and Car Magnets",
+        "Back Window Graphics",
+    ],
+    "owlSectionCatWindow": [
+        "Vinyl Window Decals",
+        "Store Lettering",
+        "Window Graphics",
+        "Window Perforated Vinyl",
+        "Frosted Window Film / Privacy Film",
+        "Window Wraps",
+        "Static Window Cling",
+        "Window Hangers",
+        "Window Posters",
+        "Block out Graphics",
+    ],
+    "owlSectionCatEvent": [
+        "Life Size Cutout Signs",
+        "Step and Repeat",
+        "Trade Show Displays",
+        "Seating Charts",
+        "Sales and Specials Banners",
+        "Corporate Banners",
+        "Birthday Banner",
+        "Anniversary Banners",
+        "Graduation Banners",
+        "Special Occasion Banners",
+    ],
+    "owlSectionCatMarketingTool": [
+        "Yard Signs",
+        "Real Estate Signs",
+        "A Frame",
+        "Magnets",
+        "X Frame",
+    ],
+    "owlSectionCatRegulatorySign": [
+        "Safety Signs",
+        "Warning Signs",
+        "Regulatory Signs",
+        "Traffic Signs",
+        "Parking Signs",
+    ],
+    "owlSectionCatIndoorSign": [
+        "Wall Graphics",
+        "Wall Decals",
+        "Wall Frames",
+        "Stand Off Signs",
+        "Room Name Plates",
+        "Floor Graphics",
+        "Menu Boards",
+        "Lightbox Inserts",
+        "Posters",
+        "Hanging Signs",
+    ],
+    "owlSectionCatOutdoorSign": [
+        "Store Front Signs",
+        "Building Signs",
+        "Monument Signs",
+        "Pylon Signs",
+        "Pole Signs",
+        "Pole Banners",
+    ],
+}
+
+let allProductsBySelection = []
+
 async function fetchAllCategories() {
     await postAPICall({
         endPoint: "/product-category/list",
@@ -339,19 +415,149 @@ async function fetchAllCategories() {
             const { success, message, data } = response
 
             if (success) {
-                fetchCategoryProducts($("#owlSectionCatBanner"), data.find((el) => el.name.toLowerCase() === "banners").productCategoryId)
-                fetchCategoryProducts($("#owlSectionCatWindow"), data.find((el) => el.name.toLowerCase() === "window products").productCategoryId)
-                fetchCategoryProducts($("#owlSectionCatVehicle"), data.find((el) => el.name.toLowerCase() === "vehicle products").productCategoryId)
-                fetchCategoryProducts($("#owlSectionCatEvent"), data.find((el) => el.name.toLowerCase() === "event signs").productCategoryId)
-                fetchCategoryProducts($("#owlSectionCatMarketingTool"), data.find((el) => el.name.toLowerCase() === "marketing tools").productCategoryId)
+                fetchProductsByNames(Object.values(productSequence).flat())
 
-                fetchCategoryProductsRegulatorySign(data.find((el) => el.name.toLowerCase() === "regulatory signs").productCategoryId)
+                // fetchCategoryProducts("owlSectionCatBanner", data.find((el) => el.name.toLowerCase() === "banners").productCategoryId)
+                // fetchCategoryProducts("owlSectionCatVehicle", data.find((el) => el.name.toLowerCase() === "vehicle products").productCategoryId)
+                // fetchCategoryProducts("owlSectionCatWindow", data.find((el) => el.name.toLowerCase() === "window products").productCategoryId)
+                // fetchCategoryProducts("owlSectionCatEvent", data.find((el) => el.name.toLowerCase() === "event signs").productCategoryId)
+                // fetchCategoryProducts("owlSectionCatMarketingTool", data.find((el) => el.name.toLowerCase() === "marketing tools").productCategoryId)
+
+                // fetchCategoryProductsRegulatorySign(data.find((el) => el.name.toLowerCase() === "regulatory signs").productCategoryId)
+
+                // fetchCategoryProducts("owlSectionCatIndoorSign", data.find((el) => el.name.toLowerCase() === "indoor signs").productCategoryId)
+                // fetchCategoryProducts("owlSectionCatOutdoorSign", data.find((el) => el.name.toLowerCase() === "outdoor signs").productCategoryId)
             }
         }
     })
 }
 
-async function fetchCategoryProducts(owlCarouselEl, productCategoryId) {
+async function fetchProductsByNames(names) {
+    await postAPICall({
+        endPoint: "/product/list",
+        payload: JSON.stringify({
+            "filter": {
+                name: names
+            },
+            "range": {
+                all: true
+            },
+            linkedEntities: true
+        }),
+        callbackComplete: () => { },
+        callbackSuccess: (response) => {
+            const { success, message, data } = response
+
+            if (success) {
+                allProductsBySelection = data
+
+                renderSelectedProductsByCategory("owlSectionCatBanner")
+                renderSelectedProductsByCategory("owlSectionCatVehicle")
+                renderSelectedProductsByCategory("owlSectionCatWindow")
+                renderSelectedProductsByCategory("owlSectionCatEvent")
+                renderSelectedProductsByCategory("owlSectionCatMarketingTool")
+
+                renderSelectedProductsByCategoryRegulatorySign()
+
+                renderSelectedProductsByCategory("owlSectionCatIndoorSign")
+                renderSelectedProductsByCategory("owlSectionCatOutdoorSign")
+            }
+        }
+    })
+}
+
+function renderSelectedProductsByCategory(owlCarouselElId) {
+    let htmlSection = []
+
+    const productSequenceByCategory = productSequence[owlCarouselElId].map((el) =>
+        el.toLowerCase().replace(/s$/, '') // remove trailing 's'
+    );
+
+    const data = allProductsBySelection
+        .filter((el) => {
+            const nameTrimmed = el.name.toLowerCase().replace(/s$/, '');
+            return productSequenceByCategory.includes(nameTrimmed);
+        })
+        .sort((a, b) => {
+            const nameA = a.name.toLowerCase().replace(/s$/, '');
+            const nameB = b.name.toLowerCase().replace(/s$/, '');
+            return productSequenceByCategory.indexOf(nameA) - productSequenceByCategory.indexOf(nameB);
+        });
+
+    for (let i = 0; i < data?.length; i++) {
+        let coverImage = null
+
+        for (let k = 0; k < data[i]?.productMedias?.length; k++) {
+            if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
+                coverImage = data[i].productMedias[k].mediaUrl
+                break
+            }
+        }
+
+        if ((coverImage ?? "").trim() === "") {
+            coverImage = `${BASE_URL}images/no-preview-available.jpg`
+        }
+
+        const regularPrice = Number(data[i].price ?? 0)
+        const offerPrice = Number(data[i].offerPrice ?? 0)
+        const offerType = data[i].offerPriceType
+
+        let showDiscount = false
+        let finalPrice = regularPrice
+        let discountPercentage = 0
+
+        if (offerType === "amount" && offerPrice > 0 && offerPrice < regularPrice) {
+            showDiscount = true
+            finalPrice = offerPrice
+            discountPercentage = Math.round(((regularPrice - offerPrice) / regularPrice) * 100)
+        } else if (offerType === "percentage" && offerPrice > 0 && offerPrice < 100) {
+            showDiscount = true
+            discountPercentage = Math.round(offerPrice)
+            finalPrice = Math.round(regularPrice * (1 - (discountPercentage / 100)))
+        }
+
+        let priceHtml = ''
+        if (showDiscount) {
+            priceHtml = `
+                <div class="price-area" style="height: 40px;">
+                    <div class="d-flex" style="justify-content: center; align-items: center;">
+                        <span class="text-danger fw-bold" style="margin-right: 5px;">${discountPercentage}% Off</span><br>
+                        <h6 class="fw-bold">$${finalPrice}</h6>
+                    </div>
+                    <small class="text-muted text-decoration-line-through">$${regularPrice}</small>
+                </div>`
+        } else {
+            priceHtml = `
+                <div class="price-area" style="height: 40px;">
+                    <h6 class="fw-bold">$${regularPrice}</h6>
+                </div>`
+        }
+
+        htmlSection.push(`<div class="inner-card">
+            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
+                <div class="p-3 m-0">
+                    <img src="${coverImage}" alt="${data[i].name}">
+                </div>
+                <div class="px-3 mt-0">
+                    <h5>${data[i].name}</h5>
+                    <div class="rating-area">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    ${priceHtml}
+                </div>
+                <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}" class="customized-button">${data[i].isEditorEnabled ? "Customize" : "Order Now"}</a>
+            </a>
+        </div>`)
+    }
+
+    reloadOwlCarousel($(`#${owlCarouselElId}`), htmlSection)
+}
+
+async function fetchCategoryProducts(owlCarouselElId, productCategoryId) {
     await postAPICall({
         endPoint: "/product/list",
         payload: JSON.stringify({
@@ -441,10 +647,87 @@ async function fetchCategoryProducts(owlCarouselEl, productCategoryId) {
                     </div>`)
                 }
 
-                reloadOwlCarousel(owlCarouselEl, htmlSection)
+                reloadOwlCarousel($(`#${owlCarouselElId}`), htmlSection)
             }
         }
     })
+}
+
+async function renderSelectedProductsByCategoryRegulatorySign() {
+    let htmlSection = []
+
+    const productSequenceByCategory = productSequence["owlSectionCatRegulatorySign"].map((el) =>
+        el.toLowerCase().replace(/s$/, '') // remove trailing 's'
+    );
+
+    const data = allProductsBySelection
+        .filter((el) => {
+            const nameTrimmed = el.name.toLowerCase().replace(/s$/, '');
+            return productSequenceByCategory.includes(nameTrimmed);
+        })
+        .sort((a, b) => {
+            const nameA = a.name.toLowerCase().replace(/s$/, '');
+            const nameB = b.name.toLowerCase().replace(/s$/, '');
+            return productSequenceByCategory.indexOf(nameA) - productSequenceByCategory.indexOf(nameB);
+        });
+
+    for (let i = 0; i < data?.length; i++) {
+        let coverImage = null
+
+        for (let k = 0; k < data[i]?.productMedias?.length; k++) {
+            if (data[i].productMedias[k].mediaType.indexOf("image") >= 0 && (data[i].productMedias[k].mediaUrl ?? "").trim() !== "") {
+                coverImage = data[i].productMedias[k].mediaUrl
+                break
+            }
+        }
+
+        if ((coverImage ?? "").trim() === "") {
+            coverImage = `${BASE_URL}images/no-preview-available.jpg`
+        }
+
+        const regularPrice = Number(data[i].price ?? 0)
+        const offerPrice = Number(data[i].offerPrice ?? 0)
+        const offerType = data[i].offerPriceType
+
+        let showDiscount = false
+        let finalPrice = regularPrice
+        let discountPercentage = 0
+
+        if (offerType === "amount" && offerPrice > 0 && offerPrice < regularPrice) {
+            showDiscount = true
+            finalPrice = offerPrice
+            discountPercentage = Math.round(((regularPrice - offerPrice) / regularPrice) * 100)
+        } else if (offerType === "percentage" && offerPrice > 0 && offerPrice < 100) {
+            showDiscount = true
+            discountPercentage = Math.round(offerPrice)
+            finalPrice = Math.round(regularPrice * (1 - (discountPercentage / 100)))
+        }
+
+        let priceHtml = ''
+        if (showDiscount) {
+            priceHtml = `
+                <div class="price-area" style="height: 40px;">
+                    <div class="d-flex" style="justify-content: center; align-items: center;">
+                        <span class="text-danger fw-bold" style="margin-right: 5px;">${discountPercentage}% Off</span><br>
+                        <h6 class="fw-bold">$${finalPrice}</h6>
+                    </div>
+                    <small class="text-muted text-decoration-line-through">$${regularPrice}</small>
+                </div>`
+        } else {
+            priceHtml = `
+                <div class="price-area" style="height: 40px;">
+                    <h6 class="fw-bold">$${regularPrice}</h6>
+                </div>`
+        }
+
+        htmlSection.push(`<div class="card-area">
+            <img src="${coverImage}" alt="${data[i].name}">
+            <h5>${data[i].name}</h5>
+            <a href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">Order Now</a>
+        </div>`)
+    }
+
+    document.getElementById("catRegulatorySign").innerHTML = htmlSection.join("")
 }
 
 async function fetchCategoryProductsRegulatorySign(productCategoryId) {

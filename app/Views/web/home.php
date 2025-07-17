@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Bold Banners, Brilliant Designs</h3>
+                <h3 class="mb-0">Bold Attractive Banners</h3>
             </div>
             <div class="right">
                 <div class="owl-nav">
@@ -40,37 +40,7 @@
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Window Designs That Inspire</h3>
-            </div>
-            <div class="right">
-                <div class="owl-nav">
-                    <button type="button" role="presentation" class="owl-prev">
-                        <i class="fa-solid fa-arrow-left-long"></i>
-                    </button>
-                    <button type="button" role="presentation" class="owl-next">
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="owlSectionCatWindow" class="owl-carousel owl-theme">
-        </div>
-    </div>
-</div>
-
-<div class="bestseller-area pt-5">
-    <div class="container-fluid">
-        <h3>Curated Bestsellers to Wow Your Customers</h3>
-        <div class="products-grid" id="curatedBestSellersContainer">
-        </div>
-    </div>
-</div>
-
-<div class="container-slide-area pt-5">
-    <div class="container-fluid">
-        <div class="view-all-area">
-            <div class="left">
-                <h3 class="mb-0">Style on Wheels – Design Solutions</h3>
+                <h3 class="mb-0">Style on Wheels</h3>
             </div>
             <div class="right">
                 <div class="owl-nav">
@@ -92,7 +62,29 @@
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Event Signage That Speaks Loud & Clear</h3>
+                <h3 class="mb-0">Windows of Visions</h3>
+            </div>
+            <div class="right">
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="owlSectionCatWindow" class="owl-carousel owl-theme">
+        </div>
+    </div>
+</div>
+
+<div class="container-slide-area pt-5">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Events that Matter</h3>
             </div>
             <div class="right">
                 <div class="owl-nav">
@@ -114,7 +106,7 @@
     <div class="container-fluid">
         <div class="view-all-area">
             <div class="left">
-                <h3 class="mb-0">Tools That Sell, Designs That Convert</h3>
+                <h3 class="mb-0">Tools that Sell, Designs that Convert</h3>
             </div>
             <div class="right">
                 <div class="owl-nav">
@@ -134,11 +126,63 @@
 
 <div class="order-area py-5">
     <div class="container-fluid">
-        <h3>Designed for Safety. Built for Compliance</h3>
+        <h3>Designed for Safety, built for Compliance</h3>
         <div class="inner-area" id="catRegulatorySign">
         </div>
     </div>
 </div>
+
+<div class="container-slide-area pt-5">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Indoor Signs</h3>
+            </div>
+            <div class="right">
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="owlSectionCatIndoorSign" class="owl-carousel owl-theme">
+        </div>
+    </div>
+</div>
+
+<div class="container-slide-area pt-5">
+    <div class="container-fluid">
+        <div class="view-all-area">
+            <div class="left">
+                <h3 class="mb-0">Outdoor Signs</h3>
+            </div>
+            <div class="right">
+                <div class="owl-nav">
+                    <button type="button" role="presentation" class="owl-prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button type="button" role="presentation" class="owl-next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="owlSectionCatOutdoorSign" class="owl-carousel owl-theme">
+        </div>
+    </div>
+</div>
+
+<!-- <div class="bestseller-area pt-5">
+    <div class="container-fluid">
+        <h3>Curated Bestsellers to Wow Your Customers</h3>
+        <div class="products-grid" id="curatedBestSellersContainer">
+        </div>
+    </div>
+</div> -->
 
 <div class="testimonial-area pt-5">
     <div class="container-fluid">

@@ -502,7 +502,7 @@ async function fetchProducts() {
                 fetchProductBulkDiscount()
 
                 // fetchRelatedProducts(data.productId, data.productCategoryId, data.productSubCategoryId)
-                fetchRelatedProducts(data.relatedProducts?.map((relatedProduct) => relatedProduct.referenceData))
+                fetchRelatedProducts(data.relatedProducts?.map((relatedProduct) => relatedProduct.referenceData).filter(Boolean))
             }
         }
     })
@@ -624,9 +624,9 @@ async function fetchRelatedProducts(data) {
             coverImage = `${BASE_URL}images/no-preview-available.jpg`
         }
 
-        const regularPrice = Number(data[i].price ?? 0)
-        const offerPrice = Number(data[i].offerPrice ?? 0)
-        const offerType = data[i].offerPriceType
+        const regularPrice = Number(data[i]?.price ?? 0)
+        const offerPrice = Number(data[i]?.offerPrice ?? 0)
+        const offerType = data[i]?.offerPriceType
 
         let showDiscount = false
         let finalPrice = regularPrice

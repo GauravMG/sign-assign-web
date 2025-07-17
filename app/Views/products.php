@@ -348,13 +348,13 @@
                                 </label>
                             </td>
                             <td>
-                                <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
+                                ${data[i].status ? `<div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">
                                     <a class="btn btn-primary btn-sm d-flex align-items-center" target="_blank" href="/product/${getLinkFromName(data[i].name)}?pid=${data[i].productId}">
                                         <i class="fas fa-eye mr-1">
                                         </i>
                                         Preview
                                     </a>
-                                </div>
+                                </div>` : ""}
                             </td>
                             <td>
                                 <div class="project-actions text-right d-flex justify-content-end" style="gap: 0.5rem;">

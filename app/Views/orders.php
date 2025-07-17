@@ -1,6 +1,8 @@
 <?= $this->extend('admin_template'); ?>
 
 <?= $this->section('pageStyles'); ?>
+<link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css'); ?>">
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -48,6 +50,10 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('pageScripts'); ?>
+<script src="<?= base_url('assets/adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js'); ?>"></script>
+<script src="<?= base_url('assets/adminlte/plugins/datatables-fixedheader/js/fixedHeader.bootstrap4.min.js'); ?>"></script>
 
 <script>
     $(document).ready(function() {
@@ -55,6 +61,10 @@
     })
 
     async function fetchOrders() {
+        if ($.fn.DataTable.isDataTable("#dtOrdersList")) {
+            $('#dtOrdersList').DataTable().destroy();
+        }
+        
         await postAPICall({
             endPoint: "/order/list",
             payload: JSON.stringify({
@@ -73,7 +83,6 @@
                 const {success, message, data} = response
 
                 if (success) {
-                    console.log(`data ===`, data)
                     var html = ""
 
                     for (let order of data) {
@@ -141,6 +150,23 @@
 
                     // // Insert the generated table rows
                     document.getElementById("dataList").innerHTML = html;
+
+                    // Initialize DataTable with fixedHeader
+                    $('#dtOrdersList').DataTable({
+                        responsive: true,
+                        autoWidth: false,
+                        fixedHeader: {
+                            header: true,
+                            headerOffset: $('.main-header').outerHeight() || 56 // optional, if using fixed top navbar
+                        }
+                    });
+
+                    setTimeout(() => {
+                        new $.fn.dataTable.FixedHeader($('#dtOrdersList').DataTable(), {
+                            header: true,
+                            headerOffset: $('.main-header').outerHeight() || 56
+                        });
+                    }, 300); // Allow time for layout to settle
                 }
                 loader.hide()
             }

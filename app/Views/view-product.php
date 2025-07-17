@@ -654,7 +654,7 @@
     //         "info": true,
     //         "autoWidth": false,
     //         "responsive": true,
-            "fixedHeader": true,
+            // "fixedHeader": true,
     //     })
     // }
 

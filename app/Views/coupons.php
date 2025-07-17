@@ -84,6 +84,7 @@
                             <th>For User<br>(if applicable)</th>
                             <th>Discount</th>
                             <th>Distribution Quantity</th>
+                            <th>Expiry Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -141,6 +142,11 @@
                     <label for="add_couponQuantity">Coupon Quantity</label>
                     <input type="number" class="form-control" id="add_couponQuantity" placeholder="Enter Quantity">
                 </div>
+
+                <div class="form-group">
+                    <label for="add_expiryDate">Expiry Date</label>
+                    <input type="date" class="form-control" id="add_couponExpiryDate" min="">
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -167,13 +173,41 @@
 <script>
     $(document).ready(function() {
         fetchCoupons()
+
+        $('#modal-add-coupon').on('hidden.bs.modal', function() {
+            $('#add_couponId').val('');
+            $('#add_couponCode').val('');
+            $('#add_discountType').val('');
+            $('#add_discount').val('');
+            $('#add_couponQuantityType').val('');
+            $('#add_couponQuantity').val('');
+            $('#add_couponExpiryDate').val('');
+        });
+
+        $('#modal-add-coupon').on('shown.bs.modal', function() {
+            // Set today's date as min
+            const dateInput = document.getElementById('add_couponExpiryDate');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+
+            // Optional: Revalidate on change or blur
+            dateInput.addEventListener('blur', function() {
+                if (this.value && this.value < today) {
+                    alert("Please select today or a future date.");
+                    this.value = ""; // Clear invalid input
+                }
+            });
+        });
     })
 
     function initializeDTCouponList() {
         $("#dtCouponList").DataTable({
             "paging": true,
             "lengthChange": true,
-            "lengthMenu": [ [10, 25, 50, 100], [10, 25, 50, 100] ],
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
             "searching": true,
             "ordering": true,
             "info": true,
@@ -223,6 +257,7 @@
                             <td>${coupon.user ? createFullName(coupon.user) : "N/A"}</td>
                             <td>${coupon.discount ?? "0"} ${coupon.discountType === "percentage" ? "%" : "flat"}</td>
                             <td>${coupon.couponQuantityType === "unlimited" ? "Unlimited" : coupon.couponQuantity}</td>
+                            <td>${coupon.expiryDate ? formatDateWithoutTime(coupon.expiryDate) : "—"}</td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="toggle-status" data-coupon-id="${coupon.couponId}" ${coupon.status ? "checked" : ""}>
@@ -294,13 +329,17 @@
     }
 
     async function onClickSubmitAddCoupon() {
+        const expiryDateRaw = document.getElementById('add_couponExpiryDate').value;
+        const expiryDate = expiryDateRaw ? new Date(expiryDateRaw).toISOString() : null;
+
         const coupon = {
             couponCode: document.getElementById('add_couponCode').value,
             discountType: document.getElementById('add_discountType').value,
             discount: parseFloat(document.getElementById('add_discount').value || 0),
             couponQuantityType: document.getElementById('add_couponQuantityType').value,
             couponQuantity: document.getElementById('add_couponQuantity').value ?
-                parseInt(document.getElementById('add_couponQuantity').value, 10) : null
+                parseInt(document.getElementById('add_couponQuantity').value, 10) : null,
+            expiryDate
         };
 
         await postAPICall({

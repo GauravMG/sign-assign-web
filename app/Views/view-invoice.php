@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -120,20 +121,15 @@
 
             <div class="row no-print">
                 <div class="col-12">
-                    <!-- <a href="/admin/invoices/print" rel="noopener" target="_blank"
-                        class="btn btn-default"><i class="fas fa-print"></i> Print</a> -->
-                    <a onclick="printInvoice()" rel="noopener" target="_blank"
-                        class="btn btn-primary float-right"><i class="fas fa-print"></i> Print</a>
-                    <!-- <button type="button" class="btn btn-success float-right"><i
-                            class="far fa-credit-card"></i> Submit
-                        Payment
-                    </button> -->
-                    <!-- <button type="button" class="btn btn-primary float-right"
-                        style="margin-right: 5px;">
-                        <i class="fas fa-download"></i> Generate PDF
-                    </button> -->
+                    <button onclick="downloadInvoicePDF()" class="btn btn-secondary float-right ml-2">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button onclick="printInvoice()" class="btn btn-primary float-right">
+                        <i class="fas fa-print"></i> Print
+                    </button>
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -295,6 +291,36 @@
 
     function printInvoice() {
         window.print()
+    }
+
+    function downloadInvoicePDF() {
+        const invoiceElement = document.querySelector('.invoice');
+        const noPrintElements = document.querySelectorAll('.no-print');
+
+        // Hide no-print elements
+        noPrintElements.forEach(el => el.style.display = 'none');
+
+        const opt = {
+            margin: 0.5,
+            filename: `invoice-${invoiceId}.pdf`,
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        };
+
+        html2pdf().set(opt).from(invoiceElement).save().then(() => {
+            // Restore no-print elements after PDF generation
+            noPrintElements.forEach(el => el.style.display = '');
+        });
     }
 </script>
 <?= $this->endSection(); ?>

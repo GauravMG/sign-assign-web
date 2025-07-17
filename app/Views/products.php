@@ -526,7 +526,7 @@
         // Populate Products
         products.forEach(prod => {
             const option = new Option(prod.name, prod.productId, true, true);
-            $('#manageRelatedProduct_products').append(option).trigger('change');
+            $('#manageRelatedProducts_products').append(option).trigger('change');
         });
     }
 
@@ -541,7 +541,7 @@
         selectedProduct.relatedProducts.forEach((productTag) => {
             if (productTag.referenceType === "product") {
                 relatedProducts.push({
-                    productId: Number(productTag.referenceId),
+                    productId: Number(productTag.referenceData.productId),
                     name: productTag.referenceData.name
                 })
             }
